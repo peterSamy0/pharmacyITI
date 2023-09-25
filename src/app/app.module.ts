@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AppRoutingRoutingModule } from './app-routing-routing.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { AppRoutingRoutingModule } from './app-routing-routing.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingRoutingModule
+    AppRoutingRoutingModule,
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
