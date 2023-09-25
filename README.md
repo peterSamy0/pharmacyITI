@@ -25,3 +25,18 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Color that used to build the website
+:root {
+
+    --darkBlue: #1C3879;
+    --lightBlue: #607EAA; 
+    --gray: #EAE3D2;
+    --light: #F9F5EB;
+    --navFont: 18px;
+    --headerFont: 20px;
+    --bodyFont: 16px;
+    --footerFont: 14px;
+    
+  }
