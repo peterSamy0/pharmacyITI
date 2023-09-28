@@ -5,6 +5,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DropDownComponent } from './components/drop-down/drop-down.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchFormComponent } from './components/search-form/search-form.component';
+import { PharmacyDetailsComponent } from '../pharmacy/pharmacy-details/pharmacy-details.component';
 
 
 @NgModule({
@@ -12,7 +13,9 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
     HeaderComponent,
     FooterComponent,
     DropDownComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    PharmacyDetailsComponent
+    
   ],
   imports: [
     CommonModule,
@@ -21,7 +24,9 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
   exports: [
     HeaderComponent,
     FooterComponent,
-    DropDownComponent
+    DropDownComponent,
+    PharmacyDetailsComponent
+    
   ]
 })
 export class SharedModule { }
