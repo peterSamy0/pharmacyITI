@@ -1,0 +1,523 @@
+[
+    {
+      "name": "Alexandria",
+      "cities": [
+        "Abu Qir",
+        "Abu Talat",
+        "Agami",
+
+        "Al Hadrah",
+        "Al Ibrahimiyyah",
+        "Amreya",
+        "Asafra",
+        "Attarin",
+        "Awayed",
+        "Azaritay",
+        "Bacchus",
+        "Bahray - Anfoshy",
+        "Bolkly",
+        "Borg al-Arab",
+
+        "Camp Caesar",
+        "Cleopatra",
+        "Dekheila",
+        "Dhahria",
+        "El Max",
+        "Fleming",
+        "Gianaclis",
+        "Glim",
+        "Gomrok",
+        "Kabbary",
+        "Kafr Abdo",
+        "Karmous",
+        "Koum al-Dikka",
+        "Labban",
+        "Laurent",
+        "Maamoura",
+        "Mandara",
+        "Manshiyya",
+        "Miami",
+        "Moharam Bik",
+
+        "Montazah",
+        "Nakheel",
+        "Raml Station",
+        "Ras El Tin",
+        "Roushdy",
+        "Saba Pasha",
+        "Salehia",
+        "San Stefano",
+        "Schutz",
+        "Seyouf",
+        "Shatby",
+        "Sidi Beshr",
+        "Sidi Gaber",
+        "Smoha",
+
+        "Sporting",
+        "Stanley",
+        "Victoria",
+        "Wardian",
+        "Zezenia"
+      ]
+    },
+    {
+      "name": "Aswan",
+      "cities": [
+        "Abou al-Reish",
+        "Abou Simbel",
+        "Aswan City",
+        "Basiliah",
+        "Daraw",
+        "Edfu",
+        "Kalabsha",
+        "Kom Ombo",
+        "Nasr al-Noba",
+        "Rdesiah",
+        "Sahara",
+        "Sebaeiah"
+      ]
+    },
+    {
+      "name": "Assiut",
+      "cities": [
+        "Abou Homs",
+        "Abuu al-Matamer",
+        "Damanhour",
+        "Delengat",
+        "Edko",
+        "Etay al-Barud",
+        "Hosh Essa",
+        "Kafr al-Dawwar",
+        "Kom Hamadah",
+        "Mahmoudiyah",
+        "Markaz Badr",
+        "Nubariyah",
+        "Rahmaniya",
+        "Rashid",
+        "Shubrakhit",
+        "Wadi al-Natrun"
+      ]
+    },
+    {
+      "name": "Beheira",
+      "cities": [
+        "Abou Homs",
+        "Abuu al-Matamer",
+        "Damanhour",
+        "Delengat",
+        "Edko",
+        "Etay al-Barud",
+        "Hosh Essa",
+        "Kafr al-Dawwar",
+        "Kom Hamadah",
+        "Mahmoudiyah",
+        "Markaz Badr",
+        "Nubariyah",
+        "Rahmaniya",
+        "Rashid",
+        "Shubrakhit",
+        "Wadi al-Natrun"
+      ]
+    },
+    {
+      "name": "Beni Suef",
+      "cities": [
+        "Al Feshn",
+        "Al Wasty",
+        "Beba",
+        "Beni Suef City",
+        "Ehnasia",
+        "Nasser",
+        "New Beni Suef",
+        "Samasta"
+      ]
+    },
+
+    {
+      "name": "Cairo",
+      "cities": [
+        "15 May City",
+        "Abasiya",
+
+        "Ain Shams",
+        "Al Amiriyyah",
+        "Al Manial",
+        "Almazah",
+        "Ataba",
+        "Bab al-Shereia",
+        "Badr City",
+        "Basateen",
+        "Boulaq Abo El Ela",
+        "Dar al-Salaam",
+        "Darb al-Ahmar",
+        "Darrasa",
+        "Downtown Cairo",
+        "El Fostat",
+        "Ezbet El Nakhl",
+        "Gamaleya",
+        "Garden City",
+        "Gesr Al Suez",
+        "Hadayek al-Kobba",
+        "Hadayek Helwan",
+        "Heliopolis",
+        "Helmeya al-Gadeda",
+        "Helmeyat El Zaytoun",
+        "Helwan",
+        "Katameya",
+        "Ma'sara",
+        "Maadi",
+        "Madinaty",
+        "Marg",
+        "Masr al-Kadema",
+        "Matareya",
+        "Mokattam",
+        "Moski",
+        "Mostakbal City",
+        "Nasr City",
+        "New Cairo",
+        "New Capital City",
+        "New Heliopolis",
+        "New Nozha",
+        "Obour City",
+        "Qasr al-Nil",
+        "Ramses + Ramses Extension",
+        "Rod al-Farag",
+        "Salam City",
+        "Sayeda Zeinab",
+        "Sharabeya",
+        "Sheraton",
+        "Shorouk City",
+        "Shubra",
+        "Tebeen",
+        "Tura",
+        "Waili",
+        "Zahraa Al Maadi",
+        "Zamalek",
+        "Zawya al-Hamra"
+      ]
+    },
+
+    {
+      "name": "Beheira",
+      "cities": [
+        "aga",
+        "Akhtab",
+        "Bani Ubayd",
+        "Belqas",
+        "Dikirnis",
+        "El Kordy",
+        "Gamasa",
+        "Mansura",
+        "Manzala",
+        "Markaz El Gamaleya",
+        "Markaz El Matareya",
+        "Minat al-Nasr",
+        "Mit Ghamr",
+        "Mit Slseel",
+        "Nabaruh",
+        "New Mansoura",
+        "Shirbin",
+        "Sinbillawain",
+        "Talkha",
+        "Tama al-Amdeed"
+      ]
+    },
+    {
+      "name": "Damietta",
+      "cities": [
+        "Damietta City",
+        "Ezbet al-Burj",
+        "Fareskour",
+        "Kafr al-Bateekh",
+        "Kafr Saad",
+        "Markaz El Rodah",
+        "Mit Abughalb",
+        "New Damietta",
+        "Ras al-Bar",
+        "Saro",
+        "Zarqa"
+      ]
+    },
+    {
+      "name": "Fayoum",
+      "cities": [
+        "Atssa",
+        "Fayoum City",
+        "Ibshway",
+        "New Fayoum",
+        "Sinnuras",
+        "Tamiya",
+        "Yusuf al-Sadiq"
+      ]
+    },
+    {
+      "name": "Gharbia",
+      "cities": [
+        "Basyoun",
+        "Kafr al-Zayat",
+        "Mahalla al-Kobra",
+        "Qutour",
+        "Samanoud",
+        "Santa",
+        "Tanta",
+        "Zefta"
+      ]
+    },
+    {
+      "name": "Giza",
+      "cities": [
+        "6th of October",
+        "Abu Rawash",
+        "Agouza",
+        "Ard El Lewa",
+        "Badrasheen",
+        "Baragil",
+        "Bashtil",
+        "Boulaq Dakrour",
+        "Dahab Island",
+        "Dahshur",
+        "Dokki",
+        "El Ayyat",
+        "Faisal",
+        "Giza District",
+        "Hadayek al-Ahram",
+        "Hadayek October",
+        "Haram",
+        "Hawamdeya",
+        "Imbaba",
+        "Kerdasa",
+        "Kit Kat",
+        "Manial Shiha",
+        "Mansuriyya",
+        "Markaz al-Giza",
+        "Maryotaya",
+        "Mohandessin",
+        "Moneeb",
+        "Nahia",
+        "Oseem",
+        "Saf",
+        "Saft El Laban",
+        "Sheikh Zayed",
+        "Tersa",
+        "Warraq"
+      ]
+    },
+    {
+      "name": "Ismailia",
+      "cities": [
+        "Abu Swear",
+        "Fayed",
+        "Ismailia City",
+        "Kantara East",
+        "Kantara West",
+        "Qassaseen",
+        "Tal al-Kebeer"
+      ]
+    },
+    {
+      "name": "Kafr al-Sheikhlia",
+      "cities": [
+        "Baltim",
+        "Bella",
+        "Brolos",
+        "Desouk",
+        "Fouh",
+        "Hamoul",
+        "Kafr al-Sheikh City",
+        "Motobas",
+        "Qaleen",
+        "Riyadh"
+      ]
+    },
+    {
+      "name": "Luxor",
+      "cities": [
+        "Armant",
+        "Bayadeya",
+        "Isna",
+        "Luxor City",
+        "Qurna",
+        "Tod",
+        "Zinnia"
+      ]
+    },
+    {
+      "name": "Matruh",
+      "cities": [
+        "Alamein",
+        "Barany",
+        "Dabaa",
+        "Hammam",
+        "Marsa Matrouh",
+        "Nagela",
+        "North Coast",
+        "Salloum",
+        "Siwa"
+      ]
+    },
+    {
+      "name": "Minya",
+      "cities": [
+        "Abu Qurqas",
+        "Adwa",
+        "Beni Mazar",
+        "Deir Mawas",
+        "Maghagha",
+        "Malawi",
+        "Matay",
+        "Minya City",
+        "New Minya",
+        "Samalut"
+      ]
+    },
+    {
+      "name": "Monufia",
+      "cities": [
+        "Ashmon",
+        "Bagour",
+        "Berket al-Sabaa",
+        "Menouf",
+        "Quesna",
+        "Sadat",
+        "Sers al-Lyan",
+        "Shebin al-Koum",
+        "Shohadaa",
+        "Tala"
+      ]
+    },
+    {
+      "name": "New Valley",
+      "cities": [
+        "Balat",
+        "Dakhla",
+        "Farafra",
+        "Kharga",
+        "Mut",
+        "Paris"
+      ]
+    },
+    {
+      "name": "Port Said",
+      "cities": [
+       "Arab District",
+       "Dawahy District",
+       "Ganoub District",
+       "Manakh District",
+       "Port Fouad",
+       "Sharq District",
+       "Select location",
+       "Zohour District"
+      ]
+    },
+    {
+      "name": "Qalyubia",
+      "cities": [
+        "Bahtim",
+        "Banha",
+        "Kafr Shukr",
+        "Khanka",
+        "Khosous",
+        "Musturad",
+        "Qaha",
+        "Qalyub",
+        "Qanater al-Khairia",
+        "Shebin al-Qanater",
+        "Shubra al-Khaimah",
+        "Tookh"
+      ]
+    },
+    {
+      "name": "Qena",
+      "cities": [
+        "Abu Tisht",
+        "Dishna",
+        "Farshout",
+        "Keft",
+        "Nag Hammadi",
+        "Nakada",
+        "Qena City",
+        "Quos",
+        "Wakf"
+      ]
+    },
+    {
+      "name": "Red Sea",
+      "cities": [
+        "Gouna",
+        "Halayeb & Shalateen",
+        "Hurghada",
+        "Marsa Alam",
+        "Qusair",
+        "Ras Gharib",
+        "Safaga",
+        "Sahl Hasheesh"
+      ]
+    }, 
+    {
+      "name": "Sharqia",
+      "cities": [
+        "10th of Ramadan",
+        "Abu Hammad",
+        "Abu Kabir",
+        "Alqnayat",
+        "Awlad Saqr",
+        "Bilbeis",
+        "Deyerb Negm",
+        "Faqous",
+        "Hihya",
+        "Husseiniya",
+        "Ibrahemyah",
+        "Kafr Saqr",
+        "Mashtool al-Souk",
+        "Minya al-Qamh",
+        "New Salhia",
+        "Qareen",
+        "Zagazig"
+      ]
+    },
+    {
+      "name": "Sohag",
+      "cities": [
+        "Akhmim",
+        "Alasirat",
+        "Baliana",
+        "Girga",
+        "Maragha",
+        "Markaz Dar El Salam",
+        "Markaz Juhaynah",
+        "Markaz Sohag",
+        "Monsha'a",
+        "New Sohag",
+        "Sakaltah",
+        "Tahta",
+        "Tama"
+      ]
+    },
+    {
+      "name": "South Sinai",
+      "cities": [
+        "Abu Rudeis",
+        "Abu Zenimah",
+        "Dahab",
+        "Nuweiba",
+        "Ras Sedr",
+        "Sharm al-Sheikh",
+        "St. Catherine",
+        "Taba",
+        "Tor Sinai"
+      ]
+    },
+
+    {
+      "name": "Suez",
+      "cities": [
+        "Ain Sukhna",
+        "Arbaeen",
+        "Attaka",
+        "Faisal District",
+        "Ganayen",
+        "Suez Distri"
+      ]
+    }
+  ]
