@@ -6,10 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./pharma-list.component.css']
 })
 export class PharmaListComponent {
-  // recevedFromCard(id:any){
-  //   alert(id)
-  // }
-  pharmacy:Array<any>=[
+  pharma:Array<any>=[
     {
       id:1,
       name:"a",

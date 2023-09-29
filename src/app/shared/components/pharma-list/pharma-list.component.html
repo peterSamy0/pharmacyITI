@@ -1,6 +1,15 @@
 <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col" *ngFor="let pharma of pharmacy">
-        <app-pharma-card [pharma]="pharma" ></app-pharma-card> 
-        <!-- (emitToList)="recevedFromCard($event)"      -->
+    <div class="col" *ngFor="let phar of pharma">
+        <div class="card h-100">
+            <img src="..." class="card-img-top" alt="{{phar.name}}">
+            <div class="card-body">
+              <h5 class="card-title">{{phar.name}}</h5>
+              <p class="card-text">{{phar.address}}</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-body-secondary">{{phar.rating}}</small>
+            </div>
+            <button type="button" class="btn btn-secondary">Secondary</button>
+          </div>
     </div>
 </div>
