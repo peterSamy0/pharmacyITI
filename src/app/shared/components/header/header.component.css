@@ -10,18 +10,19 @@
      */
 
      .container-fluid{
-        background-color: #607EAA;
+        background-color: #419197;
         margin-top:-8px;
         margin-bottom:-8px;
-        padding: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         font-size: 18px;
     }
     
     ul li a {
-        color: #EAE3D2;
+        color: white;
     }
      div a {
-        color: #EAE3D2;
+        color:white;
      }
      input{
         background-color: #EAE3D2;
@@ -30,21 +31,23 @@
         margin-top:3px;
      }
      button{
-        color: #EAE3D2;
-        outline: #EAE3D2;
+        color:#419197;
+       background-color: rgb(231, 225, 225);
         font-size: 18px;
         padding-right:5 px;
      }
     
      button:hover{
-        color: #607EAA;
-        background-color: #EAE3D2;
+        color:#419197 ;
+        background-color: rgb(254, 249, 243);
      }
     
      h3{
         background-color: #EAE3D2;
         text-align: center;
         font-size: 20px;
-        padding: 5px;
+        padding-top: 5px;
+        padding-bottom: 6px;
         color: #607EAA;
+        margin-bottom: 0px;
      }

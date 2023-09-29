@@ -1,43 +1,74 @@
-
-<div class="login-page bg-light ">
+<div class="login-page bg-light">
   <div class="container mt-5">
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
-
         <div class="bg-white shadow rounded">
           <div class="row">
             <div class="col-md-7 pe-0">
               <div class="form-left h-100 py-5 px-5">
-                <form action="" class="row g-4">
+                <form
+                  class="row g-4"
+                  [formGroup]="signinForm"
+                  (ngSubmit)="checkUser()"
+                >
                   <div class="col-12">
-                    <label>Username<span class="text-danger">*</span></label>
-                    <div class="input-group">
-                      <div class="input-group-text">
-                        <i class="bi bi-person-fill"></i>
-                      </div>
+                    <h2 class="mb-2">Get well soon</h2>
+                    <label class="form-label"
+                      >Email</label
+                    >
+                    <div >
                       <input
                         type="text"
                         class="form-control"
-                        placeholder="Enter Username"
+                        placeholder="Enter Email"
+                        formControlName="userEmail"
+                        
                       />
+                      <div
+                        *ngIf="
+                          signinForm.controls['userEmail'].touched &&
+                          signinForm.controls['userEmail'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signinForm.controls['userEmail'].errors?.['required']"
+                          
+                        >
+                          please, enter your email
+                        </small>
+                      </div>
                     </div>
                   </div>
 
                   <div class="col-12">
-                    <label>Password<span class="text-danger">*</span></label>
-                    <div class="input-group">
-                      <div class="input-group-text">
-                        <i class="bi bi-lock-fill"></i>
-                      </div>
+                    <label>Password</label>
+                    <div >
+                      
                       <input
                         type="text"
                         class="form-control"
                         placeholder="Enter Password"
+                        formControlName="userPass"
                       />
+                      <div
+                        *ngIf="
+                          signinForm.controls['userPass'].touched &&
+                          signinForm.controls['userPass'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signinForm.controls['userPass'].errors?.['required']"
+                          
+                        >
+                          Password is required
+                        </small>
+                      </div>
                     </div>
                   </div>
 
-                  <div class="col-sm-6">
+                  <!-- <div class="col-sm-6">
                     <div class="form-check">
                       <input
                         class="form-check-input"
@@ -48,19 +79,21 @@
                         >Remember me</label
                       >
                     </div>
-                  </div>
+                  </div> -->
 
-                  <div class="col-sm-6">
+                  <!-- <div class="col-sm-6">
                     <a href="#" class="float-end text-primary"
                       >Forgot Password?</a
                     >
-                  </div>
+                  </div> -->
 
                   <div class="col-12">
                     <button
-                      type="submit" style="background-color: var(--darkBlue); color:var(--gray);"
-                      class="btn  px-4 float-end mt-4"
-                    >
+                      type="submit"
+                      class="btn px-4 float-end mt-4 "
+                    style="background-color: rgb(123, 211, 222); border: none;"
+                   
+                      >
                       login
                     </button>
                   </div>
@@ -69,15 +102,14 @@
             </div>
             <div class="col-md-5 ps-0 d-none d-md-block">
               <img
-                style="width:100%; height: 100%;"
-                src="https://i.pinimg.com/564x/c4/96/5b/c4965bfa6c8500498872afce49889ca7.jpg"alt=""
+                style="width: 100%; height: 100%"
+                src="https://media.istockphoto.com/id/1456595339/vector/pharmacy.jpg?s=612x612&w=0&k=20&c=TQVhosBnbvAOpU5dMYWvFv4dDBpNqJBg22g51uBIRI0="
+                alt=""
               />
             </div>
           </div>
         </div>
-       
       </div>
     </div>
   </div>
 </div>
-

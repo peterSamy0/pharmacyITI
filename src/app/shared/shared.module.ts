@@ -5,7 +5,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DropDownComponent } from './components/drop-down/drop-down.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchFormComponent } from './components/search-form/search-form.component';
-
+import { RouterModule, Routes } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,8 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterModule
   ],
   exports: [
     HeaderComponent,

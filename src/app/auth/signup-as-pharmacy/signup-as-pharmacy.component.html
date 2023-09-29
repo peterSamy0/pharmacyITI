@@ -1,1 +1,234 @@
-<p>signup-as-pharmacy works!</p>
+<div class="login-page bg-light">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="bg-white shadow rounded">
+          <div class="row">
+            <div class="col-md-7 pe-0">
+              <div class="form-left h-100 py-5 px-5">
+                <form
+                  class="row g-4"
+                  [formGroup]="signupForm"
+                  (ngSubmit)="addPharma()"
+                >
+                  <h2 class="mb-2">Get closer to your customers</h2>
+                  <div class="col-12">
+                    <label class="form-label">Pharmacy Name</label>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Pharmacy Name"
+                        formControlName="pharmaName"
+                      />
+                      <div
+                        *ngIf="
+                          signupForm.controls['pharmaName'].touched &&
+                          signupForm.controls['pharmaName'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['pharmaName'].errors?.['required']"
+                        >
+                          please, enter your Pharmacy Name
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Email</label>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Pharmacy Email"
+                        formControlName="pharmaEmail"
+                      />
+                      <div
+                        *ngIf="
+                          signupForm.controls['pharmaEmail'].touched &&
+                          signupForm.controls['pharmaEmail'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['pharmaEmail'].errors?.['required']"
+                        >
+                          please, enter your email
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label">Pharmacy Phone</label>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Pharmacy Phone"
+                        formControlName="pharmaPhone"
+                      />
+                      <div
+                        *ngIf="
+                          signupForm.controls['pharmaPhone'].touched &&
+                          signupForm.controls['pharmaPhone'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['pharmaPhone'].errors?.['required']"
+                        >
+                          Please, enter your Pharmacy Phone
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label">Pharmacy License Number</label>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Pharmacy License Number"
+                        formControlName="pharmaLicense"
+                      />
+                      <div
+                        *ngIf="
+                          signupForm.controls['pharmaLicense'].touched &&
+                          signupForm.controls['pharmaLicense'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['pharmaLicense'].errors?.['required']"
+                        >
+                          Please, enter license Number
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  
+                  <div class="col-12">
+                    <label class="form-label">Pharmacy Location (City)</label>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Pharmacy Location (City)"
+                        formControlName="pharmaCity"
+                      />
+                      <div
+                        *ngIf="
+                          signupForm.controls['pharmaCity'].touched &&
+                          signupForm.controls['pharmaCity'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['pharmaCity'].errors?.['required']"
+                        >
+                          Please, enter pharmcay location (City)
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label">Pharmacy Location (Governorate)</label>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Pharmacy Location (Governorate)"
+                        formControlName="pharmaGovern"
+                      />
+                      <div
+                        *ngIf="
+                          signupForm.controls['pharmaGovern'].touched &&
+                          signupForm.controls['pharmaGovern'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['pharmaGovern'].errors?.['required']"
+                        >
+                          Please, enter pharmcay location (Governorate)
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="col-12">
+                    <label class="form-label">Password</label>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Password"
+                        formControlName="pharmaPass"
+                      />
+                      <div
+                        *ngIf="
+                          signupForm.controls['pharmaPass'].touched &&
+                          signupForm.controls['pharmaPass'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['pharmaPass'].errors?.['required']"
+                        >
+                          Password is required
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="col-sm-6">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="inlineFormCheck"
+                        />
+                        <label class="form-check-label" for="inlineFormCheck"
+                          >Remember me</label
+                        >
+                      </div>
+                    </div> -->
+
+                  <!-- <div class="col-sm-6">
+                      <a href="#" class="float-end text-primary"
+                        >Forgot Password?</a
+                      >
+                    </div> -->
+
+                  <div class="col-12">
+                    <button
+                      type="submit"
+                      class="btn px-4 float-end mt-4"
+                      style="background-color: rgb(123, 211, 222); border: none"
+                    >
+                      Sign Up
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-md-5 ps-0 d-none d-md-block">
+              <img
+                style="width: 100%; height: 100%"
+                src="https://img.freepik.com/free-photo/stethoscope-pills_23-2147691463.jpg?size=626&ext=jpg&ga=GA1.2.388227192.1694264810&semt=ais"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

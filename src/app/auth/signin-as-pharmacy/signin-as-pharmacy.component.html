@@ -1,1 +1,115 @@
-<p>signin-as-pharmacy works!</p>
+<div class="login-page bg-light">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="bg-white shadow rounded">
+          <div class="row">
+            <div class="col-md-7 pe-0">
+              <div class="form-left h-100 py-5 px-5">
+                <form
+                  class="row g-4"
+                  [formGroup]="signinForm"
+                  (ngSubmit)="checkPharma()"
+                >
+                  <div class="col-12">
+                    <h2 class="mb-2">Get your pharmacy popular</h2>
+                    <label class="form-label"
+                      >Email</label
+                    >
+                    <div >
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Pharmacy Email"
+                        formControlName="pharmaEmail"
+                        
+                      />
+                      <div
+                        *ngIf="
+                          signinForm.controls['pharmaEmail'].touched &&
+                          signinForm.controls['pharmaEmail'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signinForm.controls['pharmaEmail'].errors?.['required']"
+                          
+                        >
+                          please, enter your email
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label>Password</label>
+                    <div >
+                      
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Password"
+                        formControlName="pharmaPass"
+                      />
+                      <div
+                        *ngIf="
+                          signinForm.controls['pharmaPass'].touched &&
+                          signinForm.controls['pharmaPass'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signinForm.controls['pharmaPass'].errors?.['required']"
+                          
+                        >
+                          Password is required
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="col-sm-6">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="inlineFormCheck"
+                      />
+                      <label class="form-check-label" for="inlineFormCheck"
+                        >Remember me</label
+                      >
+                    </div>
+                  </div> -->
+
+                  <!-- <div class="col-sm-6">
+                    <a href="#" class="float-end text-primary"
+                      >Forgot Password?</a
+                    >
+                  </div> -->
+
+                  <div class="col-12">
+                    <button
+                      type="submit"
+                      class="btn px-4 float-end mt-4 "
+                    style="background-color: rgb(123, 211, 222); border: none;"
+                   
+                      >
+                      login
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-md-5 ps-0 d-none d-md-block">
+              <img
+                style="width: 100%; height: 100%"
+                src="https://i.pinimg.com/736x/47/34/3d/47343d87459cfc6ef87def499c9d0611.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
