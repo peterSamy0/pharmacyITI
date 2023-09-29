@@ -1,0 +1,11 @@
+<div class="card h-100">
+    <img src="..." class="card-img-top" alt="{{pharma.name}}">
+    <div class="card-body">
+      <h5 class="card-title">{{pharma.name}}</h5>
+      <p class="card-text">{{pharma.address}}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-body-secondary">{{pharma.rating}}</small>
+    </div>
+    <button type="button" class="btn btn-secondary" (click)="redirectDetails(pharma.id)">Details</button>
+  </div>
