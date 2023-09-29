@@ -6,9 +6,9 @@ import { DropDownComponent } from './components/drop-down/drop-down.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 // import { PharmacyDetailsComponent } from '../pharmacy/pharmacy-details/pharmacy-details.component';
-import { PharmaDetailesComponent } from './components/pharma-detailes/pharma-detailes.component';
-import { PharmaListComponent } from './components/pharma-list/pharma-list.component';
-import { PharmaCardComponent } from './components/pharma-card/pharma-card.component';
+// import { PharmaDetailesComponent } from './components/pharma-detailes/pharma-detailes.component';
+// import { PharmaListComponent } from './components/pharma-list/pharma-list.component';
+// import { PharmaCardComponent } from './components/pharma-card/pharma-card.component';
 
 
 @NgModule({
@@ -18,9 +18,9 @@ import { PharmaCardComponent } from './components/pharma-card/pharma-card.compon
     DropDownComponent,
     SearchFormComponent,
     // PharmacyDetailsComponent,
-    PharmaDetailesComponent,
-    PharmaListComponent,
-    PharmaCardComponent
+    // PharmaDetailesComponent,
+    // PharmaListComponent,
+    // PharmaCardComponent
     
   ],
   imports: [
@@ -32,9 +32,9 @@ import { PharmaCardComponent } from './components/pharma-card/pharma-card.compon
     FooterComponent,
     DropDownComponent,
     // PharmacyDetailsComponent,
-    PharmaDetailesComponent,
-    PharmaListComponent,
-    PharmaCardComponent
+    // PharmaDetailesComponent,
+    // PharmaListComponent,
+    // PharmaCardComponent
     
   ]
 })
