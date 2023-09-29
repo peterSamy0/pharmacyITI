@@ -10,13 +10,17 @@
 */
 
 .container-fluid{
-   background-color: #607EAA;
+   background-color: #419197;
    padding: 5px;
    font-size: 18px;
 }
 
+.container-fluid > a{
+   color: #419197;
+}
+
 ul li a {
-   color: #EAE3D2;
+   color: white;
 }
 div a {
    color: #EAE3D2;
@@ -44,3 +48,4 @@ button:hover{
 .active{
    text-decoration: underline;
 }
+
