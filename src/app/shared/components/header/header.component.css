@@ -22,15 +22,14 @@
 ul li a {
    color: white;
 }
-div a {
-   color: #EAE3D2;
-}
+
 input{
    background-color: #EAE3D2;
    width: 70%;
    height: 10%;
    margin-top:3px;
 }
+
 button{
    color: #EAE3D2;
    outline: #EAE3D2;
@@ -38,10 +37,7 @@ button{
    padding-right:5 px;
 }
 
-button:hover{
-   color: #419197;
-   background-color: #EAE3D2;
-}
+
 .logoDiv{
    background-color: #F9F5EB;
 }
