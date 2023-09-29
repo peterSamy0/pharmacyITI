@@ -4,9 +4,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DropDownComponent } from './components/drop-down/drop-down.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
-import { PharmacyDetailsComponent } from '../pharmacy/pharmacy-details/pharmacy-details.component';
+import { PharmaDetailesComponent } from './components/pharma-detailes/pharma-detailes.component';
+import { PharmaListComponent } from './components/pharma-list/pharma-list.component';
+// import { PharmacyDetailsComponent } from '../pharmacy/pharmacy-details/pharmacy-details.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 
 @NgModule({
   declarations: [
@@ -14,7 +15,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FooterComponent,
     DropDownComponent,
     SearchFormComponent,
-    PharmacyDetailsComponent
+    // PharmacyDetailsComponent,
+    PharmaDetailesComponent,
+    PharmaListComponent,
+    
     
   ],
   imports: [
@@ -25,7 +29,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HeaderComponent,
     FooterComponent,
     DropDownComponent,
-    PharmacyDetailsComponent
+    // PharmacyDetailsComponent,
+    PharmaDetailesComponent,
+    PharmaListComponent
     
   ]
 })

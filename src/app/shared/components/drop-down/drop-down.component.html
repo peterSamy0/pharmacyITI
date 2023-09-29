@@ -1,33 +1,40 @@
-<div class="row justify-content-center mt-5 ">
-    <div class="dropdown mx-3 col-lg-4 col-md-6 col-sm-8">
-        <!-- button to open the list of Governorates to choose the location -->
-        <button (click)="openList()" class="dropbtn btn btn-outline-primary d-flex justify-content-between py-2" style="width: 300px;">
-            <div>
-                <fa-icon [icon]="faLocation" class="px-2"></fa-icon>
-                <span class="text-dark">{{location}}</span> 
-            </div>
-            <fa-icon [icon]="faAngleDown" class="px-2 angle"></fa-icon>
-        </button>
-        <div class="d-flex overflow-y-scroll shadow "  style="width: 300px; max-height: 200px;">
-            <!-- list of Governorates -->
-            <ul id="myDropdown-1" class=" bg-white rounded p-0" style="width: 300px;" *ngIf="showList">
-                <li *ngFor="let gov of data" class="d-flex cursor justify-content-between p-1 w-100 govern"  (click)="openSubList(gov)">
-                    {{ gov.name }}
-                    <fa-icon [icon]="faAngleRight" class="text-danger"></fa-icon>
-                </li>
-            </ul>
-            <!-- list of cities of each Governorates import them from dropdown service -->
-            <ul id="myDropdown-2" class=" bg-white rounded p-0" style="width: 300px;" *ngIf="showSubList">
-                <div class="d-flex bg-secondary-subtle justify-content-start py-2 cursor" (click)="closeSubList()">
-                    <fa-icon [icon]="faAngleLeft"></fa-icon>
-                    <span class="fw-bold" >Back</span> 
+<div class="position-relative w-100 slide-container">
+    <img src="https://media.istockphoto.com/id/1302606555/photo/closeup-of-hands-of-young-female-pharmacist-checking-inventory-in-medical-store-using-digital.jpg?b=1&s=612x612&w=0&k=20&c=EdUEJKNFZ2rC_86LVZsVA-wm1hzwvCht9Mp8DyjulT8=" alt="" class="w-100 h-100 z-0">
+    <div class="w-100 h-100 slide-shadow position-absolute top-0 start-0 z-1 "></div>
+
+
+    <div class="w-100 position-absolute top-50 z-2 d-flex justify-content-center flex-wrap">
+        <div class="dropdown mx-3">
+            <!-- button to open the list of Governorates to choose the location -->
+            <button (click)="openList()" class="dropbtn btn btn-light py-3 d-flex justify-content-between py-2" style="width: 300px;">
+                <div>
+                    <fa-icon [icon]="faLocation" class="px-2"></fa-icon>
+                    <span class="text-dark">{{location}}</span> 
                 </div>
-                <li *ngFor="let city of cities" class="d-flexjustify-content-between p-1 w-100 govern cursor" (click)="sendLocation(city)">
-                    {{city}}
-                </li>
-            </ul>
+                <fa-icon [icon]="faAngleDown" class="px-2 angle"></fa-icon>
+            </button>
+
+            <div class="d-flex overflow-y-scroll shadow "  style="width: 300px; max-height: 200px;">
+                <!-- list of Governorates -->
+                <ul id="myDropdown-1" class=" bg-white rounded p-0 z-2" style="width: 300px;" *ngIf="showList">
+                    <li *ngFor="let gov of data" class="bg-white d-flex cursor justify-content-between p-1 w-100 govern"  (click)="openSubList(gov)">
+                        {{ gov.name }}
+                        <fa-icon [icon]="faAngleRight" class="text-danger"></fa-icon>
+                    </li>
+                </ul>
+                <!-- list of cities of each Governorates import them from dropdown service -->
+                <ul id="myDropdown-2" class=" bg-white rounded p-0" style="width: 300px;" *ngIf="showSubList">
+                    <div class="d-flex bg-secondary-subtle justify-content-start py-2 cursor" (click)="closeSubList()">
+                        <fa-icon [icon]="faAngleLeft"></fa-icon>
+                        <span class="fw-bold" >Back</span> 
+                    </div>
+                    <li *ngFor="let city of cities" class="bg-white d-flexjustify-content-between p-1 w-100 govern cursor" (click)="sendLocation(city)">
+                        {{city}}
+                    </li>
+                </ul>
+            </div>
         </div>
+        <!-- add search form component from shared components -->
+        <app-search-form class=""></app-search-form>
     </div>
-    <!-- add search form component from shared components -->
-    <app-search-form class="col-lg-4 col-md-6 col-sm-6 mt-md-2 mt-lg-0 mt-sm-2"></app-search-form>
 </div>
