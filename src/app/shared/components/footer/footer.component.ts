@@ -10,8 +10,8 @@ import { faInstagram } from '@fortawesome/free-brands-svg-icons';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-fafacebook = faFacebook
-fatwitter = faTwitter
-falinkedin = faLinkedin
-fainstagram = faInstagram
+  fafacebook = faFacebook
+  fatwitter = faTwitter
+  falinkedin = faLinkedin
+  fainstagram = faInstagram
 }

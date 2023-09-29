@@ -1,0 +1,260 @@
+<div class="login-page bg-light my-5">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+          <div class="bg-white shadow rounded">
+            <div class="row">
+              <div class="col-md-7 pe-0">
+                <div class="form-left h-100 py-5 px-5">
+                  <form
+                    class="row g-4"
+                    [formGroup]="signupForm"
+                    (ngSubmit)="addClient()"
+                  >
+                    <h2 class="mb-2">Your health is our concern</h2>
+                    <div class="col-12">
+                      <label class="form-label">Full Name</label>
+                      <div>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter Full Name"
+                          formControlName="userFullName"
+                        />
+                        <div
+                          *ngIf="
+                            signupForm.controls['userFullName'].touched &&
+                            signupForm.controls['userFullName'].invalid
+                          "
+                          class="text-danger form-text"
+                        >
+                          <small
+                            *ngIf="signupForm.controls['userFullName'].errors?.['required']"
+                          >
+                            please, enter your full Name
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">User Name</label>
+                        <div>
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Enter User Name"
+                            formControlName="userName"
+                          />
+                          <div
+                            *ngIf="
+                              signupForm.controls['userName'].touched &&
+                              signupForm.controls['userName'].invalid
+                            "
+                            class="text-danger form-text"
+                          >
+                            <small
+                              *ngIf="signupForm.controls['userName'].errors?.['required']"
+                            >
+                              please, enter user Name
+                            </small>
+                          </div>
+                        </div>
+                      </div>
+
+                    <div class="col-12">
+                      <label class="form-label">Email</label>
+                      <div>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter your Email"
+                          formControlName="userEmail"
+                        />
+                        <div
+                          *ngIf="
+                            signupForm.controls['userEmail'].touched &&
+                            signupForm.controls['userEmail'].invalid
+                          "
+                          class="text-danger form-text"
+                        >
+                          <small
+                            *ngIf="signupForm.controls['userEmail'].errors?.['required']"
+                          >
+                            please, enter your email
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="col-12">
+                      <label class="form-label">Phone Number</label>
+                      <div>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter Phone Numer"
+                          formControlName="userPhone"
+                        />
+                        <div
+                          *ngIf="
+                            signupForm.controls['userPhone'].touched &&
+                            signupForm.controls['userPhone'].invalid
+                          "
+                          class="text-danger form-text"
+                        >
+                          <small
+                            *ngIf="signupForm.controls['userPhone'].errors?.['required']"
+                          >
+                            Please, enter your Phone Number
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="col-12">
+                      <label class="form-label">Gender</label>
+                      <div>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter Gender"
+                          formControlName="userGender"
+                        />
+                        <div
+                          *ngIf="
+                            signupForm.controls['userGender'].touched &&
+                            signupForm.controls['userGender'].invalid
+                          "
+                          class="text-danger form-text"
+                        >
+                          <small
+                            *ngIf="signupForm.controls['userGender'].errors?.['required']"
+                          >
+                            Please, enter your gender
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+  
+                    
+                    <div class="col-12">
+                      <label class="form-label">Address (City)</label>
+                      <div>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter Your Address (City)"
+                          formControlName="userCity"
+                        />
+                        <div
+                          *ngIf="
+                            signupForm.controls['userCity'].touched &&
+                            signupForm.controls['userCity'].invalid
+                          "
+                          class="text-danger form-text"
+                        >
+                          <small
+                            *ngIf="signupForm.controls['userCity'].errors?.['required']"
+                          >
+                            Please, enter your address (City)
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="col-12">
+                      <label class="form-label">Address (Governorate)</label>
+                      <div>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter Address (Governorate)"
+                          formControlName="userGovern"
+                        />
+                        <div
+                          *ngIf="
+                            signupForm.controls['userGovern'].touched &&
+                            signupForm.controls['userGovern'].invalid
+                          "
+                          class="text-danger form-text"
+                        >
+                          <small
+                            *ngIf="signupForm.controls['userGovern'].errors?.['required']"
+                          >
+                            Please, enter your address (Governorate)
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+  
+  
+                    <div class="col-12">
+                      <label class="form-label">Password</label>
+                      <div>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter Password"
+                          formControlName="userPass"
+                        />
+                        <div
+                          *ngIf="
+                            signupForm.controls['userPass'].touched &&
+                            signupForm.controls['userPass'].invalid
+                          "
+                          class="text-danger form-text"
+                        >
+                          <small
+                            *ngIf="signupForm.controls['userPass'].errors?.['required']"
+                          >
+                            Password is required
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <!-- <div class="col-sm-6">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="inlineFormCheck"
+                          />
+                          <label class="form-check-label" for="inlineFormCheck"
+                            >Remember me</label
+                          >
+                        </div>
+                      </div> -->
+  
+                    <!-- <div class="col-sm-6">
+                        <a href="#" class="float-end text-primary"
+                          >Forgot Password?</a
+                        >
+                      </div> -->
+  
+                    <div class="col-12">
+                      <button
+                        type="submit"
+                        class="btn px-4 float-end mt-4"
+                        style="background-color: rgb(123, 211, 222); border: none"
+                      >
+                        Sign Up
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-md-5 ps-0 d-none d-md-block">
+                <img
+                  style="width: 100%; height: 100%"
+                  src="https://img.freepik.com/free-photo/hand-with-tablets-pills-clock_23-2148551027.jpg?size=626&ext=jpg&ga=GA1.1.388227192.1694264810&semt=ais"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,52 @@
+[
+   {
+    "id":1,
+    "pharmacyName": "Medical Care",
+    "email": "mediacl@gmail.com",
+    "phone": "01234567890",
+    "city": "New Beni-Suef",
+    "governorate":"Beni-Suef",
+    "licenseNum": "8917321",
+    "password": "12345678M"
+   },
+   {
+    "id":2,
+    "pharmacyName": "Health Care",
+    "email": "health@gmail.com",
+    "phone": "01234567890",
+    "city": "New Beni-Suef",
+    "governorate":"Beni-Suef",
+    "licenseNum": "8911221",
+    "password": "12345678H"
+   },
+   {
+    "id":3,
+    "pharmacyName": "Beauty Care",
+    "email": "beauty@gmail.com",
+    "phone": "01234567890",
+    "city": "New Minia",
+    "governorate":"Minia",
+    "licenseNum": "8916721",
+    "password": "12345678B" 
+   },
+   {
+    "id":4,
+    "pharmacyName": "Hair Care",
+    "email": "hair@gmail.com",
+    "phone": "01234567890",
+    "city": "Abassiry street",
+    "governorate":"Beni-Suef",
+    "licenseNum": "8765221",
+    "password": "12345678H" 
+   },
+   {
+    "id":5,
+    "pharmacyName": "midicine for you",
+    "email": "medicine@gmail.com",
+    "phone": "01234567890",
+    "city": "Rawda street",
+    "governorate":"Beni-Suef",
+    "licenseNum": "89111121",
+    "password":"12345678N" 
+   }
+]
