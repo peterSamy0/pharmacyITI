@@ -7,6 +7,7 @@ import { DropDownComponent } from './components/drop-down/drop-down.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { RouterModule } from '@angular/router';
 import { PharmaCardComponent } from './components/pharma-card/pharma-card.component';
+import { PharmaListComponent } from './components/pharma-list/pharma-list.component';
 
 @NgModule({
   declarations: [
@@ -15,9 +16,10 @@ import { PharmaCardComponent } from './components/pharma-card/pharma-card.compon
     DropDownComponent,
     SearchFormComponent,
     PharmaCardComponent,
+    // PharmaListComponent
     // PharmacyDetailsComponent,
     // PharmaDetailesComponent,
-    // PharmaListComponent,
+    PharmaListComponent
     
 
   ],
@@ -32,7 +34,7 @@ import { PharmaCardComponent } from './components/pharma-card/pharma-card.compon
     DropDownComponent,
     // PharmacyDetailsComponent,
     // PharmaDetailesComponent,
-    // PharmaListComponent
+    PharmaListComponent
 
   ]
 })
