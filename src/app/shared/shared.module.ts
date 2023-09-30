@@ -16,10 +16,10 @@ import { PharmaListComponent } from './components/pharma-list/pharma-list.compon
     DropDownComponent,
     SearchFormComponent,
     PharmaCardComponent,
-    PharmaListComponent
+    // PharmaListComponent
     // PharmacyDetailsComponent,
     // PharmaDetailesComponent,
-    // PharmaListComponent,
+    PharmaListComponent
     
 
   ],
