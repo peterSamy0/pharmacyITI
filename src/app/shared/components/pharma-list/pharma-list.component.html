@@ -1,6 +1,4 @@
-  <!--<div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col" *ngFor="let pharma of pharmacy">
-        <app-pharma-card [pharma]="pharma" ></app-pharma-card> 
-       (emitToList)="recevedFromCard($event)"     
-    </div>
-</div>  -->
+<div class="container overflow-y-scroll" style="height:150vh; overflow-x: hidden;">
+    <div class="d-flex flex-wrap justify-content-around" >
+      <app-pharma-card class="my-3 d-block" *ngFor="let item of pharmArr" [item]="item"></app-pharma-card>    </div>
+  </div>
