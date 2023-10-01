@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { CarouselComponent } from './pharmacy-details/components/carousel/carousel.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: "signUp",
     component: SignupComponent
+  },
+  {
+    path: "pharmacyDetails",
+    component: CarouselComponent
   },
 ];
 

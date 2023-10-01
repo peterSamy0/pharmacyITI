@@ -1,0 +1,21 @@
+
+<div *ngFor="let cat of categories">
+  <h1>{{ cat }}</h1>
+  <div class="carousel-c position-relative">
+    <div class="carousel-c-inner w-100" [style.transform]="'translateX(' + (-getActiveIndex(cat) * (100 / visibleItems)) + '%)'">
+      <div class="carousel-c-item" *ngFor="let prod of getCategoryProducts(cat); let index = index">
+        <div class="item-content">
+          <img [src]="prod.image" alt="" width="80%" height="40%" class="p-3 object-fit-contain">
+          <h4 class="overflow-hidden" style="height: 20%">{{ prod.title }}</h4>
+          <p class="overflow-hidden" style="height: 10%"><span class="fw-bolder">Price:</span> {{ prod.price }} L.E</p>
+          <button class="btn btn-info w-100">add to cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-c-controls position-absolute top-0 start-50 ">
+      <button (click)="prev(cat)" [disabled]="getActiveIndex(cat) === 0">Prev</button>
+      <button (click)="next(cat)" [disabled]="getActiveIndex(cat) === getCategoryProducts(cat).length - visibleItems">Next</button>
+    </div>
+  </div>
+</div>

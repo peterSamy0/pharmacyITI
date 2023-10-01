@@ -10,12 +10,12 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppRoutingRoutingModule } from './app-routing-routing.module';
+import { PharmacyDetailsModule } from './pharmacy-details/pharmacy-details.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomepageComponent,
-  
+    HomepageComponent,  
   ],
   imports: [
     BrowserModule,
@@ -26,7 +26,8 @@ import { AppRoutingRoutingModule } from './app-routing-routing.module';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    AppRoutingRoutingModule
+    AppRoutingRoutingModule,
+    PharmacyDetailsModule
   
   ],
   providers: [],

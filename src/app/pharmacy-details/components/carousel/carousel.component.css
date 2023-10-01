@@ -1,0 +1,37 @@
+:host {
+  --visibleItems: 4; /* Set the desired value for visibleItems */
+}
+.carousel-c {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.carousel-c-inner {
+  display: flex;
+  transition: transform 0.5s;
+  
+}
+
+.carousel-c-item {
+  flex: 0 0 calc(100% / var(--visibleItems));
+  padding: 10px;
+  box-sizing: border-box;
+  height: 250px;
+}
+
+.carousel-c-controls {
+  margin-top: 10px;
+}
+
+.item-content {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 10px;
+  height: 250px;
+
+}
+
+button {
+  margin-right: 10px;
+}
