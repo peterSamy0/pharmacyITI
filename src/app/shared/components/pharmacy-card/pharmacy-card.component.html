@@ -1,0 +1,11 @@
+<div class="card" style="width: 18rem;">
+    <img src="{{item.image}}" class="card-img-top" alt="pharmacy">
+    <div class="card-body">
+      <h5 class="card-title">{{item.pharmacyName}} pharmacy</h5>
+      <p class="card-text">{{item.address}}</p>
+     <!-- delivery  -->
+     <p *ngIf="item.siteDelivery == 'true'" class="card-text text-success">Delivered by pharma A</p>
+     <p *ngIf="item.siteDelivery == 'false'" class="card-text text-warning">pharmacy delivery</p>
+      <a href="#" class="btn text-white" style="background-color:#8DC398">get your medication!</a>
+    </div>
+  </div>
