@@ -1,5 +1,5 @@
 :host {
-  --visibleItems: 4; /* Set the desired value for visibleItems */
+  --visibleItems: 5; /* Set the desired value for visibleItems */
 }
 .carousel-c {
   display: flex;
@@ -10,7 +10,6 @@
 .carousel-c-inner {
   display: flex;
   transition: transform 0.5s;
-  
 }
 
 .carousel-c-item {
@@ -19,19 +18,29 @@
   box-sizing: border-box;
   height: 250px;
 }
-
+/* .w-9{
+  width: 90%;
+} */
 .carousel-c-controls {
   margin-top: 10px;
 }
-
 .item-content {
-  background-color: #f2f2f2;
-  border: 1px solid #ccc;
   padding: 10px;
-  height: 250px;
-
+  height: 270px;
+}
+.item-content:hover {
+box-shadow: 0 0 5px #b4b4b4;
+}
+.item-content img{
+  background-color: #f2f2f2;
 }
 
 button {
   margin-right: 10px;
+}
+.carousel-c-controls button{
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 0 5px #b4b4b4;
+  border: none;
 }

@@ -9,7 +9,7 @@ export class CarouselService {
   constructor(private http: HttpClient) { }
 
   getData(){
-    return this.http.get("https://fakestoreapi.com/products")
+    return this.http.get("https://retoolapi.dev/oK0uhq/data")
   }
 
 }
