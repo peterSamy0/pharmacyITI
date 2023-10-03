@@ -10,11 +10,13 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppRoutingRoutingModule } from './app-routing-routing.module';
+import { SearchInsidePharmacyComponent } from './search-inside-pharmacy/search-inside-pharmacy.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
+    SearchInsidePharmacyComponent,
   
   ],
   imports: [
