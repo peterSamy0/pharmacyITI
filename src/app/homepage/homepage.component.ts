@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSmile } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-homepage',
@@ -8,5 +9,6 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 })
 export class HomepageComponent {
   faSearch = faSearch
+  fasmile = faSmile
 
 }

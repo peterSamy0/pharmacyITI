@@ -21,8 +21,5 @@
 .dropdown a:hover {background-color: #ddd;}
 
 .slide-container{
-  height: 400px;
-}
-.slide-shadow{
-  background-color: rgba(0, 0, 0, .5);
+  height: 450px;
 }
