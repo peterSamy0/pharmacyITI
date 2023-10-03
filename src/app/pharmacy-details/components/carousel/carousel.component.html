@@ -1,24 +1,30 @@
-
-<div *ngFor="let cat of categories" class=" my-5"> 
-  <h1 class="text-center text-primary ">{{ cat }}</h1>
-  <div class="carousel-c position-relative  w-9 m-auto ">
-    <div class="carousel-c-inner w-100" [style.transform]="'translateX(' + (-getActiveIndex(cat) * (100 / visibleItems)) + '%)'">
-      <div class="item-container w-100" *ngFor="let prod of getCategoryProducts(cat); let index = index">
-        <div class="item-content w-100 d-flex flex-column justify-content-center bg-white">
-          <img [src]="prod.image" alt="" width="80%" height="35%" class="p-3 object-fit-contain ">
-          <h4 class="overflow-hidden fs-5 " style="height: 10%">{{ prod.name }}</h4>
-          <p class="overflow-hidden m-0" style="height: 10%"><span class="fw-bolder">Price:</span> {{ prod.price }} L.E</p>
-          <button class="btn btn-info w-100">add to cart</button>
+<div *ngIf="!isLoading">
+  <div *ngFor="let cat of categories" class=" my-5"> 
+    <div class="d-flex justify-content-center">
+      <h1 class="text-center d-inline ">{{ cat }}</h1>
+    </div>
+    <div class="carousel-c position-relative  w-9 m-auto ">
+      <div class="carousel-c-inner w-100" [style.transform]="'translateX(' + (-getActiveIndex(cat) * (100 / visibleItems)) + '%)'">
+        <div class="item-container w-100" *ngFor="let prod of getCategoryProducts(cat); let index = index">
+          <div class="item-content w-100 d-flex flex-column justify-content-between bg-white">
+            <img [src]="prod.image" alt="" width="80%" height="35%" class="p-3 object-fit-contain ">
+            <h4 class="overflow-hidden fs-5 d-flex align-items-center m-0" style="height: 10%">{{ prod.name }}</h4>
+            <p class="overflow-hidden m-0" style="height: 10%"><span class="fw-bolder">Price:</span> {{ prod.price }} L.E</p>
+            <button class="btn bg-nav text-white w-100 ">add to cart</button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="carousel-c-controls position-absolute top-50 start-0 w-100 ">
-      <button (click)="prev(cat)" [disabled]="getActiveIndex(cat) === 0" class="position-absolute start-0 rounded-5 bg-white">
-        <fa-icon [icon]="faAngleLeft"></fa-icon>
-      </button>
-      <button (click)="next(cat)" [disabled]="getActiveIndex(cat) === getCategoryProducts(cat).length - visibleItems" class="bg-white position-absolute end-0 rounded-5">
-        <fa-icon [icon]="faAngleRight"></fa-icon>
-      </button>
+      <div class="carousel-c-controls position-absolute top-50 start-0 w-100 ">
+        <button (click)="prev(cat)" [disabled]="getActiveIndex(cat) === 0" class="position-absolute start-0 rounded-5">
+          <fa-icon [icon]="faAngleLeft"></fa-icon>
+        </button>
+        <button (click)="next(cat)" [disabled]="getActiveIndex(cat) === getCategoryProducts(cat).length - visibleItems" class="position-absolute end-0 rounded-5">
+          <fa-icon [icon]="faAngleRight"></fa-icon>
+        </button>
+      </div>
     </div>
   </div>
+</div>
+<div class="d-flex align-items-center justify-content-center spinner" *ngIf="isLoading">
+  <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
 </div>

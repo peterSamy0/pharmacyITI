@@ -1,13 +1,13 @@
-/* 
-    --darkBlue: #1C3879;
-    --lightBlue: #607EAA; 
-    --gray: #EAE3D2;
-    --light: #F9F5EB;
-    --navFont: 18px;
-    --headerFont: 20px;
-    --bodyFont: 16px;
-    --footerFont: 14px;
-     */
+:host{
+   --darkBlue: #1C3879;
+   --lightBlue: #607EAA; 
+   --gray: #EAE3D2;
+   --light: #F9F5EB;
+   --navFont: 18px;
+   --headerFont: 20px;
+   --bodyFont: 16px;
+   --footerFont: 14px;
+}
 
 
 .container-fluid{
