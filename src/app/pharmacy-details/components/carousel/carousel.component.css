@@ -63,9 +63,11 @@ button {
   border: none;
   background-color: #cef3ff;
 }
+.top-35{
+  top: 35%;
+}
 
-
-/* spinner */
+/****************** spinner ****************/
 .spinner{
   height: 62vh;
 }
