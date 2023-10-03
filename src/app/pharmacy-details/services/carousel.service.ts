@@ -5,11 +5,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CarouselService {
-
+  url: string = "assets/json/pharmacyDetails";
   constructor(private http: HttpClient) { }
 
   getData(){
-    return this.http.get("https://retoolapi.dev/oK0uhq/data")
+    return this.http.get("assets/json/pharmacyDetails.json")
   }
 
 }

@@ -1,0 +1,452 @@
+[
+{
+"id": 1,
+"name": "Depakine",
+"image": "https://logo.clearbit.com/imdb.com",
+"price": 181,
+"stock": 45,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 2,
+"name": "Brufen",
+"image": "https://logo.clearbit.com/japanpost.jp",
+"price": 94,
+"stock": 64,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 3,
+"name": "Brufen",
+"image": "https://logo.clearbit.com/dion.ne.jp",
+"price": 843,
+"stock": 56,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 4,
+"name": "Cipralex",
+"image": "https://logo.clearbit.com/senate.gov",
+"price": 431,
+"stock": 7,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 5,
+"name": "Viagra",
+"image": "https://logo.clearbit.com/github.com",
+"price": 132,
+"stock": 69,
+"Category": "cosmetics",
+"available": true
+},
+{
+"id": 6,
+"name": "Prostanorm",
+"image": "https://logo.clearbit.com/qq.com",
+"price": 456,
+"stock": 41,
+"Category": "babyCare",
+"available": true
+},
+{
+"id": 7,
+"name": "Prostanorm",
+"image": "https://logo.clearbit.com/bbc.co.uk",
+"price": 908,
+"stock": 9,
+"Category": "medication",
+"available": false
+},
+{
+"id": 8,
+"name": "cometrex",
+"image": "https://logo.clearbit.com/ucsd.edu",
+"price": 785,
+"stock": 32,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 9,
+"name": "Erastapex",
+"image": "https://logo.clearbit.com/wikia.com",
+"price": 206,
+"stock": 100,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 10,
+"name": "Brufen",
+"image": "https://logo.clearbit.com/ebay.co.uk",
+"price": 516,
+"stock": 52,
+"Category": "cosmetics",
+"available": true
+},
+{
+"id": 11,
+"name": "Tamsulin",
+"image": "https://logo.clearbit.com/fema.gov",
+"price": 471,
+"stock": 30,
+"Category": "babyCare",
+"available": false
+},
+{
+"id": 12,
+"name": "Glucophage",
+"image": "https://logo.clearbit.com/usatoday.com",
+"price": 654,
+"stock": 28,
+"Category": "cosmetics",
+"available": true
+},
+{
+"id": 13,
+"name": "Brufen",
+"image": "https://logo.clearbit.com/wikimedia.org",
+"price": 117,
+"stock": 50,
+"Category": "babyCare",
+"available": true
+},
+{
+"id": 14,
+"name": "Stimlan",
+"image": "https://logo.clearbit.com/sciencedirect.com",
+"price": 243,
+"stock": 24,
+"Category": "medication",
+"available": true
+},
+{
+"id": 15,
+"name": "Depakine",
+"image": "https://logo.clearbit.com/123-reg.co.uk",
+"price": 900,
+"stock": 80,
+"Category": "babyCare",
+"available": false
+},
+{
+"id": 16,
+"name": "Amaryl",
+"image": "https://logo.clearbit.com/qq.com",
+"price": 318,
+"stock": 29,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 17,
+"name": "Viagra",
+"image": "https://logo.clearbit.com/simplemachines.org",
+"price": 384,
+"stock": 73,
+"Category": "medication",
+"available": true
+},
+{
+"id": 18,
+"name": "Cipralex",
+"image": "https://logo.clearbit.com/adobe.com",
+"price": 178,
+"stock": 33,
+"Category": "babyCare",
+"available": false
+},
+{
+"id": 19,
+"name": "Ketofan",
+"image": "https://logo.clearbit.com/pen.io",
+"price": 363,
+"stock": 23,
+"Category": "medication",
+"available": false
+},
+{
+"id": 20,
+"name": "Stimlan",
+"image": "https://logo.clearbit.com/scribd.com",
+"price": 623,
+"stock": 46,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 21,
+"name": "Tamsulin",
+"image": "https://logo.clearbit.com/hubpages.com",
+"price": 625,
+"stock": 30,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 22,
+"name": "Amaryl",
+"image": "https://logo.clearbit.com/reverbnation.com",
+"price": 98,
+"stock": 27,
+"Category": "cosmetics",
+"available": true
+},
+{
+"id": 23,
+"name": "Erastapex",
+"image": "https://logo.clearbit.com/ca.gov",
+"price": 243,
+"stock": 23,
+"Category": "medication",
+"available": false
+},
+{
+"id": 24,
+"name": "capoten",
+"image": "https://logo.clearbit.com/vkontakte.ru",
+"price": 82,
+"stock": 84,
+"Category": "medication",
+"available": false
+},
+{
+"id": 25,
+"name": "Prostanorm",
+"image": "https://logo.clearbit.com/myspace.com",
+"price": 284,
+"stock": 71,
+"Category": "medication",
+"available": false
+},
+{
+"id": 26,
+"name": "Ketofan",
+"image": "https://logo.clearbit.com/hostgator.com",
+"price": 274,
+"stock": 89,
+"Category": "cosmetics",
+"available": true
+},
+{
+"id": 27,
+"name": "Femara",
+"image": "https://logo.clearbit.com/ameblo.jp",
+"price": 829,
+"stock": 85,
+"Category": "cosmetics",
+"available": true
+},
+{
+"id": 28,
+"name": "capoten",
+"image": "https://logo.clearbit.com/phoca.cz",
+"price": 340,
+"stock": 79,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 29,
+"name": "Viagra",
+"image": "https://logo.clearbit.com/ehow.com",
+"price": 553,
+"stock": 70,
+"Category": "cosmetics",
+"available": true
+},
+{
+"id": 30,
+"name": "Glucophage",
+"image": "https://logo.clearbit.com/archive.org",
+"price": 256,
+"stock": 20,
+"Category": "cosmetics",
+"available": true
+},
+{
+"id": 31,
+"name": "Erastapex",
+"image": "https://logo.clearbit.com/ifeng.com",
+"price": 985,
+"stock": 82,
+"Category": "cosmetics",
+"available": true
+},
+{
+"id": 32,
+"name": "Depakine",
+"image": "https://logo.clearbit.com/harvard.edu",
+"price": 34,
+"stock": 27,
+"Category": "medication",
+"available": false
+},
+{
+"id": 33,
+"name": "Cipralex",
+"image": "https://logo.clearbit.com/gnu.org",
+"price": 996,
+"stock": 39,
+"Category": "babyCare",
+"available": false
+},
+{
+"id": 34,
+"name": "capoten",
+"image": "https://logo.clearbit.com/salon.com",
+"price": 102,
+"stock": 76,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 35,
+"name": "Ketofan",
+"image": "https://logo.clearbit.com/chron.com",
+"price": 592,
+"stock": 13,
+"Category": "babyCare",
+"available": true
+},
+{
+"id": 36,
+"name": "Brufen",
+"image": "https://logo.clearbit.com/merriam-webster.com",
+"price": 383,
+"stock": 61,
+"Category": "cosmetics",
+"available": true
+},
+{
+"id": 37,
+"name": "Erastapex",
+"image": "https://logo.clearbit.com/php.net",
+"price": 747,
+"stock": 80,
+"Category": "babyCare",
+"available": false
+},
+{
+"id": 38,
+"name": "Tamsulin",
+"image": "https://logo.clearbit.com/rambler.ru",
+"price": 666,
+"stock": 95,
+"Category": "babyCare",
+"available": true
+},
+{
+"id": 39,
+"name": "Ketofan",
+"image": "https://logo.clearbit.com/nsw.gov.au",
+"price": 953,
+"stock": 98,
+"Category": "babyCare",
+"available": true
+},
+{
+"id": 40,
+"name": "Depakine",
+"image": "https://logo.clearbit.com/cloudflare.com",
+"price": 606,
+"stock": 52,
+"Category": "medication",
+"available": true
+},
+{
+"id": 41,
+"name": "Brufen",
+"image": "https://logo.clearbit.com/adobe.com",
+"price": 66,
+"stock": 18,
+"Category": "medication",
+"available": true
+},
+{
+"id": 42,
+"name": "Concor",
+"image": "https://logo.clearbit.com/quantcast.com",
+"price": 91,
+"stock": 60,
+"Category": "babyCare",
+"available": false
+},
+{
+"id": 43,
+"name": "cometrex",
+"image": "https://logo.clearbit.com/epa.gov",
+"price": 354,
+"stock": 95,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 44,
+"name": "cometrex",
+"image": "https://logo.clearbit.com/webeden.co.uk",
+"price": 147,
+"stock": 78,
+"Category": "cosmetics",
+"available": true
+},
+{
+"id": 45,
+"name": "Ketofan",
+"image": "https://logo.clearbit.com/hc360.com",
+"price": 404,
+"stock": 6,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 46,
+"name": "Concor",
+"image": "https://logo.clearbit.com/hugedomains.com",
+"price": 429,
+"stock": 22,
+"Category": "babyCare",
+"available": true
+},
+{
+"id": 47,
+"name": "Glucophage",
+"image": "https://logo.clearbit.com/youku.com",
+"price": 341,
+"stock": 4,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 48,
+"name": "Viagra",
+"image": "https://logo.clearbit.com/tmall.com",
+"price": 765,
+"stock": 27,
+"Category": "babyCare",
+"available": true
+},
+{
+"id": 49,
+"name": "Concor",
+"image": "https://logo.clearbit.com/a8.net",
+"price": 635,
+"stock": 8,
+"Category": "cosmetics",
+"available": false
+},
+{
+"id": 50,
+"name": "cometrex",
+"image": "https://logo.clearbit.com/blinklist.com",
+"price": 397,
+"stock": 76,
+"Category": "cosmetics",
+"available": false
+}
+]

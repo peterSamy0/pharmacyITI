@@ -27,7 +27,6 @@ export class CarouselComponent {
     this.service.getData().subscribe(
       (res) => {
         this.products = res;
-        console.log(this.products[0]);
         this.getCategories();
         this.initializeActiveIndices();
       },
