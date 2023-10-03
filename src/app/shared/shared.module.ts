@@ -8,6 +8,8 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
 import { RouterModule } from '@angular/router';
 import { PharmacyListComponent } from './components/pharmacy-list/pharmacy-list.component';
 import { PharmacyCardComponent } from './components/pharmacy-card/pharmacy-card.component';
+import { CartComponent } from './components/cart/cart.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { PharmacyCardComponent } from './components/pharmacy-card/pharmacy-card.
     DropDownComponent,
     SearchFormComponent,
     PharmacyListComponent,
-    PharmacyCardComponent
+    PharmacyCardComponent,
+    CartComponent,
+    ProductCardComponent
     
 
   ],
