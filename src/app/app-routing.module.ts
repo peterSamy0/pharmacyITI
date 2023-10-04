@@ -8,6 +8,7 @@ import { SignupAsPharmacyComponent } from './auth/signup-as-pharmacy/signup-as-p
 import { HomepageComponent } from './homepage/homepage.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { CarouselComponent } from './pharmacy/components/carousel/carousel.component';
 
 const routes: Routes = [
 
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path:'signup-pharmacy',
     component:SignupAsPharmacyComponent
+  },
+  {
+    path: "pharmacyDetails",
+    component: CarouselComponent
   },
 ];
 

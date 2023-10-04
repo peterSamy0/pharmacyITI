@@ -1,12 +1,12 @@
 <div *ngIf="!isLoading">
   <div *ngFor="let cat of categories" class=" my-5"> 
-    <div class="d-flex justify-content-center">
-      <h1 class="text-center d-inline ">{{ cat }}</h1>
+    <div class="d-flex justify-content-start ps-5 w-9 m-auto ">
+      <h1 class="text-center d-inline-block">{{ cat }}</h1>
     </div>
     <div class="carousel-c position-relative  w-9 m-auto ">
       <div class="carousel-c-inner w-100" [style.transform]="'translateX(' + (-getActiveIndex(cat) * (100 / visibleItems)) + '%)'">
-        <div class="item-container w-100" *ngFor="let prod of getCategoryProducts(cat); let index = index">
-          <div class="item-content w-100 d-flex flex-column justify-content-between bg-white align-items-center ">
+        <div class="item-container w-100" *ngFor="let prod of getCategoryProducts(cat); let index = index" >
+          <div class="item-content w-100 d-flex flex-column justify-content-between bg-white align-items-center"> 
             <img [src]="prod.image" alt="" width="80%" height="35%" class="p-3 object-fit-contain ">
             <h4 class="overflow-hidden fs-5 d-flex align-items-center m-0" style="height: 10%">{{ prod.name }}</h4>
             <p class="overflow-hidden m-0" style="height: 10%"><span class="fw-bolder">Price:</span> {{ prod.price }} L.E</p>
@@ -25,6 +25,7 @@
     </div>
   </div>
 </div>
+<!-- spinner loading -->
 <div class="d-flex align-items-center justify-content-center spinner" *ngIf="isLoading">
   <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
 </div>
