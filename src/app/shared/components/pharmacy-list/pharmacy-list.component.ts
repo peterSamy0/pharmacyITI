@@ -16,7 +16,7 @@ interface Pharmacy{
 export class PharmacyListComponent{
   pharmArr!:Array<Pharmacy>
   constructor(private fetchPharmacies:ServiceService){
-    this.fetchPharmacies.getData().subscribe(data=>{this.pharmArr = Object.values(data);
+    this.fetchPharmacies.getDataPharmacy().subscribe(data=>{this.pharmArr = Object.values(data);
       // console.log(this.pharmArr, typeof(this.pharmArr),this.pharmArr[1])
     });
     

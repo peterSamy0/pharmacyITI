@@ -1,0 +1,18 @@
+ .card{
+    height: 350px;
+}
+.card > img{
+    height: 40%;
+    width: 100%;
+    object-fit: contain;
+    background-color: rgb(241, 238, 233);
+}
+.card > div{
+    height: 60%;
+}
+.h-10{
+    height: 10%;
+}
+.h-20{
+    height: 20%;
+} 

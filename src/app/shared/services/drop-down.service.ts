@@ -19,6 +19,4 @@ export class DropDownService {
   openSubList(val: any) {
     this.cityName = val.name
   }
- 
-
 }
