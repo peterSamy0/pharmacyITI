@@ -1,3 +1,6 @@
+<!-- search -->
+<app-search></app-search>
+<!-- carousel -->
 <div *ngIf="!isLoading">
   <div *ngFor="let cat of categories" class=" my-5"> 
     <div class="d-flex justify-content-start ps-5 w-9 m-auto ">
@@ -5,14 +8,6 @@
     </div>
     <div class="carousel-c position-relative  w-9 m-auto ">
       <div class="carousel-c-inner w-100" [style.transform]="'translateX(' + (-getActiveIndex(cat) * (100 / visibleItems)) + '%)'">
-       <!--  <div class="item-container w-100" *ngFor="let prod of getCategoryProducts(cat); let index = index" >
-          <div class="item-content w-100 d-flex flex-column justify-content-between bg-white align-items-center"> 
-            <img [src]="prod.image" alt="" width="80%" height="35%" class="p-3 object-fit-contain ">
-            <h4 class="overflow-hidden fs-5 d-flex align-items-center m-0" style="height: 10%">{{ prod.name }}</h4>
-            <p class="overflow-hidden m-0" style="height: 10%"><span class="fw-bolder">Price:</span> {{ prod.price }} L.E</p>
-            <button class="btn bg-nav text-white w-100 m-0">add to cart</button>
-          </div>
-        </div>-->
         <app-medication-card class="item-container w-100" *ngFor="let prod of getCategoryProducts(cat); let index = index" [prod]="prod"></app-medication-card>
       </div> 
       <div class="carousel-c-controls position-absolute top-35 start-0 w-100 ">
@@ -26,7 +21,12 @@
     </div>
   </div>
 </div>
+
+<!-- feed back -->
+<app-feed-back></app-feed-back>
 <!-- spinner loading -->
 <div class="d-flex align-items-center justify-content-center spinner" *ngIf="isLoading">
   <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
 </div>
+
+
