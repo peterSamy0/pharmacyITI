@@ -9,6 +9,8 @@ import { FeedBackComponent } from './components/feed-back/feed-back.component';
 import { PharmacyListComponent } from './components/pharmacy-list/pharmacy-list.component';
 import { PharmacyCardComponent } from './components/pharmacy-card/pharmacy-card.component';
 import { MedicationCardComponent } from './components/medication-card/medication-card.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,7 +26,10 @@ import { MedicationCardComponent } from './components/medication-card/medication
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    FormsModule,
+    
   ],
   exports: [
     PharmacyListComponent
