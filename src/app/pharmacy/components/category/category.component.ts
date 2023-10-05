@@ -8,6 +8,7 @@ import { ServiceService } from 'src/app/shared/services/service.service';
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent {
+  id: number = 0;
   medicationCategory:string|any;
   medications!:Array<Medication>;
   constructor(private routeUrl:ActivatedRoute, private fetchMedication:ServiceService){
@@ -19,7 +20,6 @@ export class CategoryComponent {
         .subscribe(data=>
                 {this.medications=
                  Object.values(data);
-                 console.log(this.medicationCategory)
                 });
       }
       break;
@@ -28,7 +28,6 @@ export class CategoryComponent {
         .subscribe(data=>
                 {this.medications=
                  Object.values(data);
-                 console.log(this.medicationCategory)
                 });
       }
       break;
@@ -37,7 +36,6 @@ export class CategoryComponent {
         .subscribe(data=>
                 {this.medications=
                  Object.values(data);
-                 console.log(this.medicationCategory)
                 });
       }
       break;
@@ -46,14 +44,14 @@ export class CategoryComponent {
         .subscribe(data=>
                 {this.medications=
                  Object.values(data);
-                 console.log(this.medicationCategory)
                 });
       }
     }
     
   }
-  ngOnInit(){
-    console.log("hello", this.medications);
-    
-  }
+ngOnInit() {
+  this.routeUrl.parent?.params.subscribe(params => {
+    this.id = params['id']; // Access the value of 'id' parameter
+  });
+}
 }

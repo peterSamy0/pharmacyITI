@@ -18,6 +18,7 @@ export class CarouselComponent {
   faAngleRight = faAngleRight;
   activeIndices: { [Category: string]: number } = {};
   isLoading: boolean = true;
+  allProduct :boolean = false;
 
   constructor(private service: CarouselService) {}
 
@@ -45,7 +46,6 @@ export class CarouselComponent {
       this.categories.push(this.products[i]['Category'])
     }
     this.categories = Array.from(new Set(this.categories)); // Convert set to array
-    console.log(this.categories)
   }
 
   initializeActiveIndices() {
@@ -69,5 +69,8 @@ export class CarouselComponent {
 
   getActiveIndex(Category: string): number {
     return this.activeIndices[Category];
+  }
+  diplay(){
+    this.allProduct = true;
   }
 }
