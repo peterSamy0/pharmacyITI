@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Pharmacy } from 'src/app/interface/pharmacy';
+import { Product } from 'src/app/interface/product';
 import { ServiceService } from 'src/app/shared/services/service.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { ServiceService } from 'src/app/shared/services/service.service';
 })
 export class SearchComponent implements OnInit {
 
-  searchResult : undefined | Pharmacy[]; 
+  searchResult : undefined | Product[]; 
 
   constructor( private activeRoute : ActivatedRoute , private product : ServiceService ){}
 
@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
 
     query && this.product.searchProduct(query).subscribe((result)=>{
      this.searchResult = result;
-  
+    console.log(result)
     }) 
   }
 }

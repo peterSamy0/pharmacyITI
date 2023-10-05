@@ -23,15 +23,15 @@ const routes: Routes = [
     component: HomepageComponent
   },
   {
-    path:'home-page',
+    path:'home',
     component: HomepageComponent
   },
   {
-    path:'signin',
+    path:'signIn',
     component: SigninComponent
   },
   {
-    path: 'signup',
+    path: 'signUp',
     component: SignupComponent
   },
   {

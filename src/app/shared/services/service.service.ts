@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Pharmacy } from 'src/app/interface/pharmacy';
+import { Product } from 'src/app/interface/product';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,6 @@ export class ServiceService {
     return this.http.get('https://retoolapi.dev/2NLxkX/data')
   }
   searchProduct (query : string){
-    return this.http.get<[Pharmacy]>(`https://retoolapi.dev/2NLxkX/data?=q${query}`)
-  
+    return this.http.get<[Product]>(`https://retoolapi.dev/oK0uhq/data?=q${query}`)
   }
 }
