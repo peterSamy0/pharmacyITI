@@ -67,10 +67,6 @@ const routes: Routes = [
         component: CategoryComponent
       }
     ]
-  },
-  {
-    path:'category',
-    component: CategoryComponent  
   }
 ];
 

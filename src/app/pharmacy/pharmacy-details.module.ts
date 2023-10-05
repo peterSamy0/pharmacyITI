@@ -12,6 +12,8 @@ import { CategoryComponent } from './components/category/category.component';
 import { MedicationCardComponent } from './components/medication-card/medication-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 @NgModule({
@@ -31,11 +33,13 @@ import { FormsModule } from '@angular/forms';
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
-    
+    RouterLink,
+    AppRoutingModule
   ],
   exports: [
     PharmacyListComponent,
-    CategoryComponent
+    CategoryComponent,
+    MedicationCardComponent
 
   ]
 })

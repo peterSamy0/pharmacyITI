@@ -2,6 +2,7 @@ import { CarouselService } from './../../services/carousel.service';
 import { Component } from '@angular/core';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
@@ -9,7 +10,7 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent {
-
+  @Input () pharmacyID!:number;
   products: any = [];
   categories: any = [];
   visibleItems = 5;
@@ -17,6 +18,7 @@ export class CarouselComponent {
   faAngleRight = faAngleRight;
   activeIndices: { [Category: string]: number } = {};
   isLoading: boolean = true;
+  allProduct :boolean = false;
 
   constructor(private service: CarouselService) {}
 
@@ -44,7 +46,6 @@ export class CarouselComponent {
       this.categories.push(this.products[i]['Category'])
     }
     this.categories = Array.from(new Set(this.categories)); // Convert set to array
-    console.log(this.categories)
   }
 
   initializeActiveIndices() {
@@ -68,5 +69,9 @@ export class CarouselComponent {
 
   getActiveIndex(Category: string): number {
     return this.activeIndices[Category];
+  }
+  
+  diplay(){
+    this.allProduct = true;
   }
 }
