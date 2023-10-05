@@ -10,6 +10,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { PharmacyDetailsModule } from './pharmacy/pharmacy-details.module';
+import { CartModule } from './cart/cart.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { PharmacyDetailsModule } from './pharmacy/pharmacy-details.module';
     ReactiveFormsModule,
     FormsModule,
     PharmacyDetailsModule,
-  
+    CartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

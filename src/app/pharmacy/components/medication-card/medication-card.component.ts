@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CartService } from 'src/app/cart/servic/cart.service';
 
 
 @Component({
@@ -7,10 +8,12 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./medication-card.component.css']
 })
 export class MedicationCardComponent {
-  // @Input() prod: any;
-  // @Input() cat: any;
-  // @Input() getActiveIndex: any;
-  // visibleItems:number = 5;
   @Input() prod: any;
+
+  constructor(private service: CartService){}
+
+  addToCart(val:any){
+    this.service.addItemToCart(val);
+  }
 }
 

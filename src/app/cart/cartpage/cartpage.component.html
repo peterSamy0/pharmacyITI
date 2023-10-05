@@ -1,0 +1,41 @@
+<table class="table" *ngIf="cartItems.length > 0">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">image</th>
+      <th scope="col">name</th>
+      <th scope="col">price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of cartItems">
+      <th scope="row">1</th>
+      <td class="align-middle "><img src={{item.image}} alt="" width="80px" height="80px" class="rounded-5"></td>
+      <td class="align-middle ">{{item.name}}</td>
+      <td class="align-middle ">{{item.price}}</td>
+      <td class="align-middle ">
+        <div class="btn-group d-flex" role="group" aria-label="Quantity">
+          <button (click)="decreaseQuantity(item)" class="btn btn-secondary">-</button>
+          <span class="btn btn-light">{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(item)" class="btn btn-secondary">+</button>
+        </div>
+      </td>
+      <td class="align-middle ">
+        <button (click)="removeFromCart(item)" class="btn btn-danger mt-2">Remove</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+   <!-- Display total price -->
+   <div class="card mt-4">
+    <div class="card-body">
+      <h5 class="card-title">Total Price</h5>
+      <p class="card-text">Total Price: {{ total  }}</p>
+    </div>
+  </div>
+
+  <!-- Display "Empty cart" or item count -->
+  <div *ngIf="cartItems.length === 0" class="alert alert-info mt-4">Empty cart</div>
+  <div *ngIf="cartItems.length > 0" class="alert alert-info mt-4">Total items: {{ cartItems.length }}</div>
+<!-- </div> -->
