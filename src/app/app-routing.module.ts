@@ -1,5 +1,5 @@
 
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SigninAsClientComponent } from './auth/signin-as-client/signin-as-client.component';
 import { SigninAsPharmacyComponent } from './auth/signin-as-pharmacy/signin-as-pharmacy.component';
@@ -10,6 +10,7 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CarouselComponent } from './pharmacy/components/carousel/carousel.component';
 import { PharmacyDetailsComponent } from './pharmacy/components/pharmacy-details/pharmacy-details.component';
+import { CategoryComponent } from './pharmacy/components/category/category.component';
 
 const routes: Routes = [
 
@@ -51,7 +52,17 @@ const routes: Routes = [
   },
   {
     path :'pharmacy/:id',
-    component : PharmacyDetailsComponent
+    component : PharmacyDetailsComponent,
+    children : [
+      {
+        path : 'category/:category',
+        component: CategoryComponent
+      }
+    ]
+  },
+  {
+    path:'category',
+    component: CategoryComponent  
   }
 ];
 
