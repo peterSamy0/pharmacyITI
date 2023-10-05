@@ -14,4 +14,16 @@ export class ServiceService {
   getDataPharmacy(){
     return this.http.get('https://retoolapi.dev/2NLxkX/data')
   }
+  getAllProducts(){
+    return this.http.get('https://retoolapi.dev/oK0uhq/data')
+  }
+  getCosmetics(){
+    return this.http.get('https://retoolapi.dev/oK0uhq/data?Category=cosmetics')
+  }
+  getBabyCare(){
+    return this.http.get('https://retoolapi.dev/oK0uhq/data?Category=babyCare')
+  }
+  getMedication(){
+    return this.http.get('https://retoolapi.dev/oK0uhq/data?Category=medication')
+  }
 }

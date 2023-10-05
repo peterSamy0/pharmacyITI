@@ -60,10 +60,10 @@ const routes: Routes = [
       }
     ]
   },
-  {
-    path:'category',
-    component: CategoryComponent  
-  }
+  // {
+  //   path:'category/:category',
+  //   component: CategoryComponent  
+  // }
 ];
 
 @NgModule({

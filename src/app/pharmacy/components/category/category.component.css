@@ -1,0 +1,7 @@
+:host{
+    --navColor: #419197;
+}
+div h1{
+    border-bottom: 5px solid var(--navColor);
+    border-radius: 5px;
+  }

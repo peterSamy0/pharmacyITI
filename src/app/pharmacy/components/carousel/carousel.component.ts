@@ -2,6 +2,7 @@ import { CarouselService } from './../../services/carousel.service';
 import { Component } from '@angular/core';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
@@ -9,7 +10,7 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent {
-
+  @Input () pharmacyID!:number;
   products: any = [];
   categories: any = [];
   visibleItems = 5;

@@ -10,7 +10,8 @@ import { PharmacyListComponent } from './components/pharmacy-list/pharmacy-list.
 import { PharmacyCardComponent } from './components/pharmacy-card/pharmacy-card.component';
 import { CategoryComponent } from './components/category/category.component';
 import { MedicationCardComponent } from './components/medication-card/medication-card.component';
-
+import { RouterLink } from '@angular/router';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [
@@ -26,11 +27,14 @@ import { MedicationCardComponent } from './components/medication-card/medication
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterLink,
+    AppRoutingModule
   ],
   exports: [
     PharmacyListComponent,
-    CategoryComponent
+    CategoryComponent,
+    MedicationCardComponent
 
   ]
 })
