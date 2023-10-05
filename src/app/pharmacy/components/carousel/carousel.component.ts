@@ -70,7 +70,6 @@ export class CarouselComponent {
   getActiveIndex(Category: string): number {
     return this.activeIndices[Category];
   }
-  
   diplay(){
     this.allProduct = true;
   }
