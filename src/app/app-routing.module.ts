@@ -9,6 +9,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CarouselComponent } from './pharmacy/components/carousel/carousel.component';
+import { PharmacyDetailsComponent } from './pharmacy/components/pharmacy-details/pharmacy-details.component';
 
 const routes: Routes = [
 
@@ -48,6 +49,10 @@ const routes: Routes = [
     path: "pharmacyDetails",
     component: CarouselComponent
   },
+  {
+    path :'pharmacy/:id',
+    component : PharmacyDetailsComponent
+  }
 ];
 
 @NgModule({

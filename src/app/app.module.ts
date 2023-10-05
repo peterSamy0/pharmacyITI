@@ -27,7 +27,7 @@ import { PharmacyDetailsModule } from './pharmacy/pharmacy-details.module';
     ReactiveFormsModule,
     FormsModule,
     AppRoutingRoutingModule,
-    PharmacyDetailsModule
+    PharmacyDetailsModule,
   
   ],
   providers: [],

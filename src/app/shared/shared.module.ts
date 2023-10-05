@@ -6,8 +6,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DropDownComponent } from './components/drop-down/drop-down.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { RouterModule } from '@angular/router';
-import { PharmacyListComponent } from './components/pharmacy-list/pharmacy-list.component';
-import { PharmacyCardComponent } from './components/pharmacy-card/pharmacy-card.component';
 
 @NgModule({
   declarations: [
@@ -15,8 +13,6 @@ import { PharmacyCardComponent } from './components/pharmacy-card/pharmacy-card.
     FooterComponent,
     DropDownComponent,
     SearchFormComponent,
-    PharmacyListComponent,
-    PharmacyCardComponent
     
 
   ],
@@ -29,8 +25,6 @@ import { PharmacyCardComponent } from './components/pharmacy-card/pharmacy-card.
     HeaderComponent,
     FooterComponent,
     DropDownComponent,
-    PharmacyListComponent,
-    PharmacyCardComponent
 
 
   ]

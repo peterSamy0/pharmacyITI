@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Pharmacy } from '../../../interface/pharmacy';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pharmacy-card',
@@ -8,8 +9,11 @@ import { Pharmacy } from '../../../interface/pharmacy';
 })
 
 export class PharmacyCardComponent {
+  constructor(private router:Router){}
   @Input() item!:Pharmacy;
   ngOnInit(){
-    console.log(this.item);
+  }
+  goToDetails(id:number){
+    this.router.navigate(["/pharmacy",id]);
   }
 }

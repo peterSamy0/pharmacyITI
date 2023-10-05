@@ -6,6 +6,8 @@ import { FilterByCatComponent } from './components/filter-by-cat/filter-by-cat.c
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PharmacyDetailsComponent } from './components/pharmacy-details/pharmacy-details.component';
 import { FeedBackComponent } from './components/feed-back/feed-back.component';
+import { PharmacyListComponent } from './components/pharmacy-list/pharmacy-list.component';
+import { PharmacyCardComponent } from './components/pharmacy-card/pharmacy-card.component';
 
 
 @NgModule({
@@ -14,11 +16,18 @@ import { FeedBackComponent } from './components/feed-back/feed-back.component';
     SearchComponent,
     FilterByCatComponent,
     PharmacyDetailsComponent,
-    FeedBackComponent
+    FeedBackComponent,
+    PharmacyCardComponent,
+    PharmacyListComponent
   ],
   imports: [
     CommonModule,
     FontAwesomeModule
+  ],
+  exports: [
+    PharmacyListComponent
+
+
   ]
 })
 export class PharmacyDetailsModule { }

@@ -1,4 +1,16 @@
-<!-- pharmacy details -->
-<p>pharmacy-details works!</p>
-<!-- carousel -->
-<!-- feed back -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <img [src]="pharmacy.image" alt="pharmacy image" style="width:100%; height:40vh">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 ">
+            <h3 class="p-3 my-5 m-3"><span>Pharmacy name:</span> {{pharmacy.pharmacyName}}</h3>
+            <h3 class="p-3 my-5 m-3"><span>Pharmacy address:</span> {{pharmacy.address}}</h3>
+            <h3 *ngIf="pharmacy.siteDelivery == 'true'" class=" border text-secondary border-secondary rounded p-3 my-5 m-3" >Pharmacy delivery</h3>
+            <h3 *ngIf="pharmacy.siteDelivery == 'false'" class="rounded p-3 my-5 m-3 " style="color:#2E8B57; border:1px solid #2E8B57;;"><strong>Pharma A </strong>delivery</h3>
+        </div>
+    </div>
+</div>
+<app-carousel></app-carousel>
