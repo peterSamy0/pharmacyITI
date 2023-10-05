@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { AppRoutingRoutingModule } from './app-routing-routing.module';
 import { PharmacyDetailsModule } from './pharmacy/pharmacy-details.module';
 
 @NgModule({
@@ -26,7 +25,6 @@ import { PharmacyDetailsModule } from './pharmacy/pharmacy-details.module';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    AppRoutingRoutingModule,
     PharmacyDetailsModule,
   
   ],

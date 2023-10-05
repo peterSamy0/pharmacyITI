@@ -8,6 +8,7 @@ import { PharmacyDetailsComponent } from './components/pharmacy-details/pharmacy
 import { FeedBackComponent } from './components/feed-back/feed-back.component';
 import { PharmacyListComponent } from './components/pharmacy-list/pharmacy-list.component';
 import { PharmacyCardComponent } from './components/pharmacy-card/pharmacy-card.component';
+import { MedicationCardComponent } from './components/medication-card/medication-card.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { PharmacyCardComponent } from './components/pharmacy-card/pharmacy-card.
     PharmacyDetailsComponent,
     FeedBackComponent,
     PharmacyCardComponent,
-    PharmacyListComponent
+    PharmacyListComponent,
+    MedicationCardComponent
   ],
   imports: [
     CommonModule,
