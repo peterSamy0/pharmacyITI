@@ -9,6 +9,7 @@ import { FeedBackComponent } from './components/feed-back/feed-back.component';
 import { PharmacyListComponent } from './components/pharmacy-list/pharmacy-list.component';
 import { PharmacyCardComponent } from './components/pharmacy-card/pharmacy-card.component';
 import { CategoryComponent } from './components/category/category.component';
+import { MedicationCardComponent } from './components/medication-card/medication-card.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CategoryComponent } from './components/category/category.component';
     FeedBackComponent,
     PharmacyCardComponent,
     PharmacyListComponent,
-    CategoryComponent
+    CategoryComponent,
+    MedicationCardComponent
   ],
   imports: [
     CommonModule,
