@@ -8,6 +8,7 @@ import { PharmacyDetailsComponent } from './components/pharmacy-details/pharmacy
 import { FeedBackComponent } from './components/feed-back/feed-back.component';
 import { PharmacyListComponent } from './components/pharmacy-list/pharmacy-list.component';
 import { PharmacyCardComponent } from './components/pharmacy-card/pharmacy-card.component';
+import { CategoryComponent } from './components/category/category.component';
 
 
 @NgModule({
@@ -18,15 +19,16 @@ import { PharmacyCardComponent } from './components/pharmacy-card/pharmacy-card.
     PharmacyDetailsComponent,
     FeedBackComponent,
     PharmacyCardComponent,
-    PharmacyListComponent
+    PharmacyListComponent,
+    CategoryComponent
   ],
   imports: [
     CommonModule,
     FontAwesomeModule
   ],
   exports: [
-    PharmacyListComponent
-
+    PharmacyListComponent,
+    CategoryComponent
 
   ]
 })
