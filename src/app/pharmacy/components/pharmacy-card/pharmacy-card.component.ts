@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 
 export class PharmacyCardComponent {
+  
   constructor(private router:Router){}
   @Input() item!:Pharmacy;
   ngOnInit(){

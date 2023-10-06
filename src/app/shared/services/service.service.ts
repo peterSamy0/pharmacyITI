@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from 'src/app/interface/product';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,6 @@ export class ServiceService {
   }
   getDataPharmacy(){
     return this.http.get('https://retoolapi.dev/2NLxkX/data')
-  }
-
-  searchProduct (query : string){
-    return this.http.get<[Product]>(`https://retoolapi.dev/oK0uhq/data?=q${query}`)
   }
   getAllProducts(){
     return this.http.get('https://retoolapi.dev/oK0uhq/data')

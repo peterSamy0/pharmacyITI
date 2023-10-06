@@ -15,6 +15,7 @@ import { CategoryComponent } from './pharmacy/components/category/category.compo
 
 
 import { CartpageComponent } from './cart/cartpage/cartpage.component';
+import { SearchComponent } from './pharmacy/components/search/search.component';
 
 const routes: Routes = [
 
@@ -67,7 +68,11 @@ const routes: Routes = [
         component: CategoryComponent
       }
     ]
-  }
+  },
+  // {
+  //   path: 'search/:query',
+  //   component: PharmacyDetailsComponent
+  // }
 ];
 
 @NgModule({

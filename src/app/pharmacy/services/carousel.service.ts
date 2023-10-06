@@ -6,6 +6,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CarouselService {
   url: string = "https://retoolapi.dev/oK0uhq/data";
+  inputValurOfSearch: string = '';
+  searchResult: object[] = [];
+  isBtnClicked:boolean = false;
   constructor(private http: HttpClient) { }
 
   getData(){

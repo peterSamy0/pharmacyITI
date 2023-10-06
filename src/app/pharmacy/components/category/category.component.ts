@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Medication } from 'src/app/interface/medication';
 import { ServiceService } from 'src/app/shared/services/service.service';
+import { CarouselService } from '../../services/carousel.service';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -9,10 +10,10 @@ import { ServiceService } from 'src/app/shared/services/service.service';
 })
 export class CategoryComponent {
   id: number = 0;
+  result: any;
   medicationCategory:string|any;
   medications!:Array<Medication>;
-  constructor(private routeUrl:ActivatedRoute, private fetchMedication:ServiceService){
-
+  constructor(private routeUrl:ActivatedRoute, private fetchMedication:ServiceService, private service: CarouselService){
     this.routeUrl.paramMap.subscribe(params => this. medicationCategory = params.get("category"));
     switch(this.medicationCategory){
       case "cosmetics":{
@@ -53,5 +54,17 @@ ngOnInit() {
   this.routeUrl.parent?.params.subscribe(params => {
     this.id = params['id']; // Access the value of 'id' parameter
   });
+  // setInterval(() => {
+  //   if (this.service.isBtnClicked) {
+  //     this.performSearch();
+  //   }
+  // }, 1000);
 }
+
+// performSearch() {
+//   this.result = this.medications.filter((item: any) => {
+//     return item.name.toLowerCase().includes(this.service.inputValurOfSearch.toLowerCase());
+//   });
+//   this.medications = this.result;
+// }
 }

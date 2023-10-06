@@ -1,16 +1,13 @@
-<div class="container">
+<div class="container p-5 mt-5 ">
     <div class="row">
-        <div class="col-12">
+        <div class="col-5 border border-1 d-flex justify-content-center align-items-center ">
             <img [src]="pharmacy.image" alt="pharmacy image" style="width:100%; height:40vh">
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 ">
-            <h3 class="p-3 my-5 m-3"><span>Pharmacy name:</span> {{pharmacy.pharmacyName}}</h3>
-            <h3 class="p-3 my-5 m-3"><span>Pharmacy address:</span> {{pharmacy.address}}</h3>
-            <h3 *ngIf="pharmacy.siteDelivery == 'true'" class=" border text-secondary border-secondary rounded p-3 my-5 m-3" >Pharmacy delivery</h3>
-            <h3 *ngIf="pharmacy.siteDelivery == 'false'" class="rounded p-3 my-5 m-3 " style="color:#2E8B57; border:1px solid #2E8B57;;"><strong>Pharma A </strong>delivery</h3>
+        <div class="col-6 offset-1 d-flex justify-content-center align-items-start flex-column ">
+            <p class="p-3 my-1 m-3"><span class="fs-5 fw-bolder">Pharmacy Name: </span> {{pharmacy.pharmacyName}}</p>
+            <p class="p-3 my-1 m-3"><span class="fs-5 fw-bolder">Pharmacy address: </span> {{pharmacy.address}}</p>
         </div>
     </div>
 </div>
+<app-search></app-search>
 <app-carousel [pharmacyID] = "pharmacy.id"></app-carousel>

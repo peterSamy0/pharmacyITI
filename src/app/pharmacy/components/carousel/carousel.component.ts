@@ -24,8 +24,13 @@ export class CarouselComponent {
 
   ngOnInit() {
     this.getAllProducts();    
+    setInterval(() => {
+      if (this.service.isBtnClicked) {
+        this.products = this.service.searchResult;
+      }
+    }, 1000);
   }
-
+  
   getAllProducts() {
     this.isLoading = true;
     this.service.getData().subscribe(
@@ -73,4 +78,5 @@ export class CarouselComponent {
   diplay(){
     this.allProduct = true;
   }
+
 }

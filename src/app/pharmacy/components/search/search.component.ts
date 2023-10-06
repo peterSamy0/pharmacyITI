@@ -1,26 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Product } from 'src/app/interface/product';
-import { ServiceService } from 'src/app/shared/services/service.service';
+import { CarouselService } from '../../services/carousel.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
+  searchInput!: string;
+  filteredItems!: any[];
+  products: any = [];
+  categories: any = [];
+  result:any = [];
+  constructor(private service: CarouselService) {}
 
-  searchResult : undefined | Product[]; 
+  ngOnInit() {
+    this.getAllProducts();    
+  }
 
-  constructor( private activeRoute : ActivatedRoute , private product : ServiceService ){}
-
-  ngOnInit(): void {
-    let query = this.activeRoute.snapshot.paramMap.get('query');
-    console.log(query)
-
-    query && this.product.searchProduct(query).subscribe((result)=>{
-     this.searchResult = result;
-    console.log(result)
-    }) 
+  getAllProducts() {
+    this.service.getData().subscribe(
+      (res) => {
+        this.products = res;
+      },
+      (error) => {
+        console.log(error)
+      }
+    );    
+  }
+  getValue(inputValue: string){
+    this.service.inputValurOfSearch = inputValue;
+    console.log("Input value:", inputValue);
+    this.performSearch(inputValue) 
+  }
+  performSearch(val:any) {
+    this.filteredItems = this.products.filter((item: any) => {
+      return item.name.toLowerCase().includes(val.toLowerCase());
+    });
+    this.service.searchResult = this.filteredItems;
+    this.service.isBtnClicked = true;
   }
 }
