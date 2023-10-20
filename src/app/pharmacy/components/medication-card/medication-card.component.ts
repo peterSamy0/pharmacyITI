@@ -13,6 +13,7 @@ export class MedicationCardComponent {
   constructor(private service: CartService){}
   addToCart(val:any){
     this.service.addItemToCart(val);
+    val.added = true;
   }
 }
 
