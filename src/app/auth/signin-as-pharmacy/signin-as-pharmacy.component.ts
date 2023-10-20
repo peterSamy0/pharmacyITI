@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Pharmacies } from 'src/app/interface/pharmacies';
-import pharmciesData from  '../../../assets/json/pharmcies.json'
+import pharmciesData from  '../../../assets/json/pharmcies.json';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signin-as-pharmacy',
   templateUrl: './signin-as-pharmacy.component.html',
@@ -12,7 +13,7 @@ export class SigninAsPharmacyComponent {
   pharmacies : Pharmacies[]= pharmciesData;
 
   signinForm: FormGroup;
-  constructor() {
+  constructor(private router: Router) {
     this.signinForm = new FormGroup({
       pharmaEmail: new FormControl('', [Validators.required]),
       pharmaPass: new FormControl('',[Validators.required])
@@ -34,7 +35,8 @@ export class SigninAsPharmacyComponent {
         console.log('correct')
      
         localStorage.setItem("currentPharma", JSON.stringify(this.pharmacies[i]));
-        
+        this.router.navigate(["/addProduct"]);
+
         return;
       }
       
