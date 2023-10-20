@@ -3,7 +3,6 @@
   <div *ngFor="let cat of categories" class=" my-5"> 
     <div class="d-flex justify-content-between align-items-end ps-5 w-9 m-auto ">
       <h1 class="text-center d-inline-block text-capitalize ">{{ cat }}</h1>
-      
     </div>
     <div class="carousel-c position-relative  w-9 m-auto ">
       <div class="carousel-c-inner w-100" [style.transform]="'translateX(' + (-getActiveIndex(cat) * (100 / visibleItems)) + '%)'">
