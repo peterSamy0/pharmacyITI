@@ -11,13 +11,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { PharmacyDetailsModule } from './pharmacy/pharmacy-details.module';
 import { CartModule } from './cart/cart.module';
-import { ListProductsComponent } from './pharmacistHome/components/list-products/list-products.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    ListProductsComponent,  
   ],
   imports: [
     BrowserModule,
