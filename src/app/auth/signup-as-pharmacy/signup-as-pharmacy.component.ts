@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Pharmacies } from 'src/app/interface/pharmacies';
 import pharmciesData from '../../../assets/json/pharmcies.json';
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-signup-as-pharmacy',
   templateUrl: './signup-as-pharmacy.component.html',
@@ -11,7 +14,7 @@ export class SignupAsPharmacyComponent {
   pharmacies: Pharmacies[] = pharmciesData;
 
   signupForm: FormGroup;
-  constructor() {
+  constructor(private router: Router) {
     this.signupForm = new FormGroup({
       pharmaName: new FormControl('', [Validators.required]),
       pharmaEmail: new FormControl('', [Validators.required]),
@@ -53,10 +56,13 @@ export class SignupAsPharmacyComponent {
           password: pharmaPass,
         };
 
-        console.log(newPharma);
+        // console.log(newPharma);
         localStorage.setItem("newPharma",JSON.stringify(newPharma))
         this.pharmacies.push(newPharma);
-        console.log(this.pharmacies);
+        // console.log(this.pharmacies);
+        // temporarily till we design a home page
+        this.router.navigate(["/addProduct"]);
+
       }
     }
   }
