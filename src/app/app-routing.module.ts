@@ -18,6 +18,8 @@ import { CartpageComponent } from './cart/cartpage/cartpage.component';
 import { SearchComponent } from './pharmacy/components/search/search.component';
 import { AddProductsComponent } from './pharmacist-home/components/add-products/add-products.component';
 import { EditProductsComponent } from './pharmacist-home/components/edit-products/edit-products.component';
+import { ViewOneOrderComponent } from './pharmacist-home/components/view-one-order/view-one-order.component';
+import { ViewOrdersComponent } from './pharmacist-home/components/view-orders/view-orders.component';
 
 const routes: Routes = [
 
@@ -62,6 +64,14 @@ const routes: Routes = [
     component: CarouselComponent
   },
   {
+    path: "viewOrders",
+    component: ViewOrdersComponent
+  },
+  {
+    path: "viewOrders/:id",
+    component: ViewOneOrderComponent
+  },
+  {
     path :'pharmacy/:id',
     component : PharmacyDetailsComponent,
     children : [
@@ -83,6 +93,7 @@ const routes: Routes = [
     path: "editProduct/:id",
     component: EditProductsComponent
   },
+
 ];
 
 @NgModule({
