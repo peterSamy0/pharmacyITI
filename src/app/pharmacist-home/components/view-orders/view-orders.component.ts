@@ -10,16 +10,17 @@ export class ViewOrdersComponent {
 
   orders: any = [];
   constructor(private orderService: ServiceService) {}
-
+  isLoading: boolean = true;
   ngOnInit(){
     this.getData();
   }
 
   getData() {
+    this.isLoading = true;
     this.orderService.getOrders().subscribe(
       (res) => {
         this.orders = res;
-        console.log(res);
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error:', error);

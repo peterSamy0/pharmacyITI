@@ -13,8 +13,6 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     DropDownComponent,
     SearchFormComponent,
-    
-
   ],
   imports: [
     RouterModule,
@@ -25,8 +23,6 @@ import { RouterModule } from '@angular/router';
     HeaderComponent,
     FooterComponent,
     DropDownComponent,
-
-
   ]
 })
 export class SharedModule { }

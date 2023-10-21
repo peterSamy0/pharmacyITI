@@ -1,7 +1,16 @@
 <h1 class="text-uppercase  text-center my-5">
     orders table
 </h1>
-<div class="w-75 m-auto ">
+
+<!--  -->
+<!-- spinner loading -->
+<div class="d-flex align-items-center justify-content-center spinner" style="height: 50vh;" *ngIf="isLoading">
+  <span class="loader"></span>
+</div>
+
+<!-- <app-loading ></app-loading> -->
+<!--  -->
+<div class="w-75 m-auto " *ngIf="!isLoading">
     <table class="table">
         <thead>
           <tr>

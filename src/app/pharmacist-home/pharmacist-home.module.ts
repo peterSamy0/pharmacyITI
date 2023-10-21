@@ -6,6 +6,8 @@ import { EditProductsComponent } from './components/edit-products/edit-products.
 import { ViewOrdersComponent } from './components/view-orders/view-orders.component';
 import { FormsModule } from '@angular/forms';
 import { ViewOneOrderComponent } from './components/view-one-order/view-one-order.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+
 
 
 @NgModule({
@@ -14,7 +16,11 @@ import { ViewOneOrderComponent } from './components/view-one-order/view-one-orde
     EditProductsComponent,
     ViewOrdersComponent,
     AddProductsComponent,
-    ViewOneOrderComponent
+    ViewOneOrderComponent,
+    EditProductsComponent,
+    ViewOrdersComponent,
+    ProductCardComponent
+
   ],
   imports: [
     CommonModule,

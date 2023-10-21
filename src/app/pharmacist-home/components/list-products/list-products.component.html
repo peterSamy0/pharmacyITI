@@ -1,1 +1,6 @@
-<p>list-products works!</p>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col"  *ngFor="let product of product">
+    <app-product-card [product]="product" (deleteProductEvent)="deleteProduct($event)"></app-product-card> 
+    </div>
+  </div>
+
