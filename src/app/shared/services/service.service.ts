@@ -28,4 +28,9 @@ export class ServiceService {
   getMedication(){
     return this.http.get('https://retoolapi.dev/oK0uhq/data?Category=medication')
   }
+
+  getProductList(){
+    return this.http.get('https://retoolapi.dev/oK0uhq/data')
+  }
 }
+

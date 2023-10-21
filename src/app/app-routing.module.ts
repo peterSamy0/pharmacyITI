@@ -16,6 +16,7 @@ import { CategoryComponent } from './pharmacy/components/category/category.compo
 
 import { CartpageComponent } from './cart/cartpage/cartpage.component';
 import { SearchComponent } from './pharmacy/components/search/search.component';
+import { ListProductsComponent } from './pharmacist-home/components/list-products/list-products.component';
 
 const routes: Routes = [
 
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path :'cart',
     component : CartpageComponent
+  },
+  {
+    path :'listproduct',
+    component : ListProductsComponent
   },
   {
     path: "pharmacyDetails",
