@@ -17,6 +17,7 @@ import { CategoryComponent } from './pharmacy/components/category/category.compo
 import { CartpageComponent } from './cart/cartpage/cartpage.component';
 import { SearchComponent } from './pharmacy/components/search/search.component';
 import { AddProductsComponent } from './pharmacist-home/components/add-products/add-products.component';
+import { EditProductsComponent } from './pharmacist-home/components/edit-products/edit-products.component';
 
 const routes: Routes = [
 
@@ -77,6 +78,10 @@ const routes: Routes = [
   {
     path: "addProduct",
     component: AddProductsComponent
+  },  
+  {
+    path: "editProduct/:id",
+    component: EditProductsComponent
   },
 ];
 

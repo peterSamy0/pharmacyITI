@@ -7,31 +7,46 @@ import products from  '../../../../assets/json/pharmacyDetails.json';
   styleUrls: ['./add-products.component.css']
 })
 export class AddProductsComponent {
+  pharmacyProducts: Array<any>=[];
   productData : Array<any>= products;
   selectedProduct: any;
-  user : Array<any> = [
-    {
-      name:"ahmed",
-      age:34
-    },{
-      name:"mona",
-      age:30
-    }
-  ];
-
-  product : any = {
-    isActive: true,
-    name: "name"
-  };
-  isAdmin:boolean=true;
-  name :String ="hello";
-  // addProduct: FormGroup;
+  id : number = 1;
+  addProductForm: FormGroup;
   constructor() {
-    // this.addProduct = new FormGroup({
-    //   pharmaEmail: new FormControl('', [Validators.required]),
-    //   pharmaPass: new FormControl('',[Validators.required])
-    // });
+    this.addProductForm = new FormGroup({
+      productName: new FormControl('', [Validators.required]),
+      productQuantity: new FormControl('',[Validators.required]),
+      productPrice: new FormControl('',[Validators.required]),
+      productExpire: new FormControl('',[Validators.required]),
+      productCategory: new FormControl('',[Validators.required])
+
+
+
+    });
     console.log(this.productData);
 }
+
+add(){
+console.log(this.addProductForm.value);
+let product_name =this.addProductForm.controls['productName'].value;
+let product_quantity =this.addProductForm.controls['productQuantity'].value;
+let product_Price =this.addProductForm.controls['productPrice'].value;
+let product_Expire =this.addProductForm.controls['productExpire'].value;
+let product_Category =this.addProductForm.controls['productCategory'].value;
+
+let newProduct= {
+  id : this.id ++ ,
+  productName: product_name,
+  productQuantity: product_quantity,
+  productPrice: product_Price,
+  productExpire: product_Expire,
+  productCategory: product_Category,
+};
+localStorage.setItem("currentPharma", JSON.stringify(newProduct));
+this.pharmacyProducts.push(newProduct);
+        console.log(this.pharmacyProducts);
+
+}
+
 
 }
