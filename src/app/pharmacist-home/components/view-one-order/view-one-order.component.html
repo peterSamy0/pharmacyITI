@@ -9,7 +9,7 @@
         </div>
     </div>
     <div>
-        <h3 class="fs-5 fw-bold ">Pharmacy: El shfaa</h3>
+        <h3 class="fs-5 fw-bold " (click)="print()">Pharmacy: El shfaa</h3>
         <p>Ph: 012011010015</p>
         <p>working time: from 06:00am To 00:00am</p>
         <p>Closed: Sunday</p>
@@ -19,8 +19,8 @@
 
 <div class="w-50 m-auto ">
     <div class="d-flex justify-content-between my-3">
-        <h3 class="fs-6">client name: mona</h3>
-        <h3 class="fs-6">Date: 01-02-2023</h3>
+        <h3 class="fs-6">client name: {{thisOrder.name}}</h3>
+        <h3 class="fs-6">Date: {{this.thisOrder.order_time}}</h3>
     </div>
     <table class="table mb-5">
         <thead>
