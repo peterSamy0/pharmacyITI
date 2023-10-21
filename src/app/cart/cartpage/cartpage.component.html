@@ -14,21 +14,21 @@
           <th scope="row">1</th>
           <td class="align-middle "><img src={{item.image}} alt="" width="80px" height="80px" class="rounded-5"></td>
           <td class="align-middle ">{{item.name}}</td>
-          <td class="align-middle ">{{item.price}}</td>
+          <td class="align-middle ">{{item.price}} L.E.</td>
           <td class="align-middle ">
             <div class="btn-group d-flex" role="group" aria-label="Quantity">
               <button (click)="decreaseQuantity(item)" class="btn btn-danger p-0" *ngIf="item.quantity !== 1">-</button>
-              <button (click)="decreaseQuantity(item)" class="btn btn-danger p-0" *ngIf="item.quantity == 1" data-bs-toggle="modal" data-bs-target="#removeConfirm">-</button>
+              <button (click)="decreaseQuantity(item)" class="btn btn-danger p-0" *ngIf="item.quantity == 1" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + item.id">-</button>
               <span class="btn btn-light">{{ item.quantity }}</span>
               <button (click)="increaseQuantity(item)" class="btn btn-success p-0">+</button>
             </div>
           </td>
           <td class="align-middle ">
-            <button  class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#removeConfirm">Remove</button>
-              <!-- remove confirmation modal -->
+            <button class="btn btn-danger mt-2" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + item.id">Remove</button>
+            <!-- remove confirmation modal -->
 
               <!-- Modal -->
-              <div class="modal fade" id="removeConfirm" tabindex="-1" aria-labelledby="removeConfirmLabel" aria-hidden="true">
+              <div class="modal fade" [id]="'removeConfirm-' + item.id" tabindex="-1"  aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header" style="background-color: #419197; color:white;">
@@ -41,7 +41,7 @@
                     </div>
                     <div class="modal-footer" style="background-color: #419197; color:white;">
                       <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                      <button (click)="removeFromCart(item)" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#removeConfirm">Remove</button>
+                      <button (click)="removeFromCart(item)" type="button" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + item.id">Remove</button>
                     </div>
                   </div>
                 </div>
@@ -55,7 +55,7 @@
        <div class="card mt-4">
         <div class="card-body">
           <h5 class="card-title">Total Price</h5>
-          <p class="card-text">Total Price: {{ total  }}</p>
+          <p class="card-text">Total Price: {{ total  }} L.E.</p>
         </div>
       </div>
     
