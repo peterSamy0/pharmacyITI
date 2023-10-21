@@ -35,8 +35,7 @@ export class SigninAsPharmacyComponent {
         console.log('correct')
      
         localStorage.setItem("currentPharma", JSON.stringify(this.pharmacies[i]));
-        this.router.navigate(["/addProduct"]);
-
+        
         return;
       }
       
