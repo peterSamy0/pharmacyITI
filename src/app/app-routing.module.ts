@@ -16,6 +16,8 @@ import { CategoryComponent } from './pharmacy/components/category/category.compo
 
 import { CartpageComponent } from './cart/cartpage/cartpage.component';
 import { SearchComponent } from './pharmacy/components/search/search.component';
+import { ViewOrdersComponent } from './pharmacist-home/components/view-orders/view-orders.component';
+import { ViewOneOrderComponent } from './pharmacist-home/components/view-one-order/view-one-order.component';
 
 const routes: Routes = [
 
@@ -60,6 +62,14 @@ const routes: Routes = [
     component: CarouselComponent
   },
   {
+    path: "viewOrders",
+    component: ViewOrdersComponent
+  },
+  {
+    path: "viewOrders/:id",
+    component: ViewOneOrderComponent
+  },
+  {
     path :'pharmacy/:id',
     component : PharmacyDetailsComponent,
     children : [
@@ -68,11 +78,7 @@ const routes: Routes = [
         component: CategoryComponent
       }
     ]
-  },
-  // {
-  //   path: 'search/:query',
-  //   component: PharmacyDetailsComponent
-  // }
+  }
 ];
 
 @NgModule({
