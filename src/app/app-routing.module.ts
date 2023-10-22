@@ -15,6 +15,9 @@ import { CartpageComponent } from './cart/cartpage/cartpage.component';
 import { ViewOrdersComponent } from './pharmacist-home/components/view-orders/view-orders.component';
 import { ViewOneOrderComponent } from './pharmacist-home/components/view-one-order/view-one-order.component';
 import { ListProductsComponent } from './pharmacist-home/components/list-products/list-products.component';
+import { EditProductsComponent } from './pharmacist-home/components/edit-products/edit-products.component';
+import { AddProductsComponent } from './pharmacist-home/components/add-products/add-products.component';
+import { SelectDeliveryComponent } from './pharmacist-home/components/select-delivery/select-delivery.component';
 
 const routes: Routes = [
 
@@ -67,6 +70,10 @@ const routes: Routes = [
     component: ViewOrdersComponent
   },
   {
+    path: "viewOrders/selectDelivery/:region",
+    component: SelectDeliveryComponent
+  },
+  {
     path: "viewOrders/:id",
     component: ViewOneOrderComponent
   },
@@ -79,7 +86,17 @@ const routes: Routes = [
         component: CategoryComponent
       }
     ]
-  }
+  },
+  {
+    path: "addProduct",
+    component: AddProductsComponent
+  },  
+  {
+    path: "editProduct/:id",
+    component: EditProductsComponent
+  },
+ 
+
 ];
 
 @NgModule({

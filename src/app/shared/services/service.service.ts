@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ServiceService {
-  url2: string = "https://retoolapi.dev/MNYDaK/orders";
+  url2: string = "https://retoolapi.dev/UrMs5b/data";
 
   constructor(private http: HttpClient) { }
 
@@ -28,13 +28,14 @@ export class ServiceService {
   getMedication(){
     return this.http.get('https://retoolapi.dev/oK0uhq/data?Category=medication')
   }
-
-
   getOrders(){
       return this.http.get(this.url2)
   }
   getProductList(){
     return this.http.get('https://retoolapi.dev/oK0uhq/data')
+  }
+  getDeliveryData(){
+    return this.http.get('https://retoolapi.dev/Eaiv5g/data');
   }
 }
 
