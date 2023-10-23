@@ -1,5 +1,33 @@
-@media (min-width: 1025px) {
+/* @media (min-width: 1025px) {
     .h-custom {
     height: auto !important;
     }
-    }
+    } */
+
+    .intro {
+        height: 100%;
+      }
+      
+      .gradient-custom-1 {
+        /* fallback for old browsers */
+        background: rgb(123, 211, 222);
+      
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to top, rgb(123, 211, 222), rgb(226, 243, 246));
+      
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to top, rgb(151, 189, 194), rgb(226, 243, 246))
+      }
+      
+      table td,
+      table th {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        color:  rgb(73, 99, 102);
+
+      }
+      tbody td {
+        font-weight: 500;
+        color:  rgb(73, 99, 102);
+      }
