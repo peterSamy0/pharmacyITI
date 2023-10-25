@@ -5,11 +5,11 @@
         </div>
         <div class="justify-content-center align-items-start d-flex flex-column ">
             <h3 class="fs-5 fw-bold ">Dr. Khaled Gomaa</h3>
-            <p>address: new bani-suef city</p>
+            <p class="text-capitalize ">new bani-suef city</p>
         </div>
     </div>
     <div>
-        <h3 class="fs-5 fw-bold ">Pharmacy: El shfaa</h3>
+        <h3 class="fs-5 fw-bold " (click)="print()">Pharmacy: El shfaa</h3>
         <p>Ph: 012011010015</p>
         <p>working time: from 06:00am To 00:00am</p>
         <p>Closed: Sunday</p>
@@ -19,9 +19,10 @@
 
 <div class="w-50 m-auto ">
     <div class="d-flex justify-content-between my-3">
-        <h3 class="fs-6">client name: mona</h3>
-        <h3 class="fs-6">Date: 01-02-2023</h3>
+        <h3 class="fs-6">client name: {{thisOrder.name}}</h3> <!-- user name -->
+        <h3 class="fs-6">Date: {{this.thisOrder.order_time}}</h3> <!-- order time -->
     </div>
+    <!-- table to show prescription -->
     <table class="table mb-5">
         <thead>
           <tr>
@@ -50,7 +51,7 @@
       </table>
 
       <div class="d-flex justify-content-end mb-5">
-        <a href="#" class="btn btn-success me-3"> Accept</a>
+        <a href="viewOrders/selectDelivery/{{thisOrder.region}}" class="btn btn-success me-3"> Accept</a>
         <a href="#" class="btn btn-danger "> Cancel</a>
       </div>
 </div>
