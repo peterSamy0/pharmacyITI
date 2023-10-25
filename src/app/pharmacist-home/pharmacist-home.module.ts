@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { EditProductsComponent } from './components/edit-products/edit-products.component';
 import { ViewOrdersComponent } from './components/view-orders/view-orders.component';
 import { ViewOneOrderComponent } from './components/view-one-order/view-one-order.component';
+import { SearchPipe } from '../pipes/search.pipe';
 
 
 @NgModule({
@@ -16,12 +17,14 @@ import { ViewOneOrderComponent } from './components/view-one-order/view-one-orde
     EditProductsComponent,
     ViewOrdersComponent,
     AddProductsComponent,
-    ViewOneOrderComponent
+    ViewOneOrderComponent,
+    SearchPipe
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+
   ]
 })
 export class PharmacistHomeModule { }
