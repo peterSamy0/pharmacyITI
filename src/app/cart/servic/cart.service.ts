@@ -7,7 +7,7 @@ import { CartItem } from 'src/app/interface/CartItem';
 })
 export class CartService {
 
-  private cartItems: any = [];
+  public cartItems: any = [];
   private cartItemCountSubject = new BehaviorSubject<number>(0);
   cartItemCount = this.cartItemCountSubject.asObservable();
 
