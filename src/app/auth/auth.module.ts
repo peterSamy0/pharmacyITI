@@ -10,6 +10,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component' 
 import { RouterModule } from '@angular/router';
+import { SignupAsDeliveryComponent } from './signup-as-delivery/signup-as-delivery.component';
+import { SigninAsDeliveryComponent } from './signin-as-delivery/signin-as-delivery.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,8 @@ import { RouterModule } from '@angular/router';
     SigninAsPharmacyComponent,
     SigninComponent,
     SignupComponent,
+    SignupAsDeliveryComponent,
+    SigninAsDeliveryComponent,
   
 
   ],
@@ -27,7 +32,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
-
+    HttpClientModule
   ],
   exports:[
     SigninAsClientComponent,

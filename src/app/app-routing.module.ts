@@ -18,6 +18,8 @@ import { ListProductsComponent } from './pharmacist-home/components/list-product
 import { EditProductsComponent } from './pharmacist-home/components/edit-products/edit-products.component';
 import { AddProductsComponent } from './pharmacist-home/components/add-products/add-products.component';
 import { SelectDeliveryComponent } from './pharmacist-home/components/select-delivery/select-delivery.component';
+import { SignupAsDeliveryComponent } from './auth/signup-as-delivery/signup-as-delivery.component';
+import { SigninAsDeliveryComponent } from './auth/signin-as-delivery/signin-as-delivery.component';
 
 const routes: Routes = [
 
@@ -95,7 +97,14 @@ const routes: Routes = [
     path: "editProduct/:id",
     component: EditProductsComponent
   },
- 
+  {
+    path: "signup-delivery",
+    component: SignupAsDeliveryComponent
+  },
+  {
+    path: "signin-delivery",
+    component: SigninAsDeliveryComponent
+  },
 
 ];
 

@@ -13,6 +13,7 @@ export class SigninAsClientComponent {
 
   users : Users[]= userData;
 
+  userNotFound: boolean = false;
   signinForm: FormGroup;
   constructor() {
     this.signinForm = new FormGroup({
@@ -36,8 +37,13 @@ export class SigninAsClientComponent {
         console.log('correct')
      
         localStorage.setItem("currentUser", JSON.stringify(this.users[i]));
-        
+        this.userNotFound = false;
         return;
+      } else if (
+        userEmail !== this.users[i].email &&
+        userPass !== this.users[i].userPass
+      ) {
+        this.userNotFound = true;
       }
       
 }

@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Users } from 'src/app/interface/users';
-import userData from '../../../assets/json/users.json'
+import userData from '../../../assets/json/users.json';
 
 @Component({
   selector: 'app-signup-as-client',
   templateUrl: './signup-as-client.component.html',
-  styleUrls: ['./signup-as-client.component.css']
+  styleUrls: ['./signup-as-client.component.css'],
 })
 export class SignupAsClientComponent {
-
-  users : Users[]= userData;
+  users: Users[] = userData;
   signupForm: FormGroup;
+  emailFail: boolean = false;
+  passFail: boolean = false;
+  userFullNameFail: boolean = false;
+  notAllDataEntered : boolean = false;
   constructor() {
     this.signupForm = new FormGroup({
       userName: new FormControl('', [Validators.required]),
@@ -37,33 +40,50 @@ export class SignupAsClientComponent {
     let userGovern = this.signupForm.controls['userGovern'].value;
     let userPass = this.signupForm.controls['userPass'].value;
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    let fullNamePattern= /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/;
+    let fullNamePattern =
+      /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/;
     let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-        if (!userEmail.match(emailPattern)) {
-        console.log('invalid email format');
-      } else if (!userPass.match(passPattern)) {
-        console.log('wrong password format');
-      }else if(!userFullName.match(fullNamePattern)){
-        console.log("wrong full name format")
-      } else {
-        let newUser = {
-          id:(this.users.length)+1,
-          userName: userName,
-          userPass: userPass,
-          fullName: userFullName,
-          gender: userGender,
-          email: userEmail,
-          phone: userPhone,
-          city: userCity,
-          governorate: userGovern
-        };
+    if (!userEmail.match(emailPattern)) {
+      console.log('invalid email format');
+      this.emailFail = true;
+    } else if (!userPass.match(passPattern)) {
+      console.log('wrong password format');
+      this.passFail = true;
+    } else if (!userFullName.match(fullNamePattern)) {
+      console.log('wrong full name format');
+      this.userFullNameFail = true;
+    } else if (
+      userEmail &&
+      userFullName &&
+      userGender &&
+      userGovern &&
+      userCity &&
+      userPhone &&
+      userPass &&
+      userName
+    ) {
+      let newUser = {
+        id: this.users.length + 1,
+        userName: userName,
+        userPass: userPass,
+        fullName: userFullName,
+        gender: userGender,
+        email: userEmail,
+        phone: userPhone,
+        city: userCity,
+        governorate: userGovern,
+      };
 
-        console.log(newUser);
-        localStorage.setItem("newUser",JSON.stringify(newUser))
-        this.users.push(newUser);
-        console.log(this.users);
-      }
+      console.log(newUser);
+      this.passFail = false;
+      this.emailFail = false;
+      this.userFullNameFail = false;
+      localStorage.setItem('newUser', JSON.stringify(newUser));
+      this.users.push(newUser);
+      console.log(this.users);
+    }else{
+      this.notAllDataEntered=true;
     }
+  }
 }
-

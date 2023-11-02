@@ -4,7 +4,6 @@ import { Pharmacies } from 'src/app/interface/pharmacies';
 import pharmciesData from '../../../assets/json/pharmcies.json';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-signup-as-pharmacy',
   templateUrl: './signup-as-pharmacy.component.html',
@@ -14,6 +13,11 @@ export class SignupAsPharmacyComponent {
   pharmacies: Pharmacies[] = pharmciesData;
 
   signupForm: FormGroup;
+
+  notAllDataEntered: boolean = false;
+  emailFail: boolean = false;
+  passFail: boolean = false;
+
   constructor(private router: Router) {
     this.signupForm = new FormGroup({
       pharmaName: new FormControl('', [Validators.required]),
@@ -28,7 +32,6 @@ export class SignupAsPharmacyComponent {
 
   addPharma() {
     console.log(this.signupForm);
-    // console.log(this.signinForm.controls['userEmail'].value);
     let pharmaName = this.signupForm.controls['pharmaName'].value;
     let pharmaEmail = this.signupForm.controls['pharmaEmail'].value;
     let pharmaPhone = this.signupForm.controls['pharmaPhone'].value;
@@ -37,34 +40,41 @@ export class SignupAsPharmacyComponent {
     let pharmaGovern = this.signupForm.controls['pharmaGovern'].value;
     let pharmaPass = this.signupForm.controls['pharmaPass'].value;
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    //  let namePattern= /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/;
     let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-        if (!pharmaEmail.match(emailPattern)) {
-        console.log('invalid email format');
-      } else if (!pharmaPass.match(passPattern)) {
-        console.log('wrong password format');
-      } else {
-        let newPharma = {
-          id:(this.pharmacies.length)+1,
-          pharmacyName: pharmaName,
-          email: pharmaEmail,
-          phone: pharmaPhone,
-          city: pharmaCity,
-          governorate: pharmaGovern,
-          licenseNum: pharmaLicense,
-          password: pharmaPass,
-        };
+    if (!pharmaEmail.match(emailPattern)) {
+      console.log('invalid email format');
+      this.emailFail = true;
+    } else if (!pharmaPass.match(passPattern)) {
+      console.log('wrong password format');
+      this.passFail = true;
+    } else if (
+      pharmaName &&
+      pharmaEmail &&
+      pharmaPhone &&
+      pharmaPass &&
+      pharmaGovern &&
+      pharmaLicense &&
+      pharmaCity
+    ) {
+      let newPharma = {
+        id: this.pharmacies.length + 1,
+        pharmacyName: pharmaName,
+        email: pharmaEmail,
+        phone: pharmaPhone,
+        city: pharmaCity,
+        governorate: pharmaGovern,
+        licenseNum: pharmaLicense,
+        password: pharmaPass,
+      };
+      this.passFail = false;
+      this.emailFail = false;
+      localStorage.setItem('newPharma', JSON.stringify(newPharma));
+      this.pharmacies.push(newPharma);
 
-        // console.log(newPharma);
-        localStorage.setItem("newPharma",JSON.stringify(newPharma))
-        this.pharmacies.push(newPharma);
-        // console.log(this.pharmacies);
-        // temporarily till we design a home page
-        this.router.navigate(["/addProduct"]);
-
-      }
+      this.router.navigate(['/addProduct']);
+    }else{
+      this.notAllDataEntered = true;
     }
   }
-
-
+}
