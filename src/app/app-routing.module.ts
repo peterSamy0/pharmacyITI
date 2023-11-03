@@ -19,6 +19,7 @@ import { EditProductsComponent } from './pharmacist-home/components/edit-product
 import { AddProductsComponent } from './pharmacist-home/components/add-products/add-products.component';
 import { SelectDeliveryComponent } from './pharmacist-home/components/select-delivery/select-delivery.component';
 import { OrdersComponent } from './cart/orders/orders.component';
+import { PaymentComponent } from './payment/components/payment/payment.component';
 const routes: Routes = [
 
   {
@@ -99,6 +100,10 @@ const routes: Routes = [
     path: "orders",
     component: OrdersComponent
   },
+  {
+    path :'payment',
+    component : PaymentComponent
+  }
  
 
 ];
