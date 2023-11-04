@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Pharmacies } from 'src/app/interface/pharmacies';
 import pharmciesData from  '../../../assets/json/pharmcies.json'
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
+
 @Component({
   selector: 'app-signin-as-pharmacy',
   templateUrl: './signin-as-pharmacy.component.html',
@@ -10,38 +14,47 @@ import pharmciesData from  '../../../assets/json/pharmcies.json'
 export class SigninAsPharmacyComponent {
 
   pharmacies : Pharmacies[]= pharmciesData;
-
+  tokenKey: any;
+  Swal !:SweetAlertIcon;
   signinForm: FormGroup;
-  constructor() {
+
+  constructor( private http: HttpClient, private router: Router) {
     this.signinForm = new FormGroup({
       pharmaEmail: new FormControl('', [Validators.required]),
       pharmaPass: new FormControl('',[Validators.required])
     });
 
     }
-
-    checkPharma(){
-      console.log(this.signinForm);
-      // console.log(this.signinForm.controls['userEmail'].value);
-     let pharmaEmail =this.signinForm.controls['pharmaEmail'].value;
+  checkPharma(){
+    let pharmaEmail =this.signinForm.controls['pharmaEmail'].value;
      let pharmaPass =this.signinForm.controls['pharmaPass'].value;
-     
-     for (var i = 0; i < this.pharmacies.length; i++) {
-      if (
-        pharmaEmail === this.pharmacies[i].email &&
-        pharmaPass == this.pharmacies[i].password
-      ) {
-        console.log('correct')
-     
-        localStorage.setItem("currentPharma", JSON.stringify(this.pharmacies[i]));
-        
-        return;
+    const body = {
+      "email": pharmaEmail,
+      "password":   pharmaPass     
+    } 
+    const token = localStorage.getItem('access_token');
+    this.http.post(`http://localhost:8000/api/auth/login`, body, {
+      headers: {
+        Authorization: `Bearer ${token}`
       }
-      
-}
- 
-    
-   
+    })
+      .subscribe(
+        (response:any) => {
+          this.tokenKey = response['token']
+          localStorage.setItem('token', this.tokenKey);
+          this.router.navigate(['/profile']);
+        },
+
+        error => {
+          console.log(error)
+          Swal.fire({
+            title: 'Error!',
+            text: 'invaled email or password',
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
+        }
+      );
   }
 
 }

@@ -61,7 +61,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12">
+                  <!-- <div class="col-12">
                     <label class="form-label">Pharmacy Phone</label>
                     <div>
                       <input
@@ -84,13 +84,13 @@
                         </small>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="col-12">
                     <label class="form-label">Pharmacy License Number</label>
                     <div>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control"
                         placeholder="Enter Pharmacy License Number"
                         formControlName="pharmaLicense"
@@ -106,32 +106,6 @@
                           *ngIf="signupForm.controls['pharmaLicense'].errors?.['required']"
                         >
                           Please, enter license Number
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-
-                  
-                  <div class="col-12">
-                    <label class="form-label">Pharmacy Location (City)</label>
-                    <div>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Enter Pharmacy Location (City)"
-                        formControlName="pharmaCity"
-                      />
-                      <div
-                        *ngIf="
-                          signupForm.controls['pharmaCity'].touched &&
-                          signupForm.controls['pharmaCity'].invalid
-                        "
-                        class="text-danger form-text"
-                      >
-                        <small
-                          *ngIf="signupForm.controls['pharmaCity'].errors?.['required']"
-                        >
-                          Please, enter pharmcay location (City)
                         </small>
                       </div>
                     </div>
@@ -162,6 +136,121 @@
                     </div>
                   </div>
 
+                  <div class="col-12">
+                    <label class="form-label">Pharmacy Location (City)</label>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Pharmacy Location (City)"
+                        formControlName="pharmaCity"
+                      />
+                      <div
+                        *ngIf="
+                          signupForm.controls['pharmaCity'].touched &&
+                          signupForm.controls['pharmaCity'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['pharmaCity'].errors?.['required']"
+                        >
+                          Please, enter pharmcay location (City)
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label">Pharmacy Location (street)</label>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Pharmacy Location (street)"
+                        formControlName="pharmaStreet"
+                      />
+                      <div
+                        *ngIf="
+                          signupForm.controls['pharmaStreet'].touched &&
+                          signupForm.controls['pharmaStreet'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['pharmaStreet'].errors?.['required']"
+                        >
+                          Please, enter pharmcay location (Governorate)
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label">Opening time</label>
+                    <div>
+                      <input
+                        type="time"
+                        class="form-control"
+                        placeholder="Enter Password"
+                        formControlName="pharmaOpeningTime"
+                      />
+                      <div
+                        *ngIf="
+                          signupForm.controls['pharmaOpeningTime'].touched &&
+                          signupForm.controls['pharmaOpeningTime'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['pharmaOpeningTime'].errors?.['required']"
+                        >
+                          opening time is required
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label">Closing time</label>
+                    <div>
+                      <input
+                        type="time"
+                        class="form-control"
+                        placeholder="Enter Password"
+                        formControlName="pharmaClosingTime"
+                      />
+                      <div
+                        *ngIf="
+                          signupForm.controls['pharmaClosingTime'].touched &&
+                          signupForm.controls['pharmaClosingTime'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['pharmaClosingTime'].errors?.['required']"
+                        >
+                          closing time is required
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label">Days OFF</label>
+                    <div>
+                      <div class="day-container">
+                        <span class="px-3 py-2 bg-info text-white me-2" *ngFor="let selectedDay of selectedDays">
+                          {{selectedDay.day}}
+                          <fa-icon [icon]="faCancel" class="rounded-5 bg-white text-black cursor" (click)="removeDay(selectedDay.id)"></fa-icon>
+                        </span>
+                      </div>
+                      <select class="form-select mt-2" name="dayOff" #pharmaDaysOff id="" (change)="chooseDay(pharmaDaysOff.value)">
+                        <option value="0" selected>Select the Closing Day</option>
+                        <option value={{day.id}} *ngFor="let day of days.data">{{day.day}}</option>
+                      </select>
+                    </div>
+                  </div>
 
                   <div class="col-12">
                     <label class="form-label">Password</label>

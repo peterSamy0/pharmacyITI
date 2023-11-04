@@ -12,12 +12,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { PharmacyDetailsModule } from './pharmacy/pharmacy-details.module';
 import { CartModule } from './cart/cart.module';
 import { PharmacistHomeModule } from './pharmacist-home/pharmacist-home.module';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
