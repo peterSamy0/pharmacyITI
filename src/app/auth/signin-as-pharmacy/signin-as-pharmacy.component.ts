@@ -40,9 +40,20 @@ export class SigninAsPharmacyComponent {
     })
       .subscribe(
         (response:any) => {
-          this.tokenKey = response['token']
-          localStorage.setItem('token', this.tokenKey);
-          this.router.navigate(['/profile']);
+          const role = response['role'];
+          if(role == 'pharmacy'){
+            this.tokenKey = response['token']
+            localStorage.setItem('token', this.tokenKey);
+            localStorage.setItem('role', role);
+            this.router.navigate(['/profile']);
+          }else{
+            Swal.fire({
+              title: 'Error!',
+              text: 'you are not a pharmacy',
+              icon: 'error',
+              confirmButtonText: 'Ok'
+            })
+          }
         },
 
         error => {
@@ -51,7 +62,7 @@ export class SigninAsPharmacyComponent {
             title: 'Error!',
             text: 'invaled email or password',
             icon: 'error',
-            confirmButtonText: 'Cool'
+            confirmButtonText: 'Ok'
           })
         }
       );

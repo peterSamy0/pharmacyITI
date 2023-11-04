@@ -44,11 +44,20 @@ export class SigninAsClientComponent {
       })
         .subscribe(
           (response:any) => {
-            this.tokenKey = response['token']
-            this.pharmacyId = response['user_id'];
-            localStorage.setItem('token', this.tokenKey);
-            localStorage.setItem('user_id', this.pharmacyId);
-            this.router.navigate(['/profile']);
+            const role = response['role'];
+            if(role == 'client'){
+              localStorage.setItem('token', response['token']);
+              localStorage.setItem('user_id', response['user_id']);
+              localStorage.setItem('role', role);
+              this.router.navigate(['/profile']);
+            }else{
+              Swal.fire({
+                title: 'Error!',
+                text: 'you are not a client',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+              })
+            }
           },
   
           error => {
@@ -57,7 +66,7 @@ export class SigninAsClientComponent {
               title: 'Error!',
               text: 'invaled email or password',
               icon: 'error',
-              confirmButtonText: 'Cool'
+              confirmButtonText: 'Ok'
             })
           }
         );
