@@ -12,7 +12,7 @@
                   (ngSubmit)="checkPharma()"
                 >
                   <div class="col-12">
-                    <h2 class="mb-2">Get your pharmacy popular</h2>
+                    <h2 class="mb-2 text-capitalize">Get your pharmacy popular</h2>
                     <label class="form-label"
                       >Email</label
                     >
@@ -46,7 +46,7 @@
                     <div >
                       
                       <input
-                        type="text"
+                        type="password"
                         class="form-control"
                         placeholder="Enter Password"
                         formControlName="pharmaPass"
@@ -66,6 +66,12 @@
                         </small>
                       </div>
                     </div>
+                    <small
+                    *ngIf="pharmaNotFound"
+                    class="text-danger form-text"
+                  >
+                  Invalid Email or Password
+                  </small>
                   </div>
 
                   <!-- <div class="col-sm-6">

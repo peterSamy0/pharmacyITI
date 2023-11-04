@@ -11,7 +11,7 @@
                   [formGroup]="signupForm"
                   (ngSubmit)="addPharma()"
                 >
-                  <h2 class="mb-2">Get closer to your customers</h2>
+                  <h2 class="mb-2 text-capitalize">Get closer to your customers</h2>
                   <div class="col-12">
                     <label class="form-label">Pharmacy Name</label>
                     <div>
@@ -59,13 +59,16 @@
                         </small>
                       </div>
                     </div>
+                    <small *ngIf="emailFail"  class="text-danger form-text">
+                      Invalid Email Format
+                     </small>
                   </div>
 
                   <!-- <div class="col-12">
                     <label class="form-label">Pharmacy Phone</label>
                     <div>
                       <input
-                        type="text"
+                        type="number"
                         class="form-control"
                         placeholder="Enter Pharmacy Phone"
                         formControlName="pharmaPhone"
@@ -112,7 +115,34 @@
                   </div>
 
                   <div class="col-12">
-                    <label class="form-label">Pharmacy Location (Governorate)</label>
+                    <label class="form-label">Bank Account Number</label>
+                    <div>
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="Enter Pharmacy Bank Account Number"
+                        formControlName="pharmaBankAccount"
+                      />
+                      <div
+                        *ngIf="
+                          signupForm.controls['pharmaBankAccount'].touched &&
+                          signupForm.controls['pharmaBankAccount'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['pharmaBankAccount'].errors?.['required']"
+                        >
+                          Please, Enter Bank Account Number
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label"
+                      >Pharmacy Location (Governorate)</label
+                    >
                     <div>
                       <input
                         type="text"
@@ -275,26 +305,15 @@
                         </small>
                       </div>
                     </div>
+                    <small *ngIf="passFail"  class="text-danger form-text">
+                      Password must contain 8 characters (at least on letter)
+                    </small>
                   </div>
 
-                  <!-- <div class="col-sm-6">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="inlineFormCheck"
-                        />
-                        <label class="form-check-label" for="inlineFormCheck"
-                          >Remember me</label
-                        >
-                      </div>
-                    </div> -->
-
-                  <!-- <div class="col-sm-6">
-                      <a href="#" class="float-end text-primary"
-                        >Forgot Password?</a
-                      >
-                    </div> -->
+    
+                  <small *ngIf="notAllDataEntered"  class="text-danger form-text">
+                    All fields are required
+                  </small>
 
                   <div class="col-12">
                     <button

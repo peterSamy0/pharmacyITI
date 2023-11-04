@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Pharmacies } from 'src/app/interface/pharmacies';
-import pharmciesData from  '../../../assets/json/pharmcies.json';
+import pharmciesData from '../../../assets/json/pharmcies.json';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
@@ -9,7 +9,7 @@ import Swal, { SweetAlertIcon } from 'sweetalert2';
 @Component({
   selector: 'app-signin-as-pharmacy',
   templateUrl: './signin-as-pharmacy.component.html',
-  styleUrls: ['./signin-as-pharmacy.component.css']
+  styleUrls: ['./signin-as-pharmacy.component.css'],
 })
 export class SigninAsPharmacyComponent {
 
@@ -17,14 +17,18 @@ export class SigninAsPharmacyComponent {
   tokenKey: any;
   Swal !:SweetAlertIcon;
   signinForm: FormGroup;
+  pharmaNotFound = false;
 
   constructor( private http: HttpClient, private router: Router) {
+
+  signinForm: FormGroup;
     this.signinForm = new FormGroup({
       pharmaEmail: new FormControl('', [Validators.required]),
-      pharmaPass: new FormControl('',[Validators.required])
+      pharmaPass: new FormControl('', [Validators.required]),
     });
+  }
 
-    }
+
   checkPharma(){
     let pharmaEmail =this.signinForm.controls['pharmaEmail'].value;
      let pharmaPass =this.signinForm.controls['pharmaPass'].value;
@@ -67,6 +71,6 @@ export class SigninAsPharmacyComponent {
           })
         }
       );
-  }
-
+  }    
 }
+

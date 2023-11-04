@@ -1,0 +1,16 @@
+a{
+    text-decoration: none;
+}
+button{
+    color: aliceblue;
+    font-size: larger;
+    font-weight: bold;
+    background-color: rgb(123, 211, 222);
+}
+/* button:hover{
+    color:rgb(164, 160, 154); 
+    background-color: rgb(73, 99, 102);
+} */
+h2,input,label{
+    color:  rgb(73, 99, 102);
+}

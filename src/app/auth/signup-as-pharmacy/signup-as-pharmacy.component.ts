@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import Swal, { SweetAlertIcon } from 'sweetalert2'
 import { faCancel } from '@fortawesome/free-solid-svg-icons';
 
+
 @Component({
   selector: 'app-signup-as-pharmacy',
   templateUrl: './signup-as-pharmacy.component.html',
@@ -24,9 +25,11 @@ export class SignupAsPharmacyComponent {
   selectedDayId: number = 0;
   selectedDayName: string = '';
   selectedDays: { id: string, day: string }[] = [];
-
-
+  notAllDataEntered: boolean = false;
+  emailFail: boolean = false;
+  passFail: boolean = false;
   constructor(private http: HttpClient, private router: Router) {
+
     this.signupForm = new FormGroup({
       pharmaName: new FormControl('', [Validators.required]),
       pharmaEmail: new FormControl('', [Validators.required]),
@@ -38,6 +41,7 @@ export class SignupAsPharmacyComponent {
       pharmaStreet :new FormControl('', [Validators.required]),
       pharmaOpeningTime :new FormControl('', [Validators.required]),
       pharmaClosingTime :new FormControl('', [Validators.required]),
+      pharmaBankAccount :new FormControl('', [Validators.required]),
     });
   }
 
@@ -54,6 +58,7 @@ export class SignupAsPharmacyComponent {
     let pharmaGovern = this.signupForm.controls['pharmaGovern'].value;
     let pharmaOpeningTime = this.signupForm.controls['pharmaOpeningTime'].value;
     let pharmaClosingTime = this.signupForm.controls['pharmaClosingTime'].value;
+    let pharmaBankAccount = this.signupForm.controls['pharmaBankAccount'].value;
     let pharmaPass = this.signupForm.controls['pharmaPass'].value;
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -86,11 +91,12 @@ export class SignupAsPharmacyComponent {
         "opening": pharmaOpeningTime,
         "closing": pharmaClosingTime,
         "street": pharmaStreet,
-        "bank_account": 1020305550,
+        "bank_account": +pharmaBankAccount || null,
         "Governorate" : pharmaGovern,
         "city" : pharmaCity
       },
       "daysOff": this.daysArr
+
     }
 
         
@@ -137,4 +143,4 @@ export class SignupAsPharmacyComponent {
   
 
 }
-  
+

@@ -2,7 +2,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './auth/auth.module'; 
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -15,7 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthModule,
     SharedModule,
     FontAwesomeModule,
     HttpClientModule,
@@ -35,8 +34,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PharmacyDetailsModule,
     CartModule,
     PharmacistHomeModule,
-    // MatCheckboxModule,
-    BrowserAnimationsModule
+    MatCheckboxModule,
+    BrowserAnimationsModule,
+    // AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,14 +9,19 @@ import Swal, { SweetAlertIcon } from 'sweetalert2'
 @Component({
   selector: 'app-signup-as-client',
   templateUrl: './signup-as-client.component.html',
-  styleUrls: ['./signup-as-client.component.css']
+  styleUrls: ['./signup-as-client.component.css'],
 })
 export class SignupAsClientComponent {
 
   users : Users[]= userData;
   Swal !:SweetAlertIcon;
   signupForm: FormGroup;
+  emailFail: boolean = false;
+  passFail: boolean = false;
+  userFullNameFail: boolean = false;
+  notAllDataEntered : boolean = false;
   constructor(private http: HttpClient, private router: Router) {
+
     this.signupForm = new FormGroup({
       userName: new FormControl('', [Validators.required]),
       userEmail: new FormControl('', [Validators.required]),
@@ -36,7 +41,8 @@ export class SignupAsClientComponent {
     let userGovern = this.signupForm.controls['userGovern'].value;
     let userPass = this.signupForm.controls['userPass'].value;
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    let fullNamePattern= /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/;
+    let fullNamePattern =
+      /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/;
     let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
 
@@ -92,5 +98,5 @@ export class SignupAsClientComponent {
       }
     }
 
+    
 }
-
