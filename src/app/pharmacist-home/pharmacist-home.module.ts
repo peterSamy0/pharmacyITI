@@ -7,6 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { EditProductsComponent } from './components/edit-products/edit-products.component';
 import { ViewOrdersComponent } from './components/view-orders/view-orders.component';
 import { ViewOneOrderComponent } from './components/view-one-order/view-one-order.component';
+import { SearchPipe } from '../pipes/search.pipe';
+
+
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { SelectDeliveryComponent } from './components/select-delivery/select-delivery.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -17,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ViewOrdersComponent,
     AddProductsComponent,
     ViewOneOrderComponent,
+    SearchPipe,
     EditProductsComponent,
     ViewOrdersComponent,
     ProductCardComponent,
@@ -26,6 +30,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+
     FontAwesomeModule
   ]
 })

@@ -45,4 +45,7 @@ button{
 .active{
    text-decoration: underline;
 }
+.cursor{
+   cursor: pointer;
+}
 

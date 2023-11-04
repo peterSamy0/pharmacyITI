@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { CartpageComponent } from './cartpage/cartpage.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { OrdersComponent } from './orders/orders.component';
 
 
 @NgModule({
   declarations: [
-    CartpageComponent
+    CartpageComponent,
+    OrdersComponent
   ],
   imports: [
     CommonModule,

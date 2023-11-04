@@ -11,7 +11,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of cartItems">
-          <th scope="row">1</th>
+          <th scope="row"></th>
           <td class="align-middle "><img src={{item.image}} alt="" width="80px" height="80px" class="rounded-5"></td>
           <td class="align-middle ">{{item.name}}</td>
           <td class="align-middle ">{{item.price}} L.E.</td>
@@ -54,12 +54,17 @@
       </tbody>
     </table>
        <!-- Display total price -->
-       <div class="card mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Total Price</h5>
-          <p class="card-text">Total Price: {{ total  }} L.E.</p>
-        </div>
+    <div class="card mt-4 d-flex flex-row">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">Total Price</h5>
+        <p class="card-text">Total Price: {{ total  }} L.E.</p>
       </div>
+      <div class="btn btn-success w-30 h-30 d-flex justify-content-center align-items-center"
+       *ngIf="cartItems.length"
+       (click)="order()">
+        <span class="text-white bg-transparent" style="font-size: 24px;"><a routerLink="/payment" class="btn">submit order</a></span>
+      </div>
+    </div>
     
       <!-- Display "Empty cart" or item count -->
       <div *ngIf="cartItems.length === 0" class="alert alert-info mt-4">Empty cart</div>
