@@ -18,6 +18,7 @@ import { ListProductsComponent } from './pharmacist-home/components/list-product
 import { EditProductsComponent } from './pharmacist-home/components/edit-products/edit-products.component';
 import { AddProductsComponent } from './pharmacist-home/components/add-products/add-products.component';
 import { SelectDeliveryComponent } from './pharmacist-home/components/select-delivery/select-delivery.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
 
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path:'signin-client',
     component:SigninAsClientComponent
+  },
+  {
+    path:'profile',
+    component:ProfileComponent
   },
   {
     path:'signin-pharmacy',

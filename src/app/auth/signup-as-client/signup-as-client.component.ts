@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Users } from 'src/app/interface/users';
 import userData from '../../../assets/json/users.json'
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import Swal, { SweetAlertIcon } from 'sweetalert2'
 
 @Component({
   selector: 'app-signup-as-client',
@@ -11,8 +14,9 @@ import userData from '../../../assets/json/users.json'
 export class SignupAsClientComponent {
 
   users : Users[]= userData;
+  Swal !:SweetAlertIcon;
   signupForm: FormGroup;
-  constructor() {
+  constructor(private http: HttpClient, private router: Router) {
     this.signupForm = new FormGroup({
       userName: new FormControl('', [Validators.required]),
       userEmail: new FormControl('', [Validators.required]),
@@ -26,19 +30,28 @@ export class SignupAsClientComponent {
   }
 
   addClient() {
-    console.log(this.signupForm);
-    // console.log(this.signinForm.controls['userEmail'].value);
-    let userName = this.signupForm.controls['userName'].value;
     let userEmail = this.signupForm.controls['userEmail'].value;
-    let userPhone = this.signupForm.controls['userPhone'].value;
     let userFullName = this.signupForm.controls['userFullName'].value;
     let userCity = this.signupForm.controls['userCity'].value;
-    let userGender = this.signupForm.controls['userGender'].value;
     let userGovern = this.signupForm.controls['userGovern'].value;
     let userPass = this.signupForm.controls['userPass'].value;
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let fullNamePattern= /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/;
     let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+
+
+    const body = {
+      "user" : {
+        "name" : userFullName,
+        "email": userEmail,
+        "password":   userPass     
+      },
+      "client" : {
+        "Governorate" : userGovern,
+        "city" : userCity
+      }
+    }
 
         if (!userEmail.match(emailPattern)) {
         console.log('invalid email format');
@@ -49,21 +62,35 @@ export class SignupAsClientComponent {
       } else {
         let newUser = {
           id:(this.users.length)+1,
-          userName: userName,
+          // userName: userName,
           userPass: userPass,
           fullName: userFullName,
-          gender: userGender,
+          // gender: userGender,
           email: userEmail,
-          phone: userPhone,
+          // phone: userPhone,
           city: userCity,
           governorate: userGovern
         };
 
-        console.log(newUser);
-        localStorage.setItem("newUser",JSON.stringify(newUser))
-        this.users.push(newUser);
-        console.log(this.users);
+        this.http.post(`http://localhost:8000/api/clients`, body)
+        .subscribe(
+          response => {
+            console.log(response);
+            this.router.navigate(['/']);
+          },
+  
+          error => {
+            console.log(error)
+            Swal.fire({
+              title: 'Error!',
+              text: 'invaled email or password',
+              icon: 'error',
+              confirmButtonText: 'Cool'
+            })
+          }
+        );
       }
     }
+
 }
 
