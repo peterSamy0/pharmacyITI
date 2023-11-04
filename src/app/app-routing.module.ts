@@ -22,6 +22,12 @@ import { SignupAsDeliveryComponent } from './auth/signup-as-delivery/signup-as-d
 import { SigninAsDeliveryComponent } from './auth/signin-as-delivery/signin-as-delivery.component';
 import { PaymentComponent } from './payment/components/payment/payment.component';
 import { OrdersComponent } from './cart/orders/orders.component';
+import { ViewClientDataComponent } from './profile/client/view-client-data/view-client-data.component';
+import { ViewPharmacyDataComponent } from './profile/pharmacy/view-pharmacy-data/view-pharmacy-data.component';
+import { ViewDeliveryDataComponent } from './profile/delivery/view-delivery-data/view-delivery-data.component';
+import { EditClientDataComponent } from './profile/client/edit-client-data/edit-client-data.component';
+import { EditPharmacyDataComponent } from './profile/pharmacy/edit-pharmacy-data/edit-pharmacy-data.component';
+import { EditDeliveryDataComponent } from './profile/delivery/edit-delivery-data/edit-delivery-data.component';
 
 const routes: Routes = [
 
@@ -114,8 +120,31 @@ const routes: Routes = [
   {
     path :'payment',
     component : PaymentComponent
-  }
-
+  },
+  {
+    path : "client-profile",
+    component: ViewClientDataComponent
+  },
+  {
+    path : "pharmacy-profile",
+    component: ViewPharmacyDataComponent
+  },
+  {
+    path : "delivery-profile",
+    component: ViewDeliveryDataComponent
+  },
+  {
+    path : "edit-personal-data",
+    component: EditClientDataComponent
+  },
+  {
+    path : "edit-pharmacy-data",
+    component: EditPharmacyDataComponent
+  },
+  {
+    path : "edit-delivery-data",
+    component: EditDeliveryDataComponent
+  },
 ];
 
 @NgModule({
