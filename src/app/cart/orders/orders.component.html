@@ -1,0 +1,29 @@
+<div class="container p-3">
+    <h1>Your Orders</h1>
+    <!-- each order -->
+    <div class="my-2" *ngFor="let order of allOrders">
+        <div class="bg-light p-3" style="border-left: 5px solid #419197">
+            <h3 class="" [ngStyle]="{'color':textColor(order.status)}">{{order.status}}</h3>
+            <!-- every product -->
+            <div class="row " >
+                <div class="col-8 p-3 productContainer">
+                    <!-- product 1 -->
+                    <div class=" d-flex p-3 bg-secondary my-3" *ngFor="let product of order.orderMedications">
+                        <img style="width:50px; height:50px" src="https://images.ctfassets.net/hrltx12pl8hq/3Z1N8LpxtXNQhBD5EnIg8X/975e2497dc598bb64fde390592ae1133/spring-images-min.jpg" alt="">
+                        <div class="px-3">
+                            <h5>product name</h5>
+                            <p>{{product.amount}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4 my-4">
+                    <a href="" class="btn btn-primary text-center my-2" style="width:100%">view Order</a>
+                    <a href="" class="btn btn-secondary text-center my-2" style="width:100%">Edit Order</a>
+                    <a href="" class="btn btn-danger text-center my-2" style="width:100%">Remove Order</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

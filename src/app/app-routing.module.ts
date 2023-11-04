@@ -18,9 +18,14 @@ import { ListProductsComponent } from './pharmacist-home/components/list-product
 import { EditProductsComponent } from './pharmacist-home/components/edit-products/edit-products.component';
 import { AddProductsComponent } from './pharmacist-home/components/add-products/add-products.component';
 import { SelectDeliveryComponent } from './pharmacist-home/components/select-delivery/select-delivery.component';
+<<<<<<< HEAD
 import { SignupAsDeliveryComponent } from './auth/signup-as-delivery/signup-as-delivery.component';
 import { SigninAsDeliveryComponent } from './auth/signin-as-delivery/signin-as-delivery.component';
 
+=======
+import { OrdersComponent } from './cart/orders/orders.component';
+import { PaymentComponent } from './payment/components/payment/payment.component';
+>>>>>>> e42b8efeaf90cc3ebbd214ec4f008c334f11c1aa
 const routes: Routes = [
 
   {
@@ -96,8 +101,13 @@ const routes: Routes = [
   {
     path: "editProduct/:id",
     component: EditProductsComponent
+  }, 
+  {
+    path: "orders",
+    component: OrdersComponent
   },
   {
+<<<<<<< HEAD
     path: "signup-delivery",
     component: SignupAsDeliveryComponent
   },
@@ -105,6 +115,12 @@ const routes: Routes = [
     path: "signin-delivery",
     component: SigninAsDeliveryComponent
   },
+=======
+    path :'payment',
+    component : PaymentComponent
+  }
+ 
+>>>>>>> e42b8efeaf90cc3ebbd214ec4f008c334f11c1aa
 
 ];
 
