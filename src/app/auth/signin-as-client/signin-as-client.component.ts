@@ -49,7 +49,7 @@ export class SigninAsClientComponent {
               localStorage.setItem('token', response['token']);
               localStorage.setItem('user_id', response['user_id']);
               localStorage.setItem('role', role);
-              this.router.navigate(['/profile']);
+              this.router.navigate(['/']);
             }else{
               Swal.fire({
                 title: 'Error!',
