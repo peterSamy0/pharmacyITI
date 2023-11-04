@@ -45,7 +45,7 @@ export class SigninAsPharmacyComponent {
             this.tokenKey = response['token']
             localStorage.setItem('token', this.tokenKey);
             localStorage.setItem('role', role);
-            this.router.navigate(['/profile']);
+            this.router.navigate(['/']);
           }else{
             Swal.fire({
               title: 'Error!',

@@ -24,19 +24,19 @@
           <a class="nav-link " routerLink="viewOrders" *ngIf="role == 'pharmacy'">My Orders</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " routerLink="signUp">Register</a>
+          <a class="nav-link " routerLink="signUp" *ngIf="!role">Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " routerLink="signIn">Login</a>
+          <a class="nav-link " routerLink="signIn" *ngIf="!role">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link position-relative" routerLink="cart">Cart</a>
           <span class="position-absolute translate-middle badge rounded-pill bg-danger" style="top: 30%;
           right: 0%;">
             {{counter}}
-            <span class="visually-hidden">unread messages</span>
+            <span class="visually-hidden" >unread messages</span>
           </span>
-          <a class="nav-link" (click)="logOut()">LogOut</a>
+          <a class="nav-link" (click)="logOut()" *ngIf="role">LogOut</a>
         </li>
       </ul>
     </div>

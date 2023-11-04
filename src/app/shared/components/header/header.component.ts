@@ -17,15 +17,14 @@ export class HeaderComponent {
   role: string | null = '';
 
   logOut(){
-    console.log('hello')
-    this.htttp.post("", {}).subscribe(() => {
+    // this.htttp.post("", {}).subscribe(() => {
       // Remove token from localStorage
       localStorage.removeItem('token');
       localStorage.removeItem('role');
       localStorage.removeItem('user_id');
       // Redirect to the login page
       this.router.navigate(['/login']);
-    });
+    // });
   }
 
   ngOnInit(){
