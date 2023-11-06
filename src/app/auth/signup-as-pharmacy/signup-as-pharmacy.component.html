@@ -143,51 +143,19 @@
                     <label class="form-label"
                       >Pharmacy Location (Governorate)</label
                     >
-                    <div>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Enter Pharmacy Location (Governorate)"
-                        formControlName="pharmaGovern"
-                      />
-                      <div
-                        *ngIf="
-                          signupForm.controls['pharmaGovern'].touched &&
-                          signupForm.controls['pharmaGovern'].invalid
-                        "
-                        class="text-danger form-text"
-                      >
-                        <small
-                          *ngIf="signupForm.controls['pharmaGovern'].errors?.['required']"
-                        >
-                          Please, enter pharmcay location (Governorate)
-                        </small>
-                      </div>
-                    </div>
+                    <select class="form-select mt-2" name="governorates" #selectGov (change)="selectedGov(selectGov.value)" id="">
+                      <option value="">Select Governorate </option>
+                      <option *ngFor="let governorate of governorates" [value]="governorate.governorate_id" >{{governorate.governorate_name}}</option>
+                    </select>
                   </div>
 
                   <div class="col-12">
                     <label class="form-label">Pharmacy Location (City)</label>
-                    <div>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Enter Pharmacy Location (City)"
-                        formControlName="pharmaCity"
-                      />
-                      <div
-                        *ngIf="
-                          signupForm.controls['pharmaCity'].touched &&
-                          signupForm.controls['pharmaCity'].invalid
-                        "
-                        class="text-danger form-text"
-                      >
-                        <small
-                          *ngIf="signupForm.controls['pharmaCity'].errors?.['required']"
-                        >
-                          Please, enter pharmcay location (City)
-                        </small>
-                      </div>
+                    <div *ngIf="isCity">
+                      <select class="form-select mt-2" name="governorates" #selectCity (change)="selectedCity(selectCity.value)" id="">
+                        <option value="">Select City </option>
+                        <option *ngFor="let city of cities.data.cities" [value]="city.city_id" >{{city.city_name}}</option>
+                      </select>
                     </div>
                   </div>
 
