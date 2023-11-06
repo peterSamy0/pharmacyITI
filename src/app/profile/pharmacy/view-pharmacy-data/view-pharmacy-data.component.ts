@@ -15,6 +15,7 @@ export class ViewPharmacyDataComponent {
   id!: number;
   orders!: any;
   pharmacyOrders!: Array<any>;
+  daysOff!: Array<any>;
   numOforders!: number;
   numOfproducts!: number;
   constructor(
@@ -28,6 +29,9 @@ export class ViewPharmacyDataComponent {
       this.pharmaId = res.data;
       console.log(this.pharmaId);
       this.numOfproducts = this.pharmaId.medication.length;
+      this.daysOff = this.pharmaId.daysOff;
+      console.log(this.daysOff);
+      
     });
 
     this.getPharmacyOrders();

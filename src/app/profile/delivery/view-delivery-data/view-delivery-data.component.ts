@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import deliveriresData from  '../../../../assets/json/users.json';
+import { ProfileService } from '../../services/profile.service';
 @Component({
   selector: 'app-view-delivery-data',
   templateUrl: './view-delivery-data.component.html',
   styleUrls: ['./view-delivery-data.component.css']
 })
 export class ViewDeliveryDataComponent {
-  constructor (private activeRoute : ActivatedRoute, private router: Router){}
+  constructor(
+    private activeRoute: ActivatedRoute,
+    private router: Router,
+    private profileService: ProfileService
+  ) {}
   ngOnInit(){
     console.log(this.activeRoute.snapshot.params['id'])
     

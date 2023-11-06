@@ -93,7 +93,19 @@
               <div class="col-sm-3">
                 <h6 class="mb-0">Off Days</h6>
               </div>
-              <div class="col-sm-9 text-secondary">test</div>
+              <div class="col-sm-9 text-secondary">
+                <small *ngIf="daysOff.length == 0">
+                  Open to work every day of the week
+               </small>
+
+               <small *ngIf="daysOff.length > 0">
+               <span *ngFor="let day of daysOff">
+                <span>
+                  {{day.day_name}}, 
+                </span>
+              </span>
+              </small>
+              </div>
             </div>
             <hr />
             <div class="row">
@@ -129,7 +141,7 @@
             <hr />
             <div class="row">
               <div class="col-sm-3">
-                <h6 class="mb-0">Ready to take Orders orders</h6>
+                <h6 class="mb-0">Ready to take Orders</h6>
               </div>
               <div class="col-sm-9 text-secondary">Yes</div>
             </div>
