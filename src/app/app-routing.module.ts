@@ -136,36 +136,36 @@ const routes: Routes = [
   },
   {
 
-    path : "client-profile",
+    path : "client-profile/:id",
     component: ViewClientDataComponent,
     canActivate: [AuthGuard]
 
   },
   {
-    path : "pharmacy-profile",
+    path : "pharmacy-profile/:id",
     component: ViewPharmacyDataComponent,
     canActivate: [AuthGuard]
 
   },
   {
-    path : "delivery-profile",
+    path : "delivery-profile/:id",
     component: ViewDeliveryDataComponent,
     canActivate: [AuthGuard]
 
   },
   {
-    path : "edit-personal-data",
+    path : "edit-personal-data/:id",
     component: EditClientDataComponent,
     canActivate: [AuthGuard]
 
   },
   {
-    path : "edit-pharmacy-data",
+    path : "edit-pharmacy-data/:id",
     component: EditPharmacyDataComponent,
     canActivate: [AuthGuard]
   },
   {
-    path : "edit-delivery-data",
+    path : "edit-delivery-data/:id",
     component: EditDeliveryDataComponent,
     canActivate: [AuthGuard]
   },

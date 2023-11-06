@@ -34,6 +34,9 @@ export class ProfileService {
   getPharmacy(id: number) {
     return this.httpClient.get(`http://127.0.0.1:8000/api/pharmacies/${id}`);
   }
+  deletePharmacy(id : number) {
+    return this.httpClient.delete(`http://127.0.0.1:8000/api/pharmacies/${id}`);
+  }
   getOrders() {
     return this.httpClient.get(`http://127.0.0.1:8000/api/orders`);
   }

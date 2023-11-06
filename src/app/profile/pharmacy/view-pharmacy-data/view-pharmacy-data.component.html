@@ -93,9 +93,7 @@
               <div class="col-sm-3">
                 <h6 class="mb-0">Off Days</h6>
               </div>
-              <div class="col-sm-9 text-secondary">
-                test
-              </div>
+              <div class="col-sm-9 text-secondary">test</div>
             </div>
             <hr />
             <div class="row">
@@ -103,7 +101,14 @@
                 <h6 class="mb-0">Number of Products</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                {{ numOfproducts }}
+                <small *ngIf="numOfproducts == 0">
+                  You have {{ numOfproducts }} products, You can
+                  <a class="ms-1" href="#"> Add Products </a>
+                </small>
+                <small *ngIf="numOfproducts > 0">
+                  {{ numOfproducts }}
+                  <a class="ms-1" href="#"> Show All Products </a>
+                </small>
               </div>
             </div>
             <hr />
@@ -112,7 +117,13 @@
                 <h6 class="mb-0">Number of orders</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                {{ numOforders }}
+                <small *ngIf="numOforders == 0">
+                  You have {{ numOforders }} orders
+                </small>
+                <small *ngIf="numOforders > 0">
+                  {{ numOforders }}
+                  <a class="ms-1" href="#"> Show All Orders </a>
+                </small>
               </div>
             </div>
             <hr />
@@ -131,9 +142,57 @@
                 <a
                   class="btn btnDelete ms-3"
                   target="__blank"
-                  (click)="deleteAccount(pharmaId)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
                   >Delete Account</a
                 >
+
+                <div
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                          Confirm Message
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure you want to delete your account? This
+                        action is irreversible and all of your data will be
+                        lost.
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          No
+                        </button>
+                        <button
+                          type="button"
+                          (click)="deleteAccount(id)"
+                          class="btn btn-danger"
+                          data-bs-dismiss="modal"
+
+                        >
+                          Yes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
