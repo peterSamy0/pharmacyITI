@@ -9,6 +9,7 @@ import { EditPharmacyDataComponent } from './pharmacy/edit-pharmacy-data/edit-ph
 import { ViewPharmacyDataComponent } from './pharmacy/view-pharmacy-data/view-pharmacy-data.component';
 import { EditDeliveryDataComponent } from './delivery/edit-delivery-data/edit-delivery-data.component';
 import { ViewDeliveryDataComponent } from './delivery/view-delivery-data/view-delivery-data.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ViewDeliveryDataComponent } from './delivery/view-delivery-data/view-de
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ]
 })
 export class ProfileModule { }

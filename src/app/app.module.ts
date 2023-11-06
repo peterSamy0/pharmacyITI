@@ -15,6 +15,7 @@ import { PharmacistHomeModule } from './pharmacist-home/pharmacist-home.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     CartModule,
     PharmacistHomeModule,
     MatCheckboxModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent]

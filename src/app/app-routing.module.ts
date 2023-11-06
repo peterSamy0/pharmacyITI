@@ -122,27 +122,27 @@ const routes: Routes = [
     component : PaymentComponent
   },
   {
-    path : "client-profile",
+    path : "client-profile/:id",
     component: ViewClientDataComponent
   },
   {
-    path : "pharmacy-profile",
+    path : "pharmacy-profile/:id",
     component: ViewPharmacyDataComponent
   },
   {
-    path : "delivery-profile",
+    path : "delivery-profile/:id",
     component: ViewDeliveryDataComponent
   },
   {
-    path : "edit-personal-data",
+    path : "edit-personal-data/:id",
     component: EditClientDataComponent
   },
   {
-    path : "edit-pharmacy-data",
+    path : "edit-pharmacy-data/:id",
     component: EditPharmacyDataComponent
   },
   {
-    path : "edit-delivery-data",
+    path : "edit-delivery-data/:id",
     component: EditDeliveryDataComponent
   },
 ];

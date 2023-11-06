@@ -1,1 +1,108 @@
-<p>view-delivery-data works!</p>
+<div class="container mt-5 mb-5">
+  <div class="main-body">
+    <div class="row gutters-sm mt-5">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img
+                src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                alt="Admin"
+                class="rounded-circle"
+                width="150"
+              />
+              <div class="mt-3">
+                <h4>{{ deliveryId.fullName }}</h4>
+                <p class="text-secondary mb-1">{{ deliveryId.userName }}</p>
+                <p class="text-muted font-size-sm">
+                  {{ deliveryId.city }}, {{ deliveryId.governorate }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Full Name</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ deliveryId.fullName }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">{{ deliveryId.email }}</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">User Name</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ deliveryId.userName }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Phone</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">{{ deliveryId.phone }}</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Address</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ deliveryId.city }}, {{ deliveryId.governorate }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">National Id</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                3212314544
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Ready to deliver orders</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                Yes
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-12">
+                <a
+                  class="btn btnEdit"
+                  target="__blank"
+                  (click)="edit(deliveryId.id)"
+                  >Edit</a
+                >
+                <a
+                  class="btn btnDelete ms-3"
+                  target="__blank"
+                  (click)="deleteAccount(deliveryId)"
+                  >Delete Account</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

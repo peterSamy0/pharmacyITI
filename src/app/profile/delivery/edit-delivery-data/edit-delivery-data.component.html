@@ -1,1 +1,285 @@
-<p>edit-delivery-data works!</p>
+<div class="container mt-5 mb-5">
+    <div class="main-body">
+      <div class="row gutters-sm mt-5">
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+                <img
+                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                  alt="Admin"
+                  class="rounded-circle"
+                  width="150"
+                />
+                <div class="mt-3">
+                  <h4>{{ deliveryId.fullName }}</h4>
+                  <p class="text-secondary mb-1">{{ deliveryId.userName }}</p>
+                  <p class="text-muted font-size-sm">
+                    {{ deliveryId.city }}, {{ deliveryId.governorate }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card mb-3">
+            <div class="card-body">
+              <form
+              class="px-md-2"
+              [formGroup]="updateDeliveryForm"
+              (ngSubmit)="update()"
+            >
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Full Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="deliveryId.fullName"
+                    formControlName="deliveryFullName"
+                  />
+                  <div
+                  *ngIf="
+                    updateDeliveryForm.controls['deliveryFullName'].touched &&
+                    updateDeliveryForm.controls['deliveryFullName'].invalid
+                  "
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="updateDeliveryForm.controls['deliveryFullName'].errors?.['required']"
+                  >
+                    please, enter your full Name
+                  </small>
+                </div>
+                <div>
+              <small *ngIf="userFullNameFail"  class="text-danger form-text">
+                Invalid Full Name Format
+               </small>
+              </div>
+              </div>
+              
+                </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Email</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="deliveryId.email"
+                    formControlName="deliveryEmail"
+  
+                  />
+                  <div
+                  *ngIf="
+                    updateDeliveryForm.controls['deliveryEmail'].touched &&
+                    updateDeliveryForm.controls['deliveryEmail'].invalid
+                  "
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="updateDeliveryForm.controls['deliveryEmail'].errors?.['required']"
+                  >
+                    Please, Enter your email.
+                  </small>
+                </div>
+                <div>
+                  <small *ngIf="emailFail"  class="text-danger form-text">
+                      Invalid Email Format
+                     </small>
+                </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">User Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="deliveryId.userName"
+                    formControlName="deliveryUserName"
+  
+                  />
+                  <div
+                  *ngIf="
+                    updateDeliveryForm.controls['deliveryUserName'].touched &&
+                    updateDeliveryForm.controls['deliveryUserName'].invalid
+                  "
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="updateDeliveryForm.controls['deliveryUserName'].errors?.['required']"
+                  >
+                    Please, Enter user name.
+                  </small>
+                </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Phone</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="number"
+                    class="form-control"
+                    [(ngModel)]="deliveryId.phone"
+                    formControlName="deliveryPhone"
+  
+                  />
+                  <div
+                  *ngIf="
+                    updateDeliveryForm.controls['deliveryPhone'].touched &&
+                    updateDeliveryForm.controls['deliveryPhone'].invalid
+                  "
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="updateDeliveryForm.controls['deliveryPhone'].errors?.['required']"
+                  >
+                    Please, Enter your phone.
+                  </small>
+                </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">
+                    Ready to deliver</h6>
+                </div>
+                <div class="col-sm-9 text-secondary"> 
+                  <select class="form-control" formControlName="avaliableToDeliver">
+                    <option value="">Select</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </select>
+                  <div
+                    *ngIf="
+                      updateDeliveryForm.controls['avaliableToDeliver'].touched &&
+                      updateDeliveryForm.controls['avaliableToDeliver'].invalid"
+                    class="text-danger form-text"
+                  >
+                    <small
+                      *ngIf="updateDeliveryForm.controls['avaliableToDeliver'].errors?.['required']"
+                    >
+                      Please, decide whether you are available or not
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">City</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="deliveryId.city"
+                    formControlName="deliveryCity"
+  
+                  />
+                  <div
+                  *ngIf="
+                    updateDeliveryForm.controls['deliveryCity'].touched &&
+                    updateDeliveryForm.controls['deliveryCity'].invalid
+                  "
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="updateDeliveryForm.controls['deliveryCity'].errors?.['required']"
+                  >
+                    Please, Enter your city.
+                  </small>
+                </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Governorate</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="deliveryId.governorate"
+                    formControlName="deliveryGovern"
+  
+                  />
+                  <div
+                  *ngIf="
+                    updateDeliveryForm.controls['deliveryGovern'].touched &&
+                    updateDeliveryForm.controls['deliveryGovern'].invalid
+                  "
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="updateDeliveryForm.controls['deliveryGovern'].errors?.['required']"
+                  >
+                    Please, Enter your governorate.
+                  </small>
+                </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Password</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="password"
+                    class="form-control"
+                    [(ngModel)]="deliveryId.userPass"
+                    formControlName="deliveryPass"
+  
+                  />
+                  <div
+                  *ngIf="
+                    updateDeliveryForm.controls['deliveryPass'].touched &&
+                    updateDeliveryForm.controls['deliveryPass'].invalid
+                  "
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="updateDeliveryForm.controls['deliveryPass'].value==0"
+                  >
+                    Password is required
+                  </small>
+                  
+                </div>
+                <div>
+                  <small *ngIf="passFail"  class="text-danger form-text">
+                      Password must contain 8 characters (at least on letter)
+                    </small>
+                </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="submit"
+                    class="btn btnEdit"
+                    value="Save Changes"
+                  />
+                </div>
+              </div>
+          </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

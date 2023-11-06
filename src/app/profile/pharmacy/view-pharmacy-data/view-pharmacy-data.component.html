@@ -1,1 +1,144 @@
-<p>view-pharmacy-data works!</p>
+<div class="container mt-5 mb-5">
+  <div class="main-body">
+    <div class="row gutters-sm mt-5">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img
+                src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                alt="Admin"
+                class="rounded-circle"
+                width="150"
+              />
+              <div class="mt-3">
+                <h4>{{ pharmaId.pharmacy_name }}</h4>
+                <p class="text-secondary mb-1">
+                  {{ pharmaId["pharmacy_email"] }}
+                </p>
+                <p class="text-muted font-size-sm">
+                  {{ pharmaId.city }}, {{ pharmaId.Governorate }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">pharmacy Name</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ pharmaId["pharmacy_name"] }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ pharmaId["pharmacy_email"] }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Licence Number</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ pharmaId.licence_number }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Phone</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">7298379127</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Address</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ pharmaId.street }}, {{ pharmaId.city }},
+                {{ pharmaId.Governorate }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Opening Time</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ pharmaId.opening }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Closing Time</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ pharmaId.closing }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Off Days</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                test
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Number of Products</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ numOfproducts }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Number of orders</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ numOforders }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Ready to take Orders orders</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">Yes</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-12">
+                <a class="btn btnEdit" target="__blank" (click)="edit(id)"
+                  >Edit</a
+                >
+                <a
+                  class="btn btnDelete ms-3"
+                  target="__blank"
+                  (click)="deleteAccount(pharmaId)"
+                  >Delete Account</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
