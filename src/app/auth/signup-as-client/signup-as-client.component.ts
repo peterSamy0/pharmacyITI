@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Users } from 'src/app/interface/users';
-import userData from '../../../assets/json/users.json';
+import userData from '../../../assets/json/users.json'
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import Swal, { SweetAlertIcon } from 'sweetalert2'
 
 @Component({
   selector: 'app-signup-as-client',
@@ -9,13 +12,16 @@ import userData from '../../../assets/json/users.json';
   styleUrls: ['./signup-as-client.component.css'],
 })
 export class SignupAsClientComponent {
-  users: Users[] = userData;
+
+  users : Users[]= userData;
+  Swal !:SweetAlertIcon;
   signupForm: FormGroup;
   emailFail: boolean = false;
   passFail: boolean = false;
   userFullNameFail: boolean = false;
   notAllDataEntered : boolean = false;
-  constructor() {
+  constructor(private http: HttpClient, private router: Router) {
+
     this.signupForm = new FormGroup({
       userName: new FormControl('', [Validators.required]),
       userEmail: new FormControl('', [Validators.required]),
@@ -29,14 +35,9 @@ export class SignupAsClientComponent {
   }
 
   addClient() {
-    console.log(this.signupForm);
-    // console.log(this.signinForm.controls['userEmail'].value);
-    let userName = this.signupForm.controls['userName'].value;
     let userEmail = this.signupForm.controls['userEmail'].value;
-    let userPhone = this.signupForm.controls['userPhone'].value;
     let userFullName = this.signupForm.controls['userFullName'].value;
     let userCity = this.signupForm.controls['userCity'].value;
-    let userGender = this.signupForm.controls['userGender'].value;
     let userGovern = this.signupForm.controls['userGovern'].value;
     let userPass = this.signupForm.controls['userPass'].value;
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -44,46 +45,58 @@ export class SignupAsClientComponent {
       /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/;
     let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-    if (!userEmail.match(emailPattern)) {
-      console.log('invalid email format');
-      this.emailFail = true;
-    } else if (!userPass.match(passPattern)) {
-      console.log('wrong password format');
-      this.passFail = true;
-    } else if (!userFullName.match(fullNamePattern)) {
-      console.log('wrong full name format');
-      this.userFullNameFail = true;
-    } else if (
-      userEmail &&
-      userFullName &&
-      userGender &&
-      userGovern &&
-      userCity &&
-      userPhone &&
-      userPass &&
-      userName
-    ) {
-      let newUser = {
-        id: this.users.length + 1,
-        userName: userName,
-        userPass: userPass,
-        fullName: userFullName,
-        gender: userGender,
-        email: userEmail,
-        phone: userPhone,
-        city: userCity,
-        governorate: userGovern,
-      };
 
-      console.log(newUser);
-      this.passFail = false;
-      this.emailFail = false;
-      this.userFullNameFail = false;
-      localStorage.setItem('newUser', JSON.stringify(newUser));
-      this.users.push(newUser);
-      console.log(this.users);
-    }else{
-      this.notAllDataEntered=true;
+
+    const body = {
+      "user" : {
+        "name" : userFullName,
+        "email": userEmail,
+        "password":   userPass     
+      },
+      "client" : {
+        "Governorate" : userGovern,
+        "city" : userCity
+      }
     }
-  }
+
+        if (!userEmail.match(emailPattern)) {
+        console.log('invalid email format');
+      } else if (!userPass.match(passPattern)) {
+        console.log('wrong password format');
+      }else if(!userFullName.match(fullNamePattern)){
+        console.log("wrong full name format")
+      } else {
+        let newUser = {
+          id:(this.users.length)+1,
+          // userName: userName,
+          userPass: userPass,
+          fullName: userFullName,
+          // gender: userGender,
+          email: userEmail,
+          // phone: userPhone,
+          city: userCity,
+          governorate: userGovern
+        };
+
+        this.http.post(`http://localhost:8000/api/clients`, body)
+        .subscribe(
+          response => {
+            console.log(response);
+            this.router.navigate(['/']);
+          },
+  
+          error => {
+            console.log(error)
+            Swal.fire({
+              title: 'Error!',
+              text: 'invaled email or password',
+              icon: 'error',
+              confirmButtonText: 'Cool'
+            })
+          }
+        );
+      }
+    }
+
+    
 }

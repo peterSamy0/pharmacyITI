@@ -1,0 +1,33 @@
+
+     h1 {
+        color: #419197 ;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom:18px; 
+        font-size: 30px;
+    }
+
+   p{
+    color: #419197;
+    margin-top: 25px;
+    font-size: 16px;
+   }
+
+  /* .cardd{
+    margin-left: 5%;
+
+  } */
+
+  h5{
+    color: #419197;
+  }
+
+ a{
+  color:#419197;
+  /* background-color: #419197; */
+  text-decoration-line: none;
+ }
+
+ /* .container{
+      padding-top:50px;
+ } */

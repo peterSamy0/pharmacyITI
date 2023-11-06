@@ -1,0 +1,53 @@
+
+
+        <div class="container text-center" style="padding-bottom: 70px">
+            <h1 class="me-5 mt-5 mb-2">About US</h1>
+
+        <div class="cardd">
+            <div class="card ">
+              <div class="card-body">
+                <p class="card-text mt-1">
+                  With our website, you can find the nearest pharmacy in just a few
+                  clicks. Our service will provide you with detailed information on
+                  the pharmacy's location, opening hours, and available treatments. By
+                  subscribing to our website, you can get access to exclusive
+                  discounts and offers. Join us now and start your journey to a
+                  healthier life!
+                </p>
+              </div>
+          </div>
+            <div class="row">
+              <div class="col" *ngFor="let user of users">
+                <div
+                  class="card mb-3"
+                  style="
+                    width: 400px;
+                    height: 200px;
+                    margin-left: 10px;
+                    margin-top: 20px;
+                  "
+                >
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img
+                        [src]="user.image"
+                        class=" rounded-circle"
+                        alt="..."
+                        style="height: 198px; margin-top: -1px"
+                      />
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">{{user.name}}</h5>
+                        <p class="card-text">
+                          <a href="www.{{user.email}}">E-mail: {{user.email}}</a> <br />
+                          <a href="https://wa.me/{{user.phone}}"> WA-Phone: {{user.phone}}</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          

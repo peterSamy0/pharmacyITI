@@ -40,31 +40,6 @@
                      </small>
                   </div>
                   <div class="col-12">
-                    <label class="form-label">User Name</label>
-                    <div>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Enter User Name"
-                        formControlName="userName"
-                      />
-                      <div
-                        *ngIf="
-                          signupForm.controls['userName'].touched &&
-                          signupForm.controls['userName'].invalid
-                        "
-                        class="text-danger form-text"
-                      >
-                        <small
-                          *ngIf="signupForm.controls['userName'].errors?.['required']"
-                        >
-                          please, enter user Name
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-12">
                     <label class="form-label">Email</label>
                     <div>
                       <input
@@ -92,7 +67,7 @@
                      </small>
                   </div>
 
-                  <div class="col-12">
+                  <!-- <div class="col-12">
                     <label class="form-label">Phone Number</label>
                     <div>
                       <input
@@ -115,56 +90,7 @@
                         </small>
                       </div>
                     </div>
-                  </div>
-
-                  <div class="col-12">
-                    <label class="form-label">Gender</label>
-                    <div>
-                      <select class="form-control" formControlName="userGender">
-                        <option value="">Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                      </select>
-                      <div
-                        *ngIf="
-                          signupForm.controls['userGender'].touched &&
-                          signupForm.controls['userGender'].invalid
-                        "
-                        class="text-danger form-text"
-                      >
-                        <small
-                          *ngIf="signupForm.controls['userGender'].errors?.['required']"
-                        >
-                          Please, select your gender
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <label class="form-label">Address (City)</label>
-                    <div>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Enter Your Address (City)"
-                        formControlName="userCity"
-                      />
-                      <div
-                        *ngIf="
-                          signupForm.controls['userCity'].touched &&
-                          signupForm.controls['userCity'].invalid
-                        "
-                        class="text-danger form-text"
-                      >
-                        <small
-                          *ngIf="signupForm.controls['userCity'].errors?.['required']"
-                        >
-                          Please, enter your address (City)
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-
+                  </div> -->
                   <div class="col-12">
                     <label class="form-label">Address (Governorate)</label>
                     <div>
@@ -185,6 +111,31 @@
                           *ngIf="signupForm.controls['userGovern'].errors?.['required']"
                         >
                           Please, enter your address (Governorate)
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label">Address (City)</label>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Your Address (City)"
+                        formControlName="userCity"
+                      />
+                      <div
+                        *ngIf="
+                          signupForm.controls['userCity'].touched &&
+                          signupForm.controls['userCity'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['userCity'].errors?.['required']"
+                        >
+                          Please, enter your address (City)
                         </small>
                       </div>
                     </div>

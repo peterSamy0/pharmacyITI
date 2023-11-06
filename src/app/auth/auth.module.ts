@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component' 
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SignupAsDeliveryComponent } from './signup-as-delivery/signup-as-delivery.component';
 import { SigninAsDeliveryComponent } from './signin-as-delivery/signin-as-delivery.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -32,6 +33,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
+    FontAwesomeModule,
     HttpClientModule
   ],
   exports:[

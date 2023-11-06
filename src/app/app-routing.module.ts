@@ -18,16 +18,20 @@ import { ListProductsComponent } from './pharmacist-home/components/list-product
 import { EditProductsComponent } from './pharmacist-home/components/edit-products/edit-products.component';
 import { AddProductsComponent } from './pharmacist-home/components/add-products/add-products.component';
 import { SelectDeliveryComponent } from './pharmacist-home/components/select-delivery/select-delivery.component';
+import { ProfileComponent } from './profile/profile.component';
+import { OrdersComponent } from './cart/orders/orders.component';
 import { SignupAsDeliveryComponent } from './auth/signup-as-delivery/signup-as-delivery.component';
 import { SigninAsDeliveryComponent } from './auth/signin-as-delivery/signin-as-delivery.component';
 import { PaymentComponent } from './payment/components/payment/payment.component';
-import { OrdersComponent } from './cart/orders/orders.component';
 import { ViewClientDataComponent } from './profile/client/view-client-data/view-client-data.component';
 import { ViewPharmacyDataComponent } from './profile/pharmacy/view-pharmacy-data/view-pharmacy-data.component';
 import { ViewDeliveryDataComponent } from './profile/delivery/view-delivery-data/view-delivery-data.component';
 import { EditClientDataComponent } from './profile/client/edit-client-data/edit-client-data.component';
 import { EditPharmacyDataComponent } from './profile/pharmacy/edit-pharmacy-data/edit-pharmacy-data.component';
 import { EditDeliveryDataComponent } from './profile/delivery/edit-delivery-data/edit-delivery-data.component';
+import { AuthGuard } from './guard/auth.guard';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const routes: Routes = [
 
@@ -52,6 +56,10 @@ const routes: Routes = [
     component:SigninAsClientComponent
   },
   {
+    path:'profile',
+    component:ProfileComponent
+  },
+  {
     path:'signin-pharmacy',
     component:SigninAsPharmacyComponent
   },
@@ -69,7 +77,9 @@ const routes: Routes = [
   },
   {
     path :'listproduct',
-    component : ListProductsComponent
+    component : ListProductsComponent,
+    canActivate: [AuthGuard]
+
   },
   {
     path: "pharmacyDetails",
@@ -99,15 +109,18 @@ const routes: Routes = [
   },
   {
     path: "addProduct",
-    component: AddProductsComponent
+    component: AddProductsComponent,
+    canActivate: [AuthGuard]
   },  
   {
     path: "editProduct/:id",
-    component: EditProductsComponent
+    component: EditProductsComponent,
+    canActivate: [AuthGuard]
   }, 
   {
     path: "orders",
-    component: OrdersComponent
+    component: OrdersComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "signup-delivery",
@@ -122,28 +135,47 @@ const routes: Routes = [
     component : PaymentComponent
   },
   {
-    path : "client-profile/:id",
-    component: ViewClientDataComponent
+
+    path : "client-profile",
+    component: ViewClientDataComponent,
+    canActivate: [AuthGuard]
+
   },
   {
-    path : "pharmacy-profile/:id",
-    component: ViewPharmacyDataComponent
+    path : "pharmacy-profile",
+    component: ViewPharmacyDataComponent,
+    canActivate: [AuthGuard]
+
   },
   {
-    path : "delivery-profile/:id",
-    component: ViewDeliveryDataComponent
+    path : "delivery-profile",
+    component: ViewDeliveryDataComponent,
+    canActivate: [AuthGuard]
+
   },
   {
-    path : "edit-personal-data/:id",
-    component: EditClientDataComponent
+    path : "edit-personal-data",
+    component: EditClientDataComponent,
+    canActivate: [AuthGuard]
+
   },
   {
-    path : "edit-pharmacy-data/:id",
-    component: EditPharmacyDataComponent
+    path : "edit-pharmacy-data",
+    component: EditPharmacyDataComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path : "edit-delivery-data/:id",
-    component: EditDeliveryDataComponent
+    path : "edit-delivery-data",
+    component: EditDeliveryDataComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path : "contact-us",
+    component: ContactUsComponent
+  },
+  {
+    path : "about-us",
+    component: AboutUsComponent
   },
 ];
 
