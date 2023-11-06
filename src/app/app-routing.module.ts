@@ -30,6 +30,8 @@ import { EditClientDataComponent } from './profile/client/edit-client-data/edit-
 import { EditPharmacyDataComponent } from './profile/pharmacy/edit-pharmacy-data/edit-pharmacy-data.component';
 import { EditDeliveryDataComponent } from './profile/delivery/edit-delivery-data/edit-delivery-data.component';
 import { AuthGuard } from './guard/auth.guard';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const routes: Routes = [
 
@@ -165,6 +167,14 @@ const routes: Routes = [
     path : "edit-delivery-data",
     component: EditDeliveryDataComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path : "contact-us",
+    component: ContactUsComponent
+  },
+  {
+    path : "about-us",
+    component: AboutUsComponent
   },
 ];
 
