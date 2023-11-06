@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import deliveriresData from  '../../../../assets/json/users.json';
 import { ProfileService } from '../../services/profile.service';
 @Component({
   selector: 'app-view-delivery-data',
@@ -8,6 +7,12 @@ import { ProfileService } from '../../services/profile.service';
   styleUrls: ['./view-delivery-data.component.css']
 })
 export class ViewDeliveryDataComponent {
+
+  deliveryId!:any;
+  id!: number;
+  orders!: any;
+  numOforders!: number;
+
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -15,23 +20,24 @@ export class ViewDeliveryDataComponent {
   ) {}
   ngOnInit(){
     console.log(this.activeRoute.snapshot.params['id'])
+    this.id = this.activeRoute.snapshot.params['id'];
+    this.profileService.getDelivery(this.id).subscribe((res: any) => {
+      this.deliveryId = res.data;
+      console.log(this.deliveryId);
+      this.numOforders= this.deliveryId.orders.length;
+      console.log(this.numOforders)
+    });
     
   }
-  deliveries: Array<any>= deliveriresData;
 
-  deliveryId : any = deliveriresData[this.activeRoute.snapshot.params['id']-1];
   
   edit(id : number){
     this.router.navigate(['edit-delivery-data',id])  
   }
   
-  deleteAccount(deliveryId: any){
-   const index= this.deliveries.indexOf(this.deliveryId);
-    if (index >= 0) {
-      this.deliveries.splice(index, 1);
-    }
-    console.log(this.deliveries);
-    this.router.navigate(['home']);
-
+  deleteAccount(id: number) {
+    this.profileService.deleteDelivery(id).subscribe((res: any) => {
+      console.log(res)
+    });
   }
 }

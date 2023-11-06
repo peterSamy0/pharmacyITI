@@ -72,7 +72,6 @@ body{
 .btnDelete:active {    
     color:aliceblue;
     font-size: larger;
-    font-weight: bold;
     background-color: rgb(178, 53, 53);
 
   }

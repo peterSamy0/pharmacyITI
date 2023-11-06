@@ -40,7 +40,16 @@ export class ProfileService {
   getOrders() {
     return this.httpClient.get(`http://127.0.0.1:8000/api/orders`);
   }
-  // getDelivery(id: number) {
-  //   return this.httpClient.get(`http://127.0.0.1:8000/api/deliveries/${id}`);
-  // }
+  getDelivery(id: number) {
+    return this.httpClient.get(`http://127.0.0.1:8000/api/deliveries/${id}`);
+  }
+  deleteDelivery(id : number) {
+    return this.httpClient.delete(`http://127.0.0.1:8000/api/deliveries/${id}`);
+  }
+  getClient(id: number) {
+    return this.httpClient.get(`http://127.0.0.1:8000/api/clients/${id}`);
+  }
+  deleteClient(id : number) {
+    return this.httpClient.delete(`http://127.0.0.1:8000/api/clients/${id}`);
+  }
 }
