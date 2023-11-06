@@ -11,15 +11,15 @@
       ></fa-icon
     ></a>
     <!-- Twitter -->
-    <a href=""
+    <a href="https://twitter.com/?lang=ar"
       ><fa-icon id="twitter" class="me-5 fa-3x" [icon]="fatwitter"></fa-icon
     ></a>
     <!-- Instagram -->
-    <a href=""
+    <a href="https://www.instagram.com/"
       ><fa-icon id="instagram" class="me-5 fa-3x" [icon]="fainstagram"></fa-icon
     ></a>
     <!-- WhatsApp -->
-    <a href=""
+    <a href="https://web.whatsapp.com/"
       ><fa-icon id="whatsapp" class="me-5 fa-3x" [icon]="fawhatsapp"></fa-icon
     ></a>
   </section>
@@ -31,7 +31,9 @@
             <div class="row">
               <div class="col-md-7 pe-0">
                 <div class="form-left h-100 py-5 px-5">
-                  <form>
+                  <form [formGroup]="contactusForm"
+                  (ngSubmit)="sendFeedback()"
+                  novalidate>
                     <h2 class="mb-2 text-capitalize">Contact with us</h2>
 
                     <div class="mb-3">
@@ -41,6 +43,7 @@
                         class="form-control"
                         id="fullName"
                         placeholder="Please enter your name"
+                        formControlName="name"
                       />
                     </div>
                     <div class="mb-3">
@@ -53,6 +56,7 @@
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
                         placeholder="Please enter your Email"
+                        formControlName="email"
                       />
                     </div>
                     <div class="mb-3">
@@ -66,6 +70,7 @@
                         id="exampleFormControlTextarea1"
                         rows="3"
                         placeholder="Please enter your message here"
+                        formControlName="message"
                       ></textarea>
                     </div>
                     <div class="col-12">

@@ -62,7 +62,10 @@
       <div class="btn btn-success w-30 h-30 d-flex justify-content-center align-items-center"
        *ngIf="cartItems.length"
        (click)="order()">
-       <a routerLink="/payment" class="btn"><span class="" style="font-size: 24px;">submit order</span></a>
+       <a routerLink="/home" class="btn"><span class="" style="font-size: 24px;">Pay on delivered</span></a>
+      </div>
+      <div class="btn btn-success w-30 h-30 d-flex justify-content-center align-items-center" *ngIf="cartItems.length" style="margin-left: 1cm;">
+        <a routerLink="/payment" class="btn"><span class="" style="font-size: 24px;">Pay with card</span></a>
       </div>
     </div>
     

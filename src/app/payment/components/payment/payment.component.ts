@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { PaymentService } from '../../services/payment.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+// import { ApiService } from 'path-to-your-api-service'; // Import your API service for payment processing
 
 @Component({
   selector: 'app-payment',
@@ -8,21 +10,53 @@ import { PaymentService } from '../../services/payment.service';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent {
-  // paymentData: any = {}; // Object to store payment form data
+  // paymentForm: FormGroup;
 
-  // constructor(private paymentService: PaymentService) { }
+  // constructor(private fb: FormBuilder, private router: Router, private apiService: ApiService) {
+  //   this.paymentForm = this.fb.group({
+  //     email: ['', [Validators.required, Validators.email]],
+  //     name: ['', Validators.required],
+  //     cardNumber: ['', Validators.required],
+  //     exp: ['', Validators.required],
+  //     cvv: ['', Validators.required]
+  //   });
+  // }
 
-  // onSubmit(paymentForm: NgForm) {
-  //   if (paymentForm.valid) {
-  //     this.paymentService.processPayment(this.paymentData)
-  //       .then(paymentId => {
-  //         console.log('Payment successful. Payment ID:', paymentId);
-  //         // Add any additional logic or navigation upon successful payment
-  //       })
-  //       .catch(error => {
+  // onSubmit() {
+  //   if (this.paymentForm.valid) {
+  //     // You can access the payment details from this.paymentForm.value
+  //     const paymentDetails = this.paymentForm.value;
+
+  //     // Send the payment details to your server or payment gateway for processing
+  //     this.apiService.processPayment(paymentDetails).subscribe(
+  //       (response: any) => {
+  //         // Payment was successful
+  //         console.log('Payment successful:', response);
+
+  //         // You can optionally navigate to a confirmation page
+  //         this.router.navigate(['/payment-confirmation']);
+  //       },
+  //       (error: any) => {
+  //         // Payment failed
   //         console.error('Payment failed:', error);
-  //         // Add any error handling or display error message to the user
-  //       });
+  //       }
+  //     );
   //   }
+  // }
+  // alertConfirmation() {
+  //   Swal.fire({
+  //     title: 'Are you sure?',
+  //     text: 'This process is irreversible.',
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Yes, go ahead.',
+  //     cancelButtonText: 'No, let me think',
+  //   }).then((result) => {
+  //     if (result.value) {
+  //       Swal.fire('Removed!', 'Product removed successfully.', 'success');
+  //     } else if (result.dismiss === Swal.DismissReason.cancel) {
+  //       Swal.fire('Cancelled', 'Product still in our database.)', 'error');
+  //     }
+  //   });
   // }
 }
