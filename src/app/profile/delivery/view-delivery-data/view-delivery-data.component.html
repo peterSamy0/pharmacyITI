@@ -71,8 +71,24 @@
               <div class="col-sm-3">
                 <h6 class="mb-0">Orders Delivered</h6>
               </div>
-              <div class="col-sm-9 text-secondary">
-                {{ numOforders }}
+              <div class="col-sm-9 text-secondary" *ngIf="numOforders > 0">
+                {{ numOforders }}<span
+                class="col-sm-9 text-secondary"
+              >, 
+              <a href="#">
+                 Deliver more Orders
+              </a>
+            </span>
+              </div>
+              <div class="col-sm-9 text-secondary" *ngIf="numOforders == 0">
+                {{ numOforders }} orders delivered, 
+                <span
+                class="col-sm-9 text-secondary"
+              >
+              <a href="#">
+              start delivering now
+              </a>
+            </span>
               </div>
             </div>
             <hr />
