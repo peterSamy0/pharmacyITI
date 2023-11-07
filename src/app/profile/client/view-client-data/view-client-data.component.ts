@@ -13,7 +13,8 @@ export class ViewClientDataComponent {
   orders!: any;
   numOforders!: number;
   ordersOnTheirWay!:any;
-
+  ordersPending !: any; 
+  numOfPendingOrders!:number;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -25,14 +26,24 @@ export class ViewClientDataComponent {
     this.profileService.getClient(this.id).subscribe((res: any) => {
       this.clientId = res.data;
       console.log(this.clientId);
-      this.ordersOnTheirWay= this.clientId.order.filter(
+      this.ordersOnTheirWay= this.clientId.orders.filter(
         (order: any) =>
           order['status'] === "withDelivery"
       );
-      // this.numOforders = this.orders.length;
       this.numOforders= this.ordersOnTheirWay.length;
+
+      this.ordersPending= this.clientId.orders.filter(
+        (order: any) =>
+          order['status'] === "pending"
+      );
+      this.numOfPendingOrders= this.ordersPending.length;
+
+
+
+
     });
     
+   
   }
 
 
