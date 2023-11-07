@@ -38,9 +38,6 @@ export class ViewClientDataComponent {
       );
       this.numOfPendingOrders= this.ordersPending.length;
 
-
-
-
     });
     
    
