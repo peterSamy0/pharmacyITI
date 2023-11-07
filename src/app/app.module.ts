@@ -36,6 +36,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     PharmacistHomeModule,
     MatCheckboxModule,
     BrowserAnimationsModule,
+
     // AuthModule
   ],
   providers: [],

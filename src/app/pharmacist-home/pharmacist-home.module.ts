@@ -8,9 +8,7 @@ import { EditProductsComponent } from './components/edit-products/edit-products.
 import { ViewOrdersComponent } from './components/view-orders/view-orders.component';
 import { ViewOneOrderComponent } from './components/view-one-order/view-one-order.component';
 import { SearchPipe } from '../pipes/search.pipe';
-
-
-import { ProductCardComponent } from './components/product-card/product-card.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { SelectDeliveryComponent } from './components/select-delivery/select-delivery.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
@@ -23,13 +21,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SearchPipe,
     EditProductsComponent,
     ViewOrdersComponent,
-    ProductCardComponent,
     SelectDeliveryComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxPaginationModule,
+ 
 
     FontAwesomeModule
   ]

@@ -1,53 +1,54 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import productData from '../../../../assets/json/pharmacyDetails.json';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MedicationService, Product } from 'src/app/shared/services/medication.service';
 
 @Component({
   selector: 'app-edit-products',
   templateUrl: './edit-products.component.html',
-  styleUrls: ['./edit-products.component.css']
+  styleUrls: ['./edit-products.component.css'],
 })
-export class EditProductsComponent {
-  constructor (private activeRoute : ActivatedRoute){
-      this.updateProductForm = new FormGroup({
-        
-        productStock: new FormControl('',[Validators.required]),
-        productPrice: new FormControl('',[Validators.required]),
-  
-  
-  
+export class EditProductsComponent implements OnInit {
+  product!: Product;
+  productId!: any;
+  errors: any = [];
+  // category!:Product;
+
+  constructor(
+    private route: ActivatedRoute,
+    private medicationService: MedicationService
+  ) {}
+
+  ngOnInit() {
+    this.productId = this.route.snapshot.paramMap.get('id');
+    // console.log(this.productId);
+    this.medicationService
+      .getMedicationToEdit(this.productId)
+      .subscribe((result:any)  => {
+        this.product = result.data;
+        console.log(result.data);
       });
-
-  }
-
-  ngOnInit(){
-    console.log(this.activeRoute.snapshot.params['id'])
     
   }
-  products : Array<any>= productData;
 
-  productId : any = productData[this.activeRoute.snapshot.params['id']-1];
-  updateProductForm: FormGroup;
+  update() {
+    const inputData = {
+      name: this.product.name,
+      price: this.product.price,
+      image: this.product.image,
+      category: this.product.category,
+    };
+// console.log(inputData);
 
-
-  
-update(){
-console.log(this.updateProductForm.value);
-let product_Price =this.updateProductForm.controls['productPrice'].value;
-let product_stock =this.updateProductForm.controls['productStock'].value;
-
-let updatedProduct= {
-id : this.activeRoute.snapshot.params['id'] ,
-productName: this.productId.name,
-productStock: product_stock,
-productPrice: product_Price,
-productCategory: this.productId.Category,
-};
-localStorage.setItem("currentPharma", JSON.stringify(updatedProduct));
-      // console.log(this.updatedProduct);
-      this.productId = {...this.productId,...updatedProduct};
-      console.log(this.productId,this.products);
-}
+    this.medicationService
+      .update(inputData, this.productId)
+      .subscribe({
+        next: (res: any) => {
+          console.log(res);
+        },
+        error: (err: any) => {
+          this.errors = err.error.errors;
+        },
+      });
+  }
 
 }
