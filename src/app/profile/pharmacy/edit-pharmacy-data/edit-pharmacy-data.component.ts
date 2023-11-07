@@ -4,7 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import pharmaciesData from '../../../../assets/json/pharmcies.json';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import Swal, { SweetAlertIcon } from 'sweetalert2'
+import Swal, { SweetAlertIcon } from 'sweetalert2';
+import { ProfileService } from '../../services/profile.service';
 
 
 @Component({
@@ -12,7 +13,6 @@ import Swal, { SweetAlertIcon } from 'sweetalert2'
   templateUrl: './edit-pharmacy-data.component.html',
   styleUrls: ['./edit-pharmacy-data.component.css']
 })
-
 
 export class EditPharmacyDataComponent {
   updatePharmaForm: FormGroup;
@@ -33,7 +33,8 @@ export class EditPharmacyDataComponent {
   selectedDayName: string = '';
   selectedDays: { id: string, day: string }[] = [];
   id :any;
-  constructor(private activeRoute: ActivatedRoute, private router: Router, private http: HttpClient) {
+  constructor(private activeRoute: ActivatedRoute, private router: Router, private http: HttpClient, 
+    private service: ProfileService) {
     this.updatePharmaForm = new FormGroup({
       pharmaName: new FormControl('', [Validators.required]),
       pharmaPhone: new FormControl('', [Validators.required]),
@@ -89,9 +90,6 @@ export class EditPharmacyDataComponent {
       "daysOff": this.daysArr
     }
 
-    console.log(body)
-
-    
     if (!pharmaEmail.match(emailPattern)) {
       console.log('invalid email format');
       this.emailFail = true;
@@ -103,14 +101,12 @@ export class EditPharmacyDataComponent {
       pharmaLicense&&
       pharmaPhone&&
       pharmaName &&
-      // deliveryPass &&
       availability
     ) {
       let updatedData = {
         id: this.activeRoute.snapshot.params['id'],
         pharmacyName: pharmaName,
         password: pharmaPass,
-        // city: pharmaCity,
         email:pharmaEmail,
         phone: pharmaPhone,
         licenseNum: pharmaLicense       
@@ -121,32 +117,15 @@ export class EditPharmacyDataComponent {
       this.emailFail = false;
       this.userFullNameFail = false;
       this.pharmaId = { ...this.pharmaId, ...updatedData };
-      console.log(this.pharmaId, this.pharmacies, availability);
     } else {
       this.notAllDataEntered = true;
     }
-
-    this.http.put(`http://localhost:8000/api/pharmacies/${this.id}`, body)
-      .subscribe(
-        response => {
-          this.router.navigate(['/']);
-        },
-
-        error => {
-          console.log(error)
-          Swal.fire({
-            title: 'Error!',
-            text: 'invaled data',
-            icon: 'error',
-            confirmButtonText: 'Cool'
-          })
-    });
   }
 
   selectedGov(val: any){
     this.isCity = true
     this.governorateID = val;
-    this.http.get(`http://localhost:8000/api/governorates/${val}`)
+    this.service.selectedGov(val)
       .subscribe(
         response => {
           this.cities = response;
@@ -156,8 +135,7 @@ export class EditPharmacyDataComponent {
   }
 
   getGovernorates(){
-    this.http.get(`http://localhost:8000/api/governorates`)
-      .subscribe(
+    this.service.getGovernorates().subscribe(
         response => {
           this.governorates = response;
           console.log(this.governorates)
@@ -169,9 +147,8 @@ export class EditPharmacyDataComponent {
     this.cityID = val;
   }
 
-
   getDays(){
-    this.http.get(`http://localhost:8000/api/days`)
+    this.service.getDays()
       .subscribe(
         response => {
           this.days = response
@@ -179,7 +156,6 @@ export class EditPharmacyDataComponent {
         error => console.log(error)
       )
   }
-
   chooseDay(val:any){
     const selectedDay = this.days.data.find((day: any) => day.id == val);
     const isExists = this.daysArr.includes(+val);

@@ -29,6 +29,9 @@ export interface PharmacyResponse {
   providedIn: 'root',
 })
 export class ProfileService {
+
+  apiUrl: string = 'http://127.0.0.1:8000/api';
+
   constructor(private httpClient: HttpClient) {}
 
   getPharmacy(id: number) {
@@ -52,4 +55,20 @@ export class ProfileService {
   deleteClient(id : number) {
     return this.httpClient.delete(`http://127.0.0.1:8000/api/clients/${id}`);
   }
+
+
+    // api for governorates
+    getGovernorates(){
+      return this.httpClient.get(`${this.apiUrl}/governorates`)
+    }
+
+    // get days
+    getDays(){
+      return this.httpClient.get(`${this.apiUrl}/days`)
+    }
+
+    // dropdown list of cities in  governorate 
+    selectedGov(val: any){
+      return this.httpClient.get(`http://localhost:8000/api/governorates/${val}`)
+    }
 }
