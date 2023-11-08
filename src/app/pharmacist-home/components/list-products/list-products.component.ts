@@ -3,7 +3,6 @@ import {
   MedicationService,
   Product,
 } from 'src/app/shared/services/medication.service';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,7 +12,6 @@ import { faAdd } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./list-products.component.css'],
 })
 export class ListProductsComponent {
-  faPen = faPen;
   faDelete = faTrash;
   faAdd = faAdd;
   totalLenght:any;

@@ -12,6 +12,8 @@ export class AddProductsComponent implements OnInit {
   productsAdded : Array<Product>=[];
   searchText='';
   errors : any =[];
+  totalLenght:any;
+  page :number=1;
 
   
 constructor ( private medicationService: MedicationService){}
@@ -23,6 +25,7 @@ category!: string;
 
 ngOnInit() {
   this.getMedicationList();
+  this.totalLenght=this.product;
 }
 
 getMedicationList() {

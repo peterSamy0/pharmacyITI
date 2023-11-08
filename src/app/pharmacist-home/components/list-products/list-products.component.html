@@ -8,14 +8,12 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">number</th>
                 <th scope="col">Product Name</th>
                 <th scope="col">Product Price</th>
                 <th scope="col">Category</th>
                 <th scope="col">Image</th>
                 <th scope="col">Add</th>
                 <th scope="col">Delete</th>
-                <!-- <th scope="col">Edit</th> -->
                 
               </tr>
             </thead>
@@ -31,7 +29,6 @@
                         }
                 "
               >
-                <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.category }}</td>
@@ -48,13 +45,6 @@
                     <fa-icon [icon]="faAdd"></fa-icon
                   ></a>
                 </td>
-                <!-- <td>
-                  <a
-                    href="editProduct/{{ product.id }}"
-                    class="btn btn-secondary ms-1"
-                    ><fa-icon [icon]="faPen"></fa-icon
-                  ></a>
-                </td> -->
                 <td>
                   <button
                     type="button"

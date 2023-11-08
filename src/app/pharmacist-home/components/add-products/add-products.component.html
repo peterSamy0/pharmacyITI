@@ -22,7 +22,12 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let product of this.product  
-                    |search:searchText, let i =index">
+                    |search:searchText | paginate
+                    : {
+                        itemsPerPage: 8,
+                        currentPage: page,
+                        totalItems: totalLenght
+                      }, let i =index">
                     <td >{{i+1}}</td>
                     <td>{{product.name}}</td>
                     <td >{{product.category}}</td>
@@ -44,5 +49,8 @@
         </div>
         
       </div>
-
+      <pagination-controls
+      class="my-pagination text-center"
+      (pageChange)="page = $event"
+    ></pagination-controls>
 </section>
