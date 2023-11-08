@@ -37,5 +37,8 @@ export class ServiceService {
   getDeliveryData(){
     return this.http.get('https://retoolapi.dev/Eaiv5g/data');
   }
+  getGovernorates(){
+    return this.http.get('http://localhost:8000/api/governorates');
+  }
 }
 
