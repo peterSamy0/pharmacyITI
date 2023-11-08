@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import  Swal,{ SweetAlertIcon } from 'sweetalert2';
 
 export interface DeliveryResponse {
   id?: number;
@@ -69,6 +70,28 @@ export class ProfileService {
 
     // dropdown list of cities in  governorate 
     selectedGov(val: any){
-      return this.httpClient.get(`http://localhost:8000/api/governorates/${val}`)
+      return this.httpClient.get(`${this.apiUrl}/governorates/${val}`)
+    }
+
+    // update pharmacy
+    updatePharmacy(val:any, id:any){
+      return this.httpClient.put(`${this.apiUrl}/pharmacies/${id}`, val)
+    }
+
+    // get user data
+    getUserData(val:any){
+      return this.httpClient.get(`${this.apiUrl}/pharmacies/${val}`)
+    }
+
+
+
+    // alert for errors
+    errorAlert(){
+      Swal.fire({
+        title: 'Error!',
+        text: 'invaled data',
+        icon: 'error',
+        confirmButtonText: 'Cool'
+      })
     }
 }
