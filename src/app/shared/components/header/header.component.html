@@ -11,34 +11,34 @@
 
     <div class="collapse navbar-collapse flex-grow-1 justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav  mb-lg-0 flex-grow-1 justify-content-end pe-4 ">
-        <li class="nav-item">
+        <li class="nav-item align-self-center">
           <a class="nav-link" aria-current="page" routerLink="home">Pharmacies</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item align-self-center">
           <a class="nav-link" aria-current="page" href="#" *ngIf="role == 'client'">Offers</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " routerLink="listproduct" *ngIf="role == 'pharmacy'">List of Product</a>
+        <li class="nav-item align-self-center">
+          <a class="nav-link" routerLink="listproduct" *ngIf="role == 'pharmacy'">List of Product</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " routerLink="viewOrders" *ngIf="role == 'pharmacy'">My Orders</a>
+        <li class="nav-item align-self-center">
+          <a class="nav-link" routerLink="viewOrders" *ngIf="role == 'pharmacy'">My Orders</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " routerLink="signUp" *ngIf="!role">Register</a>
+        <li class="nav-item align-self-center">
+          <a class="nav-link" routerLink="signUp" *ngIf="!role">Register</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " routerLink="signIn" *ngIf="!role">Login</a>
+        <li class="nav-item align-self-center">
+          <a class="nav-link" routerLink="signIn" *ngIf="!role">Login</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item align-self-center">
           <a class="nav-link" aria-current="page" routerLink="contact-us">Contact-us</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item align-self-center">
           <a class="nav-link" aria-current="page" routerLink="about-us">About-us</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link position-relative" routerLink="cart">Cart
-            <span class="position-absolute translate-middle badge rounded-pill bg-danger" style="top: 10%;
-          right: -50%;">
+        <li class="nav-item align-self-center">
+          <a class="nav-link position-relative" routerLink="cart">
+            <fa-icon [icon]="faCartShopping" class="px-2 angle"></fa-icon>
+            <span class="position-absolute translate-middle badge rounded-pill bg-danger">
             {{counter}}
             <span class="visually-hidden" >unread messages</span>
           </span>
@@ -47,7 +47,7 @@
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="assets/img/logoImg.png" width="50px" length="50px" alt="" class="rounded-5">
+            <img src="assets/img/logoImg.png" width="40px" length="40px" alt="" class="rounded-5">
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item text-black" href="#">profile</a></li>

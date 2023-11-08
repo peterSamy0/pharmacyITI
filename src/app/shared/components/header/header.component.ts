@@ -2,6 +2,7 @@ import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { CartService } from 'src/app/cart/servic/cart.service';
 import { Router } from '@angular/router';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   counter:number = 0;
+  faCartShopping = faCartShopping;
   constructor(private cartService: CartService , private htttp: HttpClient, private router: Router){
     this.cartService.cartItemCount.subscribe(data => this.counter = data);
   };
