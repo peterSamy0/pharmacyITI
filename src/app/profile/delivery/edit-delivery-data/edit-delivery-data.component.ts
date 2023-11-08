@@ -19,8 +19,8 @@ export class EditDeliveryDataComponent {
   userFullNameFail: boolean = false;
   notAllDataEntered: boolean = false;
   id!: number;
-  deliveryId!:any;
-  availableToDeliver !: boolean;
+  deliveryId!: any;
+  availableToDeliver!: boolean;
   Swal!: SweetAlertIcon;
   isCity: boolean = false;
   governorateID!: number;
@@ -34,8 +34,12 @@ export class EditDeliveryDataComponent {
   oldGovId!: number;
   oldCityId!: number;
   deliveryPhone!: any;
-  constructor(private activeRoute: ActivatedRoute, private router: Router, private profileService: ProfileService,
-    private http: HttpClient) {
+  constructor(
+    private activeRoute: ActivatedRoute,
+    private router: Router,
+    private profileService: ProfileService,
+    private http: HttpClient
+  ) {
     this.updateDeliveryForm = new FormGroup({
       deliveryFullName: new FormControl('', [Validators.required]),
       // deliveryUserName: new FormControl('', [Validators.required]),
@@ -51,11 +55,9 @@ export class EditDeliveryDataComponent {
   ngOnInit() {
     console.log(this.activeRoute.snapshot.params['id']);
     this.id = this.activeRoute.snapshot.params['id'];
-   this.getUserData();
-   this.getGovernorates();
-
+    this.getUserData();
+    this.getGovernorates();
   }
-  
 
   getUserData() {
     this.profileService.getDelivery(this.id).subscribe(
@@ -66,34 +68,34 @@ export class EditDeliveryDataComponent {
         this.deliveryEmail = this.deliveryId.email;
         this.oldGov = res.data.Governorate;
         this.oldCity = res.data.city;
-        if (this.deliveryId.available== 0){
+        if (this.deliveryId.available == 0) {
           this.availableToDeliver = false;
-          console.log(this.availableToDeliver)
-         }else{
+          console.log(this.availableToDeliver);
+        } else {
           this.availableToDeliver = true;
-         }
+        }
       },
       (error) => console.log(error)
     );
   }
-  @ViewChild("myCheckbox")
+  @ViewChild('myCheckbox')
   myCheckbox!: ElementRef;
 
-    changeBtn() {
-        const checkboxValue = this.myCheckbox.nativeElement.checked;
-        console.log('Checkbox value:', checkboxValue);
-        if(checkboxValue == false){
-          this.deliveryId.available= 0;
-          console.log( this.deliveryId.available)
-        }
-        else{
-          this.deliveryId.available= 1;
-          console.log( this.deliveryId.available)
-        }
+  changeBtn() {
+    const checkboxValue = this.myCheckbox.nativeElement.checked;
+    console.log('Checkbox value:', checkboxValue);
+    if (checkboxValue == false) {
+      this.deliveryId.available = 0;
+      console.log(this.deliveryId.available);
+    } else {
+      this.deliveryId.available = 1;
+      console.log(this.deliveryId.available);
     }
+  }
   update() {
     console.log(this.updateDeliveryForm.value);
-    let deliveryFullName =this.updateDeliveryForm.controls['deliveryFullName'].value;
+    let deliveryFullName =
+      this.updateDeliveryForm.controls['deliveryFullName'].value;
     let deliveryEmail = this.updateDeliveryForm.controls['deliveryEmail'].value;
     // let deliveryUserName =this.updateDeliveryForm.controls['deliveryUserName'].value;
     let deliveryPhone = this.updateDeliveryForm.controls['deliveryPhone'].value;
@@ -117,10 +119,10 @@ export class EditDeliveryDataComponent {
         nationalID: this.deliveryId.national_ID,
         governorateID: +this.governorateID || this.oldGovId,
         cityID: this.cityID || this.oldCityId,
-        available:this.deliveryId.available
+        available: this.deliveryId.available,
       },
     };
-    console.log(body)
+    console.log(body);
     if (!deliveryEmail.match(emailPattern)) {
       console.log('invalid email format');
       this.emailFail = true;
