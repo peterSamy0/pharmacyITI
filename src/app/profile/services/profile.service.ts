@@ -61,6 +61,7 @@ export class ProfileService {
     
    return this.httpClient.put(`http://localhost:8000/api/clients/${id}`, body)
   }
+ 
   updateDelivery( id: number,body:any){
     
     return this.httpClient.put(`http://localhost:8000/api/deliveries/${id}`, body)

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../../services/profile.service';
 @Component({
@@ -29,7 +29,21 @@ export class ViewDeliveryDataComponent {
     });
     
   }
+  @ViewChild("myCheckbox")
+  myCheckbox!: ElementRef;
 
+    changeBtn() {
+        const checkboxValue = this.myCheckbox.nativeElement.checked;
+        console.log('Checkbox value:', checkboxValue);
+        if(checkboxValue == false){
+          this.deliveryId.available= 0;
+          console.log( this.deliveryId.available)
+        }
+        else{
+          this.deliveryId.available= 1;
+          console.log( this.deliveryId.available)
+        }
+    }
   
   edit(id : number){
     this.router.navigate(['edit-delivery-data',id])  

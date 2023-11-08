@@ -13,7 +13,7 @@ import { ProfileService } from '../../services/profile.service';
 })
 export class EditClientDataComponent {
   updateClientForm: FormGroup;
-  clients: Array<any> = clientsData;
+  // clients: Array<any> = clientsData;
   emailFail: boolean = false;
   passFail: boolean = false;
   userFullNameFail: boolean = false;
@@ -25,12 +25,14 @@ export class EditClientDataComponent {
   governorates: any;
   cityID!: number;
   id!: number;
-  clientId!:any;
-  clientName !:any;
-  clientEmail !:any;
-  clientGovern!: any;
-  clientCity!: any;
-  clientPhone!:any;
+  clientId!: any;
+  clientName!: any;
+  clientEmail!: any;
+  oldGov!: any;
+  oldCity!: any;
+  oldGovId!: number;
+  oldCityId!: number;
+  clientPhone!: any;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -44,110 +46,123 @@ export class EditClientDataComponent {
       clientEmail: new FormControl('', [Validators.required]),
       clientCity: new FormControl('', [Validators.required]),
       clientGovern: new FormControl('', [Validators.required]),
-      // clientPass: new FormControl('', [Validators.required]),
+      clientPass: new FormControl('', [Validators.required]),
     });
   }
 
   ngOnInit() {
     console.log(this.activeRoute.snapshot.params['id']);
-    this.getGovernorates();
+
     this.id = this.activeRoute.snapshot.params['id'];
-    this.profileService.getClient(this.id).subscribe((res: any) => {
-      this.clientId = res.data;
-      console.log(this.clientId);
-     this.clientName = this.clientId.client_name;
-     this.clientEmail = this.clientId.client_email;
-     this.clientGovern = this.clientId.Governorate;
-     this.clientCity = this.clientId.city;
+    this.getUserData();
+    this.getGovernorates();
 
-
-    });
+    // this.getCurrentGoverId();
   }
 
   // clientId: any = clientsData[this.activeRoute.snapshot.params['id'] - 1];
-
+  getUserData() {
+    this.profileService.getClient(this.id).subscribe(
+      (res: any) => {
+        this.clientId = res.data;
+        console.log(this.clientId);
+        this.clientName = this.clientId.client_name;
+        this.clientEmail = this.clientId.client_email;
+        this.oldGov = res.data.Governorate;
+        this.oldCity = res.data.city;
+      },
+      (error) => console.log(error)
+    );
+  }
   update() {
     console.log(this.updateClientForm.value);
     let clientFullName = this.updateClientForm.controls['clientFullName'].value;
     let clientEmail = this.updateClientForm.controls['clientEmail'].value;
     // let clientUserName = this.updateClientForm.controls['clientUserName'].value;
     let clientPhone = this.updateClientForm.controls['clientPhone'].value;
-    let clientCity = this.updateClientForm.controls['clientCity'].value;
-    let clientGovern = this.updateClientForm.controls['clientGovern'].value;
-    // let clientPass = this.updateClientForm.controls['clientPass'].value;
+    // let clientCity = this.updateClientForm.controls['clientCity'].value;
+    // let clientGovern = this.updateClientForm.controls['clientGovern'].value;
+    let clientPass = this.updateClientForm.controls['clientPass'].value;
 
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let fullNamePattern =
       /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/;
     let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-
-    
+    const body = {
+      user: {
+        name: clientFullName,
+        email: clientEmail,
+        password: clientPass || this.clientId.password || 324234,
+      },
+      client: {
+        governorate_id: +this.governorateID || this.oldGovId,
+        city_id: this.cityID || this.oldCityId,
+      },
+    };
 
     if (!clientEmail.match(emailPattern)) {
       console.log('invalid email format');
       this.emailFail = true;
-    } 
-    // else if (!clientPass.match(passPattern)) {
+      this.profileService.errorAlert();
+    }
+    //  else if (!clientPass.match(passPattern)) {
     //   console.log('wrong password format');
     //   this.passFail = true;
-    // } 
-    else if (!clientFullName.match(fullNamePattern)) {
-      console.log('wrong full name format');
-      this.userFullNameFail = true;
-    } else if (
+    //   this.profileService.errorAlert()
+    // }
+    else if (
       clientEmail &&
-      // clientUserName &&
-      clientFullName &&
-      clientGovern &&
-      clientCity &&
-      clientPhone
-      //  &&clientPass
+      // clientPass&&
+      // pharmaPhone&&
+      clientFullName
     ) {
-      let updatedData = {
-        id: this.activeRoute.snapshot.params['id'],
-        // userName: clientUserName,
-        // userPass: clientPass,
-        fullName: clientFullName,
-        gender: this.clientId.gender,
-        email: clientEmail,
-        phone: clientPhone,
-        city: clientCity,
-        governorate: clientGovern,
-      };
-      localStorage.setItem('updatedData', JSON.stringify(updatedData));
-      this.passFail = false;
-      this.emailFail = false;
-      this.userFullNameFail = false;
-      this.clientId = { ...this.clientId, ...updatedData };
-      console.log(this.clientId, this.clients);
+      this.profileService.updateClient(this.id, body).subscribe(
+        (response: any) => {
+          this.router.navigate([`/client-profile/${this.id}`]);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     } else {
       this.notAllDataEntered = true;
+      this.profileService.errorAlert();
     }
   }
 
   getGovernorates() {
-    this.http.get(`http://localhost:8000/api/governorates`).subscribe(
-      (response) => {
+    this.profileService.getGovernorates().subscribe(
+      (response: any) => {
         this.governorates = response;
         console.log(this.governorates);
-      },
-      (error) => console.log(error)
-    );
-  }
-  selectedCity(val: any) {
-    this.cityID = val;
-  }
-  selectedGov(val: any) {
-    this.isCity = true;
-    this.governorateID = val;
-    this.http.get(`http://localhost:8000/api/governorates/${val}`).subscribe(
-      (response) => {
-        this.cities = response;
+        this.oldGovId = this.governorates.find(
+          (obj: any) => obj['governorate_name'] === this.oldGov
+        ).governorate_id;
+        this.oldCityId = this.governorates
+          .find((obj: any) => obj['governorate_name'] === this.oldGov)
+          .cities.find(
+            (city: any) => city['city_name'] == this.oldCity
+          ).city_id;
+        console.log(this.oldCityId, this.oldGovId);
       },
       (error) => console.log(error)
     );
   }
 
-  
+  selectedGov(val: any) {
+    this.isCity = true;
+    this.governorateID = val;
+
+    this.profileService.selectedGov(val).subscribe(
+      (response: any) => {
+        this.cities = response.data;
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  selectedCity(val: any) {
+    this.cityID = val;
+  }
 }

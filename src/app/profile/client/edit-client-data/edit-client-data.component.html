@@ -15,7 +15,7 @@
                 <h4>{{ clientName }}</h4>
                 <p class="text-secondary mb-1">{{ clientEmail }}</p>
                 <p class="text-muted font-size-sm">
-                  {{ clientCity }}, {{ clientGovern }}
+                  {{ oldCity}}, {{ oldGov }}
                 </p>
               </div>
             </div>
@@ -94,7 +94,7 @@
               </div>
               </div>
             </div>
-            
+<!--             
             <div class="row mb-3">
               <div class="col-sm-3">
                 <h6 class="mb-0">Phone</h6>
@@ -121,8 +121,10 @@
                 </small>
               </div>
               </div>
-            </div>
-            <div class="row mb-3">
+            </div> -->
+
+            <!-- old code -->
+            <!-- <div class="row mb-3">
               <div class="col-sm-3">
                 <h6 class="mb-0">City</h6>
               </div>
@@ -175,8 +177,43 @@
                 </small>
               </div>
               </div>
+            </div> -->
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Current Location</h6>
+              </div>
+               <span class="col-sm-9 text-secondary">{{ oldCity }} - {{ oldGov }}</span>
             </div>
-            <!-- <div class="row mb-3">
+            
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Governorate</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <select class="form-select mt-2" name="governorates" #selectGov (change)="selectedGov(selectGov.value)">
+                  <option value="">Select Governorate</option>
+                  <option *ngFor="let governorate of governorates" [value]="governorate.governorate_id">{{ governorate.governorate_name }}</option>
+                </select>
+              </div>
+            </div>
+            <!-- choose city -->
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">City</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <div *ngIf="isCity">
+                  <select class="form-select mt-2" name="governorates" #selectCity (change)="selectedCity(selectCity.value)">
+                    <option value="">Select City</option>
+                    <option *ngFor="let city of cities.cities" [value]="city.city_id">{{ city.city_name }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="row mb-3">
               <div class="col-sm-3">
                 <h6 class="mb-0">Password</h6>
               </div>
@@ -207,7 +244,7 @@
                   </small>
               </div>
               </div>
-            </div> -->
+            </div>
             <div class="row">
               <div class="col-sm-3"></div>
               <div class="col-sm-9 text-secondary">
