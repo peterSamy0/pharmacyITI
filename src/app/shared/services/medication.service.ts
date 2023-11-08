@@ -43,21 +43,9 @@ export class MedicationService {
   }
 
   addMedication(inputData: object) {
-    return this.http.post(`http://localhost:8000/api/pharmacyMedication/`, inputData);
+    return this.http.post(`http://localhost:8000/api/pharmacyMedications/`, inputData);
   }
 
-  getMedicationToEdit(productId: number) {
-    return this.http.get<Product>(
-      `http://localhost:8000/api/medications/${productId}`
-    );
-  }
-
-  update(inputData: object, productId: number) {
-    return this.http.put(
-      `http://localhost:8000/api/medications/${productId}`,
-      inputData
-    );
-  }
 
   deleteMedication(productId:number){
    return this.http.delete(`http://localhost:8000/api/medications/${productId}`)

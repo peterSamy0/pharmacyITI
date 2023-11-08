@@ -12,7 +12,7 @@
               <table class="table mb-0 table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">product</th>
+                    <th scope="col">no</th>
                     <th scope="col">product Name</th>
                     <th scope="col">Categorty</th>
                     <th scope="col">price</th>
@@ -22,14 +22,21 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let product of this.product  
-                    |search:searchText, let i =index">
+                    |search:searchText | paginate
+                    : {
+                        itemsPerPage: 8,
+                        currentPage: page,
+                        totalItems: totalLenght
+                      }, let i =index">
                     <td >{{i+1}}</td>
                     <td>{{product.name}}</td>
                     <td >{{product.category}}</td>
                     <td > {{product.price}}</td>
                     <td><img src="assets/img/medicine.jpg" alt="" width="30px" height="30px"></td>
-                <td> <input type="checkbox" class="form-check-input" #checkboxes  (change)="addOneProduct(product,$event)" ></td>
-                 
+                <td> 
+                  <input type="checkbox" class="form-check-input" #checkboxes  (change)="addOneProduct(product,$event)" >
+                </td>
+          
               </tr>
                 </tbody>
                 
@@ -44,5 +51,8 @@
         </div>
         
       </div>
-
+      <pagination-controls
+      class="my-pagination text-center"
+      (pageChange)="page = $event"
+    ></pagination-controls>
 </section>

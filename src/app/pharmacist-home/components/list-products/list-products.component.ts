@@ -3,7 +3,6 @@ import {
   MedicationService,
   pharmacyProduct,
 } from 'src/app/shared/services/medication.service';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
@@ -14,14 +13,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./list-products.component.css'],
 })
 export class ListProductsComponent {
-  faPen = faPen;
   faDelete = faTrash;
   faAdd = faAdd;
   totalLenght:any;
   page :number=1;
   deleteId!:number;
   id:any;
- 
+  addProductUrl!: string;
   constructor(private medicationService: MedicationService, private activeRoute: ActivatedRoute) {}
 
   products !: pharmacyProduct[]; 
@@ -30,7 +28,8 @@ export class ListProductsComponent {
     // this.totalLenght=this.product.length;
     this.id = this.activeRoute.snapshot.paramMap.get("id")
     this.getMedicationList();
-    console.log(this.id)
+    this.addProductUrl = `addProduct/${this.id}`
+
   }
 
   getMedicationList() {

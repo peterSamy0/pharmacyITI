@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MedicationService, Product } from 'src/app/shared/services/medication.service';
 @Component({
   selector: 'app-add-products',
@@ -13,45 +13,34 @@ export class AddProductsComponent implements OnInit {
   productsAdded : any = [];
   searchText='';
   errors : any =[];
-  name!: string;
-  price!: number;
-  image!: string;
-  category!: string;
-  id:any;
-
-  
+  totalLenght:any;
+  page :number=1;
+  pharmacy_id!:number | null;
+  medicineObj:any;
 constructor (
   private medicationService: MedicationService, 
-  private activeRoute: ActivatedRoute
+  private activeRoute: ActivatedRoute,
+  private route:Router
   ){}
 
 
 ngOnInit() {
+  this.pharmacy_id = Number(this.activeRoute.snapshot.paramMap.get('id'));
   this.getMedicationList();
-  this.id = this.activeRoute.snapshot.paramMap.get("id")
+  this.totalLenght=this.product;
 }
 
 getMedicationList() {
 this.medicationService.getMedication().subscribe((res: any) => {
     this.product = res.data;
-    console.log(res.data);
-    
   });
 
 }
 
 addMedication(){
-  const inputData =  {
-    name: this.product.name,
-    price: this.product.price,
-    image: this.product.image,
-    category: this.product.category,
-  };
-  
-  
-  this.medicationService.addMedication(inputData).subscribe({
+  this.medicationService.addMedication(this.medicineObj).subscribe({
     next: (res: any) => {
-      console.log(res, 'response');
+      this.route.navigate([`listproduct/${this.pharmacy_id}`])
     },
 
     error:(err:any)=>{
@@ -63,18 +52,18 @@ addMedication(){
   
 }
 
-addOneProduct(id:any ,event:any){
+addOneProduct(val:any ,event:any){
   if(event.target.checked==true){
-    let medicineObj = {
-      "pharmacy_id": this.id,
-      "medicine_id": id
+    this.medicineObj = {
+      "pharmacy_id": this.pharmacy_id,
+      "medicine_id": val.id
     }
-    this.productsAdded.push(medicineObj);
-    console.log(this.productsAdded)
+    this.productsAdded.push(this.medicineObj);
+    console.log(this.medicineObj)
   }
   else{
     console.log('checkbox is unchecked');
-      const index = this.productsAdded.indexOf(id);
+      const index = this.productsAdded.indexOf(val);
       if (index >= 0) {
         this.productsAdded.splice(index, 1);
       }
