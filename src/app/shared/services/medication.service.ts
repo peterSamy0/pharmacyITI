@@ -29,7 +29,7 @@ export class MedicationService {
   }
 
   addMedication(inputData: object) {
-    return this.http.post(`http://localhost:8000/api/medications`, inputData);
+    return this.http.post(`http://localhost:8000/api/pharmacyMedication/`, inputData);
   }
 
   getMedicationToEdit(productId: number) {

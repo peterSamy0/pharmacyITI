@@ -73,7 +73,7 @@ const routes: Routes = [
     component : CartpageComponent
   },
   {
-    path :'listproduct',
+    path :'listproduct/:id',
     component : ListProductsComponent
   },
   {
@@ -103,7 +103,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: "addProduct",
+    path: "addProduct/:id",
     component: AddProductsComponent
   },  
   {

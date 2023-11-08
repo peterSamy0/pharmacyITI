@@ -28,7 +28,7 @@
                     <td >{{product.category}}</td>
                     <td > {{product.price}}</td>
                     <!-- <td><img [src]="product.image" alt="" width="30px" height="30px"></td> -->
-                <td> <input type="checkbox" class="form-check-input" #checkboxes  (change)="addOneProduct(product,$event)" ></td>
+                <td> <input type="checkbox" class="form-check-input" #checkboxes  (change)="addOneProduct(product.id,$event)" ></td>
                  
               </tr>
                 </tbody>

@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MedicationService, Product } from 'src/app/shared/services/medication.service';
 @Component({
   selector: 'app-add-products',
@@ -9,20 +10,25 @@ export class AddProductsComponent implements OnInit {
  
   
   product! : Product;
-  productsAdded : Array<Product>=[];
+  productsAdded : any = [];
   searchText='';
   errors : any =[];
+  name!: string;
+  price!: number;
+  image!: string;
+  category!: string;
+  id:any;
 
   
-constructor ( private medicationService: MedicationService){}
+constructor (
+  private medicationService: MedicationService, 
+  private activeRoute: ActivatedRoute
+  ){}
 
-name!: string;
-price!: number;
-image!: string;
-category!: string;
 
 ngOnInit() {
   this.getMedicationList();
+  this.id = this.activeRoute.snapshot.paramMap.get("id")
 }
 
 getMedicationList() {
@@ -41,11 +47,9 @@ addMedication(){
     image: this.product.image,
     category: this.product.category,
   };
-  console.log(this.product.name);
-  console.log(this.productsAdded);
   
   
-  this.medicationService.addMedication(inputData).subscribe({
+  this.medicationService.addMedication(this.productsAdded).subscribe({
     next: (res: any) => {
       console.log(res, 'response');
     },
@@ -59,18 +63,18 @@ addMedication(){
   
 }
 
-addOneProduct(product:Product ,event:any){
-  
-
+addOneProduct(id:any ,event:any){
   if(event.target.checked==true){
-    this.productsAdded.push(product);
-       console.log(this.productsAdded);
-    console.log('checkbox is checked',product.name ,"is added");
-
+    let medicineObj = {
+      "pharmacy_id": this.id,
+      "medicine_id": id
+    }
+    this.productsAdded.push(medicineObj);
+    console.log(this.productsAdded)
   }
   else{
     console.log('checkbox is unchecked');
-      const index = this.productsAdded.indexOf(product);
+      const index = this.productsAdded.indexOf(id);
       if (index >= 0) {
         this.productsAdded.splice(index, 1);
       }
