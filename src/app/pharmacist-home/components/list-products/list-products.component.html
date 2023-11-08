@@ -22,22 +22,23 @@
             <tbody>
               <tr
                 *ngFor="
-                  let product of this.product
+                  let product of products
                     | paginate
                       : {
                           itemsPerPage: 8,
                           currentPage: page,
                           totalItems: totalLenght
-                        }
+                        },
+                        let i = index
                 "
               >
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.category }}</td>
+                <td>{{ i+1 }}</td>
+                <td>{{ product.medicine_name }}</td>
+                <td>{{ product.medicine_price }}</td>
+                <td>{{ product.medicine_category }}</td> 
                 <td>
                   <img
-                    [src]="product.image"
+                    src="assets/img/medicine.jpg"
                     alt=""
                     width="30px"
                     height="30px"

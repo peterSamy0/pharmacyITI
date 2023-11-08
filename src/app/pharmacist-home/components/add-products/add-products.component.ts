@@ -49,7 +49,7 @@ addMedication(){
   };
   
   
-  this.medicationService.addMedication(this.productsAdded).subscribe({
+  this.medicationService.addMedication(inputData).subscribe({
     next: (res: any) => {
       console.log(res, 'response');
     },

@@ -32,10 +32,10 @@ export class EditProductsComponent implements OnInit {
 
   update() {
     const inputData = {
-      name: this.product.name,
-      price: this.product.price,
-      image: this.product.image,
-      category: this.product.category,
+      // name: this.product.name,
+      // price: this.product.price,
+      // image: this.product.image,
+      // category: this.product.category,
     };
 // console.log(inputData);
 

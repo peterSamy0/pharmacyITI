@@ -13,6 +13,16 @@ export interface Product {
   // updated_at: string;
 }
 
+export interface pharmacyProduct {
+  id: number;
+  medicine_name: string;
+  medicine_price: number;
+  medicine_image: string;
+  category_id: number;
+  medicine_category: string;
+  // created_at: string;medicine_name
+  // updated_at: string;
+}
 export interface UpdatedProduct {
   product: Product;
 }
@@ -26,6 +36,10 @@ export class MedicationService {
 
   getMedication() {
     return this.http.get(`http://localhost:8000/api/medications`);
+  }
+
+  getPharmacyMedication(id:any) {
+    return this.http.get(`http://localhost:8000/api/pharmacies/${id}`);
   }
 
   addMedication(inputData: object) {

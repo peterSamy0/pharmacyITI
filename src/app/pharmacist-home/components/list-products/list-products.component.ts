@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import {
   MedicationService,
-  Product,
+  pharmacyProduct,
 } from 'src/app/shared/services/medication.service';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-products',
@@ -19,23 +20,23 @@ export class ListProductsComponent {
   totalLenght:any;
   page :number=1;
   deleteId!:number;
+  id:any;
  
-  constructor(private medicationService: MedicationService) {}
+  constructor(private medicationService: MedicationService, private activeRoute: ActivatedRoute) {}
 
-  product !: Product[]; 
+  products !: pharmacyProduct[]; 
 
   ngOnInit() {
+    // this.totalLenght=this.product.length;
+    this.id = this.activeRoute.snapshot.paramMap.get("id")
     this.getMedicationList();
-    this.totalLenght=this.product.length;
-    
+    console.log(this.id)
   }
 
   getMedicationList() {
-    this.medicationService.getMedication().subscribe((res: any) => {
-      this.product = res.data;
-      console.log(res.data);
+    this.medicationService.getPharmacyMedication(+this.id).subscribe((res: any) => {
+      this.products = res.data.medication;
     });
-   
   }
 
 delete(productId:number){
