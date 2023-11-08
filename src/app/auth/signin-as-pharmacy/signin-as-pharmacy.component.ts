@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Pharmacies } from 'src/app/interface/pharmacies';
 import pharmciesData from '../../../assets/json/pharmcies.json';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
@@ -19,7 +19,7 @@ export class SigninAsPharmacyComponent {
   signinForm: FormGroup;
   pharmaNotFound = false;
 
-  constructor( private http: HttpClient, private router: Router) {
+  constructor( private http: HttpClient, private router: Router, private route: ActivatedRoute) {
 
   signinForm: FormGroup;
     this.signinForm = new FormGroup({
@@ -50,7 +50,8 @@ export class SigninAsPharmacyComponent {
             localStorage.setItem('token', this.tokenKey);
             localStorage.setItem('role', role);
             localStorage.setItem('user_id', response['user_id']);
-            this.router.navigate(['/']);
+            // this.router.navigate(['/']);
+            window.location.href = '/';
           }else{
             Swal.fire({
               title: 'Error!',

@@ -15,7 +15,11 @@ export class HeaderComponent {
   };
   
   role: string | null = '';
-
+  
+  ngOnInit(){
+    this.role = localStorage.getItem('role');
+  }
+  
   logOut(){
     // this.htttp.post("", {}).subscribe(() => {
       // Remove token from localStorage
@@ -27,7 +31,4 @@ export class HeaderComponent {
     // });
   }
 
-  ngOnInit(){
-    this.role = localStorage.getItem('role');
-  }
 }

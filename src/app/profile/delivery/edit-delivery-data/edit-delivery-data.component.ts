@@ -34,25 +34,21 @@ export class EditDeliveryDataComponent {
   oldGovId!: number;
   oldCityId!: number;
   deliveryPhone!: any;
+  oldPass:any;
   constructor(private activeRoute: ActivatedRoute, private router: Router, private profileService: ProfileService,
     private http: HttpClient) {
     this.updateDeliveryForm = new FormGroup({
       deliveryFullName: new FormControl('', [Validators.required]),
-      // deliveryUserName: new FormControl('', [Validators.required]),
       deliveryPhone: new FormControl('', [Validators.required]),
       deliveryEmail: new FormControl('', [Validators.required]),
-      // deliveryCity: new FormControl('', [Validators.required]),
-      // deliveryGovern: new FormControl('', [Validators.required]),
       deliveryPass: new FormControl('', [Validators.required]),
-      // avaliableToDeliver: new FormControl('', [Validators.required]),
     });
   }
 
   ngOnInit() {
-    console.log(this.activeRoute.snapshot.params['id']);
     this.id = this.activeRoute.snapshot.params['id'];
-   this.getUserData();
-   this.getGovernorates();
+    this.getUserData();
+    this.getGovernorates();
 
   }
   
@@ -61,11 +57,14 @@ export class EditDeliveryDataComponent {
     this.profileService.getDelivery(this.id).subscribe(
       (res: any) => {
         this.deliveryId = res.data;
-        console.log(this.deliveryId);
+        console.log(res);
         this.deliveryName = this.deliveryId.name;
         this.deliveryEmail = this.deliveryId.email;
         this.oldGov = res.data.Governorate;
         this.oldCity = res.data.city;
+        this.oldCityId = res.data.city_id;
+        this.oldGovId = res.data.governorate_id;
+        this.oldPass = res.data.password;
         if (this.deliveryId.available== 0){
           this.availableToDeliver = false;
           console.log(this.availableToDeliver)
@@ -95,12 +94,8 @@ export class EditDeliveryDataComponent {
     console.log(this.updateDeliveryForm.value);
     let deliveryFullName =this.updateDeliveryForm.controls['deliveryFullName'].value;
     let deliveryEmail = this.updateDeliveryForm.controls['deliveryEmail'].value;
-    // let deliveryUserName =this.updateDeliveryForm.controls['deliveryUserName'].value;
     let deliveryPhone = this.updateDeliveryForm.controls['deliveryPhone'].value;
-    // let deliveryCity = this.updateDeliveryForm.controls['deliveryCity'].value;
     let deliveryPass = this.updateDeliveryForm.controls['deliveryPass'].value;
-    // let deliveryGovern = this.updateDeliveryForm.controls['deliveryGovern'].value;
-    // let availability =this.updateDeliveryForm.controls['avaliableToDeliver'].value;
 
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let fullNamePattern =
@@ -109,15 +104,15 @@ export class EditDeliveryDataComponent {
 
     const body = {
       user: {
-        name: deliveryFullName,
-        email: deliveryEmail,
-        password: deliveryPass || this.deliveryId.password || 324234,
+        "name": deliveryFullName,
+        "email": deliveryEmail,
+        "password": deliveryPass || this.oldPass,
       },
       delivery: {
-        nationalID: this.deliveryId.national_ID,
-        governorateID: +this.governorateID || this.oldGovId,
-        cityID: this.cityID || this.oldCityId,
-        available:this.deliveryId.available
+        "nationalID": this.deliveryId.national_ID,
+        "governorateID": +this.governorateID || this.oldGovId,
+        "cityID": this.cityID || this.oldCityId,
+        "available":this.deliveryId.available
       },
     };
     console.log(body)
@@ -126,15 +121,9 @@ export class EditDeliveryDataComponent {
       this.emailFail = true;
       this.profileService.errorAlert();
     }
-    //  else if (!clientPass.match(passPattern)) {
-    //   console.log('wrong password format');
-    //   this.passFail = true;
-    //   this.profileService.errorAlert()
-    // }
+
     else if (
       deliveryEmail &&
-      // deliveryPass&&
-      // deliveryPhone&&
       deliveryFullName
     ) {
       this.profileService.updateDelivery(this.id, body).subscribe(
@@ -156,15 +145,6 @@ export class EditDeliveryDataComponent {
       (response: any) => {
         this.governorates = response;
         console.log(this.governorates);
-        this.oldGovId = this.governorates.find(
-          (obj: any) => obj['governorate_name'] === this.oldGov
-        ).governorate_id;
-        this.oldCityId = this.governorates
-          .find((obj: any) => obj['governorate_name'] === this.oldGov)
-          .cities.find(
-            (city: any) => city['city_name'] == this.oldCity
-          ).city_id;
-        console.log(this.oldCityId, this.oldGovId);
       },
       (error) => console.log(error)
     );
