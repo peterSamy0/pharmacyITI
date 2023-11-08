@@ -64,3 +64,13 @@
  .container{
       padding-top:50px;
  }
+
+ .tile-module_card__AeiYN {
+  border: 1px solid var(--mm-color-neutral-10,#e5e5e5);
+  display: flex;
+}
+
+.card{
+  display: inline-block;
+  margin-left: 20px;
+}

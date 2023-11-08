@@ -1,52 +1,50 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http'; // Import the HttpClient module for HTTP requests
-import { faFacebook, faInstagram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { HttpClient } from '@angular/common/http';
+import {
+  faFacebook,
+  faInstagram,
+  faTwitter,
+  faWhatsapp,
+} from '@fortawesome/free-brands-svg-icons';
+import { ContactUsService } from './contact-us.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
-  styleUrls: ['./contact-us.component.css']
+  styleUrls: ['./contact-us.component.css'],
 })
 export class ContactUsComponent {
-  contactusForm: any;
-  fafacebook = faFacebook
-  fatwitter = faTwitter
-  fawhatsapp = faWhatsapp
-  fainstagram = faInstagram
-  // ... Your other properties
+  contactusForm: FormGroup;
+  fafacebook = faFacebook;
+  fatwitter = faTwitter;
+  fawhatsapp = faWhatsapp;
+  fainstagram = faInstagram;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+    private contactusservice: ContactUsService
+  ) {
     this.contactusForm = this.fb.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]], // Use Validators.email to validate email format
+      email: ['', [Validators.required, Validators.email]],
       message: ['', Validators.required],
     });
   }
 
-  sendFeedback() {
-    console.log(this.contactusForm);
-
+  sendContactus(): void {
     if (this.contactusForm.valid) {
-      const name = this.contactusForm.get('name').value;
-      const email = this.contactusForm.get('email').value;
-      const message = this.contactusForm.get('message').value;
-
-      // Create an object with the data to send to the server
-      const newFeedback = {
-        name: name,
-        email: email,
-        message: message,
-      };
-
-      // Use HttpClient to make an HTTP POST request to your server API
-      this.http.post('your-server-api-endpoint', newFeedback).subscribe(
-        (response) => {
-          console.log('Feedback sent successfully');
-          // You can handle the response from the server here
+      const contactData = this.contactusForm.value;
+      this.contactusservice.sendContactus(contactData).subscribe(
+        () => {
+          console.log('Contactus sent successfully');
+          this.router.navigateByUrl('/home');
         },
-        (error) => {
-          console.error('Error sending feedback:', error);
+        (err) => {
+          console.error('Error sending Contactus:', err);
         }
       );
     }

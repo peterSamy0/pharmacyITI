@@ -1,19 +1,70 @@
-import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import products from  '../../../../assets/json/pharmacyDetails.json';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { MedicationService, Product } from 'src/app/shared/services/medication.service';
 @Component({
   selector: 'app-add-products',
   templateUrl: './add-products.component.html',
   styleUrls: ['./add-products.component.css']
 })
-export class AddProductsComponent {
-  productData : Array<any>= products;  
-  productsAdded : Array<any>=[];
-  searchText='';
-
-
-addOneProduct(product:any ,event:any){
+export class AddProductsComponent implements OnInit {
+ 
   
+  product! : Product;
+  productsAdded : Array<Product>=[];
+  searchText='';
+  errors : any =[];
+  totalLenght:any;
+  page :number=1;
+
+  
+constructor ( private medicationService: MedicationService){}
+
+name!: string;
+price!: number;
+image!: string;
+category!: string;
+
+ngOnInit() {
+  this.getMedicationList();
+  this.totalLenght=this.product;
+}
+
+getMedicationList() {
+this.medicationService.getMedication().subscribe((res: any) => {
+    this.product = res.data;
+    console.log(res.data);
+    
+  });
+
+}
+
+addMedication(){
+  const inputData =  {
+    name: this.product.name,
+    price: this.product.price,
+    image: this.product.image,
+    category: this.product.category,
+  };
+  console.log(this.product.name);
+  console.log(this.productsAdded);
+  
+  
+  this.medicationService.addMedication(inputData).subscribe({
+    next: (res: any) => {
+      console.log(res, 'response');
+    },
+
+    error:(err:any)=>{
+      this.errors = err.error.errors;
+      console.log(err.error.errors);
+      
+    }
+  });
+  
+}
+
+addOneProduct(product:Product ,event:any){
+  
+
   if(event.target.checked==true){
     this.productsAdded.push(product);
        console.log(this.productsAdded);
@@ -30,10 +81,7 @@ addOneProduct(product:any ,event:any){
   };
 }
 
-addSelected(){
-  console.log(this.productsAdded);
-  
-}
+
   @ViewChildren("checkboxes")
   checkboxes!: QueryList<ElementRef>;
 
@@ -45,6 +93,5 @@ reset(){
   console.log(this.productsAdded);
 }
 
- 
-
 }
+

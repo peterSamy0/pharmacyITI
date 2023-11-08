@@ -21,27 +21,36 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let product of productData |search:searchText, let i =index">
-                    <td>{{i+1}}</td>
+                  <tr *ngFor="let product of this.product  
+                    |search:searchText | paginate
+                    : {
+                        itemsPerPage: 8,
+                        currentPage: page,
+                        totalItems: totalLenght
+                      }, let i =index">
+                    <td >{{i+1}}</td>
                     <td>{{product.name}}</td>
-                    <td>{{product.Category}}</td>
-                    <td>{{product.price}}</td>
-                    <td><img [src]="product.image" alt="" width="30px" height="30px"></td>
-                <td><input type="checkbox" class="form-check-input" #checkboxes  (change)="addOneProduct(product,$event)" ></td>
+                    <td >{{product.category}}</td>
+                    <td > {{product.price}}</td>
+                    <!-- <td><img [src]="product.image" alt="" width="30px" height="30px"></td> -->
+                <td> <input type="checkbox" class="form-check-input" #checkboxes  (change)="addOneProduct(product,$event)" ></td>
                  
               </tr>
                 </tbody>
                 
               </table>
-              
+             
             </div>
             <div class="container text-center pt-3 bg-white pb-3">
                 <button href="" class="btn btn-danger btn-lg me-3" (click)="reset()">Reset</button>
-                <button  class="btn btn-info btn-lg ms-3 text-white" (click)="addSelected()">Add</button>
+                <button  type="submit" class="btn btn-info btn-lg ms-3 text-white" (click)="addMedication()">Add</button>
          </div>
           </div>
         </div>
         
       </div>
-
+      <pagination-controls
+      class="my-pagination text-center"
+      (pageChange)="page = $event"
+    ></pagination-controls>
 </section>

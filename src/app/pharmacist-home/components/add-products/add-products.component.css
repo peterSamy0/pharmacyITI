@@ -31,3 +31,9 @@
         font-weight: 500;
         color:  rgb(73, 99, 102);
       }
+
+      .my-pagination /deep/ .ngx-pagination .current {
+        background: #419197;
+        margin-top: 5px;
+      }
+      
