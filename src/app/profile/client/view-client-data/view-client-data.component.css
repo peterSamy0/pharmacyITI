@@ -51,3 +51,32 @@ body{
 .shadow-none {
     box-shadow: none!important;
 }
+
+.btnEdit{
+    color:aliceblue;
+    font-size: larger;
+    /* font-weight: bold; */
+    background-color: rgb(51, 138, 149);
+}
+.btnEdit:active {    
+    color:aliceblue;
+    font-size: larger;
+    /* font-weight: bold; */
+    background-color: rgb(26, 83, 91);
+  }
+.btnDelete{
+    color:aliceblue;
+    font-size: larger;
+    background-color:rgb(220, 53, 69);
+}
+.btnDelete:active {    
+    color:aliceblue;
+    font-size: larger;
+    background-color: rgb(178, 53, 53);
+
+  }
+
+h6,h4{
+    color:  rgb(73, 99, 102);
+}
+

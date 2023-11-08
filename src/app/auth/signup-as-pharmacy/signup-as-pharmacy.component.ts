@@ -28,6 +28,11 @@ export class SignupAsPharmacyComponent {
   notAllDataEntered: boolean = false;
   emailFail: boolean = false;
   passFail: boolean = false;
+  governorates : any = [];
+  cities : any = [];
+  isCity:boolean = false;
+  governorateID!: number| null;
+  cityID!: number| null;
   constructor(private http: HttpClient, private router: Router) {
 
     this.signupForm = new FormGroup({
@@ -46,7 +51,8 @@ export class SignupAsPharmacyComponent {
   }
 
   ngOnInit(){
-    this.getDays()
+    this.getDays();
+    this.getGovernorates();
   }
 
   addPharma() {
@@ -54,8 +60,8 @@ export class SignupAsPharmacyComponent {
     let pharmaEmail = this.signupForm.controls['pharmaEmail'].value;
     let pharmaStreet = this.signupForm.controls['pharmaStreet'].value;
     let pharmaLicense = this.signupForm.controls['pharmaLicense'].value;
-    let pharmaCity = this.signupForm.controls['pharmaCity'].value;
-    let pharmaGovern = this.signupForm.controls['pharmaGovern'].value;
+    // let pharmaCity = this.signupForm.controls['pharmaCity'].value;
+    // let pharmaGovern = this.signupForm.controls['pharmaGovern'].value;
     let pharmaOpeningTime = this.signupForm.controls['pharmaOpeningTime'].value;
     let pharmaClosingTime = this.signupForm.controls['pharmaClosingTime'].value;
     let pharmaBankAccount = this.signupForm.controls['pharmaBankAccount'].value;
@@ -73,8 +79,8 @@ export class SignupAsPharmacyComponent {
           pharmacyName: pharmaName,
           email: pharmaEmail,
           // phone: pharmaPhone,
-          city: pharmaCity,
-          governorate: pharmaGovern,
+          // city: pharmaCity,
+          // governorate: pharmaGovern,
           licenseNum: pharmaLicense,
           password: pharmaPass,
         };
@@ -86,14 +92,14 @@ export class SignupAsPharmacyComponent {
         "password": pharmaPass     
       },
       "pharmacy" : {
-        "image" : "test.png",//pharmacyimage,
+        "image" : "test.png",
         "licence_number": pharmaLicense,
         "opening": pharmaOpeningTime,
         "closing": pharmaClosingTime,
         "street": pharmaStreet,
         "bank_account": +pharmaBankAccount || null,
-        "Governorate" : pharmaGovern,
-        "city" : pharmaCity
+        "governorate_id" : this.governorateID,
+        "city_id" : this.cityID
       },
       "daysOff": this.daysArr
 
@@ -103,7 +109,6 @@ export class SignupAsPharmacyComponent {
     this.http.post(`http://localhost:8000/api/pharmacies`, body)
       .subscribe(
         response => {
-          console.log(response);
           this.router.navigate(['/']);
         },
 
@@ -141,6 +146,29 @@ export class SignupAsPharmacyComponent {
     this.daysArr = this.daysArr.filter( (item:any) => item.id != val)
   }
   
+  selectedGov(val: any){
+    this.isCity = true
+    this.governorateID = val;
+    this.http.get(`http://localhost:8000/api/governorates/${val}`)
+      .subscribe(
+        response => {
+          this.cities = response;
+        },
+        error => console.log(error)
+      )
+  }
 
+  getGovernorates(){
+    this.http.get(`http://localhost:8000/api/governorates`)
+      .subscribe(
+        response => {
+          this.governorates = response;
+        },
+        error => console.log(error)
+      )
+  }
+  selectedCity(val: any){
+    this.cityID = val;
+  }
 }
 

@@ -4,7 +4,7 @@ import { Users } from 'src/app/interface/users';
 import userData from '../../../assets/json/users.json'
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import Swal, { SweetAlertIcon } from 'sweetalert2'
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 // CommonJS
 @Component({

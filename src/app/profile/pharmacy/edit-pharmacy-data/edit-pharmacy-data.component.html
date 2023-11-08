@@ -1,1 +1,366 @@
-<p>edit-pharmacy-data works!</p>
+<div class="container mt-5 mb-5">
+    <div class="main-body">
+      <div class="row gutters-sm mt-5">
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+                <img
+                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                  alt="Admin"
+                  class="square"
+                  width="50%"
+                />
+                <div class="mt-3">
+                  <h4>{{ userDate.pharmacy_name }}</h4>
+                  <p class="text-secondary mb-1">{{ userDate.pharmacy_email }}</p>
+                  <p class="text-muted font-size-sm">
+                    {{ userDate.city }}, {{ userDate.Governorate }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8" *ngIf="loadingDate">
+          
+            <div class="card-body">
+              <form
+              class="px-md-2"
+              [formGroup]="updatePharmaForm"
+              (ngSubmit)="update()"
+            >
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Pharmacy Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="pharmaName"
+                    [(ngModel)]="userDate['pharmacy_name']"
+
+                  />
+                  <div
+                  *ngIf="
+                    updatePharmaForm.controls['pharmaName'].touched &&
+                    updatePharmaForm.controls['pharmaName'].invalid
+                  "
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="updatePharmaForm.controls['pharmaName'].errors?.['required']"
+                  >
+                    please, enter your pharmacy name
+                  </small>
+                </div>
+              </div>
+              
+                </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Email</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="pharmaEmail"
+                    [(ngModel)]="userDate['pharmacy_email']"
+                  />
+                  <div
+                  *ngIf="
+                    updatePharmaForm.controls['pharmaEmail'].touched &&
+                    updatePharmaForm.controls['pharmaEmail'].invalid
+                  "
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="updatePharmaForm.controls['pharmaEmail'].errors?.['required']"
+                  >
+                    Please, Enter your email.
+                  </small>
+                </div>
+                <div>
+                  <small *ngIf="emailFail"  class="text-danger form-text">
+                      Invalid Email Format
+                     </small>
+                </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">License Number</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="pharmaLicense"
+                    [(ngModel)]="userDate['licence_number']"
+
+                  />
+                  <div
+                  *ngIf="
+                    updatePharmaForm.controls['pharmaLicense'].touched &&
+                    updatePharmaForm.controls['pharmaLicense'].invalid
+                  "
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="updatePharmaForm.controls['pharmaLicense'].errors?.['required']"
+                  >
+                    Please, Enter your pharmacy license number.
+                  </small>
+                </div>
+                </div>
+              </div>
+
+              <!-- bank account -->
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Bank Account Number</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <div>
+                    <input
+                      type="number"
+                      class="form-control"
+                      formControlName="pharmaBankAccount"
+                      [(ngModel)]="userDate['bank_account']"
+                    />
+                    <div
+                      *ngIf="
+                        updatePharmaForm.controls['pharmaBankAccount'].touched &&
+                        updatePharmaForm.controls['pharmaBankAccount'].invalid
+                      "
+                      class="text-danger form-text"
+                    >
+                      <small
+                        *ngIf="updatePharmaForm.controls['pharmaBankAccount'].errors?.['required']"
+                      >
+                        Please, Enter Bank Account Number
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+             
+              <!-- pharmacy phone -->
+              <!-- <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Phone</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    #phone
+                    type="number"
+                    class="form-control"
+                    formControlName="pharmaPhone"
+                    [(ngModel)]="phone"  
+                    (change)="getPhone(phone.value)"
+                  />
+                  <div
+                  *ngIf="
+                    updatePharmaForm.controls['pharmaPhone'].touched &&
+                    updatePharmaForm.controls['pharmaPhone'].invalid
+                  "
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="updatePharmaForm.controls['pharmaPhone'].errors?.['required']"
+                  >
+                    Please, Enter your pharmacy phone number.
+                  </small>
+                </div>
+                </div>
+              </div> -->
+              
+              <!-- choose governorate -->
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Current Location:</h6>
+                </div>
+                 <span class="col-sm-9 text-secondary">{{ oldGov }} - {{ oldCity }}</span>
+              </div>
+              
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Governorate</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <select class="form-select mt-2" name="governorates" #selectGov (change)="selectedGov(selectGov.value)">
+                    <option value="">Select Governorate</option>
+                    <option *ngFor="let governorate of governorates" [value]="governorate.governorate_id">{{ governorate.governorate_name }}</option>
+                  </select>
+                </div>
+              </div>
+              <!-- choose city -->
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">City</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <div *ngIf="isCity">
+                    <select class="form-select mt-2" name="governorates" #selectCity (change)="selectedCity(selectCity.value)">
+                      <option value="">Select City</option>
+                      <option *ngFor="let city of cities.cities" [value]="city.city_id">{{ city.city_name }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- street description -->
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Street</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Pharmacy Location (street)"
+                      formControlName="pharmaStreet"
+                      [(ngModel)]="userDate['street']"
+                    />
+                    <div
+                      *ngIf="
+                        updatePharmaForm.controls['pharmaStreet'].touched &&
+                        updatePharmaForm.controls['pharmaStreet'].invalid
+                      "
+                      class="text-danger form-text"
+                    >
+                      <small
+                        *ngIf="updatePharmaForm.controls['pharmaStreet'].errors?.['required']"
+                      >
+                        Please, enter pharmcay location (Street)
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Opening</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="time"
+                    class="form-control"
+                    formControlName="pharmaOpeningTime"
+                    [(ngModel)]="userDate['opening']"
+                  />
+                  <div
+                  *ngIf="
+                    updatePharmaForm.controls['pharmaOpeningTime'].touched &&
+                    updatePharmaForm.controls['pharmaOpeningTime'].invalid
+                  "
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="updatePharmaForm.controls['pharmaOpeningTime'].errors?.['required']"
+                  >
+                    Please, Enter your pharmacy opening time.
+                  </small>
+                </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Closing</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="time"
+                    class="form-control"
+                    formControlName="pharmaClosingTime"
+                    [(ngModel)]="userDate['closing']"
+
+                  />
+                  <div
+                  *ngIf="
+                    updatePharmaForm.controls['pharmaClosingTime'].touched &&
+                    updatePharmaForm.controls['pharmaClosingTime'].invalid
+                  "
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="updatePharmaForm.controls['pharmaClosingTime'].errors?.['required']"
+                  >
+                    Please, Enter your pharmacy Closing time.
+                  </small>
+                </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Off Days</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <div>
+                    <div class="day-container">
+                      <span class="px-3 py-2 bg-info text-white me-2" *ngFor="let selectedDay of selectedDays">
+                        {{selectedDay.day}}
+                        <span class="rounded-5 bg-white text-black cursor p-2" (click)="removeDay(selectedDay.id)">x</span>
+                      </span>
+                    </div>
+                    <select class="form-select mt-2" name="dayOff" #pharmaDaysOff id="" (change)="chooseDay(pharmaDaysOff.value)">
+                      <option value="0" selected>Select the Closing Day</option>
+                      <option value={{day.id}} *ngFor="let day of days.data">{{day.day}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Password</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="password"
+                    class="form-control"
+                    formControlName="pharmaPass"
+  
+                  />
+                  <div
+                  *ngIf="
+                    updatePharmaForm.controls['pharmaPass'].touched &&
+                    updatePharmaForm.controls['pharmaPass'].invalid
+                  "
+                  class="text-danger form-text"
+                >
+                  <small
+                    *ngIf="updatePharmaForm.controls['pharmaPass'].value==0"
+                  >
+                    Password is required
+                  </small>
+                  
+                </div>
+                <div>
+                  <small *ngIf="passFail"  class="text-danger form-text">
+                      Password must contain 8 characters (at least on letter)
+                    </small>
+                </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9 text-secondary">
+                  <input
+                    type="submit"
+                    class="btn btnEdit"
+                    value="Save Changes"
+                  />
+                </div>
+              </div>
+          </form>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  

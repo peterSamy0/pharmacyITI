@@ -32,12 +32,12 @@ export class SigninAsPharmacyComponent {
   checkPharma(){
     let pharmaEmail =this.signinForm.controls['pharmaEmail'].value;
      let pharmaPass =this.signinForm.controls['pharmaPass'].value;
-    const body = {
+    const credentials = {
       "email": pharmaEmail,
       "password":   pharmaPass     
     } 
     const token = localStorage.getItem('access_token');
-    this.http.post(`http://localhost:8000/api/auth/login`, body, {
+    this.http.post(`http://localhost:8000/api/auth/login`, credentials, {
       headers: {
         Authorization: `Bearer ${token}`
       }

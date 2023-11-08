@@ -29,6 +29,9 @@ import { ViewDeliveryDataComponent } from './profile/delivery/view-delivery-data
 import { EditClientDataComponent } from './profile/client/edit-client-data/edit-client-data.component';
 import { EditPharmacyDataComponent } from './profile/pharmacy/edit-pharmacy-data/edit-pharmacy-data.component';
 import { EditDeliveryDataComponent } from './profile/delivery/edit-delivery-data/edit-delivery-data.component';
+import { AuthGuard } from './guard/auth.guard';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const routes: Routes = [
 
@@ -74,7 +77,9 @@ const routes: Routes = [
   },
   {
     path :'listproduct',
-    component : ListProductsComponent
+    component : ListProductsComponent,
+    canActivate: [AuthGuard]
+
   },
   {
     path: "pharmacyDetails",
@@ -104,15 +109,18 @@ const routes: Routes = [
   },
   {
     path: "addProduct",
-    component: AddProductsComponent
+    component: AddProductsComponent,
+    canActivate: [AuthGuard]
   },  
   {
     path: "editProduct/:id",
-    component: EditProductsComponent
+    component: EditProductsComponent,
+    canActivate: [AuthGuard]
   }, 
   {
     path: "orders",
-    component: OrdersComponent
+    component: OrdersComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "signup-delivery",
@@ -127,28 +135,47 @@ const routes: Routes = [
     component : PaymentComponent
   },
   {
-    path : "client-profile",
-    component: ViewClientDataComponent
+
+    path : "client-profile/:id",
+    component: ViewClientDataComponent,
+    canActivate: [AuthGuard]
+
   },
   {
-    path : "pharmacy-profile",
-    component: ViewPharmacyDataComponent
+    path : "pharmacy-profile/:id",
+    component: ViewPharmacyDataComponent,
+    canActivate: [AuthGuard]
+
   },
   {
-    path : "delivery-profile",
-    component: ViewDeliveryDataComponent
+    path : "delivery-profile/:id",
+    component: ViewDeliveryDataComponent,
+    canActivate: [AuthGuard]
+
   },
   {
-    path : "edit-personal-data",
-    component: EditClientDataComponent
+    path : "edit-personal-data/:id",
+    component: EditClientDataComponent,
+    canActivate: [AuthGuard]
+
   },
   {
-    path : "edit-pharmacy-data",
-    component: EditPharmacyDataComponent
+    path : "edit-pharmacy-data/:id",
+    component: EditPharmacyDataComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path : "edit-delivery-data",
-    component: EditDeliveryDataComponent
+    path : "edit-delivery-data/:id",
+    component: EditDeliveryDataComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path : "contact-us",
+    component: ContactUsComponent
+  },
+  {
+    path : "about-us",
+    component: AboutUsComponent
   },
 ];
 
