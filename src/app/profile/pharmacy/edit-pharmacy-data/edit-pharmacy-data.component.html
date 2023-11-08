@@ -11,18 +11,18 @@
                   class="square"
                   width="50%"
                 />
-                <!-- <div class="mt-3">
-                  <h4>{{ pharmaId.pharmacyName }}</h4>
-                  <p class="text-secondary mb-1">{{ pharmaId.email }}</p>
+                <div class="mt-3">
+                  <h4>{{ userDate.pharmacy_name }}</h4>
+                  <p class="text-secondary mb-1">{{ userDate.pharmacy_email }}</p>
                   <p class="text-muted font-size-sm">
-                    {{ pharmaId.city }}, {{ pharmaId.governorate }}
+                    {{ userDate.city }}, {{ userDate.Governorate }}
                   </p>
-                </div> -->
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8" *ngIf="loadingDate">
           
             <div class="card-body">
               <form
@@ -39,6 +39,8 @@
                     type="text"
                     class="form-control"
                     formControlName="pharmaName"
+                    [(ngModel)]="userDate['pharmacy_name']"
+
                   />
                   <div
                   *ngIf="
@@ -53,11 +55,6 @@
                     please, enter your pharmacy name
                   </small>
                 </div>
-                <!-- <div>
-              <small *ngIf="userFullNameFail"  class="text-danger form-text">
-                Invalid Full Name Format
-               </small>
-              </div> -->
               </div>
               
                 </div>
@@ -70,7 +67,7 @@
                     type="text"
                     class="form-control"
                     formControlName="pharmaEmail"
-  
+                    [(ngModel)]="userDate['pharmacy_email']"
                   />
                   <div
                   *ngIf="
@@ -101,6 +98,8 @@
                     type="number"
                     class="form-control"
                     formControlName="pharmaLicense"
+                    [(ngModel)]="userDate['licence_number']"
+
                   />
                   <div
                   *ngIf="
@@ -128,10 +127,10 @@
                     <input
                       type="number"
                       class="form-control"
-                      placeholder="Enter Pharmacy Bank Account Number"
                       formControlName="pharmaBankAccount"
+                      [(ngModel)]="userDate['bank_account']"
                     />
-                    <!-- <div
+                    <div
                       *ngIf="
                         updatePharmaForm.controls['pharmaBankAccount'].touched &&
                         updatePharmaForm.controls['pharmaBankAccount'].invalid
@@ -143,23 +142,25 @@
                       >
                         Please, Enter Bank Account Number
                       </small>
-                    </div> -->
+                    </div>
                   </div>
                 </div>
               </div>
 
              
-
-              <div class="row mb-3">
+              <!-- pharmacy phone -->
+              <!-- <div class="row mb-3">
                 <div class="col-sm-3">
                   <h6 class="mb-0">Phone</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <input
+                    #phone
                     type="number"
                     class="form-control"
                     formControlName="pharmaPhone"
-  
+                    [(ngModel)]="phone"  
+                    (change)="getPhone(phone.value)"
                   />
                   <div
                   *ngIf="
@@ -175,43 +176,24 @@
                   </small>
                 </div>
                 </div>
-              </div>
-
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">
-                    Ready to take orders</h6>
-                </div>
-                <div class="col-sm-9 text-secondary"> 
-                  <select class="form-control" formControlName="avaliableToDeliver">
-                    <option value="">Select</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                  </select>
-                  <div
-                    *ngIf="
-                      updatePharmaForm.controls['avaliableToDeliver'].touched &&
-                      updatePharmaForm.controls['avaliableToDeliver'].invalid"
-                    class="text-danger form-text"
-                  >
-                    <small
-                      *ngIf="updatePharmaForm.controls['avaliableToDeliver'].errors?.['required']"
-                    >
-                      Please, decide whether your pharmacy is open to work or not
-                    </small>
-                  </div>
-                </div>
-              </div>
+              </div> -->
               
               <!-- choose governorate -->
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Current Location:</h6>
+                </div>
+                 <span class="col-sm-9 text-secondary">{{ oldGov }} - {{ oldCity }}</span>
+              </div>
+              
               <div class="row mb-3">
                 <div class="col-sm-3">
                   <h6 class="mb-0">Governorate</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <select class="form-select mt-2" name="governorates" #selectGov (change)="selectedGov(selectGov.value)" id="">
-                    <option value="">Select Governorate </option>
-                    <option *ngFor="let governorate of governorates" [value]="governorate.governorate_id" >{{governorate.governorate_name}}</option>
+                  <select class="form-select mt-2" name="governorates" #selectGov (change)="selectedGov(selectGov.value)">
+                    <option value="">Select Governorate</option>
+                    <option *ngFor="let governorate of governorates" [value]="governorate.governorate_id">{{ governorate.governorate_name }}</option>
                   </select>
                 </div>
               </div>
@@ -220,13 +202,13 @@
                 <div class="col-sm-3">
                   <h6 class="mb-0">City</h6>
                 </div>
-                <div class="col-sm-9 text-secondary border">
+                <div class="col-sm-9 text-secondary">
                   <div *ngIf="isCity">
-                    <select class="form-select mt-2" name="governorates" #selectCity (change)="selectedCity(selectCity.value)" id="">
-                      <option value="">Select City </option>
-                      <option *ngFor="let city of cities.data.cities" [value]="city.city_id" >{{city.city_name}}</option>
+                    <select class="form-select mt-2" name="governorates" #selectCity (change)="selectedCity(selectCity.value)">
+                      <option value="">Select City</option>
+                      <option *ngFor="let city of cities.cities" [value]="city.city_id">{{ city.city_name }}</option>
                     </select>
-                </div>
+                  </div>
                 </div>
               </div>
               <!-- street description -->
@@ -241,6 +223,7 @@
                       class="form-control"
                       placeholder="Enter Pharmacy Location (street)"
                       formControlName="pharmaStreet"
+                      [(ngModel)]="userDate['street']"
                     />
                     <div
                       *ngIf="
@@ -268,6 +251,7 @@
                     type="time"
                     class="form-control"
                     formControlName="pharmaOpeningTime"
+                    [(ngModel)]="userDate['opening']"
                   />
                   <div
                   *ngIf="
@@ -293,6 +277,8 @@
                     type="time"
                     class="form-control"
                     formControlName="pharmaClosingTime"
+                    [(ngModel)]="userDate['closing']"
+
                   />
                   <div
                   *ngIf="

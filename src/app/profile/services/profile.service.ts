@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import  Swal,{ SweetAlertIcon } from 'sweetalert2';
 
 export interface DeliveryResponse {
   id?: number;
@@ -29,6 +30,9 @@ export interface PharmacyResponse {
   providedIn: 'root',
 })
 export class ProfileService {
+
+  apiUrl: string = 'http://127.0.0.1:8000/api';
+
   constructor(private httpClient: HttpClient) {}
 
   getPharmacy(id: number) {
@@ -61,4 +65,41 @@ export class ProfileService {
     
     return this.httpClient.put(`http://localhost:8000/api/deliveries/${id}`, body)
    }
+
+    // api for governorates
+    getGovernorates(){
+      return this.httpClient.get(`${this.apiUrl}/governorates`)
+    }
+
+    // get days
+    getDays(){
+      return this.httpClient.get(`${this.apiUrl}/days`)
+    }
+
+    // dropdown list of cities in  governorate 
+    selectedGov(val: any){
+      return this.httpClient.get(`${this.apiUrl}/governorates/${val}`)
+    }
+
+    // update pharmacy
+    updatePharmacy(val:any, id:any){
+      return this.httpClient.put(`${this.apiUrl}/pharmacies/${id}`, val)
+    }
+
+    // get user data
+    getUserData(val:any){
+      return this.httpClient.get(`${this.apiUrl}/pharmacies/${val}`)
+    }
+
+
+
+    // alert for errors
+    errorAlert(){
+      Swal.fire({
+        title: 'Error!',
+        text: 'invaled data',
+        icon: 'error',
+        confirmButtonText: 'Cool'
+      })
+    }
 }
