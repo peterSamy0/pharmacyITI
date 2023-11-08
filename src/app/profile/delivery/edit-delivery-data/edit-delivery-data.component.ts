@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import deliveriesData from '../../../../assets/json/users.json';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { ProfileService } from '../../services/profile.service';
 @Component({
   selector: 'app-edit-delivery-data',
   templateUrl: './edit-delivery-data.component.html',
@@ -14,11 +16,14 @@ export class EditDeliveryDataComponent {
   passFail: boolean = false;
   userFullNameFail: boolean = false;
   notAllDataEntered: boolean = false;
-
-  constructor(private activeRoute: ActivatedRoute, private router: Router) {
+  id!: number;
+  deliveryId!:any;
+  availableToDeliver !: boolean;
+  constructor(private activeRoute: ActivatedRoute, private router: Router, private profileService: ProfileService,
+    private http: HttpClient) {
     this.updateDeliveryForm = new FormGroup({
       deliveryFullName: new FormControl('', [Validators.required]),
-      deliveryUserName: new FormControl('', [Validators.required]),
+      // deliveryUserName: new FormControl('', [Validators.required]),
       deliveryPhone: new FormControl('', [Validators.required]),
       deliveryEmail: new FormControl('', [Validators.required]),
       deliveryCity: new FormControl('', [Validators.required]),
@@ -30,17 +35,29 @@ export class EditDeliveryDataComponent {
 
   ngOnInit() {
     console.log(this.activeRoute.snapshot.params['id']);
+    this.id = this.activeRoute.snapshot.params['id'];
+    this.profileService.getDelivery(this.id).subscribe((res: any) => {
+      this.deliveryId = res.data;
+      console.log(this.deliveryId);
+         if (this.deliveryId.available== 0){
+          this.availableToDeliver = false;
+          console.log(this.availableToDeliver)
+         }else{
+          this.availableToDeliver = true;
+         }
+
+    });
+    
   }
 
-  deliveryId: any = deliveriesData[this.activeRoute.snapshot.params['id'] - 1];
   update() {
     console.log(this.updateDeliveryForm.value);
     let deliveryFullName =this.updateDeliveryForm.controls['deliveryFullName'].value;
     let deliveryEmail = this.updateDeliveryForm.controls['deliveryEmail'].value;
-    let deliveryUserName =this.updateDeliveryForm.controls['deliveryUserName'].value;
+    // let deliveryUserName =this.updateDeliveryForm.controls['deliveryUserName'].value;
     let deliveryPhone = this.updateDeliveryForm.controls['deliveryPhone'].value;
     let deliveryCity = this.updateDeliveryForm.controls['deliveryCity'].value;
-    let deliveryPass = this.updateDeliveryForm.controls['deliveryPass'].value;
+    // let deliveryPass = this.updateDeliveryForm.controls['deliveryPass'].value;
     let deliveryGovern = this.updateDeliveryForm.controls['deliveryGovern'].value;
     let availability =this.updateDeliveryForm.controls['avaliableToDeliver'].value;
 
@@ -52,28 +69,32 @@ export class EditDeliveryDataComponent {
     if (!deliveryEmail.match(emailPattern)) {
       console.log('invalid email format');
       this.emailFail = true;
-    } else if (!deliveryPass.match(passPattern)) {
-      console.log('wrong password format');
-      this.passFail = true;
-    } else if (!deliveryFullName.match(fullNamePattern)) {
+    } 
+    // else if (!deliveryPass.match(passPattern)) {
+    //   console.log('wrong password format');
+    //   this.passFail = true;
+    // }
+    
+    else if (!deliveryFullName.match(fullNamePattern)) {
       console.log('wrong full name format');
       this.userFullNameFail = true;
-    } else if (
+    } 
+    else if (
       deliveryEmail &&
-      deliveryUserName &&
+      // deliveryUserName &&
       deliveryFullName &&
       deliveryGovern&&
       deliveryCity &&
       deliveryPhone &&
-      deliveryPass &&
+      // deliveryPass &&
       availability
     ) {
       let updatedData = {
         id: this.activeRoute.snapshot.params['id'],
-        userName: deliveryUserName,
-        userPass: deliveryPass,
+        // userName: deliveryUserName,
+        // userPass: deliveryPass,
         fullName: deliveryFullName,
-        gender: this.deliveryId.gender,
+        // gender: this.deliveryId.gender,
         email: deliveryEmail,
         phone: deliveryPhone,
         city: deliveryCity,

@@ -52,4 +52,13 @@ export class ProfileService {
   deleteClient(id : number) {
     return this.httpClient.delete(`http://127.0.0.1:8000/api/clients/${id}`);
   }
+
+  updateClient( id: number,body:any){
+    
+   return this.httpClient.put(`http://localhost:8000/api/clients/${id}`, body)
+  }
+  updateDelivery( id: number,body:any){
+    
+    return this.httpClient.put(`http://localhost:8000/api/deliveries/${id}`, body)
+   }
 }
