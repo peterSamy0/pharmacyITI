@@ -96,7 +96,7 @@
                             class="btn btn-primary"
                             (click)="deleteProduct()"
                             data-bs-toggle="modal"
-                            data-bs-target="#deleteproduct"
+                            [attr.data-bs-target]="'#deleteproduct' + product.id"
                           >
                             Delete
                           </button>

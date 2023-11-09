@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ServiceService {
-  url2: string = "https://retoolapi.dev/UrMs5b/data";
+  url2: string = "http://localhost:8000/api/orders";
 
   constructor(private http: HttpClient) { }
 

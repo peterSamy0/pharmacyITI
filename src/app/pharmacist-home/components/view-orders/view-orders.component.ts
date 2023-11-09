@@ -21,10 +21,25 @@ export class ViewOrdersComponent {
       (res) => {
         this.orders = res;
         this.isLoading = false;
+        this.orders = Array(...this.orders);
       },
       (error) => {
         console.error('Error:', error);
       }
     );
+  }
+  btnColor(status:string) {
+    switch (status) {
+      case 'pending':
+        return 'warning';
+      case 'accepted':
+        return 'primary';
+      case 'withDelivery':
+        return 'danger';
+      case 'delivered':
+        return 'success';
+      default:
+        return 'black';
+    }
   }
 }

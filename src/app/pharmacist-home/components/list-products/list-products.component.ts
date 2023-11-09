@@ -37,7 +37,7 @@ export class ListProductsComponent {
   }
 
 delete(productId:number){
-  productId = this.deleteId
+  this.deleteId = productId ; 
 }
   deleteProduct() {
    const productId=this.deleteId;
