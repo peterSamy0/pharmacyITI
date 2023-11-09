@@ -1,0 +1,22 @@
+table td,
+table th {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: rgb(73, 99, 102);
+  text-align: center;
+}
+tbody td {
+  font-weight: 500;
+  color: rgb(73, 99, 102);
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #419197;
+  margin-top: 5px;
+}
+
+.intro {
+  margin-top: 70px;
+  /* background-color: #F5F7F8; */
+}

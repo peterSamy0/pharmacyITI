@@ -97,7 +97,6 @@ export class SignupAsDeliveryComponent {
       });
     }else{
       this.notAllDataEntered = true;
-
     }
   }
 }

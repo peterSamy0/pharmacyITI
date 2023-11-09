@@ -11,8 +11,13 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent {
   counter:number = 0;
+  userID!: number;
   faCartShopping = faCartShopping;
-  constructor(private cartService: CartService , private htttp: HttpClient, private router: Router){
+  constructor(
+    private cartService: CartService , 
+    private htttp: HttpClient, 
+    private router: Router
+    ){
     this.cartService.cartItemCount.subscribe(data => this.counter = data);
   };
   
@@ -20,6 +25,7 @@ export class HeaderComponent {
   
   ngOnInit(){
     this.role = localStorage.getItem('role');
+    this.userID = Number(localStorage.getItem('pharmacy_id'));
   }
   
   logOut(){
@@ -33,4 +39,7 @@ export class HeaderComponent {
     // });
   }
 
+  goToProfile(){
+    this.router.navigate([`pharmacy-profile/${this.userID}`])
+  }
 }

@@ -3,7 +3,7 @@
     <a class="nav-link py-1 px-3 fs-3  logoDiv rounded-end-5 fw-bolder bg-white" href="#">
 
       <img src="assets/img/logo.png" alt="" class="bg-transparent " width="60px" height="60px">
-      Pharma 
+      Pharma A
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -45,16 +45,16 @@
           </a>
         </li>
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="role">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="assets/img/logoImg.png" width="40px" length="40px" alt="" class="rounded-5">
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item text-black" href="#">profile</a></li>
+            <li class="dropdown-item text-black" (click)="goToProfile()">profile</li>
             <li><a class="nav-link text-black cursor" (click)="logOut()" *ngIf="role">LogOut</a></li>
           </ul>
         </li>
-      
+
       </ul>
     </div>
   </div>

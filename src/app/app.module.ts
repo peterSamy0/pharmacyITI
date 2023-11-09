@@ -42,6 +42,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     MatCheckboxModule,
     BrowserAnimationsModule,
     ProfileModule
+
     // AuthModule
   ],
   providers: [],

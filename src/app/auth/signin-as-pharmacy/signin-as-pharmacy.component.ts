@@ -50,6 +50,7 @@ export class SigninAsPharmacyComponent {
             localStorage.setItem('token', this.tokenKey);
             localStorage.setItem('role', role);
             localStorage.setItem('user_id', response['user_id']);
+            localStorage.setItem('pharmacy_id', response['pharmacy_id']);
             // this.router.navigate(['/']);
             window.location.href = '/';
           }else{

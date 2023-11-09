@@ -76,10 +76,8 @@ const routes: Routes = [
     component : CartpageComponent
   },
   {
-    path :'listproduct',
-    component : ListProductsComponent,
-    canActivate: [AuthGuard]
-
+    path :'listproduct/:id',
+    component : ListProductsComponent
   },
   {
     path: "pharmacyDetails",
@@ -108,9 +106,8 @@ const routes: Routes = [
     ]
   },
   {
-    path: "addProduct",
-    component: AddProductsComponent,
-    canActivate: [AuthGuard]
+    path: "addProduct/:id",
+    component: AddProductsComponent
   },  
   {
     path: "editProduct/:id",
