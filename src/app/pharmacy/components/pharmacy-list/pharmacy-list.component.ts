@@ -28,6 +28,9 @@ export class PharmacyListComponent{
   cityName: any;
   location: string = "Location";
   data: any= "not yet";
+  page :number=1;
+  totalLength:any;
+
   constructor(private service:ServiceService, private httpClient: HttpClient,
     private dropService: DropDownService,
     private router:Router
@@ -46,7 +49,8 @@ export class PharmacyListComponent{
       
       this.pharmArr = res.data;
 
-     
+      this.totalLength=this.pharmArr;
+
       this.pharmArr.forEach((e:any,i:any) => {
         e.id=i+1;
       });

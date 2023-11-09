@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
 import { SearchPharmaciesPipe } from '../pipes/search-pharmacies.pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { SearchPharmaciesPipe } from '../pipes/search-pharmacies.pipe';
     ReactiveFormsModule,
     FormsModule,
     RouterLink,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxPaginationModule
   ],
   exports: [
     PharmacyListComponent,
