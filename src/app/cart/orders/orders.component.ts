@@ -7,23 +7,27 @@ import { ApiService } from '../servic/api.service';
 })
 export class OrdersComponent {
   allOrders:Array<any> = [];
+  totalLenght:any;
+  page :number=1;
+  isLoading: boolean = true;
   constructor(private apiService: ApiService){
 
   }
   ngOnInit() {
     this.apiService.allOrders().subscribe(data=>{
-      this.allOrders=Object.values(data)});
+      this.allOrders=Object.values(data);
+      this.isLoading = false;});
   }
-  textColor(status:string) {
+  badgeColor(status:string) {
     switch (status) {
       case 'pending':
-        return 'yellow';
+        return 'warning';
       case 'accepted':
-        return 'blue';
+        return 'primary';
       case 'withDelivery':
-        return 'green';
+        return 'danger';
       case 'delivered':
-        return 'black';
+        return 'success';
       default:
         return 'black';
     }

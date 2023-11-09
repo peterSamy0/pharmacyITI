@@ -31,7 +31,7 @@ export class ViewOrdersComponent {
       }
     );
   }
-  btnColor(status:string) {
+  badgeColor(status:string) {
     switch (status) {
       case 'pending':
         return 'warning';

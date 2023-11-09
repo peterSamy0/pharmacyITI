@@ -23,7 +23,7 @@
         <tbody>
           <tr *ngFor="let order of orders | paginate
           : {
-              itemsPerPage: 8,
+              itemsPerPage: 10,
               currentPage: page,
               totalItems: totalLenght
             }, let i = index ">
@@ -33,7 +33,7 @@
             <td>{{order.created_at}}</td>
             <td>
                 <a class="btn btn-warning me-3 text-white fw-bold" href="/viewOrders/{{order.id}}">View Order</a>
-                <span class="badge p-2"[ngClass]="'text-bg-'+btnColor(order.status)">{{order.status}}</span>
+                <span class="badge p-2"[ngClass]="'text-bg-'+badgeColor(order.status)">{{order.status}}</span>
             </td>
           </tr>
         </tbody>
