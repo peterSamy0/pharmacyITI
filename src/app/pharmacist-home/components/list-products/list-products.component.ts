@@ -46,9 +46,15 @@ export class ListProductsComponent {
     );
   }
 
+<<<<<<< HEAD
   openAlert(val:any){
     this.deleteId = val
   }
+=======
+delete(productId:number){
+  this.deleteId = productId ; 
+}
+>>>>>>> e9d66f3e43f8d120d60b74f0624eb9cd420e4289
   deleteProduct() {
     this.medicationService.deleteMedication(this.deleteId).subscribe(
       (res: any) => {

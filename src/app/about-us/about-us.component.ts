@@ -14,7 +14,7 @@ export class AboutUsComponent {
       email: 'fadia@gmail.com',
       phone: '01234567890',
       city: 'New Beni-suef',
-      image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGQ6U069ab415EnAww4pNKZaG8lfGKAb6r1677sNerE3FTxEc3olNK2j945GfOnuR8VQU&usqp=CAU'
+      image:'https://www.pngall.com/wp-content/uploads/5/Profile-Female-PNG-Image.png'
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ export class AboutUsComponent {
       email: 'nehal@gmail.com',
       phone: '01234567890',
       city: 'New Beni-suef',
-      image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL7kJnRQt30xNQ8zuOtmVdWh5QK9AZfx3WMR4r7iS2GLNhLeZPrD89K1UqTbJ1kSX3lws&usqp=CAU'
+      image:'https://www.pngall.com/wp-content/uploads/5/User-Profile.png'
     },
     {
       id: 3,
@@ -32,7 +32,7 @@ export class AboutUsComponent {
       email: 'peter@gmail.com',
       phone: '01234567890',
       city: 'New Beni-suef',
-      image:'https://png.pngtree.com/png-vector/20190723/ourmid/pngtree-flat-profile-icon--vector-png-image_1583357.jpg'
+      image:'https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG-Free-Download.png'
 
     },
     {
@@ -42,7 +42,7 @@ export class AboutUsComponent {
       email: 'husain@gmail.com',
       phone: '01234567890',
       city: 'New Beni-suef',
-      image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMqld_iJlscdWZ7mXFbyLoak9ov8fuIhgrPyH_VzM86YPTxeCsMKuuch4RcPdLjfIqM3A&usqp=CAU'
+      image:'https://www.pngall.com/wp-content/uploads/5/Profile-Transparent.png'
 
     },
     {
@@ -52,7 +52,7 @@ export class AboutUsComponent {
       email: 'mhmd@gmail.com',
       phone: '01234567890',
       city: 'New Beni-suef',
-      image:'https://png.pngtree.com/png-clipart/20191122/original/pngtree-user-vector-icon-with-white-background-png-image_5168884.jpg'
+      image:'https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png'
 
     }
   ];

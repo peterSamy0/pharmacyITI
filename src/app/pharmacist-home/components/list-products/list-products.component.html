@@ -43,12 +43,27 @@
                   />
                 </td>
                 <td>
+<<<<<<< HEAD
                   <button 
                     type="button" 
                     class="btn btn-secondary ms-1" 
                     data-bs-toggle="modal" 
                     data-bs-target="#deleteproduct" 
                     (click)="openAlert(product.medicine_id)"
+=======
+                  <a href="addProduct" class="btn btn-secondary me-1">
+                    <fa-icon [icon]="faAdd"></fa-icon
+                  ></a>
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-secondary ms-1"
+                    data-bs-toggle="modal"
+                    [attr.data-bs-target]="'#deleteproduct' + product.id"
+                   
+                    (click)="delete(product.id)"
+>>>>>>> e9d66f3e43f8d120d60b74f0624eb9cd420e4289
                   >
                     <fa-icon [icon]="faDelete"></fa-icon>
                   </button>
@@ -93,7 +108,7 @@
                             class="btn btn-danger"
                             (click)="deleteProduct()"
                             data-bs-toggle="modal"
-                            data-bs-target="#deleteproduct"
+                            [attr.data-bs-target]="'#deleteproduct' + product.id"
                           >
                             Delete
                           </button>

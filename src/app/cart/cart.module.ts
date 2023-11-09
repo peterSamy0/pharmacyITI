@@ -4,6 +4,7 @@ import { CartpageComponent } from './cartpage/cartpage.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { OrdersComponent } from './orders/orders.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { OrdersComponent } from './orders/orders.component';
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule
+    RouterModule,
+    NgxPaginationModule
   ]
 })
 export class CartModule { }

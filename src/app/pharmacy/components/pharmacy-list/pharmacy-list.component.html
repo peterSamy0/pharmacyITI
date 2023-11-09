@@ -1,5 +1,59 @@
-<div class="container overflow-y-scroll" style="height:150vh; overflow-x: hidden;">
+<div class="row">
+  <aside class="list-group px-3 col-2 text-white" style="background-color: #419197;">
+    <h3 class="p-3 ">Governorates</h3>
+    <ul class="list-group-flush" style="background-color:#419197">
+      <li (click)="activate($event)" class="govAnchor list-group-item" [id]="governorate.id" *ngFor="let governorate of governorates" [ngClass]="{'active': governorate.active}">
+        <a [id]="governorate.id">{{governorate.name}}</a>
+      </li>
+      
+      
+  
+    </ul>
+  </aside>
+  <div class="container col-10">
+    <app-governorate [selectedGov]="selectedGov"></app-governorate>
+  </div>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container overflow-y-scroll" style="height:150vh; overflow-x: hidden;">
     <div class="d-flex flex-wrap justify-content-around" >
       <app-pharmacy-card  class="my-3" style="width:300px" *ngFor="let item of pharmArr" [item]="item"></app-pharmacy-card>
     </div>
-  </div>
+</div> -->
