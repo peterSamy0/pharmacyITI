@@ -2,7 +2,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module'; 
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -12,16 +11,12 @@ import { PharmacyDetailsModule } from './pharmacy/pharmacy-details.module';
 import { CartModule } from './cart/cart.module';
 import { PharmacistHomeModule } from './pharmacist-home/pharmacist-home.module';
 import { ProfileComponent } from './profile/profile.component';
-// import { GovernorateComponent } from './governorate/governorate.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ProfileModule } from './profile/profile.module';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-// import { CityComponent } from './city/city.component';
-// import { SearchPharmaciesPipe } from './pipes/search-pharmacies.pipe';
-// import { SearchPharmaciesPipe } from './search-pharmacies.pipe';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -48,8 +43,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     PharmacistHomeModule,
     MatCheckboxModule,
     BrowserAnimationsModule,
-    ProfileModule
-    // AuthModule
+    ProfileModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

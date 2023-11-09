@@ -6,15 +6,13 @@ import { SignupAsClientComponent } from './signup-as-client/signup-as-client.com
 import { SignupAsPharmacyComponent } from './signup-as-pharmacy/signup-as-pharmacy.component';
 import { SigninAsPharmacyComponent } from './signin-as-pharmacy/signin-as-pharmacy.component';
 // import { SigninComponent } from './signin/signin.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component' 
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SignupAsDeliveryComponent } from './signup-as-delivery/signup-as-delivery.component';
 import { SigninAsDeliveryComponent } from './signin-as-delivery/signin-as-delivery.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     SigninAsClientComponent,
@@ -29,12 +27,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
   ],
   imports: [
-    CommonModule, 
     ReactiveFormsModule,
     FormsModule,
+    CommonModule, 
     RouterModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   exports:[
     SigninAsClientComponent,
