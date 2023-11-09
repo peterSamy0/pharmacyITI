@@ -67,7 +67,12 @@
     <h3>Buy Every Medicine You Need at a Fair Price</h3>
     </div>
 		<div class="row mb-5">
-			<div class="col-md-4" *ngFor="let item of pharmArr | searchPharmacies:searchText">
+			<div class="col-md-4" *ngFor="let item of pharmArr | searchPharmacies:searchText | paginate
+      : {
+          itemsPerPage: 8,
+          currentPage: page,
+          totalItems: totalLength
+        } ">
 				<div class="card text-center mb-5">
           
 					<img src="https://img.freepik.com/premium-vector/set-medicines-clipart_24877-71915.jpg?w=2000" class="card-img-top" alt="...">
@@ -88,7 +93,10 @@
 		
 		</div>
 		<!-- row -->
-		
+    <pagination-controls
+    class="my-pagination text-center"
+    (pageChange)="page = $event"
+  ></pagination-controls>
 		<!-- row -->
 	
 		<!-- row -->

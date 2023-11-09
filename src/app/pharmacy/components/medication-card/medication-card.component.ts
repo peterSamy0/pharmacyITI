@@ -15,6 +15,7 @@ export class MedicationCardComponent {
   addToCart(val:any){
     this.service.addItemToCart(val);
     val.added = true;
+    console.log(val)
   }
 }
 
