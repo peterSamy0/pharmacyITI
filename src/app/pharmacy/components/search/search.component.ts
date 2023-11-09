@@ -7,6 +7,7 @@ import { CarouselService } from '../../services/carousel.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
+  [x: string]: any;
   searchInput!: string;
   filteredItems!: any[];
   products: any = [];

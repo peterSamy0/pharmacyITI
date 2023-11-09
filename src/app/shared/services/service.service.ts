@@ -37,5 +37,10 @@ export class ServiceService {
   getDeliveryData(){
     return this.http.get('https://retoolapi.dev/Eaiv5g/data');
   }
+
+// fetching data using our api
+  getPharmacies(){
+    return this.http.get('http://127.0.0.1:8000/api/pharmacies')
+  }
 }
 

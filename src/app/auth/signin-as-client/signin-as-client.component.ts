@@ -40,7 +40,7 @@ export class SigninAsClientComponent {
       .subscribe(
         (response: any) => {
           const role = response['role'];
-          if (role == 'client') {
+          if (role) {
             localStorage.setItem('token', response['token']);
             localStorage.setItem('user_id', response['user_id']);
             localStorage.setItem('role', response['role']);
@@ -49,7 +49,7 @@ export class SigninAsClientComponent {
           } else {
             Swal.fire({
               title: 'Error!',
-              text: 'you are not a client',
+              text: 'you are not a user',
               icon: 'error',
               confirmButtonText: 'Ok'
             })
