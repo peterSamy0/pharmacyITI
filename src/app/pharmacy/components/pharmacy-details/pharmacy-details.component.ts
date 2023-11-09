@@ -17,6 +17,7 @@ export class PharmacyDetailsComponent {
     .subscribe(data=>
                 {this.pharmacy =
                  Object.values(data)[this.pharmacyId-1];
+                 console.log(this.pharmacy)
                 });
   }
   ngOnInit(){

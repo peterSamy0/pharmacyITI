@@ -75,8 +75,8 @@
 						<h5 class="card-title text-center">{{item.pharmacy_name}}</h5>
 						<p class="card-text text-center" >Address: {{item.city}}, {{item.Governorate}}</p>
             <p class="card-text text-center">Phone: 1234567<p>
-						<a href="#" class="btn btn-md" style="background-color: rgb(97, 152, 159); border: none"
-            >View Products</a>
+						<a class="btn btn-md" style="background-color: rgb(97, 152, 159); border: none"
+            (click)="goToDetails(item.id)">View Products</a>
 					</div>
 				</div>
         <!-- <div *ngIf="item | searchPharmacies:searchText =false">

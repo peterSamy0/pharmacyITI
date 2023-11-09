@@ -7,6 +7,7 @@ import { faAngleRight, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-pharmacy-list',
   templateUrl: './pharmacy-list.component.html',
@@ -29,6 +30,7 @@ export class PharmacyListComponent{
   data: any= "not yet";
   constructor(private service:ServiceService, private httpClient: HttpClient,
     private dropService: DropDownService,
+    private router:Router
    ){
  
   }
@@ -87,6 +89,10 @@ export class PharmacyListComponent{
     this.location = this.cityName + ", " + val
     this.showSubList = false
     this.showList = false;
+  }
+
+  goToDetails(id:number){
+    this.router.navigate(["/pharmacy",id]);
   }
 
   }

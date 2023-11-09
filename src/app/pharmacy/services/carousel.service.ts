@@ -11,8 +11,14 @@ export class CarouselService {
   isBtnClicked:boolean = false;
   constructor(private http: HttpClient) { }
 
-  getData(){
-    return this.http.get(this.url1)
+  
+  // getData(){
+    
+  //   return this.http.get(this.url1)
+  // }
+  getPharmaData(val:any){
+    return this.http.get(`http://127.0.0.1:8000/api/pharmacies/${val}`)
   }
+
 
 }
