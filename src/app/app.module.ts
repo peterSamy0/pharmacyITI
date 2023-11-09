@@ -48,8 +48,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     PharmacistHomeModule,
     MatCheckboxModule,
     BrowserAnimationsModule,
-    ProfileModule
-    // AuthModule
+    ProfileModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
