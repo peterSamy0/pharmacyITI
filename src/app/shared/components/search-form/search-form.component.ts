@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -8,5 +8,6 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 })
 export class SearchFormComponent {
   faSearch = faSearch
-
+  searchText='';
+ 
 }

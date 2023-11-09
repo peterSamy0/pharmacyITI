@@ -5,7 +5,7 @@ import { SigninAsClientComponent } from './signin-as-client/signin-as-client.com
 import { SignupAsClientComponent } from './signup-as-client/signup-as-client.component';
 import { SignupAsPharmacyComponent } from './signup-as-pharmacy/signup-as-pharmacy.component';
 import { SigninAsPharmacyComponent } from './signin-as-pharmacy/signin-as-pharmacy.component';
-import { SigninComponent } from './signin/signin.component';
+// import { SigninComponent } from './signin/signin.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component' 
@@ -21,7 +21,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     SignupAsClientComponent,
     SignupAsPharmacyComponent,
     SigninAsPharmacyComponent,
-    SigninComponent,
+    // SigninComponent,
     SignupComponent,
     SignupAsDeliveryComponent,
     SigninAsDeliveryComponent,
@@ -41,7 +41,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     SignupAsClientComponent,
     SignupAsPharmacyComponent,
     SigninAsPharmacyComponent,
-    SigninComponent,
+    // SigninComponent,
     SignupComponent
   ]
 })

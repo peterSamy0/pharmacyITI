@@ -6,6 +6,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DropDownComponent } from './components/drop-down/drop-down.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { RouterModule } from '@angular/router';
+import { SearchPipe } from '../pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,11 +15,14 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     DropDownComponent,
     SearchFormComponent,
+    // SearchPipe
+
   ],
   imports: [
     RouterModule,
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   exports: [
     HeaderComponent,

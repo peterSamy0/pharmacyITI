@@ -14,8 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
-import { GovernorateComponent } from '../governorate/governorate.component';
-import { CityComponent } from '../city/city.component';
+import { SearchPharmaciesPipe } from '../pipes/search-pharmacies.pipe';
 
 
 @NgModule({
@@ -29,8 +28,9 @@ import { CityComponent } from '../city/city.component';
     PharmacyListComponent,
     CategoryComponent,
     MedicationCardComponent,
-    GovernorateComponent,
-    CityComponent
+    // GovernorateComponent,
+    // CityComponent
+    SearchPharmaciesPipe
   ],
   imports: [
     CommonModule,

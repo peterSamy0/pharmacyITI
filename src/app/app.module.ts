@@ -20,6 +20,8 @@ import { ProfileModule } from './profile/profile.module';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 // import { CityComponent } from './city/city.component';
+// import { SearchPharmaciesPipe } from './pipes/search-pharmacies.pipe';
+// import { SearchPharmaciesPipe } from './search-pharmacies.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     AboutUsComponent,
     // CityComponent,
     // GovernorateComponent
+    // SearchPharmaciesPipe,
+    // SearchPharmaciesPipe,
   ],
   imports: [
     BrowserModule,
