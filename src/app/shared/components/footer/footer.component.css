@@ -8,9 +8,7 @@
     --bodyFont: 16px;
     --footerFont: 14px;
      */
-.container-fluid{
-    background-color: #419197;
-}
+
 h4{
     color: white;
     text-align: center;
@@ -27,4 +25,34 @@ h4{
     color: white;
     padding-bottom:25px;
     margin-top:25px;
+  }
+  .container-fluid {
+    background-color: #5fb8be;
+    color: #fff;
+    padding: 20px 0;
+  }
+
+  .footer {
+    background-color: #419197;
+    padding: 20px 0;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .social-icon {
+    font-size: 24px;
+    color: #fff;
+    margin-right: 20px;
+  }
+
+  .copyright {
+    text-align: center;
+    padding: 10px 0;
+  }
+  .row:hover{
+    background-color: #5fb8be;
   }

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CartService } from '../servic/cart.service';
 import { CartItem } from 'src/app/interface/CartItem';
 import { ApiService } from '../servic/api.service';
+import { Router } from '@angular/router'; // Import the Router module
+
 
 @Component({
   selector: 'app-cartpage',
@@ -16,7 +18,7 @@ export class CartpageComponent {
   // array of orderMedications:
   orderMedications: Array<object> = [];
 
-  constructor(private cartService: CartService, private api:ApiService) {}
+  constructor(private cartService: CartService, private api:ApiService,private router: Router) {}
 
   ngOnInit(): void {
     // Retrieve cart items from the CartService
@@ -78,7 +80,13 @@ export class CartpageComponent {
       this.orderMedications.push(obj);
       
     })
+    alert('Thanks for your purchase! The order will be delivered soon.');
+    this.router.navigate(['/home']); // Redirect to the home page
     this.submitOrder();
+  }
+  payWithCard() {
+    // Redirect to the payment page
+    this.router.navigate(['/payment']);
   }
 
 

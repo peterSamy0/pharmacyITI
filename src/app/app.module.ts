@@ -19,6 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ProfileModule } from './profile/profile.module';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { PaymentModule } from './payment/payment.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     PharmacistHomeModule,
     MatCheckboxModule,
     BrowserAnimationsModule,
-    ProfileModule
+    ProfileModule,
+    PaymentModule
     // AuthModule
   ],
   providers: [],

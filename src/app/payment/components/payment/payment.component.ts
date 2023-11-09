@@ -1,62 +1,76 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
-// import { ApiService } from 'path-to-your-api-service'; // Import your API service for payment processing
+import { HttpClient } from '@angular/common/http';
+import { loadStripe, Stripe, StripeElements, StripeCardElement } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent {
-  // paymentForm: FormGroup;
+  @ViewChild('cardElement')
+  cardElement!: ElementRef;
+  paymentForm: FormGroup;
+  stripe: Stripe | null = null;
+  card: StripeCardElement | null = null;
 
-  // constructor(private fb: FormBuilder, private router: Router, private apiService: ApiService) {
-  //   this.paymentForm = this.fb.group({
-  //     email: ['', [Validators.required, Validators.email]],
-  //     name: ['', Validators.required],
-  //     cardNumber: ['', Validators.required],
-  //     exp: ['', Validators.required],
-  //     cvv: ['', Validators.required]
-  //   });
-  // }
+  constructor(private fb: FormBuilder, private http: HttpClient) {
+    this.paymentForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      name: ['', Validators.required],
+      exp: ['', Validators.required], // Add this line for the 'exp' field
+      cvv: ['', Validators.required], // Add this line for the 'cvv' field
 
-  // onSubmit() {
-  //   if (this.paymentForm.valid) {
-  //     // You can access the payment details from this.paymentForm.value
-  //     const paymentDetails = this.paymentForm.value;
+    });
+  }
 
-  //     // Send the payment details to your server or payment gateway for processing
-  //     this.apiService.processPayment(paymentDetails).subscribe(
-  //       (response: any) => {
-  //         // Payment was successful
-  //         console.log('Payment successful:', response);
+  async ngOnInit() {
+    this.stripe = await loadStripe('pk_test_51OAJmQIjYA1iuKSADjQU12ZvCU2S51PFLNZjJutxbNbkxL2VL26zr8GVdlC9f1uTiE5ZyNFRPbdoGUqOshCFQ9LR00sDAlY7vq');
+  }
 
-  //         // You can optionally navigate to a confirmation page
-  //         this.router.navigate(['/payment-confirmation']);
-  //       },
-  //       (error: any) => {
-  //         // Payment failed
-  //         console.error('Payment failed:', error);
-  //       }
-  //     );
-  //   }
-  // }
-  // alertConfirmation() {
-  //   Swal.fire({
-  //     title: 'Are you sure?',
-  //     text: 'This process is irreversible.',
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonText: 'Yes, go ahead.',
-  //     cancelButtonText: 'No, let me think',
-  //   }).then((result) => {
-  //     if (result.value) {
-  //       Swal.fire('Removed!', 'Product removed successfully.', 'success');
-  //     } else if (result.dismiss === Swal.DismissReason.cancel) {
-  //       Swal.fire('Cancelled', 'Product still in our database.)', 'error');
-  //     }
-  //   });
-  // }
+  async ngAfterViewInit() {
+    if (this.stripe) {
+      const elements: StripeElements = this.stripe.elements();
+      this.card = elements.create('card', {
+        style: {
+          base: {
+            fontSize: '16px',
+          },
+        },
+      });
+  
+      if (this.card) {
+        this.card.mount(this.cardElement.nativeElement);
+      } else {
+        console.error('Stripe Card Element is null. Check your Stripe setup.');
+      }
+    } else {
+      console.error('Stripe is not initialized. Check your Stripe setup.');
+    }
+  }
+
+  async submitPayment() {
+    try {
+      const stripe = this.stripe;
+      if (stripe && this.card) {
+        const { token, error } = await stripe.createToken(this.card);
+
+        if (error) {
+          console.error(error);
+        } else {
+          this.http.post('http://localhost:8000/api/payment/process', { token: token.id, secretKey: 'sk_test_51OAJmQIjYA1iuKSAYbGwvYX1eWgHH0nbJaHqeq8s9nFpEfNTA1iu0SjpLISNTU7TGBqiD11Jt6M9zGsHu3rfcjrD005tMFIUac' }).subscribe(
+            (response) => {
+              console.log('Payment successful', response);
+              // Redirect to the order status page
+            },
+            (error) => {
+              console.error('Payment error', error);
+            }
+          );
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-  faWhatsapp,
-} from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faInstagram, faTwitter, faWhatsapp,} from '@fortawesome/free-brands-svg-icons';
 import { ContactUsService } from './contact-us.service';
 import { Router } from '@angular/router';
 
@@ -21,6 +16,8 @@ export class ContactUsComponent {
   fatwitter = faTwitter;
   fawhatsapp = faWhatsapp;
   fainstagram = faInstagram;
+  successMessage: boolean = false;
+
 
   constructor(
     private fb: FormBuilder,
@@ -40,8 +37,12 @@ export class ContactUsComponent {
       const contactData = this.contactusForm.value;
       this.contactusservice.sendContactus(contactData).subscribe(
         () => {
+          this.successMessage = true;
+
           console.log('Contactus sent successfully');
-          this.router.navigateByUrl('/home');
+          setTimeout(() => {
+            this.router.navigate(['/home']);
+          },3000);
         },
         (err) => {
           console.error('Error sending Contactus:', err);
