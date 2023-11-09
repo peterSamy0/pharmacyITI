@@ -25,7 +25,8 @@ export class HeaderComponent {
   
   ngOnInit(){
     this.role = localStorage.getItem('role');
-    this.userID = Number(localStorage.getItem('pharmacy_id'));
+    console.log(this.role)
+    this.userID = Number(localStorage.getItem('_id'));
   }
   
   logOut(){
@@ -34,12 +35,20 @@ export class HeaderComponent {
       localStorage.removeItem('token');
       localStorage.removeItem('role');
       localStorage.removeItem('user_id');
+      localStorage.removeItem('_id');
       // Redirect to the login page
-      this.router.navigate(['/login']);
+      window.location.href = '/';
     // });
   }
 
   goToProfile(){
-    this.router.navigate([`pharmacy-profile/${this.userID}`])
+    console.log(this.role)
+    if(this.role == 'pharmacy'){
+      this.router.navigate([`pharmacy-profile/${this.userID}`])
+    }else if(this.role == 'client'){
+      this.router.navigate([`client-profile/${this.userID}`])
+    }else if(this.role == 'delivery'){
+      this.router.navigate([`delivery-profile/${this.userID}`])
+    }
   }
 }

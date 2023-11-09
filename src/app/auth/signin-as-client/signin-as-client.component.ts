@@ -36,28 +36,24 @@ export class SigninAsClientComponent {
       "password": userPass
     }
 
-    const token = localStorage.getItem('access_token');
-    this.http.post(`http://localhost:8000/api/auth/login`, body, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+    this.http.post(`http://localhost:8000/api/auth/login`, body)
       .subscribe(
         (response: any) => {
           const role = response['role'];
-          // if (role == 'client') {
+          if (role == 'client') {
             localStorage.setItem('token', response['token']);
             localStorage.setItem('user_id', response['user_id']);
-            localStorage.setItem('role', role);
-            this.router.navigate(['/']);
-          // } else {
-            // Swal.fire({
-            //   title: 'Error!',
-            //   text: 'you are not a client',
-            //   icon: 'error',
-            //   confirmButtonText: 'Ok'
-            // })
-          // }
+            localStorage.setItem('role', response['role']);
+            localStorage.setItem('_id', response['_id']);
+            window.location.href = '/';
+          } else {
+            Swal.fire({
+              title: 'Error!',
+              text: 'you are not a client',
+              icon: 'error',
+              confirmButtonText: 'Ok'
+            })
+          }
         },
 
         error => {

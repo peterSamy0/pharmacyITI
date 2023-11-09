@@ -65,13 +65,13 @@ export class SignupAsClientComponent {
 
     const body = {
       user: {
-        name: userFullName,
-        email: userEmail,
-        password: userPass,
+        "name": userFullName,
+        "email": userEmail,
+        "password": userPass,
       },
       client: {
-        governorate_id: this.governorateID,
-        city_id: this.cityID,
+        "governorate_id": this.governorateID,
+        "city_id": this.cityID,
       },
     };
     if (!userFullName.match(fullNamePattern)) {
@@ -87,8 +87,6 @@ export class SignupAsClientComponent {
       this.userGovernFail = true;
     } else if (
       userEmail &&
-      // clientPass&&
-      // clientPhone&&
       userFullName &&
       userGovern &&
       userCity &&
@@ -99,19 +97,22 @@ export class SignupAsClientComponent {
       this.passFail = false;
       this.userGovernFail = false;
       this.http.post(`http://localhost:8000/api/clients`, body).subscribe(
-        (response) => {
-          console.log(response);
-          this.router.navigate(['/']);
+        (response:any) => {
+          localStorage.setItem('token', response['token']);
+          localStorage.setItem('role', response['role']);
+          localStorage.setItem('user_id', response['user_id']);
+          localStorage.setItem('_id', response['delivery_id']);
+          window.location.href = '/';
         },
 
         (error) => {
           console.log(error);
-          // Swal.fire({
-          //   title: 'Error!',
-          //   text: 'invaled email or password',
-          //   icon: 'error',
-          //   confirmButtonText: 'Cool'
-          // })
+          Swal.fire({
+            title: 'Error!',
+            text: 'invaled email or password',
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
         }
       );
     } else {

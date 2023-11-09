@@ -47,6 +47,12 @@ export class ProfileService {
   getDelivery(id: number) {
     return this.httpClient.get(`http://127.0.0.1:8000/api/deliveries/${id}`);
   }
+
+  // getDelivery(id: number, token: any) {
+  //   const headers = { 'Authorization': `Bearer ${token}` };
+  //   const options = { headers: headers };
+  //   return this.httpClient.get(`http://127.0.0.1:8000/api/deliveries/${id}`, options);
+  // }
   deleteDelivery(id : number) {
     return this.httpClient.delete(`http://127.0.0.1:8000/api/deliveries/${id}`);
   }

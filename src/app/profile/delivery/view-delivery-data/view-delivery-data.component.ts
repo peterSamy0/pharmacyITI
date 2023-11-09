@@ -12,20 +12,20 @@ export class ViewDeliveryDataComponent {
   id!: number;
   orders!: any;
   numOforders!: number;
-
+  token: any;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
     private profileService: ProfileService
   ) {}
   ngOnInit(){
-    console.log(this.activeRoute.snapshot.params['id'])
     this.id = this.activeRoute.snapshot.params['id'];
+    this.token = localStorage.getItem('token')
+    console.log(this.token)
+
     this.profileService.getDelivery(this.id).subscribe((res: any) => {
       this.deliveryId = res.data;
-      console.log(this.deliveryId);
       this.numOforders= this.deliveryId.orders.length;
-      console.log(this.numOforders)
     });
     
   }

@@ -72,22 +72,22 @@ export class SignupAsDeliveryComponent {
 
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    let phonePattern = /\d{14}/;
-    let nationalIdPattern = /\d{11}/;
+    let phonePattern = /\d{11}/;
+    let nationalIdPattern = /\d{14}/;
 
     if (!email.match(emailPattern)) {
       console.log('invalid email format');
       this.emailFail = true;
 
     }
-    else if (!phone.match(phonePattern)) {
-      console.log('wrong phone format');
-      this.phoneFail = true;
-    } 
-    else if (!national_ID.match(nationalIdPattern)) {
-      console.log('wrong phone format');
-      this.nationalFail = true;
-    } 
+    // else if (!phone.match(phonePattern)) {
+    //   console.log('wrong phone format');
+    //   this.phoneFail = true;
+    // } 
+    // else if (!national_ID.match(nationalIdPattern)) {
+    //   console.log('wrong phone format');
+    //   this.nationalFail = true;
+    // } 
     else if (!pass.match(passPattern)) {
       console.log('wrong password format');
       this.passFail = true;
@@ -104,9 +104,9 @@ export class SignupAsDeliveryComponent {
        "user":{
         "name":name,
         "email":email,
-        "password": pass.toString(),
-
-      },"delivery":{
+        "password": pass.toString()
+        },
+      "delivery":{
         "governorateID":this.governorateID,
         "cityID": this.cityID,
         "nationalID": national_ID,
@@ -120,8 +120,12 @@ export class SignupAsDeliveryComponent {
       this.phoneFail = false;
       this.nationalFail = false;
       this.deliveryService.saveDelivery(this.newDelivery).subscribe({
-        next: (res: any) => {
-          console.log(res, 'response');
+        next: (response: any) => {
+          localStorage.setItem('token', response['token']);
+          localStorage.setItem('role', response['role']);
+          localStorage.setItem('user_id', response['user_id']);
+          localStorage.setItem('_id', response['delivery_id']);
+          window.location.href = '/';
         },
         error: (err: any) => {
           console.log(err.error, 'errors');

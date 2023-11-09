@@ -109,12 +109,12 @@ export class SignupAsPharmacyComponent {
     this.http.post(`http://localhost:8000/api/pharmacies`, body)
       .subscribe(
         (response:any) => {
-            localStorage.setItem('token', response['token']);
-            localStorage.setItem('role', response['role']);
-            localStorage.setItem('user_id', response['user_id']);
-            localStorage.setItem('pharmacy_id', response['pharmacy_id']);
+          localStorage.setItem('token', response['token']);
+          localStorage.setItem('role', response['role']);
+          localStorage.setItem('user_id', response['user_id']);
+          localStorage.setItem('_id', response['pharmacy_id']);
 
-          this.router.navigate([`addProduct/${response['pharmacy_id']}`]);
+          window.location.href = `addProduct/${response['pharmacy_id']}`;
         },
         error => {
           console.log(error)
