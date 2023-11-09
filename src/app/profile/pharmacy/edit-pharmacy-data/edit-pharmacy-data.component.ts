@@ -99,11 +99,7 @@ export class EditPharmacyDataComponent {
       console.log('invalid email format');
       this.emailFail = true;
       this.service.errorAlert();
-    } else if (!pharmaPass.match(passPattern)) {
-      console.log('wrong password format');
-      this.passFail = true;
-      this.service.errorAlert()
-    }  else if (
+    } else if (
       pharmaEmail &&
       pharmaLicense&&
       // pharmaPhone&&

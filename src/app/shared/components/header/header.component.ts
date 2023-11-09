@@ -35,7 +35,7 @@ export class HeaderComponent {
       localStorage.removeItem('role');
       localStorage.removeItem('user_id');
       // Redirect to the login page
-      this.router.navigate(['/login']);
+      window.location.href = '/';
     // });
   }
 

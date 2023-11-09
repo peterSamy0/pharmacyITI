@@ -81,8 +81,7 @@ export class SignupAsClientComponent {
         this.http.post(`http://localhost:8000/api/clients`, body)
         .subscribe(
           response => {
-            console.log(response);
-            this.router.navigate(['/']);
+            window.location.href = '/';
           },
   
           error => {

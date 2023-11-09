@@ -31,37 +31,23 @@ export class SigninAsPharmacyComponent {
 
   checkPharma(){
     let pharmaEmail =this.signinForm.controls['pharmaEmail'].value;
-     let pharmaPass =this.signinForm.controls['pharmaPass'].value;
+    let pharmaPass =this.signinForm.controls['pharmaPass'].value;
     const credentials = {
       "email": pharmaEmail,
-      "password":   pharmaPass     
+      "password": pharmaPass     
     } 
-    const token = localStorage.getItem('access_token');
-    this.http.post(`http://localhost:8000/api/auth/login`, credentials, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+    this.http.post(`http://localhost:8000/api/auth/login`, credentials)
       .subscribe(
+
         (response:any) => {
-          const role = response['role'];
-          if(role == 'pharmacy'){
             this.tokenKey = response['token']
             localStorage.setItem('token', this.tokenKey);
-            localStorage.setItem('role', role);
+            localStorage.setItem('role', response['user_id']);
             localStorage.setItem('user_id', response['user_id']);
             localStorage.setItem('pharmacy_id', response['pharmacy_id']);
             // this.router.navigate(['/']);
             window.location.href = '/';
-          }else{
-            Swal.fire({
-              title: 'Error!',
-              text: 'you are not a pharmacy',
-              icon: 'error',
-              confirmButtonText: 'Ok'
-            })
-          }
-        },
+          },
 
         error => {
           console.log(error)
