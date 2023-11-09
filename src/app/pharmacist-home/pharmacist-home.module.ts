@@ -10,10 +10,10 @@ import { SearchPipe } from '../pipes/search.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { SelectDeliveryComponent } from './components/select-delivery/select-delivery.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @NgModule({
   declarations: [
     ListProductsComponent,
-   
     ViewOrdersComponent,
     AddProductsComponent,
     ViewOneOrderComponent,
@@ -30,6 +30,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
  
 
     FontAwesomeModule
+  ],
+  exports: [
+    AddProductsComponent,
+    ListProductsComponent,
+    SelectDeliveryComponent,
+    ViewOrdersComponent,
+    ViewOneOrderComponent
   ]
 })
 export class PharmacistHomeModule { }

@@ -50,7 +50,7 @@
                     type="button"
                     class="btn btn-secondary ms-1"
                     data-bs-toggle="modal"
-                    data-bs-target="#deleteproduct"
+                    [attr.data-bs-target]="'#deleteproduct' + product.id"
                    
                     (click)="delete(product.id)"
                   >

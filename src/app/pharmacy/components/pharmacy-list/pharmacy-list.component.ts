@@ -18,9 +18,9 @@ export class PharmacyListComponent{
   // end variables
  
 
-  constructor(private fetchPharmacies:ServiceService){
+  constructor(private fetchGovernorates:ServiceService){
     // get data from backend
-    this.fetchPharmacies.getGovernorates().subscribe(data=>{this.responseData = Object.values(data);
+    this.fetchGovernorates.getGovernorates().subscribe(data=>{this.responseData = Object.values(data);
       // make governorate array
       this.governorates = Object.values(data).map(ele=>{
         return {
