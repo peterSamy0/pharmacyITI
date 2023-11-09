@@ -9,10 +9,13 @@ import { ServiceService } from 'src/app/shared/services/service.service';
 export class ViewOrdersComponent {
 
   orders: any = [];
+  totalLenght:any;
+  page :number=1;
   constructor(private orderService: ServiceService) {}
   isLoading: boolean = true;
   ngOnInit(){
     this.getData();
+    this.totalLenght=this.orders.length;
   }
 
   getData() {
