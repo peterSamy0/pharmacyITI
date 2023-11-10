@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ServiceService {
-  url2: string = "https://retoolapi.dev/UrMs5b/data";
+  url2: string = "http://localhost:8000/api/orders";
 
   constructor(private http: HttpClient) { }
 
@@ -36,6 +36,15 @@ export class ServiceService {
   }
   getDeliveryData(){
     return this.http.get('https://retoolapi.dev/Eaiv5g/data');
+  }
+  getGovernorates() {
+  return this.http.get('http://localhost:8000/api/governorates', { params: { home: true } });
+  }
+
+
+// fetching data using our api
+  getPharmacies(){
+    return this.http.get('http://127.0.0.1:8000/api/pharmacies')
   }
 }
 

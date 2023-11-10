@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 import { Router } from '@angular/router';
 import {
   DeliveryResponse,
@@ -18,7 +20,8 @@ export class SigninAsDeliveryComponent {
   signinForm: FormGroup;
   constructor(
     private router: Router,
-    private deliveryService: DeliveryServiceService
+    private deliveryService: DeliveryServiceService,
+    private http: HttpClient
   ) {
     this.signinForm = new FormGroup({
       deliveryEmail: new FormControl('', [Validators.required]),
@@ -37,29 +40,45 @@ export class SigninAsDeliveryComponent {
     });
   }
 
+
   checkDelivery() {
-    console.log(this.signinForm);
     let deliveryEmail = this.signinForm.controls['deliveryEmail'].value;
     let deliveryPass = this.signinForm.controls['deliveryPass'].value;
-
-    for (var i = 0; i < this.deliveries.length; i++) {
-      if (
-        deliveryEmail === this.deliveries[i].email &&
-        deliveryPass == this.deliveries[i].password
-      ) {
-        console.log('correct');
-
-        localStorage.setItem(
-          'currentDelivery',
-          JSON.stringify(this.deliveries[i])
-        );
-        this.deliveryNotFound =false;
-
-        return;
-      }else if(deliveryEmail !== this.deliveries[i].email &&
-        deliveryPass !== this.deliveries[i].password){
-        this.deliveryNotFound =true;
-      }
+    const body = {
+      "email": deliveryEmail,
+      "password": deliveryPass
     }
+
+    this.http.post(`http://localhost:8000/api/auth/login`, body)
+      .subscribe(
+        (response: any) => {
+          const role = response['role'];
+          if (role == 'client') {
+            console.log(response)
+            localStorage.setItem('token', response['token']);
+            localStorage.setItem('user_id', response['user_id']);
+            localStorage.setItem('role', response['role']);
+            localStorage.setItem('_id', response['_id']);
+            window.location.href = '/';
+          } else {
+            Swal.fire({
+              title: 'Error!',
+              text: 'you are not a client',
+              icon: 'error',
+              confirmButtonText: 'Ok'
+            })
+          }
+        },
+
+        error => {
+          console.log(error)
+          Swal.fire({
+            title: 'Error!',
+            text: 'invaled email or password',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
+        }
+      );
   }
 }

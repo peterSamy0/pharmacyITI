@@ -12,14 +12,20 @@ import { PharmacyDetailsModule } from './pharmacy/pharmacy-details.module';
 import { CartModule } from './cart/cart.module';
 import { PharmacistHomeModule } from './pharmacist-home/pharmacist-home.module';
 import { ProfileComponent } from './profile/profile.component';
-
+// import { GovernorateComponent } from './governorate/governorate.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ProfileModule } from './profile/profile.module';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+
 // import { PaymentModule } from './payment/payment.module';
+
+// import { CityComponent } from './city/city.component';
+// import { SearchPharmaciesPipe } from './pipes/search-pharmacies.pipe';
+// import { SearchPharmaciesPipe } from './search-pharmacies.pipe';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +34,10 @@ import { AboutUsComponent } from './about-us/about-us.component';
     ProfileComponent,
     ContactUsComponent,
     AboutUsComponent,
+    // CityComponent,
+    // GovernorateComponent
+    // SearchPharmaciesPipe,
+    // SearchPharmaciesPipe,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +55,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     ProfileModule,
     // PaymentModule
     // AuthModule
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,10 +12,11 @@
                   width="150"
                 />
                 <div class="mt-3">
-                  <h4>{{ deliveryId.fullName }}</h4>
-                  <p class="text-secondary mb-1">{{ deliveryId.userName }}</p>
+                  <h4>{{ deliveryName }}</h4>
+                  <p class="text-secondary mb-1">{{ deliveryEmail }}</p>
                   <p class="text-muted font-size-sm">
-                    {{ deliveryId.city }}, {{ deliveryId.governorate }}
+                    <!-- {{ deliveryId.city }}, {{ deliveryId.Governorate }} -->
+                    {{oldCity}}, {{oldGov}} 
                   </p>
                 </div>
               </div>
@@ -32,13 +33,13 @@
             >
               <div class="row mb-3">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">Full Name</h6>
+                  <h6 class="mb-0">Name </h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="deliveryId.fullName"
+                    [(ngModel)]="deliveryId.name"
                     formControlName="deliveryFullName"
                   />
                   <div
@@ -51,14 +52,14 @@
                   <small
                     *ngIf="updateDeliveryForm.controls['deliveryFullName'].errors?.['required']"
                   >
-                    please, enter your full Name
+                    please, Enter your Name
                   </small>
                 </div>
-                <div>
+                <!-- <div>
               <small *ngIf="userFullNameFail"  class="text-danger form-text">
                 Invalid Full Name Format
                </small>
-              </div>
+              </div> -->
               </div>
               
                 </div>
@@ -94,33 +95,7 @@
                 </div>
                 </div>
               </div>
-              <div class="row mb-3">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">User Name</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  <input
-                    type="text"
-                    class="form-control"
-                    [(ngModel)]="deliveryId.userName"
-                    formControlName="deliveryUserName"
-  
-                  />
-                  <div
-                  *ngIf="
-                    updateDeliveryForm.controls['deliveryUserName'].touched &&
-                    updateDeliveryForm.controls['deliveryUserName'].invalid
-                  "
-                  class="text-danger form-text"
-                >
-                  <small
-                    *ngIf="updateDeliveryForm.controls['deliveryUserName'].errors?.['required']"
-                  >
-                    Please, Enter user name.
-                  </small>
-                </div>
-                </div>
-              </div>
+              
               <div class="row mb-3">
                 <div class="col-sm-3">
                   <h6 class="mb-0">Phone</h6>
@@ -133,7 +108,7 @@
                     formControlName="deliveryPhone"
   
                   />
-                  <div
+                  <!-- <div
                   *ngIf="
                     updateDeliveryForm.controls['deliveryPhone'].touched &&
                     updateDeliveryForm.controls['deliveryPhone'].invalid
@@ -145,7 +120,7 @@
                   >
                     Please, Enter your phone.
                   </small>
-                </div>
+                </div> -->
                 </div>
               </div>
 
@@ -154,11 +129,11 @@
                   <h6 class="mb-0">
                     Ready to deliver</h6>
                 </div>
-                <div class="col-sm-9 text-secondary"> 
+                <!-- <div class="col-sm-9 text-secondary"> 
                   <select class="form-control" formControlName="avaliableToDeliver">
-                    <option value="">Select</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
+                    <option >select</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
                   </select>
                   <div
                     *ngIf="
@@ -172,13 +147,18 @@
                       Please, decide whether you are available or not
                     </small>
                   </div>
-                </div>
+                </div> -->
+                <div class="col-sm-9 text-secondary">
+                  <div class="form-check form-switch">
+                      <input class="form-check-input"  (change)="changeBtn()"  type="checkbox" #myCheckbox role="switch" id="flexSwitchCheckChecked" [checked]="deliveryId.available">
+                  </div>
+              </div>
               </div>
 
 
 
 
-              <div class="row mb-3">
+              <!-- <div class="row mb-3">
                 <div class="col-sm-3">
                   <h6 class="mb-0">City</h6>
                 </div>
@@ -213,7 +193,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="deliveryId.governorate"
+                    [(ngModel)]="deliveryId.Governorate"
                     formControlName="deliveryGovern"
   
                   />
@@ -231,7 +211,43 @@
                   </small>
                 </div>
                 </div>
+              </div> -->
+
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Current Location</h6>
+                </div>
+                 <span class="col-sm-9 text-secondary">{{ oldCity }} - {{ oldGov }}</span>
               </div>
+              
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Governorate</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <select class="form-select mt-2" name="governorates" #selectGov (change)="selectedGov(selectGov.value)">
+                    <option value="">Select Governorate</option>
+                    <option *ngFor="let governorate of governorates" [value]="governorate.governorate_id">{{ governorate.governorate_name }}</option>
+                  </select>
+                </div>
+              </div>
+              <!-- choose city -->
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">City</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <div *ngIf="isCity">
+                    <select class="form-select mt-2" name="governorates" #selectCity (change)="selectedCity(selectCity.value)">
+                      <option value="">Select City</option>
+                      <option *ngFor="let city of cities.cities" [value]="city.city_id">{{ city.city_name }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+  
+
+
               <div class="row mb-3">
                 <div class="col-sm-3">
                   <h6 class="mb-0">Password</h6>

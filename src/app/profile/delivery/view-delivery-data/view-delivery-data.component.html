@@ -72,23 +72,17 @@
                 <h6 class="mb-0">Orders Delivered</h6>
               </div>
               <div class="col-sm-9 text-secondary" *ngIf="numOforders > 0">
-                {{ numOforders }}<span
-                class="col-sm-9 text-secondary"
-              >, 
-              <a href="#">
-                 Deliver more Orders
-              </a>
-            </span>
+                {{ numOforders
+                }}<span class="col-sm-9 text-secondary"
+                  >,
+                  <a href="#"> Deliver more Orders </a>
+                </span>
               </div>
               <div class="col-sm-9 text-secondary" *ngIf="numOforders == 0">
-                {{ numOforders }} orders delivered, 
-                <span
-                class="col-sm-9 text-secondary"
-              >
-              <a href="#">
-              start delivering now
-              </a>
-            </span>
+                {{ numOforders }} orders delivered,
+                <span class="col-sm-9 text-secondary">
+                  <a href="#"> start delivering now </a>
+                </span>
               </div>
             </div>
             <hr />
@@ -96,17 +90,18 @@
               <div class="col-sm-3">
                 <h6 class="mb-0">Ready to deliver orders</h6>
               </div>
-              <div
-                class="col-sm-9 text-secondary"
-                *ngIf="deliveryId.available == 0"
-              >
-                No
-              </div>
-              <div
-                class="col-sm-9 text-secondary"
-                *ngIf="deliveryId.available == 1"
-              >
-                Yes
+              <div class="col-sm-9 text-secondary">
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    (change)="changeBtn()"
+                    type="checkbox"
+                    #myCheckbox
+                    role="switch"
+                    id="flexSwitchCheckChecked"
+                    [checked]="deliveryId.available"
+                  />
+                </div>
               </div>
             </div>
             <hr />
@@ -126,51 +121,50 @@
                   >Delete Account</a
                 >
                 <div
-                class="modal fade"
-                id="exampleModal"
-                tabindex="-1"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">
-                        Confirm Message
-                      </h1>
-                      <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                      ></button>
-                    </div>
-                    <div class="modal-body">
-                      Are you sure you want to delete your account? This
-                      action is irreversible and all of your data will be
-                      lost.
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                      >
-                        No
-                      </button>
-                      <button
-                        type="button"
-                        (click)="deleteAccount(deliveryId.id)"
-                        class="btn btn-danger"
-                        data-bs-dismiss="modal"
-
-                      >
-                        Yes
-                      </button>
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                          Confirm Message
+                        </h1>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure you want to delete your account? This
+                        action is irreversible and all of your data will be
+                        lost.
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          No
+                        </button>
+                        <button
+                          type="button"
+                          (click)="deleteAccount(deliveryId.id)"
+                          class="btn btn-danger"
+                          data-bs-dismiss="modal"
+                        >
+                          Yes
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
           </div>

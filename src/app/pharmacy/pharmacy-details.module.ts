@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
+import { SearchPharmaciesPipe } from '../pipes/search-pharmacies.pipe';
 
 
 @NgModule({
@@ -26,7 +27,10 @@ import { AppRoutingModule } from '../app-routing.module';
     PharmacyCardComponent,
     PharmacyListComponent,
     CategoryComponent,
-    MedicationCardComponent
+    MedicationCardComponent,
+    // GovernorateComponent,
+    // CityComponent
+    SearchPharmaciesPipe
   ],
   imports: [
     CommonModule,

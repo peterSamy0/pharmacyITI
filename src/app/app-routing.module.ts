@@ -2,11 +2,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SigninAsClientComponent } from './auth/signin-as-client/signin-as-client.component';
-import { SigninAsPharmacyComponent } from './auth/signin-as-pharmacy/signin-as-pharmacy.component';
+// import { SigninAsPharmacyComponent } from './auth/signin-as-pharmacy/signin-as-pharmacy.component';
 import { SignupAsClientComponent } from './auth/signup-as-client/signup-as-client.component';
 import { SignupAsPharmacyComponent } from './auth/signup-as-pharmacy/signup-as-pharmacy.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { SigninComponent } from './auth/signin/signin.component';
+// import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CarouselComponent } from './pharmacy/components/carousel/carousel.component';
 import { PharmacyDetailsComponent } from './pharmacy/components/pharmacy-details/pharmacy-details.component';
@@ -21,7 +21,7 @@ import { SelectDeliveryComponent } from './pharmacist-home/components/select-del
 import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './cart/orders/orders.component';
 import { SignupAsDeliveryComponent } from './auth/signup-as-delivery/signup-as-delivery.component';
-import { SigninAsDeliveryComponent } from './auth/signin-as-delivery/signin-as-delivery.component';
+// import { SigninAsDeliveryComponent } from './auth/signin-as-delivery/signin-as-delivery.component';
 import { PaymentComponent } from './payment/components/payment/payment.component';
 import { ViewClientDataComponent } from './profile/client/view-client-data/view-client-data.component';
 import { ViewPharmacyDataComponent } from './profile/pharmacy/view-pharmacy-data/view-pharmacy-data.component';
@@ -43,26 +43,26 @@ const routes: Routes = [
     path:'home',
     component: HomepageComponent
   },
-  {
-    path:'signIn',
-    component: SigninComponent
-  },
+  // {
+  //   path:'signIn',
+  //   component: SigninComponent
+  // },
   {
     path: 'signUp',
     component: SignupComponent
   },
   {
-    path:'signin-client',
+    path:'signin',
     component:SigninAsClientComponent
   },
   {
     path:'profile',
     component:ProfileComponent
   },
-  {
-    path:'signin-pharmacy',
-    component:SigninAsPharmacyComponent
-  },
+  // {
+  //   path:'signin-pharmacy',
+  //   component:SigninAsPharmacyComponent
+  // },
   {
     path:'signup-client',
     component: SignupAsClientComponent
@@ -76,10 +76,8 @@ const routes: Routes = [
     component : CartpageComponent
   },
   {
-    path :'listproduct',
-    component : ListProductsComponent,
-    canActivate: [AuthGuard]
-
+    path :'listproduct/:id',
+    component : ListProductsComponent
   },
   {
     path: "pharmacyDetails",
@@ -108,9 +106,8 @@ const routes: Routes = [
     ]
   },
   {
-    path: "addProduct",
-    component: AddProductsComponent,
-    canActivate: [AuthGuard]
+    path: "addProduct/:id",
+    component: AddProductsComponent
   },  
   {
     path: "editProduct/:id",
@@ -126,10 +123,10 @@ const routes: Routes = [
     path: "signup-delivery",
     component: SignupAsDeliveryComponent
   },
-  {
-    path: "signin-delivery",
-    component: SigninAsDeliveryComponent
-  },
+  // {
+  //   path: "signin-delivery",
+  //   component: SigninAsDeliveryComponent
+  // },
   {
     path :'payment',
     component : PaymentComponent

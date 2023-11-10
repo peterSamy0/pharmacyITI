@@ -10,5 +10,4 @@ import { faSmile } from '@fortawesome/free-solid-svg-icons';
 export class HomepageComponent {
   faSearch = faSearch
   fasmile = faSmile
-
 }

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-carousel',
@@ -19,10 +20,12 @@ export class CarouselComponent {
   activeIndices: { [Category: string]: number } = {};
   isLoading: boolean = true;
   allProduct :boolean = false;
+  id !: number;
 
-  constructor(private service: CarouselService) {}
+  constructor(private service: CarouselService,private activeRoute: ActivatedRoute) {}
 
   ngOnInit() {
+   this.id = this.activeRoute.snapshot.params['id']
     this.getAllProducts();    
     setInterval(() => {
       if (this.service.isBtnClicked) {
@@ -33,9 +36,9 @@ export class CarouselComponent {
   
   getAllProducts() {
     this.isLoading = true;
-    this.service.getData().subscribe(
-      (res) => {
-        this.products = res;
+    this.service.getPharmaData(this.id).subscribe(
+      (res:any) => {
+        this.products = res.data.medication;
         this.getCategories();
         this.initializeActiveIndices();
         this.isLoading = false;
@@ -48,9 +51,10 @@ export class CarouselComponent {
 
   getCategories(){
     for(let i in this.products){
-      this.categories.push(this.products[i]['Category'])
+      this.categories.push(this.products[i].medicine_category)
     }
     this.categories = Array.from(new Set(this.categories)); // Convert set to array
+    console.log(this.categories)
   }
 
   initializeActiveIndices() {
@@ -69,7 +73,8 @@ export class CarouselComponent {
   }
 
   getCategoryProducts(Category: string): any[] {
-    return this.products.filter((prod: any) => prod.Category === Category);
+
+    return this.products.filter((prod: any) => prod.medicine_category === Category);
   }
 
   getActiveIndex(Category: string): number {

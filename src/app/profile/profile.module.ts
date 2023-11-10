@@ -10,6 +10,7 @@ import { ViewPharmacyDataComponent } from './pharmacy/view-pharmacy-data/view-ph
 import { EditDeliveryDataComponent } from './delivery/edit-delivery-data/edit-delivery-data.component';
 import { ViewDeliveryDataComponent } from './delivery/view-delivery-data/view-delivery-data.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonToggleModule,
   ]
 })
 export class ProfileModule { }

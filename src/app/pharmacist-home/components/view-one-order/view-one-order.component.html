@@ -19,8 +19,8 @@
 
 <div class="w-50 m-auto ">
     <div class="d-flex justify-content-between my-3">
-        <h3 class="fs-6">client name: {{thisOrder.name}}</h3> <!-- user name -->
-        <h3 class="fs-6">Date: {{this.thisOrder.order_time}}</h3> <!-- order time -->
+        <h3 class="fs-6">client name: {{thisOrder.client_name}}</h3> <!-- user name -->
+        <h3 class="fs-6">Date: {{thisOrder.created_at}}</h3> <!-- order time -->
     </div>
     <!-- table to show prescription -->
     <table class="table mb-5">
@@ -28,30 +28,27 @@
           <tr>
             <th scope="col">no.</th>
             <th scope="col">Medicine name</th>
+            <th scope="col">Image</th>
             <th scope="col">quantity</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>2 </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry the Bird</td>
-            <td>1</td>
+          <tr *ngFor="let medication of thisOrder.orderMedications; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{medication.medicine_name}}</td>
+            <td>
+              <img src="{{medication.medicine_image}}"
+               alt="{{medication.medicine_name}} image"
+               style="width:50px; height:50px">
+            </td>
+            <td>{{medication.amount}} </td>
           </tr>
         </tbody>
       </table>
 
       <div class="d-flex justify-content-end mb-5">
+        <!-- <a href="viewOrders/selectDelivery/{{thisOrder.region}}" class="btn btn-success me-3"> Done!</a> -->
         <a href="viewOrders/selectDelivery/{{thisOrder.region}}" class="btn btn-success me-3"> Accept</a>
-        <a href="#" class="btn btn-danger "> Cancel</a>
+
       </div>
 </div>

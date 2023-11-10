@@ -34,7 +34,6 @@ export class DropDownComponent  {
     this.service.getData().subscribe(
       (res) => {
         this.data = res;
-        console.log(res);
       },
       (error) => {
         console.error('Error:', error);
