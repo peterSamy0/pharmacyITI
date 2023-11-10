@@ -52,16 +52,16 @@ export class SignupAsClientComponent {
     // this.getCurrentGoverId();
   }
 
-  // selectedFile !:File;
+  selectedFile !:File;
 
-  // onFileSelected(event:any){
-  //   this.selectedFile=event.target.files[0]
-  //   console.log(this.selectedFile)
-  // }
-  // onUpload(){
-  //   const uploadData = new FormData;
-  //   uploadData.append('images', this.selectedFile, this.selectedFile.name)
-  // }
+  onFileSelected(event:any){
+    this.selectedFile=event.target.files[0]
+    console.log(this.selectedFile)
+  }
+  onUpload(){
+    const uploadData = new FormData;
+    uploadData.append('images', this.selectedFile, this.selectedFile.name)
+  }
   addClient() {
     let userEmail = this.signupForm.controls['userEmail'].value;
     let userFullName = this.signupForm.controls['userFullName'].value;
