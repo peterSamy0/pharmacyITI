@@ -12,9 +12,9 @@
       <tbody>
         <tr *ngFor="let item of cartItems">
           <th scope="row"></th>
-          <td class="align-middle "><img src={{item.image}} alt="" width="80px" height="80px" class="rounded-5"></td>
-          <td class="align-middle ">{{item.name}}</td>
-          <td class="align-middle ">{{item.price}} L.E.</td>
+          <td class="align-middle "><img src={{item.medicine_image}} alt="" width="80px" height="80px" class="rounded-5"></td>
+          <td class="align-middle ">{{item.medicine_name}}</td>
+          <td class="align-middle ">{{item.medicine_price}} L.E.</td>
           <td class="align-middle ">
             <div class="btn-group d-flex" role="group" aria-label="Quantity">
               <button (click)="decreaseQuantity(item)" class="btn btn-danger p-0" *ngIf="item.quantity !== 1">-</button>
@@ -34,12 +34,12 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header" style="background-color: #419197; color:white;">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Remove {{item.name}} from cart? </h1>
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Remove {{item.medicine_name}} from cart? </h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <h4>Are you sure you want to remove {{ item.quantity }} {{item.name}} items from the cart?</h4>
-                        <img src={{item.image}} alt="" width="80px" height="80px" class="rounded-5">
+                      <h4>Are you sure you want to remove {{ item.quantity }} {{item.medicine_name}} items from the cart?</h4>
+                        <img src={{item.medicine_image}} alt="" width="80px" height="80px" class="rounded-5">
                     </div>
                     <div class="modal-footer" style="background-color: #419197; color:white;">
                       <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>

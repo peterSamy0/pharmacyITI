@@ -11,8 +11,9 @@ import { ApiService } from '../servic/api.service';
 export class CartpageComponent {
   cartItems: Array<any> = [];
   total: number = 0; // Initialize the total price to 0
-  clientId: Number = 3;
-  pharmacyId: Number = 1;
+  clientId!: Number;
+  pharmacyId!: Number;
+  
   // array of orderMedications:
   orderMedications: Array<object> = [];
 
@@ -23,7 +24,13 @@ export class CartpageComponent {
     this.cartItems = this.cartService.getCartItems();
     // Calculate the total price when the component initializes
     this.calculateTotalPrice();
-    console.log(this.cartService.cartItems) 
+    console.log(this.cartService.cartItems);
+    // get authorization data from local storage and service
+  if(localStorage.getItem('role') && localStorage.getItem('role') == "client"){
+    this.pharmacyId = this.cartService.pharmacyId;
+    this.clientId = Number(localStorage.getItem("_id"));
+    console.log(this.clientId);
+  } 
   }
 
   // Decrease the quantity of an item in the cart
@@ -48,7 +55,7 @@ export class CartpageComponent {
 
   // Calculate the total price of all items in the cart
   calculateTotalPrice() {
-    this.total = this.cartItems.reduce((acc:any, item:any) => acc + item.price * item.quantity, 0);
+    this.total = this.cartItems.reduce((acc:any, item:any) => acc + item.medicine_price * item.quantity, 0);
   }
 
   // back end logic
