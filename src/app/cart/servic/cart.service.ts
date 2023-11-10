@@ -50,6 +50,11 @@ export class CartService {
   getCartItems() {
     return this.cartItems;
   }
+  clearCart() {
+    this.cartItems = [];
+    this.cartItemCountSubject.next(0); // Update cart item count
+  }
+  
 }
 
 

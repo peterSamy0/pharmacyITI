@@ -1,97 +1,35 @@
-
+<!-- payment.component.html -->
 <div class="container text-center" style="padding-bottom: 70px">
   <h1 class="me-5 mt-5 mb-2">Payment details</h1>
-<div class="login-page bg-light my-5">
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-lg-10 offset-lg-1">
-        <div class="bg-white shadow rounded">
-          <div class="row">
-            <div class="col-md-7 pe-0">
-              <div class="form-left h-100 py-5 px-5">
-                <form>
-                  <h6 class="mb-2 text-capitalize">Complete your purchase by providing your payment details below.</h6><br>
+  <div class="login-page bg-light my-5">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+          <div class="bg-white shadow rounded">
+            <div class="row">
+              <div class="col-md-7 pe-0">
+                <div class="form-left h-100 py-5 px-5">
+                  <form >
+                    <h6 class="mb-2 text-capitalize">Complete your purchase by providing your payment details below.</h6><br>
 
-                  <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label"
-                      >Email address</label
-                    >
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                      placeholder="Please enter your Email"
-                      formControlName="email"
-                    />
-                    <br><h4 class="mb-2 text-capitalize">Card details</h4>
+                    <!-- Add your form fields -->
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Please enter your Email" formControlName="email" />
+                    </div>
 
-                  </div>
-                  <div class="mb-3">
-                    <label for="fullName" class="form-label">Name on card</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="fullName"
-                      placeholder="Please enter your name"
-                      formControlName="name"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="cardNumber" class="form-label">Card number</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="cardNumber"
-                      placeholder="Please enter card number"
-                      formControlName="cardNumber"
-                    />
-                  </div>
-                  <div class="flex-container">
-                  <div class="mb-3 flex-child" style="width: 3cm; margin-right: 1cm;">
-                    <label for="exp" class="form-label">Exp</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="exp"
-                      placeholder="exp"
-                      formControlName="exp"
-                    />
-                  </div>
-                  <div class="mb-3 flex-child" style="width: 3cm;">
-                    <label for="cvv" class="form-label">cvv</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="cvv"
-                      placeholder="cvv"
-                      formControlName="cvv"
-                    />
-                  </div>
+                    <div class="col-12">
+                      <!-- Add the PayPal Smart Payment Buttons -->
+                      <div id="paypal-button-container"></div>
+                    </div>
+
+                    <div class="col-12">
+                      <button type="button" class="btn px-4 float-end mt-4" style="background-color: rgb(123, 211, 222); border: none;" >Pay</button>
+                    </div>
+                  </form>
                 </div>
-                  
-                  <div class="col-12">
-                    <button
-                      type="submit"
-                      class="btn px-4 float-end mt-4"
-                      style="
-                        background-color: rgb(123, 211, 222);
-                        border: none;
-                      "
-                      routerLink="home"
-                    >
-                      Pay
-                    </button>
-                  </div>
-                </form>
               </div>
-            </div>
-            <div class="col-md-5 ps-0 d-none d-md-block">
-              <img
-                style="width: 100%; margin-top: 25%;  opacity: 0.75; padding-right: 15px;"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRukAAltSh1jrPDRJvShhrRpAhuiXsg8b_rTHFtZvbwHhgbtAI-WPImI7J7SV3E3PV6vyg&usqp=CAU"
-                alt=""
-              />
+              <!-- ... Other columns ... -->
             </div>
           </div>
         </div>
@@ -99,4 +37,4 @@
     </div>
   </div>
 </div>
-</div>
+<script src="https://www.paypal.com/sdk/js?client-id=AUq43hJFDLFrHd2WwGoq8WaHPDf0p37wjDTRN5STqSy4KLGLoGiUzQnPyEVivC6-9eKai0lZLk_UHIXJ"></script>

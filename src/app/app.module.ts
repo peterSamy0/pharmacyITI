@@ -19,9 +19,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ProfileModule } from './profile/profile.module';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+
+// import { PaymentModule } from './payment/payment.module';
+
 // import { CityComponent } from './city/city.component';
 // import { SearchPharmaciesPipe } from './pipes/search-pharmacies.pipe';
 // import { SearchPharmaciesPipe } from './search-pharmacies.pipe';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +53,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     MatCheckboxModule,
     BrowserAnimationsModule,
     ProfileModule,
+    // PaymentModule
+    // AuthModule
     AuthModule
   ],
   providers: [],
