@@ -53,6 +53,24 @@ h4{
     text-align: center;
     padding: 10px 0;
   }
-  .row:hover{
-    background-color: #5fb8be;
+  #top:hover{
+    background-color: #419197;
+  }
+  /* .footer {
+    background-color: #419197;
+    color: #fff;
+    padding: 20px 0;
+  } */
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .social-icons a {
+    color: white;
+    font-size: 30px; /* Adjust the size as needed */
+    margin-right: 20px; /* Adjust the margin to create space between icons */
   }

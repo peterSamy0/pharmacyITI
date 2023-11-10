@@ -1,30 +1,65 @@
 <div class="container-fluid">
-  <!-- <div class="row">
-    <div class="col-12 text-center">
-      <button style="color: #419197;" class="btn w-100 back-to-top" (click)="scrollToTop()">
-       TO <fa-icon style="color: white;" [icon]="faAngleUp"></fa-icon> TOP
-      </button>
-    </div>
-  </div> -->
   <footer class="footer">
-  <div class="container pt-4">
-    <h4 class="pb-2">Our social media</h4>
-    <!-- Section: Social media -->
-    <section class="icons">
-      <!-- Facebook -->
-        <fa-icon class="me-2" [icon]="fafacebook"></fa-icon>
-      <!-- Twitter -->
-       <fa-icon class="me-2" [icon]="fatwitter"></fa-icon>
-      <!-- Instagram -->
-        <fa-icon class="me-2" [icon]="fainstagram"></fa-icon>
-      <!-- Linkedin -->
-        <fa-icon [icon]="falinkedin"></fa-icon>
-    </section>
-    <!-- Section: Social media -->
-  </div>
+    <div class="container pt-4">
+      <div class="row">
+        <!-- Left Section: Logo and Text -->
+        <div class="col-md-4 mb-4 text-center">
+          <img style="height: 100px;" src="assets/img/logo.png" alt="Logo" class="img-fluid mb-2" />
+          <p class="mb-0">Welcome to Pharma A - Your Trusted Health Partner</p>
+        </div>
 
-  <div class="text-center">
-    <p class="m-0 text-light py-3"> &copy; 2023 Pharma A. All rights reserved.</p> 
-  </div>
-</footer>
+        <!-- Center Section: Contact Information -->
+        <div class="col-md-4 mb-4 text-center">
+          <h4>Hello To Our Team</h4>
+          <p>Welcome! Explore opportunities to join our dynamic team at Pharma A. Your journey to becoming part of our success story begins here.</p>
+          <p>Email: <a href="mailto:info@pharmaa.com" style="color: white; text-decoration: none;">info.pharmaa.com</a></p>
+        </div>
+
+        <!-- Right Section: Contact Us Information -->
+        <div class="col-md-4 mb-4 text-center">
+          <h4>Contact Us</h4>
+          <p>Address: <a href="https://www.google.com/maps/place/123+Health+Street,+Wellness+City,+Medtown,+PHAR123" target="_blank" style="color: white; text-decoration: none;">123 Health Street, Wellness City, Medtown, PHAR123</a></p>
+          <!-- <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13471.629918459592!2d31.1517575975623!3d29.007002897689805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1699573700147!5m2!1sar!2seg" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div> -->
+          <p>Phone: <a href="tel:+15555555555" style="color: white; text-decoration: none;">+1 (555) 555-5555</a></p>
+          <p>Email: <a href="mailto:info@pharmaa.com" style="color: white; text-decoration: none;">info.pharmaa.com</a></p>
+        </div>
+      </div>
+<!-- <hr> -->
+      <!-- Button Section: Back to Top -->
+      <div id="top" class="col-12 text-center mt-4">
+        <button style="color: #419197; border: none; background: #5fb8be; cursor: pointer;" class="btn w-100 back-to-top" (click)="scrollToTop()">
+          <span style="color: white;">TO <fa-icon style="color: white;" [icon]="faAngleUp"></fa-icon> TOP</span>
+        </button>
+      </div>
+
+      <!-- Bottom Section: Social Media and Copyright -->
+      <div class="row mt-4">
+        <div class="col-12 text-center">
+          <p>Follow us on social media:</p>
+          <div class="social-icons text-center">
+            <a href="https://www.facebook.com/">
+              <fa-icon [icon]="fafacebook"></fa-icon>
+            </a>
+            <a href="https://twitter.com/">
+              <fa-icon [icon]="fatwitter"></fa-icon>
+            </a>
+            <a href="https://www.instagram.com/">
+              <fa-icon [icon]="fainstagram"></fa-icon>
+            </a>
+            <a href="https://www.linkedin.com/">
+              <fa-icon [icon]="falinkedin"></fa-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+<hr>
+      <div class="row mt-3">
+        <div class="col-12 text-center">
+          <p class="m-0 text-light"> &copy; 2023 Pharma A. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
 </div>

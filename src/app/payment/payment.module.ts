@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule here
 import { PaymentComponent } from './components/payment/payment.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { PaymentComponent } from './components/payment/payment.component';
     
   ],
   exports: [
-    PaymentComponent
+    PaymentComponent,
+    RouterModule
   ]
 })
 export class PaymentModule { }
