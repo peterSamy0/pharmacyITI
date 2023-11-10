@@ -11,7 +11,7 @@ import { MedicationService, Product } from 'src/app/shared/services/medication.s
 export class AddProductsComponent implements OnInit {
  
   
-  product! : Product;
+  product! : Product[];
   productsAdded : any = [];
   searchText='';
   errors : any =[];
@@ -56,11 +56,12 @@ addMedication(){
   
 }
 
-addOneProduct(val:any ,event:any){
+addOneProduct(val:any ,event:any, priceVal:any){
   if(event.target.checked==true){
     this.medicineObj = {
       "pharmacy_id": this.pharmacy_id,
-      "medicine_id": val.id
+      "medication_id": val.id,
+      "price": priceVal
     }
     this.productsAdded.push(this.medicineObj);
     this.medicationsList = {
@@ -88,6 +89,31 @@ reset(){
     element.nativeElement.checked = false;
   });
   console.log(this.productsAdded);
+}
+
+submitForm() {
+  const selectedProducts = [];
+
+  for (const product of this.product) {
+    const pharmacyPriceInput = document.querySelector(`#pharmacyPrice-${product.id}`) as HTMLInputElement;
+    const checkbox = document.querySelector(`#checkboxes-${product.id}`) as HTMLInputElement;
+
+    if (checkbox.checked && pharmacyPriceInput.value) {
+      const selectedProduct = {
+        productId: product.id,
+        price: pharmacyPriceInput.value,
+      };
+      selectedProducts.push(selectedProduct);
+    } else if (checkbox.checked) {
+      const selectedProduct = {
+        productId: product.id,
+        price: product.price,
+      };
+      selectedProducts.push(selectedProduct);
+    }
+  }
+
+  console.log(selectedProducts);
 }
 
 }

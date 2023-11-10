@@ -8,9 +8,7 @@
     --bodyFont: 16px;
     --footerFont: 14px;
      */
-.container-fluid{
-    background-color: #419197;
-}
+
 h4{
     color: white;
     text-align: center;
@@ -27,4 +25,52 @@ h4{
     color: white;
     padding-bottom:25px;
     margin-top:25px;
+  }
+  .container-fluid {
+    background-color: #5fb8be;
+    color: #fff;
+    padding: 20px 0;
+  }
+
+  .footer {
+    background-color: #419197;
+    padding: 20px 0;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .social-icon {
+    font-size: 24px;
+    color: #fff;
+    margin-right: 20px;
+  }
+
+  .copyright {
+    text-align: center;
+    padding: 10px 0;
+  }
+  #top:hover{
+    background-color: #419197;
+  }
+  /* .footer {
+    background-color: #419197;
+    color: #fff;
+    padding: 20px 0;
+  } */
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .social-icons a {
+    color: white;
+    font-size: 30px; /* Adjust the size as needed */
+    margin-right: 20px; /* Adjust the margin to create space between icons */
   }

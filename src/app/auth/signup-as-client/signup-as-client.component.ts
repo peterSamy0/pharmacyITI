@@ -101,7 +101,7 @@ export class SignupAsClientComponent {
           localStorage.setItem('token', response['token']);
           localStorage.setItem('role', response['role']);
           localStorage.setItem('user_id', response['user_id']);
-          localStorage.setItem('_id', response['delivery_id']);
+          localStorage.setItem('_id', response['_id']);
           window.location.href = '/';
         },
 

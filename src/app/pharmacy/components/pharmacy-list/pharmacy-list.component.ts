@@ -29,7 +29,7 @@ export class PharmacyListComponent{
   showList: boolean = false;
   showSubList: boolean = false;
   cities: any;
-  cityName: any;
+  GovernorateName: any;
   location: string = "Location";
   data: any= "not yet";
   page :number=1;
@@ -46,24 +46,19 @@ export class PharmacyListComponent{
    this.getPharamciesData();
    this.getData();
   }
-
   
   getPharamciesData(){
     this.service.getPharmacies().subscribe((res :any)=>{
-      
       this.pharmArr = res.data;
-
       this.totalLength=this.pharmArr;
-
       this.pharmArr.forEach((e:any,i:any) => {
         e.id=i+1;
       });
-      console.log(this.pharmArr)
     })
   }
   
   getData() {
-    this.service.getData().subscribe(
+    this.service.getGovernorates().subscribe(
       (res) => {
         this.data = res;
       },
@@ -82,7 +77,7 @@ export class PharmacyListComponent{
   openSubList(val: any) {
     this.dropService.openSubList(val)
     this.cities = val.cities;
-    this.cityName = val.name
+    this.GovernorateName = val.governorate_name
     this.showList = !this.showList;
     this.showSubList = !this.showSubList
   }
@@ -93,10 +88,16 @@ export class PharmacyListComponent{
   }
   // fucntion to save the location of user and send it to service
   sendLocation(val: any){
+    this.getPharamciesData()
     this.dropService.sendLocation(val)
-    this.location = this.cityName + ", " + val
+    this.location = this.GovernorateName + ", " + val
     this.showSubList = false
     this.showList = false;
+    this.pharmArr = this.pharmArr.filter( (city: any) => {
+      if(city['Governorate'] == this.GovernorateName && city['city'] == val){
+        return city; 
+      }
+    })
   }
 
   goToDetails(id:number){

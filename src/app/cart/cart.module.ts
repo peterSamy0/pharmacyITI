@@ -5,12 +5,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { OrdersComponent } from './orders/orders.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { OrderComponent } from './order/order.component';
 
 
 @NgModule({
   declarations: [
     CartpageComponent,
-    OrdersComponent
+    OrdersComponent,
+    OrderComponent
   ],
   imports: [
     CommonModule,
