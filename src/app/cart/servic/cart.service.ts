@@ -13,7 +13,7 @@ export class CartService {
 
   // Add an item to the cart
   addItemToCart(item: CartItem) {
-    const existingItem = this.cartItems.find((cartItem: any) => cartItem.id === item.id);
+    const existingItem = this.cartItems.find((cartItem: any) => cartItem.medicine_id === item.id);
     if (existingItem) {
       // If the item already exists in the cart, update its quantity
       existingItem.quantity += 1;
@@ -28,17 +28,20 @@ export class CartService {
 
   // Remove an item from the cart
   removeItemFromCart(itemId: number) {
-    const itemIndex = this.cartItems.findIndex((cartItem: any) => cartItem.id === itemId);
+    const itemIndex = this.cartItems.findIndex((cartItem: any) => cartItem.medicine_id === itemId);
     if (itemIndex !== -1) {
       this.cartItems.splice(itemIndex, 1);
     }
     // Update the cart item count
+    console.log(itemIndex)
+    console.log(itemId)
     this.cartItemCountSubject.next(this.cartItems.length);
+    
   }
 
   // Update the quantity of an item in the cart
   updateCartItemQuantity(itemId: number, newQuantity: number) {
-    const existingItem = this.cartItems.find((cartItem: any) => cartItem.id === itemId);
+    const existingItem = this.cartItems.find((cartItem: any) => cartItem.medicine_id === itemId);
     if (existingItem) {
       existingItem.quantity = newQuantity;
     }

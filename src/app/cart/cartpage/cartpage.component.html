@@ -13,12 +13,12 @@
         <tr *ngFor="let item of cartItems">
           <th scope="row"></th>
           <td class="align-middle "><img src={{item.image}} alt="" width="80px" height="80px" class="rounded-5"></td>
-          <td class="align-middle ">{{item.name}}</td>
-          <td class="align-middle ">{{item.price}} L.E.</td>
+          <td class="align-middle ">{{item.medicine_name}}</td>
+          <td class="align-middle ">{{item.medicine_price}} L.E.</td>
           <td class="align-middle ">
             <div class="btn-group d-flex" role="group" aria-label="Quantity">
               <button (click)="decreaseQuantity(item)" class="btn btn-danger p-0" *ngIf="item.quantity !== 1">-</button>
-              <button (click)="decreaseQuantity(item)" class="btn btn-danger p-0" *ngIf="item.quantity == 1" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + item.id">-</button>
+              <button (click)="decreaseQuantity(item)" class="btn btn-danger p-0" *ngIf="item.quantity == 1" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + item.medicine_id">-</button>
               <span class="btn btn-light">{{ item.quantity }}</span>
               <button (click)="increaseQuantity(item)" class="btn btn-success p-0">+</button>
             </div>

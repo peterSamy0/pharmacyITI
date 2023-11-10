@@ -27,28 +27,31 @@ export class CartpageComponent {
   }
 
   // Decrease the quantity of an item in the cart
-  decreaseQuantity(item: CartItem) {
+  decreaseQuantity(item: any) {
     if (item.quantity > 1) {
-      this.cartService.updateCartItemQuantity(item.id, item.quantity - 1);
+      this.cartService.updateCartItemQuantity(item.medicine_id, item.quantity - 1);
       this.calculateTotalPrice(); // Recalculate the total price
     }
+    console.log(item)
   }
 
   // Increase the quantity of an item in the cart
-  increaseQuantity(item: CartItem) {
-    this.cartService.updateCartItemQuantity(item.id, item.quantity + 1);
+  increaseQuantity(item:any) {
+    this.cartService.updateCartItemQuantity(item.medicine_id, item.quantity + 1);
     this.calculateTotalPrice(); // Recalculate the total price
+    console.log(item.quantity);
+    
   }
 
   // Remove an item from the cart
-  removeFromCart(item: CartItem) {
-    this.cartService.removeItemFromCart(item.id);
+  removeFromCart(item: any) {
+    this.cartService.removeItemFromCart(item.medicine_id);
     this.calculateTotalPrice(); // Recalculate the total price
   }
 
   // Calculate the total price of all items in the cart
   calculateTotalPrice() {
-    this.total = this.cartItems.reduce((acc:any, item:any) => acc + item.price * item.quantity, 0);
+    this.total = this.cartItems.reduce((acc:any, item:any) => acc + item.medicine_price * item.quantity, 0);
   }
 
   // back end logic

@@ -49,7 +49,7 @@ export class PharmacyListComponent{
       
       this.pharmArr = res.data;
 
-      this.totalLength=this.pharmArr;
+      this.totalLength=this.pharmArr.length;
 
       this.pharmArr.forEach((e:any,i:any) => {
         e.id=i+1;
