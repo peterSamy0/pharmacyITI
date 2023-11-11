@@ -65,7 +65,6 @@ export class SignupAsPharmacyComponent {
     let pharmaBankAccount = this.signupForm.controls['pharmaBankAccount'].value;
     let pharmaPhone = this.signupForm.controls['pharmaPhone'].value;
     let pharmaPass = this.signupForm.controls['pharmaPass'].value;
-    let pharmaPhone = this.signupForm.controls['pharmaPhone'].value;
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
