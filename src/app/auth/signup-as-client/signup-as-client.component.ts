@@ -57,6 +57,7 @@ export class SignupAsClientComponent {
     let userFullName = this.signupForm.controls['userFullName'].value;
     let userCity = this.signupForm.controls['userCity'].value;
     let userGovern = this.signupForm.controls['userGovern'].value;
+    let userPhone = this.signupForm.controls['userPhone'].value;
     let userPass = this.signupForm.controls['userPass'].value;
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let fullNamePattern =
@@ -73,6 +74,7 @@ export class SignupAsClientComponent {
         "governorate_id": this.governorateID,
         "city_id": this.cityID,
       },
+      phone: [userPhone]
     };
     if (!userFullName.match(fullNamePattern)) {
       console.log('wrong full name format');
