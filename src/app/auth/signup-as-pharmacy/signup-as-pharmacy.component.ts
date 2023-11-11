@@ -63,6 +63,7 @@ export class SignupAsPharmacyComponent {
     let pharmaOpeningTime = this.signupForm.controls['pharmaOpeningTime'].value;
     let pharmaClosingTime = this.signupForm.controls['pharmaClosingTime'].value;
     let pharmaBankAccount = this.signupForm.controls['pharmaBankAccount'].value;
+    let pharmaPhone = this.signupForm.controls['pharmaPhone'].value;
     let pharmaPass = this.signupForm.controls['pharmaPass'].value;
     let pharmaPhone = this.signupForm.controls['pharmaPhone'].value;
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;

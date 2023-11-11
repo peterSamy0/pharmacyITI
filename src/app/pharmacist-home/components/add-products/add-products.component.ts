@@ -83,8 +83,6 @@ handlePriceChange(product: any, checkbox: HTMLInputElement) {
   if (checkbox.checked) {
     // Uncheck the checkbox
     checkbox.checked = false;
-    // Perform any additional logic as needed
-    console.log('Checkbox unchecked due to price modification');
   }
 }
 
