@@ -111,7 +111,8 @@ export class SignupAsDeliveryComponent {
         "cityID": this.cityID,
         "nationalID": national_ID,
         "available":1
-       }
+       },
+       "phone": [phone]
       };
 
       console.log(this.newDelivery);
