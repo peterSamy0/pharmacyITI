@@ -17,6 +17,7 @@ export interface Product {
 export interface pharmacyProduct {
   id: number;
   medicine_name: string;
+  pharmacyMedication_id:number;
   medicine_price: number;
   medicine_image: string;
   category_id: number;

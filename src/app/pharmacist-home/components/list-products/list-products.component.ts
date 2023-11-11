@@ -49,7 +49,6 @@ export class ListProductsComponent {
 
   openAlert(val:any){
     this.deleteId = val
-    console.log(val)
   }
   deleteProduct() {
     this.medicationService.deleteMedication(this.deleteId).subscribe(

@@ -11,8 +11,10 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SignupAsDeliveryComponent } from './signup-as-delivery/signup-as-delivery.component';
 import { SigninAsDeliveryComponent } from './signin-as-delivery/signin-as-delivery.component';
-import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [
     SigninAsClientComponent,
@@ -33,6 +35,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     RouterModule,
     FontAwesomeModule,
     HttpClientModule,
+    MatInputModule
   ],
   exports:[
     SigninAsClientComponent,

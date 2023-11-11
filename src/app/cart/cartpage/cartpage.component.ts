@@ -102,6 +102,7 @@ export class CartpageComponent {
       this.calculateTotalPrice();
       this.calculateDividedTotal()
     }
+    console.log(item)
   }
 
   increaseQuantity(item: CartItem) {
@@ -115,7 +116,6 @@ export class CartpageComponent {
     this.cartService.removeItemFromCart(item.id);
     this.calculateTotalPrice();
     this.calculateDividedTotal()
-
   }
 
   calculateTotalPrice() {
