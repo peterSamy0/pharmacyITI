@@ -19,6 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ProfileModule } from './profile/profile.module';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 // import { PaymentModule } from './payment/payment.module';
 
@@ -34,6 +35,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     ProfileComponent,
     ContactUsComponent,
     AboutUsComponent,
+    NotFoundComponent,
     // CityComponent,
     // GovernorateComponent
     // SearchPharmaciesPipe,

@@ -32,6 +32,7 @@ import { EditDeliveryDataComponent } from './profile/delivery/edit-delivery-data
 import { AuthGuard } from './guard/auth.guard';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
 
@@ -166,6 +167,15 @@ const routes: Routes = [
     path : "about-us",
     component: AboutUsComponent
   },
+  {
+    path: 'not-found',
+    component: NotFoundComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/not-found',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
