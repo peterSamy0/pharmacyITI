@@ -32,6 +32,7 @@ import { EditDeliveryDataComponent } from './profile/delivery/edit-delivery-data
 import { AuthGuard } from './guard/auth.guard';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { OrderComponent } from './cart/order/order.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
@@ -110,6 +111,11 @@ const routes: Routes = [
   {
     path: "orders",
     component: OrdersComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "orders/:id",
+    component: OrderComponent,
     canActivate: [AuthGuard]
   },
   {

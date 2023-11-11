@@ -1,1 +1,84 @@
-<p>order works!</p>
+<div class="d-flex justify-content-between container p-5">
+    <div class="d-flex ">
+        <div>
+            <img src="assets/img/pharmaLogo.jpg" alt="" width="80px" height="80px">
+        </div>
+        <div class="justify-content-center align-items-start d-flex flex-column ">
+            <h3 class="fs-5 fw-bold ">Dr. {{orderData.pharmacy_name}}</h3>
+            <p class="text-capitalize ">new bani-suef city</p>
+        </div>
+    </div>
+    <div>
+        <h3 class="fs-5 fw-bold " >Pharmacy: El shfaa</h3>
+        <p>Ph: 012011010015</p>
+        <p>working time: from 06:00am To 00:00am</p>
+        <p>Closed: Sunday</p>
+    </div>
+</div>
+<hr>
+
+<div class="w-50 m-auto ">
+    <div class="d-flex justify-content-between my-3">
+        <h3 class="fs-6">client name: {{orderData.client_name}}</h3> <!-- user name -->
+        <span Style="color:#1f494d; font-size: 20px;">Status:</span>
+        <span class="badge p-2"[ngClass]="'text-bg-'+badgeColor(orderData.status)">{{orderData.status}}</span>
+
+        <h3 class="fs-6">Date: {{orderData.created_at}}</h3> <!-- order time -->
+    </div>
+    <!-- table to show prescription -->
+    <table class="table mb-5">
+        <thead>
+          <tr>
+            <th scope="col">no.</th>
+            <th scope="col">Medicine name</th>
+            <th scope="col">Image</th>
+            <th scope="col">quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Remove</th>
+            <th scope="col">Total price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let medication of orderData.orderMedications; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{medication.medicine_name}}</td>
+            <td>
+              <img src="{{medication.medicine_image}}"
+               alt="{{medication.medicine_name}} image"
+               style="width:50px; height:50px">
+            </td>
+            <td>{{medication.amount}} </td>
+            <td>{{medication.price}} L.E. </td>
+            <td>
+                <button class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + medication.medicine_id">Remove</button>
+                <!-- Modal -->
+              <div class="modal fade" [id]="'removeConfirm-' + medication.medicine_id" tabindex="-1"  aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header" style="background-color: #419197; color:white;">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Remove {{medication.medicine_name}} from cart? </h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <h4>Are you sure you want to remove {{medication.amount}} {{medication.medicine_name}} items from the cart?</h4>
+                        <img src={{medication.medicine_image}} alt="" width="80px" height="80px" class="rounded-5">
+                    </div>
+                    <div class="modal-footer" style="background-color: #419197; color:white;">
+                      <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                      <button (click)="removeFromOrder(medication.medicine_id)" type="button" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + medication.medicine_id">Remove</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td>{{medication.price * medication.amount}}  L.E. </td>
+            
+          </tr>
+        </tbody>
+        <tfoot class="bg-success">
+            <th> </th>
+            <td colspan="5"></td>
+            <td class="totalPrice"> {{calcTotal()}} L.E.</td>
+        </tfoot>
+      </table>
+</div>

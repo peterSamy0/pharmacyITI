@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../servic/api.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -10,7 +11,7 @@ export class OrdersComponent {
   totalLenght:any;
   page :number=1;
   isLoading: boolean = true;
-  constructor(private apiService: ApiService){
+  constructor(private apiService: ApiService, private http :HttpClient){
 
   }
   ngOnInit() {
@@ -30,6 +31,17 @@ export class OrdersComponent {
         return 'success';
       default:
         return 'black';
+    }
+  }
+  removeOrder(orderId:any){
+    try{
+      // update request to remove item from order
+      this.http.delete(`http://localhost:8000/api/orders/${orderId}`).subscribe(data => {
+        console.log(data)
+      });
+    }
+    catch(error:any){
+      console.log(error);
     }
   }
 }
