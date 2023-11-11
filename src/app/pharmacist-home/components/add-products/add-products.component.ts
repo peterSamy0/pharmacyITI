@@ -1,6 +1,9 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MedicationService, Product } from 'src/app/shared/services/medication.service';
+import { forkJoin } from 'rxjs';
+
+
 @Component({
   selector: 'app-add-products',
   templateUrl: './add-products.component.html',
@@ -20,6 +23,8 @@ export class AddProductsComponent implements OnInit {
   pharmacy_id!:number | null;
   medicineObj:any;
   medicationsList!: any;
+  products: any;
+  isExists:boolean = false;
 
 constructor (
   private medicationService: MedicationService, 
@@ -28,18 +33,36 @@ constructor (
   ){}
 
 
-ngOnInit() {
-  this.pharmacy_id = Number(this.activeRoute.snapshot.paramMap.get('id'));
-  this.getMedicationList();
-  this.totalLenght=this.product;
-}
 
-getMedicationList() {
-this.medicationService.getMedication().subscribe((res: any) => {
-    this.product = res.data;
-  });
-
-}
+  ngOnInit() {
+    this.pharmacy_id = Number(this.activeRoute.snapshot.paramMap.get('id'));
+    this.fetchData();
+  }
+  
+  fetchData() {
+    forkJoin([
+      this.medicationService.getMedication(),
+      this.medicationService.getPharmacyMedication(this.pharmacy_id)
+    ]).subscribe(
+      ([medicationRes, pharmacyMedicationRes] : any) => {
+        this.product = medicationRes.data;
+        this.products = pharmacyMedicationRes.data.medication;
+        this.checkProduct();
+      },
+      error => console.log(error)
+    );
+  }
+  
+  checkProduct() {
+    if (this.product && this.products) {
+      this.product = this.product.filter(
+        obj1 => this.products.every((obj2: any) => obj2.id !== obj1.id)
+      );
+      this.totalLenght = this.product.length;
+    } else {
+      console.log('this.product or this.products is not defined or is null');
+    }
+  }
 
 addMedication(){
   this.medicationService.addMedication(this.medicationsList).subscribe({
@@ -53,7 +76,16 @@ addMedication(){
       
     }
   });
-  
+}
+
+handlePriceChange(product: any, checkbox: HTMLInputElement) {
+  // Check if the checkbox is already checked
+  if (checkbox.checked) {
+    // Uncheck the checkbox
+    checkbox.checked = false;
+    // Perform any additional logic as needed
+    console.log('Checkbox unchecked due to price modification');
+  }
 }
 
 addOneProduct(val:any ,event:any, priceVal:any){
@@ -63,11 +95,17 @@ addOneProduct(val:any ,event:any, priceVal:any){
       "medication_id": val.id,
       "price": priceVal
     }
-    this.productsAdded.push(this.medicineObj);
-    this.medicationsList = {
-      "medicationsList":this.productsAdded
+    // this.isExists = this.products.filter( (item:any) => {
+    //   return item.id == val
+    // })
+    // if(this.isExists){
+    //   console.log('item already exsits')
+    // }else{
+      this.productsAdded.push(this.medicineObj);
+      this.medicationsList = {
+        "medicationsList":this.productsAdded
+      // }
     }
-    console.log(this.medicationsList)
   }
   else{
     console.log('checkbox is unchecked');
@@ -75,7 +113,6 @@ addOneProduct(val:any ,event:any, priceVal:any){
       if (index >= 0) {
         this.productsAdded.splice(index, 1);
       }
-      console.log(this.productsAdded);
   };
 }
 
@@ -88,33 +125,8 @@ reset(){
   this.checkboxes.forEach((element) => {
     element.nativeElement.checked = false;
   });
-  console.log(this.productsAdded);
 }
 
-submitForm() {
-  const selectedProducts = [];
-
-  for (const product of this.product) {
-    const pharmacyPriceInput = document.querySelector(`#pharmacyPrice-${product.id}`) as HTMLInputElement;
-    const checkbox = document.querySelector(`#checkboxes-${product.id}`) as HTMLInputElement;
-
-    if (checkbox.checked && pharmacyPriceInput.value) {
-      const selectedProduct = {
-        productId: product.id,
-        price: pharmacyPriceInput.value,
-      };
-      selectedProducts.push(selectedProduct);
-    } else if (checkbox.checked) {
-      const selectedProduct = {
-        productId: product.id,
-        price: product.price,
-      };
-      selectedProducts.push(selectedProduct);
-    }
-  }
-
-  console.log(selectedProducts);
-}
 
 }
 
