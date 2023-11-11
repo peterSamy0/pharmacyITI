@@ -20,16 +20,18 @@ export class ListProductsComponent {
   deleteId!:number;
   id:any;
   addProductUrl!: string;
+  token:any;
   constructor(
     private medicationService: MedicationService, 
     private activeRoute: ActivatedRoute,
-    private route: Router
+    private router: Router
     ) {}
 
   products !: pharmacyProduct[]; 
 
   ngOnInit() {
     // this.totalLenght=this.product.length;
+    this.token = localStorage.getItem('token')
     this.id = this.activeRoute.snapshot.paramMap.get("id")
     this.getMedicationList();
     this.addProductUrl = `addProduct/${this.id}`
@@ -37,12 +39,11 @@ export class ListProductsComponent {
   }
 
   getMedicationList() {
-    this.medicationService.getPharmacyMedication(+this.id).subscribe(
+    this.medicationService.getPharmacyMedication(+this.id, this.token).subscribe(
       (res: any) => {
         this.products = res.data.medication;
-        console.log(this.products)
       },
-      error => console.log(error)
+      error => this.router.navigate(['not-found'])
     );
   }
 
@@ -57,7 +58,7 @@ export class ListProductsComponent {
         if (index > -1) {
           this.products.splice(index, 1);
         }
-        this.route.navigate([`listproduct/${this.id}`]);
+        this.router.navigate([`listproduct/${this.id}`]);
       },
       error => console.log(error)
     );

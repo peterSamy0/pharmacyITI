@@ -1,6 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../../services/profile.service';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-view-delivery-data',
   templateUrl: './view-delivery-data.component.html',
@@ -21,9 +23,8 @@ export class ViewDeliveryDataComponent {
   ngOnInit(){
     this.id = this.activeRoute.snapshot.params['id'];
     this.token = localStorage.getItem('token')
-    console.log(this.token)
 
-    this.profileService.getDelivery(this.id).subscribe((res: any) => {
+    this.profileService.getDelivery(this.id, this.token).subscribe((res: any) => {
       this.deliveryId = res.data;
       this.numOforders= this.deliveryId.orders.length;
     });
@@ -50,8 +51,22 @@ export class ViewDeliveryDataComponent {
   }
   
   deleteAccount(id: number) {
-    this.profileService.deleteDelivery(id).subscribe((res: any) => {
-      console.log(res)
-    });
+    this.profileService.deleteDelivery(id, this.token).subscribe(
+      (res: any) => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('_id');
+        window.location.href = '/';
+      },
+      error => {
+        Swal.fire({
+            title: 'Error!',
+            text: 'You Are Not Authorized to Delete This Account',
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
+        }
+    );
   }
 }

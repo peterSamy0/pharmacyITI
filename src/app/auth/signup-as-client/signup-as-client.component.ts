@@ -108,7 +108,6 @@ export class SignupAsClientComponent {
         },
 
         (error) => {
-          console.log(error);
           Swal.fire({
             title: 'Error!',
             text: 'invaled email or password',

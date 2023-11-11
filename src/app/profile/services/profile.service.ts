@@ -35,42 +35,51 @@ export class ProfileService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getPharmacy(id: number) {
-    return this.httpClient.get(`http://127.0.0.1:8000/api/pharmacies/${id}`);
+  getPharmacy(id: number, token:any){
+    const headers = { 'Authorization': `Bearer ${token}` };
+    const options = { headers: headers };
+    return this.httpClient.get(`http://127.0.0.1:8000/api/pharmacies/${id}`, options);
   }
-  deletePharmacy(id : number) {
-    return this.httpClient.delete(`http://127.0.0.1:8000/api/pharmacies/${id}`);
+  deletePharmacy(id : number, token:any) {
+    const headers = { 'Authorization': `Bearer ${token}` };
+    const options = { headers: headers };
+    return this.httpClient.delete(`http://127.0.0.1:8000/api/pharmacies/${id}`, options);
   }
   getOrders() {
     return this.httpClient.get(`http://127.0.0.1:8000/api/orders`);
   }
-  getDelivery(id: number) {
-    return this.httpClient.get(`http://127.0.0.1:8000/api/deliveries/${id}`);
+  getDelivery(id: number, token:any) {
+    const headers = { 'Authorization': `Bearer ${token}` };
+    const options = { headers: headers };
+    return this.httpClient.get(`http://127.0.0.1:8000/api/deliveries/${id}`, options);
   }
 
-  // getDelivery(id: number, token: any) {
-  //   const headers = { 'Authorization': `Bearer ${token}` };
-  //   const options = { headers: headers };
-  //   return this.httpClient.get(`http://127.0.0.1:8000/api/deliveries/${id}`, options);
-  // }
-  deleteDelivery(id : number) {
-    return this.httpClient.delete(`http://127.0.0.1:8000/api/deliveries/${id}`);
+  deleteDelivery(id : number, token: any) {
+    const headers = { 'Authorization': `Bearer ${token}` };
+    const options = { headers: headers };
+    return this.httpClient.delete(`http://127.0.0.1:8000/api/deliveries/${id}`, options);
   }
-  getClient(id: number) {
-    return this.httpClient.get(`http://127.0.0.1:8000/api/clients/${id}`);
+  getClient(id: number, token: any) {
+    const headers = { 'Authorization': `Bearer ${token}` };
+    const options = { headers: headers };
+    return this.httpClient.get(`http://127.0.0.1:8000/api/clients/${id}`, options);
   }
-  deleteClient(id : number) {
-    return this.httpClient.delete(`http://127.0.0.1:8000/api/clients/${id}`);
+  deleteClient(id : number, token: any) {
+    const headers = { 'Authorization': `Bearer ${token}` };
+    const options = { headers: headers };
+    return this.httpClient.delete(`http://127.0.0.1:8000/api/clients/${id}`, options);
   }
 
-  updateClient( id: number,body:any){
-    
-   return this.httpClient.put(`http://localhost:8000/api/clients/${id}`, body)
+  updateClient( id: number,body:any,  token:any){
+    const headers = { 'Authorization': `Bearer ${token}` };
+    const options = { headers: headers };
+   return this.httpClient.put(`http://localhost:8000/api/clients/${id}`, body, options)
   }
  
-  updateDelivery( id: number,body:any){
-    
-    return this.httpClient.put(`http://localhost:8000/api/deliveries/${id}`, body)
+  updateDelivery( id: number,body:any, token:any){
+    const headers = { 'Authorization': `Bearer ${token}` };
+    const options = { headers: headers };
+    return this.httpClient.put(`http://localhost:8000/api/deliveries/${id}`, body, options)
    }
 
     // api for governorates
@@ -89,13 +98,17 @@ export class ProfileService {
     }
 
     // update pharmacy
-    updatePharmacy(val:any, id:any){
-      return this.httpClient.put(`${this.apiUrl}/pharmacies/${id}`, val)
+    updatePharmacy(val:any, id:any, token:any){
+      const headers = { 'Authorization': `Bearer ${token}` };
+      const options = { headers: headers };
+      return this.httpClient.put(`${this.apiUrl}/pharmacies/${id}`, val, options)
     }
 
     // get user data
-    getUserData(val:any){
-      return this.httpClient.get(`${this.apiUrl}/pharmacies/${val}`)
+    getUserData(val:any, token:any){
+      const headers = { 'Authorization': `Bearer ${token}` };
+      const options = { headers: headers };
+      return this.httpClient.get(`${this.apiUrl}/pharmacies/${val}`, options)
     }
 
 

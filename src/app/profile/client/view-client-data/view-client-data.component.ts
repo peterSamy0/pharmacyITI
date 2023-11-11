@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../../services/profile.service';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
+
 
 @Component({
   selector: 'app-view-client-data',
@@ -15,42 +17,58 @@ export class ViewClientDataComponent {
   ordersOnTheirWay!:any;
   ordersPending !: any; 
   numOfPendingOrders!:number;
+  token: any;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
   ) {}
   ngOnInit(){
-    console.log(this.activeRoute.snapshot.params['id'])
     this.id = this.activeRoute.snapshot.params['id'];
-    this.profileService.getClient(this.id).subscribe((res: any) => {
-      this.clientId = res.data;
-      console.log(this.clientId);
-      this.ordersOnTheirWay= this.clientId.orders.filter(
-        (order: any) =>
-          order['status'] === "withDelivery"
-      );
-      this.numOforders= this.ordersOnTheirWay.length;
-
-      this.ordersPending= this.clientId.orders.filter(
-        (order: any) =>
-          order['status'] === "pending"
-      );
-      this.numOfPendingOrders= this.ordersPending.length;
-
-    });
-    
-   
+    this.token = localStorage.getItem('token');
+    this.getClientData()
   }
+  
+  getClientData(){
+    this.profileService.getClient(this.id, this.token).subscribe(
+      (res: any) => {
+          this.clientId = res.data;
+          this.ordersOnTheirWay= this.clientId.orders.filter(
+            (order: any) =>
+              order['status'] === "withDelivery"
+          );
+          this.numOforders= this.ordersOnTheirWay.length;
+          this.ordersPending= this.clientId.orders.filter(
+            (order: any) =>
+              order['status'] === "pending"
+          );
+          this.numOfPendingOrders= this.ordersPending.length;
 
+    },
+    error => this.router.navigate(['not-found']));
+  }
 
   edit(id : number){
     this.router.navigate(['edit-personal-data',id])  
   }
 
   deleteAccount(id: number) {
-    this.profileService.deleteClient(id).subscribe((res: any) => {
-      console.log(res)
-    });
+    this.profileService.deleteClient(id, this.token).subscribe(
+      (res: any) => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('_id');
+        window.location.href = '/';
+      },
+      error => {
+        Swal.fire({
+            title: 'Error!',
+            text: 'You Are Not Authorized to Delete This Account',
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
+        }
+      );
   }
 }

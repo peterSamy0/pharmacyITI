@@ -33,6 +33,7 @@ export class EditClientDataComponent {
   oldGovId!: number;
   oldCityId!: number;
   clientPhone!: any;
+  token: any;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -51,8 +52,6 @@ export class EditClientDataComponent {
   }
 
   ngOnInit() {
-    console.log(this.activeRoute.snapshot.params['id']);
-
     this.id = this.activeRoute.snapshot.params['id'];
     this.getUserData();
     this.getGovernorates();
@@ -62,26 +61,27 @@ export class EditClientDataComponent {
 
   // clientId: any = clientsData[this.activeRoute.snapshot.params['id'] - 1];
   getUserData() {
-    this.profileService.getClient(this.id).subscribe(
+    this.token = localStorage.getItem('token');
+    this.getClientData()
+  }
+
+  getClientData(){
+    this.profileService.getClient(this.id, this.token).subscribe(
       (res: any) => {
         this.clientId = res.data;
-        console.log(this.clientId);
         this.clientName = this.clientId.client_name;
         this.clientEmail = this.clientId.client_email;
         this.oldGov = res.data.Governorate;
         this.oldCity = res.data.city;
       },
-      (error) => console.log(error)
+      error => this.router.navigate(['not-found'])
     );
   }
   update() {
     console.log(this.updateClientForm.value);
     let clientFullName = this.updateClientForm.controls['clientFullName'].value;
     let clientEmail = this.updateClientForm.controls['clientEmail'].value;
-    // let clientUserName = this.updateClientForm.controls['clientUserName'].value;
     let clientPhone = this.updateClientForm.controls['clientPhone'].value;
-    // let clientCity = this.updateClientForm.controls['clientCity'].value;
-    // let clientGovern = this.updateClientForm.controls['clientGovern'].value;
     let clientPass = this.updateClientForm.controls['clientPass'].value;
 
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -99,25 +99,19 @@ export class EditClientDataComponent {
         governorate_id: +this.governorateID || this.oldGovId,
         city_id: this.cityID || this.oldCityId,
       },
+      phone: [clientPhone]
     };
 
     if (!clientEmail.match(emailPattern)) {
-      console.log('invalid email format');
       this.emailFail = true;
       this.profileService.errorAlert();
     }
-    //  else if (!clientPass.match(passPattern)) {
-    //   console.log('wrong password format');
-    //   this.passFail = true;
-    //   this.profileService.errorAlert()
-    // }
+    
     else if (
       clientEmail &&
-      // clientPass&&
-      // pharmaPhone&&
       clientFullName
     ) {
-      this.profileService.updateClient(this.id, body).subscribe(
+      this.profileService.updateClient(this.id, body, this.token).subscribe(
         (response: any) => {
           this.router.navigate([`/client-profile/${this.id}`]);
         },
@@ -135,7 +129,6 @@ export class EditClientDataComponent {
     this.profileService.getGovernorates().subscribe(
       (response: any) => {
         this.governorates = response;
-        console.log(this.governorates);
         this.oldGovId = this.governorates.find(
           (obj: any) => obj['governorate_name'] === this.oldGov
         ).governorate_id;
@@ -144,7 +137,6 @@ export class EditClientDataComponent {
           .cities.find(
             (city: any) => city['city_name'] == this.oldCity
           ).city_id;
-        console.log(this.oldCityId, this.oldGovId);
       },
       (error) => console.log(error)
     );
