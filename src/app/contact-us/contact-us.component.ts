@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-  faWhatsapp,
-} from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faInstagram, faTwitter, faWhatsapp,} from '@fortawesome/free-brands-svg-icons';
 import { ContactUsService } from './contact-us.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-contact-us',
@@ -21,6 +18,8 @@ export class ContactUsComponent {
   fatwitter = faTwitter;
   fawhatsapp = faWhatsapp;
   fainstagram = faInstagram;
+  successMessage: boolean = false;
+
 
   constructor(
     private fb: FormBuilder,
@@ -40,8 +39,15 @@ export class ContactUsComponent {
       const contactData = this.contactusForm.value;
       this.contactusservice.sendContactus(contactData).subscribe(
         () => {
-          console.log('Contactus sent successfully');
-          this.router.navigateByUrl('/home');
+          Swal.fire({
+            icon: 'success',
+            title: 'Thanks for contacting us!',
+            text: 'You will be redirected to the home page shortly.',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/home']);
+            }
+          });
         },
         (err) => {
           console.error('Error sending Contactus:', err);

@@ -18,6 +18,13 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { AuthModule } from './auth/auth.module';
 
+// import { PaymentModule } from './payment/payment.module';
+
+// import { CityComponent } from './city/city.component';
+// import { SearchPharmaciesPipe } from './pipes/search-pharmacies.pipe';
+// import { SearchPharmaciesPipe } from './search-pharmacies.pipe';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +51,7 @@ import { AuthModule } from './auth/auth.module';
     MatCheckboxModule,
     BrowserAnimationsModule,
     ProfileModule,
+    // PaymentModule
     AuthModule
   ],
   providers: [],

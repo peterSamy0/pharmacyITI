@@ -60,12 +60,11 @@ export class SignupAsPharmacyComponent {
     let pharmaEmail = this.signupForm.controls['pharmaEmail'].value;
     let pharmaStreet = this.signupForm.controls['pharmaStreet'].value;
     let pharmaLicense = this.signupForm.controls['pharmaLicense'].value;
-    // let pharmaCity = this.signupForm.controls['pharmaCity'].value;
-    // let pharmaGovern = this.signupForm.controls['pharmaGovern'].value;
     let pharmaOpeningTime = this.signupForm.controls['pharmaOpeningTime'].value;
     let pharmaClosingTime = this.signupForm.controls['pharmaClosingTime'].value;
     let pharmaBankAccount = this.signupForm.controls['pharmaBankAccount'].value;
     let pharmaPass = this.signupForm.controls['pharmaPass'].value;
+    let pharmaPhone = this.signupForm.controls['pharmaPhone'].value;
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
@@ -101,7 +100,8 @@ export class SignupAsPharmacyComponent {
         "governorate_id" : this.governorateID,
         "city_id" : this.cityID
       },
-      "daysOff": this.daysArr
+      "daysOff": this.daysArr,
+      "phone": [pharmaPhone]
 
     }
 

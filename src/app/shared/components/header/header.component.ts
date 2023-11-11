@@ -42,7 +42,6 @@ export class HeaderComponent {
   }
 
   goToProfile(){
-    console.log(this.role)
     if(this.role == 'pharmacy'){
       this.router.navigate([`pharmacy-profile/${this.userID}`])
     }else if(this.role == 'client'){

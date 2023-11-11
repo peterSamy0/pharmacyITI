@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+// payment.component.ts
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
-// import { ApiService } from 'path-to-your-api-service'; // Import your API service for payment processing
+
+// declare var paypal;
 
 @Component({
   selector: 'app-payment',
@@ -12,51 +12,51 @@ import Swal from 'sweetalert2';
 export class PaymentComponent {
   // paymentForm: FormGroup;
 
-  // constructor(private fb: FormBuilder, private router: Router, private apiService: ApiService) {
+  // constructor(private fb: FormBuilder) {}
+
+  // ngOnInit() {
   //   this.paymentForm = this.fb.group({
   //     email: ['', [Validators.required, Validators.email]],
-  //     name: ['', Validators.required],
+  //     cardHolder: ['', Validators.required],
   //     cardNumber: ['', Validators.required],
   //     exp: ['', Validators.required],
   //     cvv: ['', Validators.required]
   //   });
   // }
 
-  // onSubmit() {
-  //   if (this.paymentForm.valid) {
-  //     // You can access the payment details from this.paymentForm.value
-  //     const paymentDetails = this.paymentForm.value;
-
-  //     // Send the payment details to your server or payment gateway for processing
-  //     this.apiService.processPayment(paymentDetails).subscribe(
-  //       (response: any) => {
-  //         // Payment was successful
-  //         console.log('Payment successful:', response);
-
-  //         // You can optionally navigate to a confirmation page
-  //         this.router.navigate(['/payment-confirmation']);
-  //       },
-  //       (error: any) => {
-  //         // Payment failed
-  //         console.error('Payment failed:', error);
-  //       }
-  //     );
-  //   }
-  // }
-  // alertConfirmation() {
-  //   Swal.fire({
-  //     title: 'Are you sure?',
-  //     text: 'This process is irreversible.',
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonText: 'Yes, go ahead.',
-  //     cancelButtonText: 'No, let me think',
-  //   }).then((result) => {
-  //     if (result.value) {
-  //       Swal.fire('Removed!', 'Product removed successfully.', 'success');
-  //     } else if (result.dismiss === Swal.DismissReason.cancel) {
-  //       Swal.fire('Cancelled', 'Product still in our database.)', 'error');
+  // ngAfterViewInit() {
+  //   // Initialize PayPal Smart Payment Buttons
+  //   paypal.Buttons({
+  //     createOrder: (data, actions) => {
+  //       // Replace 'YOUR_SERVER_URL' with your Laravel API endpoint
+  //       return fetch('YOUR_SERVER_URL/api/create-paypal-order', {
+  //         method: 'post',
+  //         headers: {
+  //           'content-type': 'application/json'
+  //         },
+  //         body: JSON.stringify({
+  //           // Include your order details here
+  //           amount: 100, // Example amount in cents
+  //           currency: 'USD'
+  //         })
+  //       }).then(response => response.json()).then(order => order.id);
+  //     },
+  //     onApprove: (data, actions) => {
+  //       // Handle the approved payment
+  //       return fetch('YOUR_SERVER_URL/api/execute-paypal-order', {
+  //         method: 'post',
+  //         headers: {
+  //           'content-type': 'application/json'
+  //         },
+  //         body: JSON.stringify({
+  //           orderID: data.orderID
+  //         })
+  //       }).then(response => response.json()).then(details => {
+  //         console.log(details); // Handle successful payment details
+  //       });
   //     }
-  //   });
+  //   }).render('#paypal-button-container');
   // }
+
+  // Other methods for handling non-PayPal payments
 }

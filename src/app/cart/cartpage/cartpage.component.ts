@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { CartService } from '../servic/cart.service';
 import { CartItem } from 'src/app/interface/CartItem';
 import { ApiService } from '../servic/api.service';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cartpage',
@@ -11,76 +14,112 @@ import { ApiService } from '../servic/api.service';
 export class CartpageComponent {
   cartItems: Array<any> = [];
   total: number = 0; // Initialize the total price to 0
-  clientId: Number = 3;
-  pharmacyId: Number = 1;
+  clientId!: Number;
+  pharmacyId!: Number;
+  
   // array of orderMedications:
   orderMedications: Array<object> = [];
 
-  constructor(private cartService: CartService, private api:ApiService) {}
+  constructor(
+    private cartService: CartService,
+    private api: ApiService,
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
   ngOnInit(): void {
-    // Retrieve cart items from the CartService
     this.cartItems = this.cartService.getCartItems();
-    // Calculate the total price when the component initializes
     this.calculateTotalPrice();
-    console.log(this.cartService.cartItems) 
+    console.log(this.cartService.cartItems);
+    // get authorization data from local storage and service
+  if(localStorage.getItem('role') && localStorage.getItem('role') == "client"){
+    this.pharmacyId = this.cartService.pharmacyId;
+    this.clientId = Number(localStorage.getItem("_id"));
+    console.log(this.clientId);
+  } 
   }
 
-  // Decrease the quantity of an item in the cart
   decreaseQuantity(item: CartItem) {
     if (item.quantity > 1) {
       this.cartService.updateCartItemQuantity(item.id, item.quantity - 1);
-      this.calculateTotalPrice(); // Recalculate the total price
+      this.calculateTotalPrice();
     }
   }
 
-  // Increase the quantity of an item in the cart
   increaseQuantity(item: CartItem) {
     this.cartService.updateCartItemQuantity(item.id, item.quantity + 1);
-    this.calculateTotalPrice(); // Recalculate the total price
+    this.calculateTotalPrice();
   }
 
-  // Remove an item from the cart
   removeFromCart(item: CartItem) {
     this.cartService.removeItemFromCart(item.id);
-    this.calculateTotalPrice(); // Recalculate the total price
+    this.calculateTotalPrice();
   }
 
-  // Calculate the total price of all items in the cart
   calculateTotalPrice() {
-    this.total = this.cartItems.reduce((acc:any, item:any) => acc + item.price * item.quantity, 0);
+    this.total = this.cartItems.reduce((acc:any, item:any) => acc + item.medicine_price * item.quantity, 0);
   }
 
-  // back end logic
-  pushMedication(mId:number, amount:number){
-    let obj = {"key":mId, "value":amount}
+  pushMedication(mId: number, amount: number) {
+    let obj = { "key": mId, "value": amount };
     this.orderMedications.push(obj);
   }
 
-  submitOrder(){
-    let data = {       
+  submitOrder() {
+    let data = {
       "client_id": this.clientId,
       "pharmacy_id": this.pharmacyId,
       "ordMedications": this.orderMedications
-  }
-  console.log(JSON.stringify(data));
-    this.api.createResource(data).subscribe(Response=>{
+    };
+
+    this.api.createResource(data).subscribe(Response => {
       console.log(Response);
-      
-    })
-    
+    });
   }
-  order(){
-    this.cartItems.forEach((medication)=>{
+
+  order() {
+    this.orderMedications = [];
+
+    this.cartItems.forEach((medication) => {
       let medId = medication.id;
       let amount = medication.quantity;
-      let obj = {"key": medId, "value": amount};
+      let obj = { "key": medId, "value": amount };
       this.orderMedications.push(obj);
-      
-    })
-    this.submitOrder();
+    });
+
+
+    if (this.cartItems.length > 0) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Thanks for your purchase!',
+        text: 'The order will be delivered soon.',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.submitOrder();
+          this.cartService.clearCart();
+          this.router.navigate(['/home']);
+        }
+      });
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Your cart is empty.',
+        text: 'Add items before placing an order.',
+      });
+    }}
+
+  payWithPayPal() {
+    const requestData = {
+      amount: this.total
+    };
+
+    this.http.post<any>('http://localhost:8000/api/pay', requestData).subscribe(
+      response => {
+        window.location.href = response.redirect_url;
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
-
-
 }
-

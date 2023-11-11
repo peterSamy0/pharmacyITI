@@ -31,9 +31,10 @@ export class DropDownComponent  {
   }
   // get the data from json file using service
   getData() {
-    this.service.getData().subscribe(
+    this.service.getGovernorates().subscribe(
       (res) => {
         this.data = res;
+        console.log(res)
       },
       (error) => {
         console.error('Error:', error);

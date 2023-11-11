@@ -43,10 +43,6 @@ const routes: Routes = [
     path:'home',
     component: HomepageComponent
   },
-  // {
-  //   path:'signIn',
-  //   component: SigninComponent
-  // },
   {
     path: 'signUp',
     component: SignupComponent
@@ -59,10 +55,6 @@ const routes: Routes = [
     path:'profile',
     component:ProfileComponent
   },
-  // {
-  //   path:'signin-pharmacy',
-  //   component:SigninAsPharmacyComponent
-  // },
   {
     path:'signup-client',
     component: SignupAsClientComponent
