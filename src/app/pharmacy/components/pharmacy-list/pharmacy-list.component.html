@@ -26,7 +26,7 @@
                 <!-- list of Governorates -->
                 <ul id="myDropdown-1" class=" bg-white rounded p-0 z-2" style="width: 300px;" *ngIf="showList">
                     <li *ngFor="let gov of data" class="bg-white d-flex cursor justify-content-between p-1 w-100 govern"  (click)="openSubList(gov)">
-                        {{ gov.governorate_name }}
+                        {{ gov.governorate }}
                         <fa-icon [icon]="faAngleRight" class="text-danger"></fa-icon>
                     </li>
                 </ul>
@@ -36,8 +36,8 @@
                         <fa-icon [icon]="faAngleLeft"></fa-icon>
                         <span class="fw-bold" >Back</span> 
                     </div>
-                    <li *ngFor="let city of cities" class="bg-white d-flexjustify-content-between p-1 w-100 govern cursor" (click)="sendLocation(city.city_name)">
-                        {{city.city_name}}
+                    <li *ngFor="let city of cities" class="bg-white d-flexjustify-content-between p-1 w-100 govern cursor" (click)="sendLocation(city.city)">
+                        {{city.city}}
                     </li>
                 </ul>
             </div>

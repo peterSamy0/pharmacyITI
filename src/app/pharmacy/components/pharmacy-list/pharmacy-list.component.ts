@@ -77,7 +77,7 @@ export class PharmacyListComponent{
   openSubList(val: any) {
     this.dropService.openSubList(val)
     this.cities = val.cities;
-    this.GovernorateName = val.governorate_name
+    this.GovernorateName = val.governorate
     this.showList = !this.showList;
     this.showSubList = !this.showSubList
   }
