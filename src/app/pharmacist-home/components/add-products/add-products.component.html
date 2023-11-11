@@ -13,35 +13,30 @@
                 <thead>
                   <tr>
                     <th scope="col">no</th>
-                    <th scope="col">product Name</th>
+                    <th scope="col">Product Name</th>
                     <th scope="col">Categorty</th>
-                    <th scope="col">price</th>
-                    <th scope="col">image</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Your Price</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Add</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let product of this.product  
-                    |search:searchText | paginate
-                    : {
-                        itemsPerPage: 8,
-                        currentPage: page,
-                        totalItems: totalLenght
-                      }, let i =index">
-                    <td >{{i+1}}</td>
-                    <td>{{product.name}}</td>
-                    <td >{{product.category}}</td>
-                    <td > {{product.price}}</td>
+                  <tr *ngFor="let product of product | search:searchText | paginate: { itemsPerPage: 8, currentPage: page, totalItems: totalLenght }, let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>
+                      <input type="number" #pharmacyPrice style="width: 60px; border: 1px solid gray; outline: none;" (input)="handlePriceChange(product, checkboxes)" />
+                    </td>
                     <td><img src="assets/img/medicine.jpg" alt="" width="30px" height="30px"></td>
-                <td> 
-                  <input type="checkbox" class="form-check-input" #checkboxes  (change)="addOneProduct(product,$event)" >
-                </td>
-          
-              </tr>
+                    <td>
+                      <input type="checkbox" class="form-check-input" #checkboxes (change)="addOneProduct(product, $event, pharmacyPrice.value)">
+                    </td>
+                  </tr>
                 </tbody>
-                
               </table>
-             
             </div>
             <div class="container text-center pt-3 bg-white pb-3">
                 <button href="" class="btn btn-danger btn-lg me-3" (click)="reset()">Reset</button>

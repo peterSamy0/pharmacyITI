@@ -40,6 +40,7 @@ export class SigninAsClientComponent {
       .subscribe(
         (response: any) => {
           const role = response['role'];
+          console.log(response)
           if (role) {
             localStorage.setItem('token', response['token']);
             localStorage.setItem('user_id', response['user_id']);

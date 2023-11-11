@@ -34,7 +34,7 @@ h4{
 
   .footer {
     background-color: #419197;
-    padding: 20px 0;
+    padding: 10px 0;
   }
 
   .social-icons {
@@ -53,9 +53,9 @@ h4{
     text-align: center;
     padding: 10px 0;
   }
-  #top:hover{
+  /* #top:hover{
     background-color: #419197;
-  }
+  } */
   /* .footer {
     background-color: #419197;
     color: #fff;
@@ -74,3 +74,21 @@ h4{
     font-size: 30px; /* Adjust the size as needed */
     margin-right: 20px; /* Adjust the margin to create space between icons */
   }
+
+  #top {
+    position: fixed;
+    bottom: 20px;
+    left: auto;
+  }
+  
+  .back-to-top {
+    border-radius: 50%;
+    width: 60px; /* Adjust the size as needed */
+    height: 60px; /* Adjust the size as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Ensure the position is relative for correct placement */
+
+  }
+  
