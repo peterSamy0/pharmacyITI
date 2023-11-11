@@ -45,8 +45,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     PharmacistHomeModule,
     MatCheckboxModule,
     BrowserAnimationsModule,
-    ProfileModule
-
+    ProfileModule,
+    
     // AuthModule
   ],
   providers: [],

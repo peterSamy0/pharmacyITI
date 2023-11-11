@@ -99,7 +99,16 @@ export class ProfileService {
     }
 
 
+    getAllClients(){
+      return this.httpClient.get(`http://127.0.0.1:8000/api/clients`)
+    }
+    getAllDeliveriesInfo(){
+      return this.httpClient.get(`http://127.0.0.1:8000/api/deliveries`)
+    }
+    getAllPharmaciesInfo(){
+      return this.httpClient.get(`http://127.0.0.1:8000/api/pharmacies`)
 
+    }
     // alert for errors
     errorAlert(){
       Swal.fire({

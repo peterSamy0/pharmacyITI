@@ -14,7 +14,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SignupAsDeliveryComponent } from './signup-as-delivery/signup-as-delivery.component';
 import { SigninAsDeliveryComponent } from './signin-as-delivery/signin-as-delivery.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [
     SigninAsClientComponent,
@@ -34,7 +35,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     FormsModule,
     RouterModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule
   ],
   exports:[
     SigninAsClientComponent,

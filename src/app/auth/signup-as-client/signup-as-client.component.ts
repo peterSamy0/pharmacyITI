@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ErrorHandler } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Users } from 'src/app/interface/users';
 import userData from '../../../assets/json/users.json';
@@ -26,30 +26,31 @@ export class SignupAsClientComponent {
   cities: any;
   governorates: any;
   cityID!: number;
+  errors:any ={};
   constructor(
     private http: HttpClient,
     private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private errorHandler : ErrorHandler
   ) {
     this.signupForm = new FormGroup({
-      userName: new FormControl('', [Validators.required]),
-      userEmail: new FormControl('', [Validators.required]),
-      userPhone: new FormControl('', [Validators.required]),
-      userFullName: new FormControl('', [Validators.required]),
+     userEmail: new FormControl('', [
+      Validators.required,
+     Validators.email]),
+      userPhone: new FormControl('', [Validators.required,
+        Validators.pattern('^[0-9]{11}$')]),
+      userFullName: new FormControl('', [Validators.required,
+      Validators.pattern(/(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/)]),
       userCity: new FormControl('', [Validators.required]),
       userGovern: new FormControl('', [Validators.required]),
-      userPass: new FormControl('', [Validators.required]),
+      userPass: new FormControl('', [Validators.required,Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]),
       userGender: new FormControl('', [Validators.required]),
     });
   }
   ngOnInit() {
-    // console.log(this.activeRoute.snapshot.params['id']);
 
-    // this.id = this.activeRoute.snapshot.params['id'];
-    // this.getUserData();
     this.getGovernorates();
-
-    // this.getCurrentGoverId();
+    this.getClients();
   }
 
   selectedFile !:File;
@@ -62,17 +63,21 @@ export class SignupAsClientComponent {
     const uploadData = new FormData;
     uploadData.append('images', this.selectedFile, this.selectedFile.name)
   }
+
+
   addClient() {
     let userEmail = this.signupForm.controls['userEmail'].value;
     let userFullName = this.signupForm.controls['userFullName'].value;
     let userCity = this.signupForm.controls['userCity'].value;
     let userGovern = this.signupForm.controls['userGovern'].value;
     let userPass = this.signupForm.controls['userPass'].value;
+    let userPhone = this.signupForm.controls['userPhone'].value;
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let fullNamePattern =
       /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/;
     let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
+    console.log(this.signupForm)
     const body = {
       user: {
         "name": userFullName,
@@ -84,28 +89,55 @@ export class SignupAsClientComponent {
         "city_id": this.cityID,
       },
     };
-    if (!userFullName.match(fullNamePattern)) {
-      console.log('wrong full name format');
-      this.userFullNameFail = true;
-    } else if (!userEmail.match(emailPattern)) {
-      console.log('invalid email format');
-      this.emailFail = true;
-    } else if (!userPass.match(passPattern)) {
-      console.log('wrong password format');
-      this.passFail = true;
-    } else if (!userGovern) {
-      this.userGovernFail = true;
-    } else if (
+    // if (!userFullName.match(fullNamePattern)) {
+    //   console.log('wrong full name format');
+    //   this.userFullNameFail = true;
+    // } else if (!userEmail.match(emailPattern)) {
+    //   console.log('invalid email format');
+    //   this.emailFail = true;
+    // } else if (!userPass.match(passPattern)) {
+    //   console.log('wrong password format');
+    //   this.passFail = true;
+    // } else if (!userGovern) {
+    //   this.userGovernFail = true;
+    // } else 
+    if (
       userEmail &&
       userFullName &&
       userGovern &&
       userCity &&
       userPass
-    ) {
+    ) {    
       this.userFullNameFail = false;
       this.emailFail = false;
       this.passFail = false;
       this.userGovernFail = false;
+
+      // for( let i = 0 ; i <= this.allClients.length ; i ++){
+      //   if(this.allClients[i]['client_email'] == userEmail){
+      //     this.emailAlreadyUsed = true;
+      //     console.log("email already used")
+      //   }
+      // }
+
+      // const alreadyExist = this.allClients.filter(function (e){
+      //   return e.client_email = userEmail 
+      // })
+      
+      const foundEmail = this.allClients.find(
+        (obj) => obj.client_email === userEmail
+      );
+      if (foundEmail) {
+        console.log(`'${userEmail}' is used in our DataBase`);
+        this.emailAlreadyUsed = true;
+        // nationalIdAlreadyUsed= false;
+        // phoneAlreadyUsed =false;
+      } else {
+        console.log(`'${userEmail}' is not used in our DataBase`);
+        this.emailAlreadyUsed = false;
+      }
+      if(!foundEmail){
+
       this.http.post(`http://localhost:8000/api/clients`, body).subscribe(
         (response:any) => {
           localStorage.setItem('token', response['token']);
@@ -119,15 +151,22 @@ export class SignupAsClientComponent {
           console.log(error);
           Swal.fire({
             title: 'Error!',
-            text: 'invaled email or password',
+            text: 'Check all fields',
             icon: 'error',
             confirmButtonText: 'Cool'
           })
         }
       );
+      }
     } else {
       this.notAllDataEntered = true;
-      this.profileService.errorAlert();
+      // this.profileService.errorAlert();
+      Swal.fire({
+        title: 'Error!',
+        text: 'All fields are required',
+        icon: 'error',
+        confirmButtonText: 'Cool'
+      })
     }
   }
   getGovernorates() {
@@ -155,5 +194,16 @@ export class SignupAsClientComponent {
   selectedCity(val: any) {
     this.cityID = val;
     console.log(this.cityID);
+  }
+
+  //checking if email or phone number were already used and added in the db
+  allClients!:Array<any>;
+  emailAlreadyUsed =false;
+  phoneAlreadyUsed = false;
+  getClients(){
+    this.profileService.getAllClients().subscribe((res:any)=>{
+      this.allClients = res.map((obj:any) => obj.data);
+      console.log(this.allClients)
+    })
   }
 }
