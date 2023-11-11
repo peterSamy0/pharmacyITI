@@ -77,9 +77,6 @@ export class SignupAsPharmacyComponent {
           id:(this.pharmacies.length)+1,
           pharmacyName: pharmaName,
           email: pharmaEmail,
-          // phone: pharmaPhone,
-          // city: pharmaCity,
-          // governorate: pharmaGovern,
           licenseNum: pharmaLicense,
           password: pharmaPass,
         };

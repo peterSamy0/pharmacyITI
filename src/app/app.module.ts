@@ -17,6 +17,7 @@ import { ProfileModule } from './profile/profile.module';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { AuthModule } from './auth/auth.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 // import { PaymentModule } from './payment/payment.module';
 
@@ -32,6 +33,7 @@ import { AuthModule } from './auth/auth.module';
     ProfileComponent,
     ContactUsComponent,
     AboutUsComponent,
+    NotFoundComponent,
     // CityComponent,
     // GovernorateComponent
     // SearchPharmaciesPipe,
