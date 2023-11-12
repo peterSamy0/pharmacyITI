@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ServiceService } from 'src/app/shared/services/service.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-view-orders',

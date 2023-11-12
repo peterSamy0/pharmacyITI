@@ -40,6 +40,9 @@ export class ServiceService {
   getGovernorates() {
   return this.http.get('http://localhost:8000/api/governorates', { params: { home: true } });
   }
+  getPharmacy(id:any){
+    return this.http.get(`http://127.0.0.1:8000/api/pharmacies/${id}`)
+  }
 
 
 // fetching data using our api

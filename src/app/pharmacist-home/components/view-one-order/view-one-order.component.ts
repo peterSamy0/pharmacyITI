@@ -11,16 +11,43 @@ import { ServiceService } from '../../../shared/services/service.service';
 export class ViewOneOrderComponent {
   thisOrder!:Order|any;
   orderId:number|any;
+  city:string|any;
 ;
   constructor(private routeUrl:ActivatedRoute, private fetchOrders:ServiceService){
     this.routeUrl.paramMap.subscribe(params => this.orderId = params.get("id"));
     
     this.fetchOrders.getOrders()
+    .subscribe((data:any)=>{
+      let order = Object.values(data).find((ele:any)=>{
+        return ele.id == this.orderId;
+      })
+      this.thisOrder = order;
+      console.log(order);
+    });
+  }
+  ngOnInit(){
+    this.fetchOrders.getPharmacy(this.orderId)
     .subscribe(data=>{
-        this.thisOrder = Object.values(data)[this.orderId-1];
+        let pharmacy:any = Object.values(data);
+        this.city = pharmacy[0].city;
+        console.log(this.city);
     });
   }
   print(){
     console.log(this.orderId, this.thisOrder);
+  }
+  badgeColor(status:string) {
+    switch (status) {
+      case 'pending':
+        return 'warning';
+      case 'accepted':
+        return 'primary';
+      case 'withDelivery':
+        return 'danger';
+      case 'delivered':
+        return 'success';
+      default:
+        return 'black';
+    }
   }
 }

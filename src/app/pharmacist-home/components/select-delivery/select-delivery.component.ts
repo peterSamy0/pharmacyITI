@@ -4,6 +4,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 import { DeliveryResponse, DeliveryServiceService } from 'src/app/services/delivery-service.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-select-delivery',
   templateUrl: './select-delivery.component.html',
@@ -11,8 +12,8 @@ import { DeliveryResponse, DeliveryServiceService } from 'src/app/services/deliv
 })
 export class SelectDeliveryComponent {
 
-  // faCheck :any = faCheck;
-  // faXmark :any = faXmark;
+  faCheck :any = faCheck;
+  faXmark :any = faXmark;
   // Deliveries: any = [];
   // city: string | null = '';
   // constructor(private deliverService: ServiceService, private route: ActivatedRoute){}
@@ -38,31 +39,43 @@ export class SelectDeliveryComponent {
   //   );
   // }
 
-  // select(val:any){
+  // select(id:any){
   //   (!val.isSelected || null) ? val.isSelected = true : val.isSelected = false
   // }
+  select(id:any){
+    this.http.patch(`http://localhost:8000/order/${this.orderId}`, {"setDelivery":true,"deliveryId":id}).
+    subscribe(data=>{
+      console.log(data);
+    })
+  }
 
   deliveries!: DeliveryResponse[];
   nearDeliveries!: DeliveryResponse[];
   city: string | null = '';
+  orderId:any;
 
-  constructor(private deliveryService : DeliveryServiceService ,private route: ActivatedRoute){};
+  constructor(private deliveryService : DeliveryServiceService ,private route: ActivatedRoute, private http:HttpClient){
+    
+    this.city = this.route.snapshot.paramMap.get("region");
+    this.orderId = this.route.snapshot.paramMap.get("id");
+    console.log(this.city)
+  };
   ngOnInit(){
     this.getDeliveryLists();
-    this.city = this.route.snapshot.paramMap.get("region");
-    console.log(this.city)
   }
 
   getDeliveryLists(){
     this.deliveryService.getDelivery().subscribe((res:any) => {
-      // this.deliveries 
-      console.log(res.data);
       this.deliveries = res.data;
       console.log(this.deliveries);
 
       this.nearDeliveries = this.deliveries.filter( (el) => {
-        return el.city === this.city});
+        return el.city == this.city});
       console.log(this.nearDeliveries);
     });
+  }
+  test(){
+    console.log(this.nearDeliveries);
+
   }
 }

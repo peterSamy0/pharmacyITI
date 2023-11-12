@@ -1,4 +1,5 @@
-[
+{
+  "governorates": [
     {
       "name": "Alexandria",
       "cities": [
@@ -36,7 +37,6 @@
         "Manshiyya",
         "Miami",
         "Moharam Bik",
-
         "Montazah",
         "Nakheel",
         "Raml Station",
@@ -51,7 +51,6 @@
         "Sidi Beshr",
         "Sidi Gaber",
         "Smoha",
-
         "Sporting",
         "Stanley",
         "Victoria",
@@ -79,65 +78,35 @@
     {
       "name": "Assiut",
       "cities": [
-        "Abou Homs",
-        "Abuu al-Matamer",
-        "Damanhour",
-        "Delengat",
-        "Edko",
-        "Etay al-Barud",
-        "Hosh Essa",
-        "Kafr al-Dawwar",
-        "Kom Hamadah",
-        "Mahmoudiyah",
-        "Markaz Badr",
-        "Nubariyah",
-        "Rahmaniya",
-        "Rashid",
-        "Shubrakhit",
-        "Wadi al-Natrun"
-      ]
-    },
-    {
-      "name": "Beheira",
-      "cities": [
-        "Abou Homs",
-        "Abuu al-Matamer",
-        "Damanhour",
-        "Delengat",
-        "Edko",
-        "Etay al-Barud",
-        "Hosh Essa",
-        "Kafr al-Dawwar",
-        "Kom Hamadah",
-        "Mahmoudiyah",
-        "Markaz Badr",
-        "Nubariyah",
-        "Rahmaniya",
-        "Rashid",
-        "Shubrakhit",
-        "Wadi al-Natrun"
+        "Abnub",
+        "Abu Tig",
+        "El Badari",
+        "Dayrout",
+        "Sahel Selim",
+        "Ghanayem",
+        "Manfalut",
+        "New Asyut",
+        "New Tiba",
+        "Asyut City"
       ]
     },
     {
       "name": "Beni Suef",
       "cities": [
-        "Al Feshn",
-        "Al Wasty",
-        "Beba",
         "Beni Suef City",
+        "Al Fashn",
+        "Beba",
         "Ehnasia",
         "Nasser",
-        "New Beni Suef",
-        "Samasta"
+        "Al Wasty",
+        "Samasta",
+        "New Beni Suef"
       ]
     },
-
     {
       "name": "Cairo",
       "cities": [
-        "15 May City",
         "Abasiya",
-
         "Ain Shams",
         "Al Amiriyyah",
         "Al Manial",
@@ -195,30 +164,24 @@
         "Zawya al-Hamra"
       ]
     },
-
     {
       "name": "Beheira",
       "cities": [
-        "aga",
-        "Akhtab",
-        "Bani Ubayd",
-        "Belqas",
-        "Dikirnis",
-        "El Kordy",
-        "Gamasa",
-        "Mansura",
-        "Manzala",
-        "Markaz El Gamaleya",
-        "Markaz El Matareya",
-        "Minat al-Nasr",
-        "Mit Ghamr",
-        "Mit Slseel",
-        "Nabaruh",
-        "New Mansoura",
-        "Shirbin",
-        "Sinbillawain",
-        "Talkha",
-        "Tama al-Amdeed"
+        "Damanhour",
+        "Kafr El Dawwar",
+        "Ras El Bar",
+        "Abu Hummus",
+        "Hosh Essa",
+        "Mahmoudiyah",
+        "Kom Hamadah",
+        "Rahmaniya",
+        "Badr",
+        "Nubaria",
+        "Delengat",
+        "Edko",
+        "Abu Matamer",
+        "Shubrakhit",
+        "Wadi El Natrun"
       ]
     },
     {
@@ -248,8 +211,7 @@
         "Tamiya",
         "Yusuf al-Sadiq"
       ]
-    },
-    {
+    },{
       "name": "Gharbia",
       "cities": [
         "Basyoun",
@@ -398,14 +360,13 @@
     {
       "name": "Port Said",
       "cities": [
-       "Arab District",
-       "Dawahy District",
-       "Ganoub District",
-       "Manakh District",
-       "Port Fouad",
-       "Sharq District",
-       "Select location",
-       "Zohour District"
+        "Arab District",
+        "Dawahy District",
+        "Ganoub District",
+        "Manakh District",
+        "Port Fouad",
+        "Sharq District",
+        "Zohour District"
       ]
     },
     {
@@ -451,7 +412,7 @@
         "Safaga",
         "Sahl Hasheesh"
       ]
-    }, 
+    },
     {
       "name": "Sharqia",
       "cities": [
@@ -505,9 +466,7 @@
         "Taba",
         "Tor Sinai"
       ]
-    },
-
-    {
+    },{
       "name": "Suez",
       "cities": [
         "Ain Sukhna",
@@ -518,4 +477,4 @@
         "Suez Distri"
       ]
     }
-  ]
+  ]}
