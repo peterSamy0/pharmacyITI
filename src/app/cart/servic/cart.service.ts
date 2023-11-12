@@ -63,7 +63,7 @@ export class CartService {
   clearCart() {
     this.cartItems = [];
     this.cartItemCountSubject.next(0); // Update cart item count
-    // sessionStorage.removeItem('cart');
+    sessionStorage.removeItem('cart');
   }
   
 }
