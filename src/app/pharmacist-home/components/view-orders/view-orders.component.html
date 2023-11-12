@@ -14,10 +14,11 @@
     <table class="table">
         <thead>
           <tr>
-            <th scope="col">order no</th>
-            <th scope="col">client name</th>
-            <th scope="col">order time</th>
-            <th scope="col">view order</th>
+            <th scope="col">Order no</th>
+            <th scope="col">Client name</th>
+            <th scope="col">Order time</th>
+            <th scope="col">View order</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -30,10 +31,13 @@
 
             <th scope="row">{{order.id}}</th>
             <td>{{order.client_name}}</td>
-            <td>{{order.created_at}}</td>
+            <td>{{order.created_at | date:'yyyy-MM-dd HH:mm'}}</td>
             <td>
                 <a class="btn btn-primary me-3 text-white fw-bold" href="/viewOrders/{{order.id}}">View Order</a>
-                <span class="badge p-2"[ngClass]="'text-bg-'+badgeColor(order.status)">{{order.status}}</span>
+            </td>
+            <td class="text-start">
+              <fa-icon [ngClass]="'px-2 text-'+badgeColor(order.status)" [icon]="faCircle"></fa-icon>
+              <span [ngClass]="'text-'+badgeColor(order.status)" >{{order.status}}</span>
             </td>
           </tr>
         </tbody>

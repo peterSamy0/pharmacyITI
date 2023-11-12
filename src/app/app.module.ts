@@ -11,7 +11,6 @@ import { PharmacyDetailsModule } from './pharmacy/pharmacy-details.module';
 import { CartModule } from './cart/cart.module';
 import { PharmacistHomeModule } from './pharmacist-home/pharmacist-home.module';
 import { ProfileComponent } from './profile/profile.component';
-// import { GovernorateComponent } from './governorate/governorate.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -21,13 +20,6 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { AuthModule } from './auth/auth.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 
-// import { PaymentModule } from './payment/payment.module';
-
-// import { CityComponent } from './city/city.component';
-// import { SearchPharmaciesPipe } from './pipes/search-pharmacies.pipe';
-// import { SearchPharmaciesPipe } from './search-pharmacies.pipe';
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,10 +28,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ContactUsComponent,
     AboutUsComponent,
     NotFoundComponent,
-    // CityComponent,
-    // GovernorateComponent
-    // SearchPharmaciesPipe,
-    // SearchPharmaciesPipe,
   ],
   imports: [
     BrowserModule,
@@ -56,8 +44,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatCheckboxModule,
     BrowserAnimationsModule,
     ProfileModule,
-    // PaymentModule
-    // AuthModule
     AuthModule,
     RouterModule,
     AuthModule

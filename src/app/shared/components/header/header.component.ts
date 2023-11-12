@@ -25,7 +25,6 @@ export class HeaderComponent {
   
   ngOnInit(){
     this.role = localStorage.getItem('role');
-    console.log(this.role)
     this.userID = Number(localStorage.getItem('_id'));
   }
   

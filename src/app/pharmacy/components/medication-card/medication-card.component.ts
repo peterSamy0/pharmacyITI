@@ -24,5 +24,10 @@ export class MedicationCardComponent {
     this.cartArr.push(val)
     localStorage.setItem('cart', JSON.stringify(this.cartArr))
   }
+  removeFromCart(val:any){
+  this.service.removeItemFromCart(val.id);
+  val.added = false;
+  console.log(val)
+  }
 }
 

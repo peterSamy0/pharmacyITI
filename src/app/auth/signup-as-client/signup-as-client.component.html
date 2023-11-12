@@ -122,56 +122,6 @@
                       </div>
                   </div> 
 
-                  <!-- <div class="col-12">
-                    <label class="form-label">Address (Governorate)</label>
-                    <div>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Enter Address (Governorate)"
-                        formControlName="userGovern"
-                      />
-                      <div
-                        *ngIf="
-                          signupForm.controls['userGovern'].touched &&
-                          signupForm.controls['userGovern'].invalid
-                        "
-                        class="text-danger form-text"
-                      >
-                        <small
-                          *ngIf="signupForm.controls['userGovern'].errors?.['required']"
-                        >
-                          Please, enter your address (Governorate)
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-12">
-                    <label class="form-label">Address (City)</label>
-                    <div>
-                      <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Enter Your Address (City)"
-                        formControlName="userCity"
-                      />
-                      <div
-                        *ngIf="
-                          signupForm.controls['userCity'].touched &&
-                          signupForm.controls['userCity'].invalid
-                        "
-                        class="text-danger form-text"
-                      >
-                        <small
-                          *ngIf="signupForm.controls['userCity'].errors?.['required']"
-                        >
-                          Please, enter your address (City)
-                        </small>
-                      </div>
-                    </div>
-                  </div> -->
-
                   <div class="col-12">
                     <label class="form-label">Address (Governorate)</label>
                     <div>
@@ -254,13 +204,46 @@
                     </div>
                   </div>
 
-                  <div class="col-12">
+                  <!-- <div class="col-12">
 
                   <label class="form-label" for="customFile"
                     >Profile Image</label
                   >
                   <input type="file" class="form-control" id="customFile" (change)="onFileSelected($event)" />
                 <input type="button" (click)="onUpload()">  
+                </div> -->
+
+                <div class="col-12">
+                  <label class="form-label">Days OFF</label>
+                  <div>
+                    <div class="day-container">
+                      <span
+                        class="px-3 py-2 bg-info text-white me-2"
+                        *ngFor="let selectedDay of selectedDays"
+                      >
+                        {{ selectedDay.day }}
+                        <span class="fw-bold">x</span>
+                      </span>
+                    </div>
+                    <select
+                      style="color: rgb(73, 99, 102)"
+                      class="form-select mt-2"
+                      name="dayOff"
+                      #pharmaDaysOff
+                      id=""
+                      (change)="chooseDay(pharmaDaysOff.value)"
+                    >
+                      <option value="0" selected>
+                        Select the Closing Day
+                      </option>
+                      <option
+                        value="{{ day.id }}"
+                        *ngFor="let day of days.data"
+                      >
+                        {{ day.day }}
+                      </option>
+                    </select>
+                  </div>
                 </div>
 
                   <div class="col-12">
@@ -292,9 +275,6 @@
                   </small>
                       </div>
                     </div>
-                    <!-- <small *ngIf="passFail" class="text-danger form-text">
-                      Password must contain 8 characters (at least on letter)
-                    </small> -->
                   </div>
 
                   <small

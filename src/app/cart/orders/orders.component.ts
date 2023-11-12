@@ -17,7 +17,8 @@ export class OrdersComponent {
   ngOnInit() {
     this.apiService.allOrders().subscribe(data=>{
       this.allOrders=Object.values(data);
-      this.isLoading = false;});
+      this.isLoading = false;
+    });
   }
   badgeColor(status:string) {
     switch (status) {
@@ -36,9 +37,13 @@ export class OrdersComponent {
   removeOrder(orderId:any){
     try{
       // update request to remove item from order
-      this.http.delete(`http://localhost:8000/api/orders/${orderId}`).subscribe(data => {
-        console.log(data)
-      });
+      this.http.delete(`http://localhost:8000/api/orders/${orderId}`).subscribe(
+        (res: any) => {
+          const index = this.allOrders.findIndex(product => product.id === orderId);
+          this.allOrders.splice(index, 1);
+        },
+        error => console.log(error)
+      );
     }
     catch(error:any){
       console.log(error);

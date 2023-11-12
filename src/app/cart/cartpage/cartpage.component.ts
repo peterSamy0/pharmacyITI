@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ProfileService } from 'src/app/profile/services/profile.service';
 
 @Component({
   selector: 'app-cartpage',
@@ -31,11 +32,30 @@ export class CartpageComponent {
   amount: any;
   payment: any;
   signinForm!: FormGroup;
+  // users: any;
+  // signupForm!: FormGroup;
+  // emailFail: boolean = false;
+  // passFail: boolean = false;
+  // userFullNameFail: boolean = false;
+  // notAllDataEntered: boolean = false;
+  // userGovernFail: boolean = false;
+  // isCity: boolean = false;
+  // governorateID!: number;
+  // cities: any;
+  // governorates: any;
+  // cityID!: number;
+  // errors:any ={};
+  // days: any;
+  // daysArr: any = [];
+  // selectedDays: { id: string; day: string }[] = [];
+
+
   constructor(
     private cartService: CartService,
     private api: ApiService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private profileService: ProfileService,
   ){
     this.signinForm = new FormGroup({
       userEmail: new FormControl('', [Validators.required]),
@@ -44,20 +64,11 @@ export class CartpageComponent {
   }
 
   ngOnInit(): void {
-    // const cartArrString = localStorage.getItem('cart');
-
-    // if (cartArrString) {
-    //   // Parse the JSON string if it's not null
-    //   this.cartItems = JSON.parse(cartArrString);
-    // } else {
-    //   // Handle the case where the value is null (e.g., set a default value or an empty array)
-    //   this.cartItems = []; // Or any other default value you want
-    // }
-
-    this.cartItems = this.cartService.getCartItems();
+   
+   this.getCartItems()
+    // this.cartItems = this.cartService.getCartItems();
     this.calculateTotalPrice();
     this.isLogged = (localStorage.getItem('token')) ? true : false;
-    console.log(this.cartService.cartItems);
     // get authorization data from local storage and service
     if (
       localStorage.getItem('role') &&
@@ -68,6 +79,7 @@ export class CartpageComponent {
       console.log(this.clientId);
     }
 
+    console.log(this.pharmacyId)
     window.paypal
       .Buttons({
         style: {
@@ -118,27 +130,36 @@ export class CartpageComponent {
       .render(this.paymentRef.nativeElement);
   }
 
+  getCartItems(){
+    const data = sessionStorage.getItem('cart');
+    if(data){
+      this.cartItems = JSON.parse(data)
+    } 
+  }
+
   decreaseQuantity(item: CartItem) {
     if (item.quantity > 1) {
       this.cartService.updateCartItemQuantity(item.id, item.quantity - 1);
     } else {
-      console.log('not working')
+      console.log('not working');
     }
     this.calculateTotalPrice();
+   this.getCartItems()
+
   }
   
-
   increaseQuantity(item: CartItem) {
     this.cartService.updateCartItemQuantity(item.id, item.quantity + 1);
     this.calculateTotalPrice();
-    this.calculateDividedTotal()
-    
-  }
+   this.getCartItems()
 
+  }
+  
   removeFromCart(item: CartItem) {
     this.cartService.removeItemFromCart(item.id);
     this.calculateTotalPrice();
-    this.calculateDividedTotal()
+   this.getCartItems()
+
   }
 
   calculateTotalPrice() {
@@ -244,4 +265,143 @@ export class CartpageComponent {
         }
       );
   }
+
+  // addClient() {
+  //   let userEmail = this.signupForm.controls['userEmail'].value;
+  //   let userFullName = this.signupForm.controls['userFullName'].value;
+  //   let userCity = this.signupForm.controls['userCity'].value;
+  //   let userGovern = this.signupForm.controls['userGovern'].value;
+  //   let userPhone = this.signupForm.controls['userPhone'].value;
+  //   let userPass = this.signupForm.controls['userPass'].value;
+  //   let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  //   let fullNamePattern =
+  //     /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/;
+  //   let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+  //   console.log(this.signupForm)
+  //   const body = {
+  //     user: {
+  //       "name": userFullName,
+  //       "email": userEmail,
+  //       "password": userPass,
+  //     },
+  //     client: {
+  //       "governorate_id": this.governorateID,
+  //       "city_id": this.cityID,
+  //     },
+  //     phone: [userPhone]
+  //   };
+ 
+  //   if (
+  //     userEmail &&
+  //     userFullName &&
+  //     userGovern &&
+  //     userCity &&
+//       userPass
+//     ) {    
+//       this.userFullNameFail = false;
+//       this.emailFail = false;
+//       this.passFail = false;
+//       this.userGovernFail = false;
+      
+//       const foundEmail = this.allClients.find(
+//         (obj) => obj.client_email === userEmail
+//       );
+//       if (foundEmail) {
+//         console.log(`'${userEmail}' is used in our DataBase`);
+//         this.emailAlreadyUsed = true;
+//       } else {
+//         console.log(`'${userEmail}' is not used in our DataBase`);
+//         this.emailAlreadyUsed = false;
+//       }
+//       if(!foundEmail){
+
+//       this.http.post(`http://localhost:8000/api/clients`, body).subscribe(
+//         (response:any) => {
+//           localStorage.setItem('token', response['token']);
+//           localStorage.setItem('role', response['role']);
+//           localStorage.setItem('user_id', response['user_id']);
+//           localStorage.setItem('_id', response['_id']);
+//           window.location.href = '/cart';
+//         },
+
+//         (error) => {
+//           Swal.fire({
+//             title: 'Error!',
+//             text: 'Check all fields',
+//             icon: 'error',
+//             confirmButtonText: 'Cool'
+//           })
+//         }
+//       );
+//       }
+//     } else {
+//       this.notAllDataEntered = true;
+//       Swal.fire({
+//         title: 'Error!',
+//         text: 'All fields are required',
+//         icon: 'error',
+//         confirmButtonText: 'Cool'
+//       })
+//     }
+//   }
+//   getGovernorates() {
+//     this.profileService.getGovernorates().subscribe(
+//       (response: any) => {
+//         this.governorates = response;
+//         console.log(this.governorates);
+//       },
+//       (error) => console.log(error)
+//     );
+//   }
+
+//   selectedGov(val: any) {
+//     this.isCity = true;
+//     this.governorateID = val;
+//     console.log(this.governorateID);
+//     this.profileService.selectedGov(val).subscribe(
+//       (response: any) => {
+//         this.cities = response.data;
+//       },
+//       (error) => console.log(error)
+//     );
+//   }
+
+//   selectedCity(val: any) {
+//     this.cityID = val;
+//     console.log(this.cityID);
+//   }
+
+//   //checking if email or phone number were already used and added in the db
+//   allClients!:Array<any>;
+//   emailAlreadyUsed =false;
+//   phoneAlreadyUsed = false;
+//   getClients(){
+//     this.profileService.getAllClients().subscribe((res:any)=>{
+//       this.allClients = res.map((obj:any) => obj.data);
+//       console.log(this.allClients)
+//     })
+//   }
+
+//   getDays() {
+//     this.http.get(`http://localhost:8000/api/days`).subscribe(
+//       (response) => {
+//         this.days = response;
+//       },
+//       (error) => console.log(error)
+//     );
+//   } 
+//   chooseDay(val: any) {
+//     const selectedDay = this.days.data.find((day: any) => day.id == val);
+//     const isExists = this.daysArr.includes(+val);
+//     if (!isExists && selectedDay) {
+//       this.selectedDays.push(selectedDay);
+//       this.daysArr.push(+val);
+//     }
+//   }
+//   removeDay(val: any) {
+//     this.selectedDays = this.selectedDays.filter((item) => item.id != val);
+//     this.daysArr = this.daysArr.filter((item: any) => item.id != val);
+//   }
+// }
 }
