@@ -12,6 +12,7 @@ export class ViewOneOrderComponent {
   thisOrder!:Order|any;
   orderId:number|any;
   city:string|any;
+  pharmacyId = localStorage.getItem("_id");
 ;
   constructor(private routeUrl:ActivatedRoute, private fetchOrders:ServiceService){
     this.routeUrl.paramMap.subscribe(params => this.orderId = params.get("id"));
@@ -26,7 +27,7 @@ export class ViewOneOrderComponent {
     });
   }
   ngOnInit(){
-    this.fetchOrders.getPharmacy(this.orderId)
+    this.fetchOrders.getPharmacy(this.pharmacyId)
     .subscribe(data=>{
         let pharmacy:any = Object.values(data);
         this.city = pharmacy[0].city;
@@ -49,5 +50,8 @@ export class ViewOneOrderComponent {
       default:
         return 'black';
     }
+  }
+  test(){
+    console.log(this.city);
   }
 }

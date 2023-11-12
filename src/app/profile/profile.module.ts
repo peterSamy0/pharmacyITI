@@ -12,6 +12,7 @@ import { ViewDeliveryDataComponent } from './delivery/view-delivery-data/view-de
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
+import { DeliveryOrdersComponent } from './delivery/delivery-orders/delivery-orders.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SpinnerComponent } from '../shared/components/spinner/spinner.component
     ViewPharmacyDataComponent,
     EditDeliveryDataComponent,
     ViewDeliveryDataComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    DeliveryOrdersComponent
   ],
   imports: [
     CommonModule,

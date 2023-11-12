@@ -180,6 +180,9 @@ export class CartpageComponent {
       });
     }
   }
+  test(){
+    console.log(this.pharmacyId);
+  }
 
   // payWithPayPal() {
   //   const requestData = {
