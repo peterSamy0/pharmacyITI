@@ -17,6 +17,7 @@ export interface Product {
 export interface pharmacyProduct {
   id: number;
   medicine_name: string;
+  pharmacyMedication_id:number;
   medicine_price: number;
   medicine_image: string;
   category_id: number;
@@ -39,8 +40,10 @@ export class MedicationService {
     return this.http.get(`http://localhost:8000/api/medications`);
   }
 
-  getPharmacyMedication(id:any) {
-    return this.http.get(`http://localhost:8000/api/pharmacies/${id}`);
+  getPharmacyMedication(id:any, token:any) {
+    const headers = { 'Authorization': `Bearer ${token}` };
+    const options = { headers: headers };
+    return this.http.get(`http://localhost:8000/api/pharmacies/${id}`, options);
   }
 
   addMedication(inputData: object) {

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import pharmaciesData from '../../../../assets/json/pharmcies.json';
-import {
-  ProfileService,
-  PharmacyResponse,
-} from '../../services/profile.service';
+import Swal from 'sweetalert2';
+import {ProfileService} from '../../services/profile.service';
+
 @Component({
   selector: 'app-view-pharmacy-data',
   templateUrl: './view-pharmacy-data.component.html',
@@ -18,6 +17,7 @@ export class ViewPharmacyDataComponent {
   daysOff!: Array<any>;
   numOforders!: number;
   numOfproducts!: number;
+  token: any;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -25,14 +25,15 @@ export class ViewPharmacyDataComponent {
   ) {}
   ngOnInit() {
     this.id = this.activeRoute.snapshot.params['id'];
-    this.profileService.getPharmacy(this.id).subscribe((res: any) => {
-      this.pharmaId = res.data;
-      console.log(this.pharmaId);
-      this.numOfproducts = this.pharmaId.medication.length;
-      this.daysOff = this.pharmaId.daysOff;
-      console.log(this.daysOff);
-      
-    });
+    this.token = localStorage.getItem('token');
+    this.profileService.getPharmacy(this.id, this.token).subscribe(
+      (res: any) => {
+        this.pharmaId = res.data;
+        this.numOfproducts = this.pharmaId.medication.length;
+        this.daysOff = this.pharmaId.daysOff;
+      },
+      (error) => this.router.navigate(['not-found'])
+    );
 
     this.getPharmacyOrders();
   }
@@ -53,8 +54,22 @@ export class ViewPharmacyDataComponent {
   }
 
   deleteAccount(id: number) {
-    this.profileService.deletePharmacy(id).subscribe((res: any) => {
-      console.log(res)
-    });
+    this.profileService.deletePharmacy(id, this.token).subscribe(
+      (res: any) => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('_id');
+        window.location.href = '/';
+      },
+      (error) => {
+        Swal.fire({
+          title: 'Error!',
+          text: 'You Are Not Authorized to Delete This Account',
+          icon: 'error',
+          confirmButtonText: 'Cool',
+        });
+      }
+    );
   }
 }

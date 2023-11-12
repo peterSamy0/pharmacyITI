@@ -2,7 +2,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module'; 
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -19,6 +18,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ProfileModule } from './profile/profile.module';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { AuthModule } from './auth/auth.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 // import { PaymentModule } from './payment/payment.module';
@@ -59,7 +59,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     // PaymentModule
     // AuthModule
     AuthModule,
-    RouterModule
+    RouterModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

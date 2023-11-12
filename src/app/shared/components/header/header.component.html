@@ -52,9 +52,9 @@
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="assets/img/logoImg.png" width="40px" length="40px" alt="" class="rounded-5">
           </a>
-          <ul class="dropdown-menu">
-            <li class="dropdown-item text-black" (click)="goToProfile()">profile</li>
-            <li class="nav-link text-black cursor" (click)="logOut()" *ngIf="role">LogOut</li>
+          <ul class="dropdown-menu" style="left:-90px;">
+            <li class="nav-link cursor text-black" (click)="goToProfile()">Profile</li>
+            <li class="nav-link  text-black cursor" (click)="logOut()" *ngIf="role">LogOut</li>
           </ul>
         </li>
 

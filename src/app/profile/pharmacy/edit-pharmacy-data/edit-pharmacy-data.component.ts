@@ -38,6 +38,7 @@ export class EditPharmacyDataComponent {
   oldGov!: string; // Define the variable to store the old value 
   oldCity!: string; // Define the variable to store the old value 
   gov!: string; // Current selected value
+  token: any;
 
   constructor(private activeRoute: ActivatedRoute, private service: ProfileService, private router:Router) {
     this.updatePharmaForm = new FormGroup({
@@ -105,12 +106,12 @@ export class EditPharmacyDataComponent {
       // pharmaPhone&&
       pharmaName
     ) {
-      this.service.updatePharmacy(body, this.id).subscribe(
+      this.service.updatePharmacy(body, this.id, this.token).subscribe(
         (response:any)  => {
           this.router.navigate([`/pharmacy-profile/${this.id}`]);
         },
         error => {
-          console.log(error)
+          this.router.navigate(['not-found'])
         }
       )
     } else {
@@ -169,15 +170,15 @@ export class EditPharmacyDataComponent {
   }
 
   getUserData(){
-    this.service.getUserData(this.id).subscribe(
+    this.token = localStorage.getItem('token')
+    this.service.getUserData(this.id, this.token).subscribe(
       (res: any) => {
         this.userDate = res.data;
         this.oldGov = res.data.Governorate
         this.oldCity = res.data.city
         this.loadingDate = true;
-        console.log(res)
       },
-      error => console.log(error)
+      error => this.router.navigate(['not-found'])
     )
   }
 

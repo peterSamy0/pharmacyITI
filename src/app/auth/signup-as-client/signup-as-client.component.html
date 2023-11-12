@@ -33,14 +33,22 @@
                         >
                           please, enter your full Name
                         </small>
+                       
+                    <small
+                    *ngIf="signupForm.controls['userFullName'].errors?.['pattern']"
+                    >
+                    Invalid Full Name
+                  </small>
                       </div>
                     </div>
-                    <small
+
+                    
+                    <!-- <small
                       *ngIf="userFullNameFail"
                       class="text-danger form-text"
                     >
                       Invalid Full Name Format
-                    </small>
+                    </small> -->
                   </div>
                   <div class="col-12">
                     <label class="form-label">Email</label>
@@ -63,18 +71,29 @@
                         >
                           please, enter your email
                         </small>
+                            
+                    <small
+                    *ngIf="signupForm.controls['userEmail'].errors?.['email']"
+                    >
+                    Invalid Email Format
+                  </small>
+                  
                       </div>
                     </div>
-                    <small *ngIf="emailFail" class="text-danger form-text">
+                    <!-- <small *ngIf="emailFail" class="text-danger form-text">
                       Invalid Email Format
-                    </small>
+                    </small> -->
+                    <div>
+                      <small class="text-danger form-text" *ngIf="emailAlreadyUsed">
+                        This email is already used
+                      </small>
+                    </div>
                   </div>
-
                   <div class="col-12">
                     <label class="form-label">Phone Number</label>
                     <div>
                       <input
-                        type="number"
+                        type="text"
                         class="form-control"
                         placeholder="Enter Phone Numer"
                         formControlName="userPhone"
@@ -91,9 +110,17 @@
                         >
                           Please, enter your Phone Number
                         </small>
+                        <small
+                        *ngIf="signupForm.controls['userPhone'].errors?.['pattern']"
+                        >
+                        Invalid Phone Number
+                       </small>
                       </div>
-                    </div>
-                  </div>
+                      <small class="text-danger form-text" *ngIf="phoneAlreadyUsed">
+                        This Phone Number is already used
+                      </small>
+                      </div>
+                  </div> 
 
                   <!-- <div class="col-12">
                     <label class="form-label">Address (Governorate)</label>
@@ -179,53 +206,62 @@
                         </small>
                       </div>
                       <small
-                      *ngIf="userGovernFail"
-                      class="text-danger form-text"
-                    >
-                      Please, enter your address (Governorate)
-                    </small>
+                        *ngIf="userGovernFail"
+                        class="text-danger form-text"
+                      >
+                        Please, enter your address (Governorate)
+                      </small>
                     </div>
                   </div>
                   <!-- choose city -->
                   <div class="col-12" *ngIf="isCity">
                     <label class="form-label">Address (City)</label>
                     <div>
-                    <div >
-                      <div >
-                        <select
-                        class="form-select"
-                        style="color: rgb(73, 99, 102)"
-                        placeholder="Enter Address (City)"
-                        formControlName="userCity"
-                        name="governorates"
-                          #selectCity
-                          (change)="selectedCity(selectCity.value)"
-                        >
-                          <option value="">Select City</option>
-                          <option
-                            *ngFor="let city of cities.cities"
-                            [value]="city.city_id"
+                      <div>
+                        <div>
+                          <select
+                            class="form-select"
+                            style="color: rgb(73, 99, 102)"
+                            placeholder="Enter Address (City)"
+                            formControlName="userCity"
+                            name="governorates"
+                            #selectCity
+                            (change)="selectedCity(selectCity.value)"
                           >
-                            {{ city.city_name }}
-                          </option>
-                        </select>
-                        <div
-                        *ngIf="
-                          signupForm.controls['userCity'].touched &&
-                          signupForm.controls['userCity'].invalid
-                        "
-                        class="text-danger form-text"
-                      >
-                        <small
-                          *ngIf="signupForm.controls['userCity'].errors?.['required']"
-                        >
-                          Please, enter your address (City)
-                        </small>
+                            <option value="">Select City</option>
+                            <option
+                              *ngFor="let city of cities.cities"
+                              [value]="city.city_id"
+                            >
+                              {{ city.city_name }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="
+                              signupForm.controls['userCity'].touched &&
+                              signupForm.controls['userCity'].invalid
+                            "
+                            class="text-danger form-text"
+                          >
+                            <small
+                              *ngIf="signupForm.controls['userCity'].errors?.['required']"
+                            >
+                              Please, enter your address (City)
+                            </small>
+                          </div>
+                        </div>
                       </div>
-                      </div>
-                    </div>
                     </div>
                   </div>
+
+                  <div class="col-12">
+
+                  <label class="form-label" for="customFile"
+                    >Profile Image</label
+                  >
+                  <input type="file" class="form-control" id="customFile" (change)="onFileSelected($event)" />
+                <input type="button" (click)="onUpload()">  
+                </div>
 
                   <div class="col-12">
                     <label class="form-label">Password</label>
@@ -248,11 +284,17 @@
                         >
                           Password is required
                         </small>
+                                  
+                    <small
+                    *ngIf="signupForm.controls['userPass'].errors?.['pattern']"
+                    >
+                    Password must contain 8 characters (at least on letter)
+                  </small>
                       </div>
                     </div>
-                    <small *ngIf="passFail" class="text-danger form-text">
+                    <!-- <small *ngIf="passFail" class="text-danger form-text">
                       Password must contain 8 characters (at least on letter)
-                    </small>
+                    </small> -->
                   </div>
 
                   <small

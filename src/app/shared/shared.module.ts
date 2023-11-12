@@ -8,6 +8,7 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
 import { RouterModule } from '@angular/router';
 import { SearchPipe } from '../pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     DropDownComponent,
     SearchFormComponent,
+    NotFoundComponent,
     // SearchPipe
 
   ],

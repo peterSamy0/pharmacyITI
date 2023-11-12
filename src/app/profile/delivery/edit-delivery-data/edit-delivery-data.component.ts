@@ -35,6 +35,7 @@ export class EditDeliveryDataComponent {
   oldCityId!: number;
   deliveryPhone!: any;
   oldPass:any;
+  token: any;
   constructor(private activeRoute: ActivatedRoute, private router: Router, private profileService: ProfileService,
     private http: HttpClient) {
     this.updateDeliveryForm = new FormGroup({
@@ -52,7 +53,8 @@ export class EditDeliveryDataComponent {
   }
 
   getUserData() {
-    this.profileService.getDelivery(this.id).subscribe(
+    this.token = localStorage.getItem('token')
+    this.profileService.getDelivery(this.id, this.token).subscribe(
       (res: any) => {
         this.deliveryId = res.data;
         console.log(res);
@@ -70,7 +72,7 @@ export class EditDeliveryDataComponent {
           this.availableToDeliver = true;
         }
       },
-      (error) => console.log(error)
+      (error) => this.router.navigate(['not-found'])
     );
   }
   @ViewChild('myCheckbox')
@@ -78,19 +80,15 @@ export class EditDeliveryDataComponent {
 
   changeBtn() {
     const checkboxValue = this.myCheckbox.nativeElement.checked;
-    console.log('Checkbox value:', checkboxValue);
     if (checkboxValue == false) {
       this.deliveryId.available = 0;
-      console.log(this.deliveryId.available);
     } else {
       this.deliveryId.available = 1;
-      console.log(this.deliveryId.available);
     }
   }
   update() {
-    console.log(this.updateDeliveryForm.value);
     let deliveryFullName =
-      this.updateDeliveryForm.controls['deliveryFullName'].value;
+    this.updateDeliveryForm.controls['deliveryFullName'].value;
     let deliveryEmail = this.updateDeliveryForm.controls['deliveryEmail'].value;
     let deliveryPhone = this.updateDeliveryForm.controls['deliveryPhone'].value;
     let deliveryPass = this.updateDeliveryForm.controls['deliveryPass'].value;
@@ -124,7 +122,7 @@ export class EditDeliveryDataComponent {
       deliveryEmail &&
       deliveryFullName
     ) {
-      this.profileService.updateDelivery(this.id, body).subscribe(
+      this.profileService.updateDelivery(this.id, body, this.token).subscribe(
         (response: any) => {
           this.router.navigate([`/delivery-profile/${this.id}`]);
         },

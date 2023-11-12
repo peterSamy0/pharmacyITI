@@ -11,7 +11,9 @@
                   [formGroup]="signupForm"
                   (ngSubmit)="addPharma()"
                 >
-                  <h2 class="mb-2 text-capitalize">Get closer to your customers</h2>
+                  <h2 class="mb-2 text-capitalize">
+                    Get closer to your customers
+                  </h2>
                   <div class="col-12">
                     <label class="form-label">Pharmacy Name</label>
                     <div>
@@ -34,8 +36,15 @@
                           please, enter your Pharmacy Name
                         </small>
                       </div>
+                      <small
+                        class="text-danger form-text"
+                        *ngIf="pharmaNameAlreadyUsed"
+                      >
+                        This pharmacy name has already been used
+                      </small>
                     </div>
                   </div>
+
                   <div class="col-12">
                     <label class="form-label">Email</label>
                     <div>
@@ -57,18 +66,26 @@
                         >
                           please, enter your email
                         </small>
+                        <small
+                          *ngIf="signupForm.controls['pharmaEmail'].errors?.['email']"
+                        >
+                          Invalid Email Format
+                        </small>
                       </div>
+                      <small
+                        class="text-danger form-text"
+                        *ngIf="emailAlreadyUsed"
+                      >
+                        This email is already used
+                      </small>
                     </div>
-                    <small *ngIf="emailFail"  class="text-danger form-text">
-                      Invalid Email Format
-                     </small>
                   </div>
 
                   <div class="col-12">
                     <label class="form-label">Pharmacy Phone</label>
                     <div>
                       <input
-                        type="number"
+                        type="text"
                         class="form-control"
                         placeholder="Enter Pharmacy Phone"
                         formControlName="pharmaPhone"
@@ -85,7 +102,18 @@
                         >
                           Please, enter your Pharmacy Phone
                         </small>
+                        <small
+                          *ngIf="signupForm.controls['pharmaPhone'].errors?.['pattern']"
+                        >
+                          Invalid Phone Number
+                        </small>
                       </div>
+                      <small
+                        class="text-danger form-text"
+                        *ngIf="phoneAlreadyUsed"
+                      >
+                        This Phone Number is already used
+                      </small>
                     </div>
                   </div>
 
@@ -93,7 +121,7 @@
                     <label class="form-label">Pharmacy License Number</label>
                     <div>
                       <input
-                        type="number"
+                        type="text"
                         class="form-control"
                         placeholder="Enter Pharmacy License Number"
                         formControlName="pharmaLicense"
@@ -111,6 +139,12 @@
                           Please, enter license Number
                         </small>
                       </div>
+                      <small
+                        class="text-danger form-text"
+                        *ngIf="licenseAlreadyUsed"
+                      >
+                        This license number is already used
+                      </small>
                     </div>
                   </div>
 
@@ -118,7 +152,7 @@
                     <label class="form-label">Bank Account Number</label>
                     <div>
                       <input
-                        type="number"
+                        type="text"
                         class="form-control"
                         placeholder="Enter Pharmacy Bank Account Number"
                         formControlName="pharmaBankAccount"
@@ -135,27 +169,102 @@
                         >
                           Please, Enter Bank Account Number
                         </small>
+                        <small
+                          *ngIf="signupForm.controls['pharmaBankAccount'].errors?.['pattern']"
+                        >
+                          Invalid Bank Account Number
+                        </small>
                       </div>
+                      <small
+                        class="text-danger form-text"
+                        *ngIf="bankAccountAlreadyUsed"
+                      >
+                        This bank account number is already used
+                      </small>
                     </div>
                   </div>
 
                   <div class="col-12">
                     <label class="form-label"
-                      >Pharmacy Location (Governorate)</label
+                      >Pharmacy location (Governorate)</label
                     >
-                    <select class="form-select mt-2" name="governorates" #selectGov (change)="selectedGov(selectGov.value)" id="">
-                      <option value="">Select Governorate </option>
-                      <option *ngFor="let governorate of governorates" [value]="governorate.governorate_id" >{{governorate.governorate_name}}</option>
-                    </select>
-                  </div>
-
-                  <div class="col-12">
-                    <label class="form-label">Pharmacy Location (City)</label>
-                    <div *ngIf="isCity">
-                      <select class="form-select mt-2" name="governorates" #selectCity (change)="selectedCity(selectCity.value)" id="">
-                        <option value="">Select City </option>
-                        <option *ngFor="let city of cities.data.cities" [value]="city.city_id" >{{city.city_name}}</option>
+                    <div>
+                      <select
+                        class="form-select"
+                        style="color: rgb(73, 99, 102)"
+                        placeholder="Enter Address (Governorate)"
+                        formControlName="pharmaGovern"
+                        name="governorates"
+                        #selectGov
+                        (change)="selectedGov(selectGov.value)"
+                      >
+                        <option value="">Select Governorate</option>
+                        <option
+                          *ngFor="let governorate of governorates"
+                          [value]="governorate.governorate_id"
+                        >
+                          {{ governorate.governorate_name }}
+                        </option>
                       </select>
+                      <div
+                        *ngIf="
+                          signupForm.controls['pharmaGovern'].touched &&
+                          signupForm.controls['pharmaGovern'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['pharmaGovern'].errors?.['required']"
+                        >
+                          Please, Enter Pharmacy location (Governorate)
+                        </small>
+                      </div>
+                      <!-- <small
+                      *ngIf="userGovernFail"
+                      class="text-danger form-text"
+                    >
+                      Please, enter your address (Governorate)
+                    </small> -->
+                    </div>
+                  </div>
+                  <!-- choose city -->
+                  <div class="col-12" *ngIf="isCity">
+                    <label class="form-label">Pharmacy location (City)</label>
+                    <div>
+                      <div>
+                        <div>
+                          <select
+                            class="form-select"
+                            style="color: rgb(73, 99, 102)"
+                            placeholder="Enter Address (City)"
+                            formControlName="pharmaCity"
+                            name="governorates"
+                            #selectCity
+                            (change)="selectedCity(selectCity.value)"
+                          >
+                            <option value="">Select City</option>
+                            <option
+                              *ngFor="let city of cities.cities"
+                              [value]="city.city_id"
+                            >
+                              {{ city.city_name }}
+                            </option>
+                          </select>
+                          <div
+                            *ngIf="
+                              signupForm.controls['pharmaCity'].touched &&
+                              signupForm.controls['pharmaCity'].invalid
+                            "
+                            class="text-danger form-text"
+                          >
+                            <small
+                              *ngIf="signupForm.controls['pharmaCity'].errors?.['required']"
+                            >
+                              Please, Pharmacy location (City)
+                            </small>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
@@ -178,7 +287,7 @@
                         <small
                           *ngIf="signupForm.controls['pharmaStreet'].errors?.['required']"
                         >
-                          Please, enter pharmcay location (Governorate)
+                          Please, Enter pharmcay location (Street)
                         </small>
                       </div>
                     </div>
@@ -238,14 +347,35 @@
                     <label class="form-label">Days OFF</label>
                     <div>
                       <div class="day-container">
-                        <span class="px-3 py-2 bg-info text-white me-2" *ngFor="let selectedDay of selectedDays">
-                          {{selectedDay.day}}
-                          <fa-icon [icon]="faCancel" class="rounded-5 bg-white text-black cursor" (click)="removeDay(selectedDay.id)"></fa-icon>
+                        <span
+                          class="px-3 py-2 bg-info text-white me-2"
+                          *ngFor="let selectedDay of selectedDays"
+                        >
+                          {{ selectedDay.day }}
+                          <fa-icon
+                            [icon]="faCancel"
+                            class="rounded-5 bg-white text-black cursor"
+                            (click)="removeDay(selectedDay.id)"
+                          ></fa-icon>
                         </span>
                       </div>
-                      <select class="form-select mt-2" name="dayOff" #pharmaDaysOff id="" (change)="chooseDay(pharmaDaysOff.value)">
-                        <option value="0" selected>Select the Closing Day</option>
-                        <option value={{day.id}} *ngFor="let day of days.data">{{day.day}}</option>
+                      <select
+                        style="color: rgb(73, 99, 102)"
+                        class="form-select mt-2"
+                        name="dayOff"
+                        #pharmaDaysOff
+                        id=""
+                        (change)="chooseDay(pharmaDaysOff.value)"
+                      >
+                        <option value="0" selected>
+                          Select the Closing Day
+                        </option>
+                        <option
+                          value="{{ day.id }}"
+                          *ngFor="let day of days.data"
+                        >
+                          {{ day.day }}
+                        </option>
                       </select>
                     </div>
                   </div>
@@ -271,15 +401,20 @@
                         >
                           Password is required
                         </small>
+                        <small
+                          *ngIf="signupForm.controls['pharmaPass'].errors?.['pattern']"
+                        >
+                          Password must contain 8 characters (at least on
+                          letter)
+                        </small>
                       </div>
                     </div>
-                    <small *ngIf="passFail"  class="text-danger form-text">
-                      Password must contain 8 characters (at least on letter)
-                    </small>
                   </div>
 
-    
-                  <small *ngIf="notAllDataEntered"  class="text-danger form-text">
+                  <small
+                    *ngIf="notAllDataEntered"
+                    class="text-danger form-text"
+                  >
                     All fields are required
                   </small>
 

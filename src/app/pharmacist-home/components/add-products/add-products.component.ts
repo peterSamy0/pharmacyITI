@@ -25,7 +25,7 @@ export class AddProductsComponent implements OnInit {
   medicationsList!: any;
   products: any;
   isExists:boolean = false;
-
+  token: any;
 constructor (
   private medicationService: MedicationService, 
   private activeRoute: ActivatedRoute,
@@ -36,13 +36,15 @@ constructor (
 
   ngOnInit() {
     this.pharmacy_id = Number(this.activeRoute.snapshot.paramMap.get('id'));
+    this.token = localStorage.getItem('token')
     this.fetchData();
   }
   
   fetchData() {
+    this.token = localStorage.getItem('token')
     forkJoin([
       this.medicationService.getMedication(),
-      this.medicationService.getPharmacyMedication(this.pharmacy_id)
+      this.medicationService.getPharmacyMedication(this.pharmacy_id, this.token)
     ]).subscribe(
       ([medicationRes, pharmacyMedicationRes] : any) => {
         this.product = medicationRes.data;
