@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { DropDownComponent } from './components/drop-down/drop-down.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { RouterModule } from '@angular/router';
 import { SearchPipe } from '../pipes/search.pipe';
@@ -15,7 +14,6 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    DropDownComponent,
     SearchFormComponent,
     NotFoundComponent,
     // SearchPipe
@@ -30,7 +28,6 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
   exports: [
     HeaderComponent,
     FooterComponent,
-    DropDownComponent,
   ]
 })
 export class SharedModule { }
