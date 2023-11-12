@@ -22,5 +22,10 @@ export class MedicationCardComponent {
     val.added = true;
     console.log(val)
   }
+  removeFromCart(val:any){
+  this.service.removeItemFromCart(val.id);
+  val.added = true;
+  console.log(val)
+  }
 }
 

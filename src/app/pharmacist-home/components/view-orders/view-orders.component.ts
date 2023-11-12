@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ServiceService } from 'src/app/shared/services/service.service';
 import { RouterModule } from '@angular/router';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-view-orders',
@@ -9,6 +10,7 @@ import { RouterModule } from '@angular/router';
 })
 export class ViewOrdersComponent {
 
+  faCircle=faCircle;
   orders: any = [];
   totalLenght:any;
   page :number=1;

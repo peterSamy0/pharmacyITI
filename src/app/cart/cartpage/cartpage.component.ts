@@ -97,6 +97,7 @@ export class CartpageComponent {
   }
 
   decreaseQuantity(item: CartItem) {
+    console.log("hello",item.quantity);
     if (item.quantity > 1) {
       this.cartService.updateCartItemQuantity(item.id, item.quantity - 1);
       this.calculateTotalPrice();
@@ -106,6 +107,7 @@ export class CartpageComponent {
   }
 
   increaseQuantity(item: CartItem) {
+    console.log("hello",item.quantity);
     this.cartService.updateCartItemQuantity(item.id, item.quantity + 1);
     this.calculateTotalPrice();
     this.calculateDividedTotal()

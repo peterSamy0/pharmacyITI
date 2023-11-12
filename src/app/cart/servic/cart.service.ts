@@ -29,20 +29,22 @@ export class CartService {
 
   // Remove an item from the cart
   removeItemFromCart(itemId: number) {
-    const itemIndex = this.cartItems.findIndex((cartItem: any) => cartItem.medicine_id === itemId);
+    const itemIndex = this.cartItems.findIndex((cartItem: any) => cartItem.id == itemId);
     if (itemIndex !== -1) {
       this.cartItems.splice(itemIndex, 1);
     }
     // Update the cart item count
-    console.log(itemIndex)
-    console.log(itemId)
+    
     this.cartItemCountSubject.next(this.cartItems.length);
     
   }
 
   // Update the quantity of an item in the cart
   updateCartItemQuantity(itemId: number, newQuantity: number) {
-    const existingItem = this.cartItems.find((cartItem: any) => cartItem.medicine_id === itemId);
+    const existingItem = this.cartItems.find((cartItem: any) => {
+      // console.log(this.cartItems,cartItem.id,itemId );
+      return cartItem.id === itemId
+    });
     if (existingItem) {
       existingItem.quantity = newQuantity;
     }

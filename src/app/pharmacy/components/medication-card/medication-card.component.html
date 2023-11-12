@@ -4,6 +4,6 @@
     <p class="overflow-hidden m-0" style="height: 10%"><span class="fw-bolder">Price:</span> {{ medication.medicine_price }} L.E</p>
     <ng-container *ngIf="role == 'client'">
         <button class="btn bg-nav text-white w-100 m-0" (click)="addToCart(medication)" *ngIf="!medication.added">add to cart</button>
-        <button class="btn bg-success text-white w-100 m-0" *ngIf="medication.added">added</button>
+        <button class="btn bg-success text-white w-100 m-0" *ngIf="medication.added" (click)="removeFromCart(medication)">added</button>
     </ng-container>
 </div>
