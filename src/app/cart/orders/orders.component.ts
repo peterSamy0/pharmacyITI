@@ -19,7 +19,7 @@ export class OrdersComponent {
   ngOnInit() {
     this.token = localStorage.getItem('token');
     this.clientID = localStorage.getItem('_id');
-    this.apiService.allOrders(this.clientID, this.token).subscribe(
+    this.apiService.allClientOrders(this.clientID, this.token).subscribe(
       (res:any)=>{
             this.allOrders= res.data.orders;
             this.isLoading = false;

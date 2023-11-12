@@ -54,8 +54,12 @@ export class CartService {
 
   // Get the cart items
   getCartItems() {
-    return this.cartItems;
+    const getitems = sessionStorage.getItem('cart')
+    if(getitems){
+      return JSON.parse(getitems);
+    }
   }
+
   clearCart() {
     this.cartItems = [];
     this.cartItemCountSubject.next(0); // Update cart item count

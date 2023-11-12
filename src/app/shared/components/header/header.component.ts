@@ -1,4 +1,3 @@
-import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { CartService } from 'src/app/cart/servic/cart.service';
 import { Router } from '@angular/router';
@@ -10,43 +9,41 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  counter:number = 0;
+  counter: number = 0;
   userID!: number;
   faCartShopping = faCartShopping;
+
   constructor(
-    private cartService: CartService , 
-    private htttp: HttpClient, 
+    private cartService: CartService,
     private router: Router
-    ){
-    this.cartService.cartItemCount.subscribe(data => this.counter = data);
-  };
-  
+  ) {}
+
   role: string | null = '';
-  
-  ngOnInit(){
+
+  ngOnInit() {
     this.role = localStorage.getItem('role');
     this.userID = Number(localStorage.getItem('_id'));
-  }
-  
-  logOut(){
-    // this.htttp.post("", {}).subscribe(() => {
-      // Remove token from localStorage
-      localStorage.removeItem('token');
-      localStorage.removeItem('role');
-      localStorage.removeItem('user_id');
-      localStorage.removeItem('_id');
-      // Redirect to the login page
-      window.location.href = '/';
-    // });
+    this.counter = this.cartService.getCartItems();
+    this.cartService.cartItemCount.subscribe(data => this.counter = data);
+    console.log(this.counter)
   }
 
-  goToProfile(){
-    if(this.role == 'pharmacy'){
-      this.router.navigate([`pharmacy-profile/${this.userID}`])
-    }else if(this.role == 'client'){
-      this.router.navigate([`client-profile/${this.userID}`])
-    }else if(this.role == 'delivery'){
-      this.router.navigate([`delivery-profile/${this.userID}`])
+  logOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('_id');
+    sessionStorage.removeItem('cart');
+    window.location.href = '/';
+  }
+
+  goToProfile() {
+    if (this.role == 'pharmacy') {
+      this.router.navigate([`pharmacy-profile/${this.userID}`]);
+    } else if (this.role == 'client') {
+      this.router.navigate([`client-profile/${this.userID}`]);
+    } else if (this.role == 'delivery') {
+      this.router.navigate([`delivery-profile/${this.userID}`]);
     }
   }
 }
