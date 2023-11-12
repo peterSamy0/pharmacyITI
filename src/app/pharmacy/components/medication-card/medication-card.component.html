@@ -2,7 +2,7 @@
     <img src="https://img.freepik.com/premium-vector/set-medicines-clipart_24877-71915.jpg?w=2000" alt="" width="80%" height="35%" class="p-3 object-fit-contain ">
     <h4 class="overflow-hidden fs-5 d-flex align-items-center m-0" style="height: 10%">{{ medication.medicine_name }}</h4>
     <p class="overflow-hidden m-0" style="height: 10%"><span class="fw-bolder">Price:</span> {{ medication.medicine_price }} L.E</p>
-    <ng-container *ngIf="role == 'client'">
+    <ng-container *ngIf="role != 'pharmacy'">
         <button class="btn bg-nav text-white w-100 m-0" (click)="addToCart(medication)" *ngIf="!medication.added">add to cart</button>
         <button class="btn bg-success text-white w-100 m-0" *ngIf="medication.added">added</button>
     </ng-container>

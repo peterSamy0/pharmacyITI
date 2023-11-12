@@ -1,4 +1,4 @@
-<div class="container mt-5 mb-5">
+<div class="container mt-5 mb-5" *ngIf='!isLoading'>
   <div class="main-body">
     <div class="row gutters-sm mt-5">
       <div class="col-md-4 mb-3">
@@ -58,7 +58,7 @@
               <div class="col-sm-3">
                 <h6 class="mb-0">Phone</h6>
               </div>
-              <div class="col-sm-9 text-secondary">7298379127</div>
+              <div class="col-sm-9 text-secondary">{{ pharmaId.pharmacy_phone[0]['phone'] }}</div>
             </div>
             <hr />
             <div class="row">
@@ -119,7 +119,7 @@
                 </small>
                 <small *ngIf="numOfproducts > 0">
                   {{ numOfproducts }}
-                  <a class="ms-1" href="#"> Show All Products </a>
+                  <a class="ms-1 cursor" (click)="gotoProducts()"> Show All Products </a>
                 </small>
               </div>
             </div>
@@ -134,7 +134,7 @@
                 </small>
                 <small *ngIf="numOforders > 0">
                   {{ numOforders }}
-                  <a class="ms-1" href="#"> Show All Orders </a>
+                  <a class="ms-1" href="viewOrders"> Show All Orders </a>
                 </small>
               </div>
             </div>
@@ -212,4 +212,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="d-flex align-items-center justify-content-center spinner" style="height: 50vh;" *ngIf="isLoading">
+  <span class="loader"></span>
 </div>

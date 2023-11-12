@@ -78,7 +78,7 @@ const routes: Routes = [
     component: CarouselComponent
   },
   {
-    path: "viewOrders",
+    path: "viewMyOrders/:id",
     component: ViewOrdersComponent
   },
   {

@@ -39,6 +39,7 @@ export class EditPharmacyDataComponent {
   oldCity!: string; // Define the variable to store the old value 
   gov!: string; // Current selected value
   token: any;
+  isLoading: boolean = true;
 
   constructor(private activeRoute: ActivatedRoute, private service: ProfileService, private router:Router) {
     this.updatePharmaForm = new FormGroup({
@@ -170,6 +171,7 @@ export class EditPharmacyDataComponent {
   }
 
   getUserData(){
+    this.isLoading = true;
     this.token = localStorage.getItem('token')
     this.service.getUserData(this.id, this.token).subscribe(
       (res: any) => {
@@ -177,6 +179,7 @@ export class EditPharmacyDataComponent {
         this.oldGov = res.data.Governorate
         this.oldCity = res.data.city
         this.loadingDate = true;
+        this.isLoading = false;
       },
       error => this.router.navigate(['not-found'])
     )

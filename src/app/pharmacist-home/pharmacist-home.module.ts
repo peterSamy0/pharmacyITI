@@ -10,7 +10,7 @@ import { SearchPipe } from '../pipes/search.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { SelectDeliveryComponent } from './components/select-delivery/select-delivery.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     ListProductsComponent,
@@ -27,8 +27,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ReactiveFormsModule,
     FormsModule,
     NgxPaginationModule,
- 
-
+    RouterModule,
     FontAwesomeModule
   ],
   exports: [

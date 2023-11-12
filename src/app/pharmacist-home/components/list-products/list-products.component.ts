@@ -50,16 +50,20 @@ export class ListProductsComponent {
   openAlert(val:any){
     this.deleteId = val
   }
+  
+
   deleteProduct() {
     this.medicationService.deleteMedication(this.deleteId).subscribe(
       (res: any) => {
         const index = this.products.findIndex(product => product.id === this.deleteId);
-        if (index > -1) {
-          this.products.splice(index, 1);
-        }
-        this.router.navigate([`listproduct/${this.id}`]);
+        this.products.splice(index, 1);
       },
       error => console.log(error)
     );
   }
+  goToAddProduct(){
+    this.router.navigate([this.addProductUrl])
+  }
+  
+  
 }
