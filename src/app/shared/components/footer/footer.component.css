@@ -81,14 +81,21 @@ h4{
     left: auto;
   }
   
+  /* .back-to-top-wrapper {
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden; 
+  } */
+  
   .back-to-top {
     border-radius: 50%;
-    width: 60px; /* Adjust the size as needed */
-    height: 60px; /* Adjust the size as needed */
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative; /* Ensure the position is relative for correct placement */
-
+    position: relative;
+    background: #5fb8be;
+    border: none;
+    cursor: pointer;
   }
-  

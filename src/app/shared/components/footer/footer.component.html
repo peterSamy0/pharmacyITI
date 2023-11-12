@@ -55,10 +55,12 @@
           <span style="color: white;">TO <fa-icon style="color: white;" [icon]="faAngleUp"></fa-icon> TOP</span>
         </button>
       </div> -->
-      <div id="top" class="col-12 text-center mt-4">
-        <button style="color: #419197; border: none; background: #5fb8be; cursor: pointer;" class="btn back-to-top" (click)="scrollToTop()">
-          <fa-icon style="color: white;" [icon]="faAngleUp"></fa-icon>
-        </button>
+      <div id="top" class="col-12 text-center mt-4" style="width: 60px;">
+        <div class="back-to-top-wrapper">
+          <button class="btn back-to-top" (click)="scrollToTop()">
+            <fa-icon [icon]="faAngleUp"></fa-icon>
+          </button>
+        </div>
       </div>
       
 <hr>

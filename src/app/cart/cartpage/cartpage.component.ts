@@ -44,12 +44,12 @@ export class CartpageComponent {
   }
 
   ngOnInit(): void {
-   
-   this.getCartItems()
-    // this.cartItems = this.cartService.getCartItems();
+    this.getCartItems();
     this.calculateTotalPrice();
     this.isLogged = (localStorage.getItem('token')) ? true : false;
     // get authorization data from local storage and service
+    sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
+
     if (
       localStorage.getItem('role') &&
       localStorage.getItem('role') == 'client'
@@ -108,11 +108,12 @@ export class CartpageComponent {
       .render(this.paymentRef.nativeElement);
   }
 
-  getCartItems(){
-    const data = sessionStorage.getItem('cart');
-    if(data){
-      this.cartItems = JSON.parse(data)
-    } 
+  getCartItems() {
+    // Retrieve cart items from service and update local property
+    this.cartItems = this.cartService.getCartItems() || [];
+
+    // Optional: Save the updated cart items in sessionStorage
+    sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
   }
 
   decreaseQuantity(item: CartItem) {
@@ -134,10 +135,12 @@ export class CartpageComponent {
   }
   
   removeFromCart(item: CartItem) {
-    this.cartService.removeItemFromCart(item.id);
+    // Update local property directly
+    this.cartItems = this.cartService.getCartItems() || [];
     this.calculateTotalPrice();
-   this.getCartItems()
-
+    this.cartService.removeItemFromCart(item.id);
+    // Save the updated cart items in sessionStorage
+    sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
   }
 
   calculateTotalPrice() {
