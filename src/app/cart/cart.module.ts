@@ -6,19 +6,22 @@ import { RouterModule } from '@angular/router';
 import { OrdersComponent } from './orders/orders.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderComponent } from './order/order.component';
-
-
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+import { DateTimeFormatPipe } from '../pipes/date-time-format.pipe';
 @NgModule({
   declarations: [
     CartpageComponent,
     OrdersComponent,
-    OrderComponent
+    OrderComponent,
+    DateTimeFormatPipe
   ],
   imports: [
     CommonModule,
     BrowserModule,
     RouterModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CartModule { }

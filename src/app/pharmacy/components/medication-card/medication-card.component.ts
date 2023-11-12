@@ -10,6 +10,7 @@ export class MedicationCardComponent {
   @Input() prod: any;
   @Input() medication!: any;
   role: string | null = 'client';
+  cartArr: any = [];
   constructor(private service: CartService, private routeUrl:ActivatedRoute){
     this.routeUrl.paramMap.subscribe(params => this.service.pharmacyId = Number(params.get("id")));
   }
@@ -22,11 +23,12 @@ export class MedicationCardComponent {
   addToCart(val:any){
     this.service.addItemToCart(val);
     val.added = true;
-    console.log(val)
+    this.cartArr.push(val)
+    localStorage.setItem('cart', JSON.stringify(this.cartArr))
   }
   removeFromCart(val:any){
   this.service.removeItemFromCart(val.id);
-  val.added = true;
+  val.added = false;
   console.log(val)
   }
 }

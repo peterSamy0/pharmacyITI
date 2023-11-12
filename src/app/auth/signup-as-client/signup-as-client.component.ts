@@ -27,6 +27,9 @@ export class SignupAsClientComponent {
   governorates: any;
   cityID!: number;
   errors:any ={};
+  days: any;
+  daysArr: any = [];
+  selectedDays: { id: string; day: string }[] = [];
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -51,6 +54,7 @@ export class SignupAsClientComponent {
 
     this.getGovernorates();
     this.getClients();
+    this.getDays();
   }
 
   selectedFile !:File;
@@ -205,5 +209,26 @@ export class SignupAsClientComponent {
       this.allClients = res.map((obj:any) => obj.data);
       console.log(this.allClients)
     })
+  }
+
+  getDays() {
+    this.http.get(`http://localhost:8000/api/days`).subscribe(
+      (response) => {
+        this.days = response;
+      },
+      (error) => console.log(error)
+    );
+  } 
+  chooseDay(val: any) {
+    const selectedDay = this.days.data.find((day: any) => day.id == val);
+    const isExists = this.daysArr.includes(+val);
+    if (!isExists && selectedDay) {
+      this.selectedDays.push(selectedDay);
+      this.daysArr.push(+val);
+    }
+  }
+  removeDay(val: any) {
+    this.selectedDays = this.selectedDays.filter((item) => item.id != val);
+    this.daysArr = this.daysArr.filter((item: any) => item.id != val);
   }
 }

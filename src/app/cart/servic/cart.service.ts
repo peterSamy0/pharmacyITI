@@ -12,7 +12,7 @@ export class CartService {
   private cartItemCountSubject = new BehaviorSubject<number>(0);
   cartItemCount = this.cartItemCountSubject.asObservable();
 
-  // Add an item to the cart
+ 
   addItemToCart(item: CartItem) {
     const existingItem = this.cartItems.find((cartItem: any) => cartItem.medicine_id === item.id);
     if (existingItem) {
@@ -23,34 +23,35 @@ export class CartService {
       item.quantity = 1;
       this.cartItems.push(item);
     }
+    // Update the cart in the session
+    sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
     // Update the cart item count
     this.cartItemCountSubject.next(this.cartItems.length);
   }
-
-  // Remove an item from the cart
+  
   removeItemFromCart(itemId: number) {
-    const itemIndex = this.cartItems.findIndex((cartItem: any) => cartItem.id == itemId);
+    const itemIndex = this.cartItems.findIndex((cartItem: any) => cartItem.id === itemId);
     if (itemIndex !== -1) {
       this.cartItems.splice(itemIndex, 1);
     }
+    // Update the cart in the session
+    sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
+  
     // Update the cart item count
-    
     this.cartItemCountSubject.next(this.cartItems.length);
-    
   }
 
-  // Update the quantity of an item in the cart
+
   updateCartItemQuantity(itemId: number, newQuantity: number) {
-    const existingItem = this.cartItems.find((cartItem: any) => {
-      // console.log(this.cartItems,cartItem.id,itemId );
-      return cartItem.id === itemId
-    });
+    const existingItem = this.cartItems.find((cartItem: any) => cartItem.id === itemId);
     if (existingItem) {
       existingItem.quantity = newQuantity;
     }
-    // Update the cart item count
+    // Update the cart in the session
+    sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
     this.cartItemCountSubject.next(this.cartItems.length);
   }
+
   // Get the cart items
   getCartItems() {
     return this.cartItems;
@@ -58,6 +59,7 @@ export class CartService {
   clearCart() {
     this.cartItems = [];
     this.cartItemCountSubject.next(0); // Update cart item count
+    // sessionStorage.removeItem('cart');
   }
   
 }

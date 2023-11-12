@@ -26,7 +26,7 @@
     
                 <th scope="row">{{order.id}}</th>
                 <td>{{order.pharmacy_name}}</td>
-                <td>{{order.created_at}}</td>
+                <td>{{order.created_at | dateTimeFormat}}</td>
                 <td>
                     <a class="btn btn-primary me-3 text-white fw-bold" href="/orders/{{order.id}}">View Order</a>
                 </td>

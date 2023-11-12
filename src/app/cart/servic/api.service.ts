@@ -19,7 +19,9 @@ export class ApiService {
     return this.http.post(this.apiUrl, data, { headers });
   }
   // function that gets all users
-  allOrders(){
-    return this.http.get("http://localhost:8000/api/orders")
+  allOrders(userID:any, token:any){
+    const headers = { 'Authorization': `Bearer ${token}` };
+    const options = { headers: headers };
+    return this.http.get(`http://localhost:8000/api/clients/${userID}`, options)
   }
 }

@@ -12,8 +12,10 @@ export class ViewOneOrderComponent {
   thisOrder!:Order|any;
   orderId:number|any;
   city:string|any;
+  token: any;
+  clientID: any
   pharmacyId = localStorage.getItem("_id");
-;
+
   constructor(private routeUrl:ActivatedRoute, private fetchOrders:ServiceService){
     this.routeUrl.paramMap.subscribe(params => this.orderId = params.get("id"));
     
@@ -27,6 +29,8 @@ export class ViewOneOrderComponent {
     });
   }
   ngOnInit(){
+    this.token = localStorage.getItem('token');
+    this.clientID = localStorage.getItem('_id');
     this.fetchOrders.getPharmacy(this.pharmacyId)
     .subscribe(data=>{
         let pharmacy:any = Object.values(data);

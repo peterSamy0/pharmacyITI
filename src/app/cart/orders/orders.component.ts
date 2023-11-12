@@ -11,13 +11,21 @@ export class OrdersComponent {
   totalLenght:any;
   page :number=1;
   isLoading: boolean = true;
+  token: any;
+  clientID: any;
   constructor(private apiService: ApiService, private http :HttpClient){
 
   }
   ngOnInit() {
-    this.apiService.allOrders().subscribe(data=>{
-      this.allOrders=Object.values(data);
-      this.isLoading = false;});
+    this.token = localStorage.getItem('token');
+    this.clientID = localStorage.getItem('_id');
+    this.apiService.allOrders(this.clientID, this.token).subscribe(
+      (res:any)=>{
+            this.allOrders= res.data.orders;
+            this.isLoading = false;
+            console.log(this.allOrders)
+            console.log(res)
+    });
   }
   badgeColor(status:string) {
     switch (status) {
@@ -36,9 +44,13 @@ export class OrdersComponent {
   removeOrder(orderId:any){
     try{
       // update request to remove item from order
-      this.http.delete(`http://localhost:8000/api/orders/${orderId}`).subscribe(data => {
-        console.log(data)
-      });
+      this.http.delete(`http://localhost:8000/api/orders/${orderId}`).subscribe(
+        (res: any) => {
+          const index = this.allOrders.findIndex(product => product.id === orderId);
+          this.allOrders.splice(index, 1);
+        },
+        error => console.log(error)
+      );
     }
     catch(error:any){
       console.log(error);
