@@ -11,13 +11,20 @@ export class OrdersComponent {
   totalLenght:any;
   page :number=1;
   isLoading: boolean = true;
+  token: any;
+  clientID: any;
   constructor(private apiService: ApiService, private http :HttpClient){
 
   }
   ngOnInit() {
-    this.apiService.allOrders().subscribe(data=>{
-      this.allOrders=Object.values(data);
-      this.isLoading = false;
+    this.token = localStorage.getItem('token');
+    this.clientID = localStorage.getItem('_id');
+    this.apiService.allOrders(this.clientID, this.token).subscribe(
+      (res:any)=>{
+            this.allOrders= res.data.orders;
+            this.isLoading = false;
+            console.log(this.allOrders)
+            console.log(res)
     });
   }
   badgeColor(status:string) {
