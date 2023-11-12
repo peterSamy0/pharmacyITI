@@ -221,9 +221,9 @@ export class CartpageComponent {
       });
     }
   }
-  test(){
-    console.log(this.pharmacyId);
-  }
+  // test(){
+  //   console.log(this.pharmacyId);
+  // }
 
   checkUser() {
     let userEmail = this.signinForm.controls['userEmail'].value;
