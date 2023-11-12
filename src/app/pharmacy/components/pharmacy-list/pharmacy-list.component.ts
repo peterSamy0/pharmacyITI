@@ -54,7 +54,7 @@ export class PharmacyListComponent{
   this.service.getPharmacies().subscribe((res: any) => {
     this.pharmArr = res.data;
     this.originalPharmArr = [...this.pharmArr]; // Save a copy of the original data
-    this.totalLength = this.pharmArr;
+    this.totalLength = this.pharmArr.length;
     this.pharmArr.forEach((e: any, i: any) => {
       e.id = i + 1;
     });

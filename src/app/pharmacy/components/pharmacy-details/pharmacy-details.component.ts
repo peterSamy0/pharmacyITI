@@ -32,6 +32,7 @@ export class PharmacyDetailsComponent {
       (res:any) => {
         this.pharmacy = res.data;
         this.cartService.pharmacyId = this.pharmacy.pharmacy_id;
+        console.log(this.pharmacy)
       },
       (error) => {
         console.log(error)

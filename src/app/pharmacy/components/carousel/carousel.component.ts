@@ -40,6 +40,7 @@ export class CarouselComponent {
       (res:any) => {
         console.log(res);
         this.products = res.data.medication;
+        console.log(this.products)
         this.getCategories();
         this.initializeActiveIndices();
         this.isLoading = false;
