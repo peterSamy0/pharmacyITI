@@ -10,6 +10,7 @@ export class MedicationCardComponent {
   @Input() prod: any;
   @Input() medication!: any;
   role: string | null = 'client';
+  cartArr: any = [];
   constructor(private service: CartService){}
   
   ngOnInit(){
@@ -20,7 +21,8 @@ export class MedicationCardComponent {
   addToCart(val:any){
     this.service.addItemToCart(val);
     val.added = true;
-    console.log(val)
+    this.cartArr.push(val)
+    localStorage.setItem('cart', JSON.stringify(this.cartArr))
   }
 }
 

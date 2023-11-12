@@ -5,36 +5,58 @@ import { ApiService } from '../servic/api.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cartpage',
   templateUrl: './cartpage.component.html',
   styleUrls: ['./cartpage.component.css'],
 })
+
 export class CartpageComponent {
   cartItems: Array<any> = [];
   total: number = 0; // Initialize the total price to 0
   clientId!: Number;
   pharmacyId!: Number;
   dividedTotal: number = 0;
+  isLogged: boolean = false;
+  credentials: any;
+  userNotFound: boolean = false;
 
   @ViewChild('paymentRef', { static: true }) paymentRef!: ElementRef;
 
+  
   // array of orderMedications:
   orderMedications: Array<object> = [];
   amount: any;
   payment: any;
-
+  signinForm!: FormGroup;
   constructor(
     private cartService: CartService,
     private api: ApiService,
     private router: Router,
     private http: HttpClient
-  ) {}
+  ){
+    this.signinForm = new FormGroup({
+      userEmail: new FormControl('', [Validators.required]),
+      userPass: new FormControl('', [Validators.required])
+    });
+  }
 
   ngOnInit(): void {
+    // const cartArrString = localStorage.getItem('cart');
+
+    // if (cartArrString) {
+    //   // Parse the JSON string if it's not null
+    //   this.cartItems = JSON.parse(cartArrString);
+    // } else {
+    //   // Handle the case where the value is null (e.g., set a default value or an empty array)
+    //   this.cartItems = []; // Or any other default value you want
+    // }
+
     this.cartItems = this.cartService.getCartItems();
     this.calculateTotalPrice();
+    this.isLogged = (localStorage.getItem('token')) ? true : false;
     console.log(this.cartService.cartItems);
     // get authorization data from local storage and service
     if (
@@ -179,18 +201,47 @@ export class CartpageComponent {
     }
   }
 
-  // payWithPayPal() {
-  //   const requestData = {
-  //     amount: this.total,
-  //   };
+  checkUser() {
+    let userEmail = this.signinForm.controls['userEmail'].value;
+    let userPass = this.signinForm.controls['userPass'].value;
+    this.credentials = {
+      "email": userEmail,
+      "password": userPass
+    }
+    this.logIn()
+  }
 
-  //   this.http.post<any>('http://localhost:8000/api/pay', requestData).subscribe(
-  //     (response) => {
-  //       window.location.href = response.redirect_url;
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //     }
-  //   );
-  // }
+  logIn(){
+    this.http.post(`http://localhost:8000/api/auth/login`, this.credentials)
+      .subscribe(
+        (response: any) => {
+          const role = response['role'];
+          console.log(response)
+          if (role) {
+            localStorage.setItem('token', response['token']);
+            localStorage.setItem('user_id', response['user_id']);
+            localStorage.setItem('role', response['role']);
+            localStorage.setItem('_id', response['_id']);
+            window.location.href = '/cart';
+          } else {
+            Swal.fire({
+              title: 'Error!',
+              text: 'you are not a user',
+              icon: 'error',
+              confirmButtonText: 'Ok'
+            })
+          }
+        },
+
+        error => {
+          console.log(error)
+          Swal.fire({
+            title: 'Error!',
+            text: 'invaled email or password',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
+        }
+      );
+  }
 }
