@@ -13,13 +13,13 @@ export class ViewOneOrderComponent {
   orderId:number|any;
   city:string|any;
   token: any;
-  clientID: any;
+  clientID: any
   pharmacyId = localStorage.getItem("_id");
 
   constructor(private routeUrl:ActivatedRoute, private fetchOrders:ServiceService){
     this.routeUrl.paramMap.subscribe(params => this.orderId = params.get("id"));
     
-    this.fetchOrders.getOrders(this.clientID, this.token )
+    this.fetchOrders.getOrders()
     .subscribe((data:any)=>{
       let order = Object.values(data).find((ele:any)=>{
         return ele.id == this.orderId;

@@ -28,10 +28,8 @@ export class ServiceService {
   getMedication(){
     return this.http.get('https://retoolapi.dev/oK0uhq/data?Category=medication')
   }
-  getOrders(userID:any, token:any){
-    const headers = { 'Authorization': `Bearer ${token}` };
-    const options = { headers: headers };
-    return this.http.get(`http://localhost:8000/api/clients/${userID}`, options)
+  getOrders(){
+      return this.http.get(this.url2)
   }
   getProductList(){
     return this.http.get('https://retoolapi.dev/oK0uhq/data')

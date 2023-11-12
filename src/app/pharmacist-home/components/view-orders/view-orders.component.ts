@@ -16,8 +16,6 @@ export class ViewOrdersComponent {
   page :number=1;
   constructor(private orderService: ServiceService) {}
   isLoading: boolean = true;
-  token: any;
-  clientID: any = 0;
   ngOnInit(){
     this.getData();
     this.totalLenght=this.orders.length;
@@ -25,14 +23,11 @@ export class ViewOrdersComponent {
 
   getData() {
     this.isLoading = true;
-    this.token = localStorage.getItem('token');
-    this.clientID = localStorage.getItem('_id');
-    this.orderService.getOrders(this.clientID, this.token).subscribe(
+    this.orderService.getOrders().subscribe(
       (res) => {
         this.orders = res;
         this.isLoading = false;
         this.orders = Array(...this.orders);
-        console.log(res)
       },
       (error) => {
         console.error('Error:', error);
