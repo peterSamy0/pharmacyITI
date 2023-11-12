@@ -1,0 +1,59 @@
+<div class=".container d-flex justify-content-around">
+    <h1 class="p-5">order id -> {{orderId}}</h1>
+    <button *ngIf="orderData.status == 'accepted'" class="btn btn-success" (click)="deliver()">Accept</button>
+</div>
+<!-- <div class="w-50 m-auto ">
+    <div class="d-flex justify-content-between my-3">
+        <h3 class="fs-6">client name: {{orderData.client_name}}</h3> 
+        <span Style="color:#1f494d; font-size: 20px;">Status:</span>
+        <span class="badge p-2"[ngClass]="'text-bg-'+badgeColor(orderData.status)">{{orderData.status}}</span>
+
+        <h3 class="fs-6">Date: {{orderData.created_at}}</h3> 
+    </div> -->
+    <!-- table to show prescription -->
+<div>
+    <div class="container">
+        <table class="table table-striped mb-5">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col"> </th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>order Id</td>
+                    <td></td>
+                    <td>{{orderId}}</td>
+                </tr>
+                <tr>
+                    <td>Pharmacy name</td>
+                    <td></td>
+                    <td>{{orderData.pharmacy_name}}</td>
+                </tr>
+                <tr>
+                    <td>Pharmacy address</td>
+                    <td></td>
+                    <td>{{orderData.pharmacy_address}}</td>
+                </tr>
+                <tr>
+                    <td>client name</td>
+                    <td></td>
+                    <td>{{orderData.client_name}}</td>
+                </tr>
+                <!-- <tr>
+                    <td>client address</td>
+                    <td>orderData.</td>
+                </tr> -->
+              <tr>
+                <td>no. of items in the order</td>
+                <td></td>
+                <td>{{orderData.orderMedications.length}}</td>
+            </tr>
+              
+            </tbody>
+          </table>
+    </div>
+</div>
+

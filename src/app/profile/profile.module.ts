@@ -13,6 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
 import { DeliveryOrdersComponent } from './delivery/delivery-orders/delivery-orders.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DeliveryOrderComponent } from './delivery/delivery-order/delivery-order.component';
 
 
 @NgModule({
@@ -24,7 +27,8 @@ import { DeliveryOrdersComponent } from './delivery/delivery-orders/delivery-ord
     EditDeliveryDataComponent,
     ViewDeliveryDataComponent,
     SpinnerComponent,
-    DeliveryOrdersComponent
+    DeliveryOrdersComponent,
+    DeliveryOrderComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +37,8 @@ import { DeliveryOrdersComponent } from './delivery/delivery-orders/delivery-ord
     RouterModule,
     HttpClientModule,
     MatButtonToggleModule,
+    NgxPaginationModule,
+    FontAwesomeModule
   ]
 })
 export class ProfileModule { }

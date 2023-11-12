@@ -34,7 +34,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { OrderComponent } from './cart/order/order.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-
+import { DeliveryOrdersComponent } from './profile/delivery/delivery-orders/delivery-orders.component';
+import { DeliveryOrderComponent } from './profile/delivery/delivery-order/delivery-order.component';
 const routes: Routes = [
 
   {
@@ -163,6 +164,16 @@ const routes: Routes = [
   {
     path : "edit-delivery-data/:id",
     component: EditDeliveryDataComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path : "deliveryOrders/:id",
+    component: DeliveryOrdersComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path : "deliveryOrders/:id/orders/:Oid",
+    component: DeliveryOrderComponent,
     canActivate: [AuthGuard]
   },
   {

@@ -1,1 +1,45 @@
-<p>delivery-orders works!</p>
+<div class="container p-3">
+    <h1 class="text-center">Your Orders</h1>
+    <div class="d-flex align-items-center justify-content-center spinner" style="height: 50vh;" *ngIf="isLoading">
+        <span class="loader"></span>
+      </div>
+
+    <div class="w-75 m-auto " *ngIf="!isLoading">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">order no</th>
+                <th scope="col">Pharmacy</th>
+                <!-- <th scope="col">client address</th> -->
+                <th scope="col">view order</th>
+                <th scope="col">status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of allOrders | paginate
+              : {
+                  itemsPerPage: 10,
+                  currentPage: page,
+                  totalItems: totalLenght
+                }, let i = index ">
+    
+                <th scope="row">{{order.id}}</th>
+                <td>{{order.pharmacy_name}}</td>
+                <!-- <td>{{order.client_address}}</td> -->
+                <td>
+                    <a class="btn btn-primary me-3 text-white fw-bold" href="deliveryOrders/{{deliveryId}}/orders/{{order.id}}">View Order</a>
+                </td>
+                <td class="text-start">
+                    <fa-icon [ngClass]="'px-2 text-'+badgeColor(order.status)" [icon]="faCircle"></fa-icon>
+                    <span [ngClass]="'text-'+badgeColor(order.status)" >{{order.status}}</span>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+    
+          <pagination-controls
+            class="my-pagination text-center"
+            (pageChange)="page = $event"
+            >
+          </pagination-controls>
+    </div>

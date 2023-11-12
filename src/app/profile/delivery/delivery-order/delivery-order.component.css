@@ -1,0 +1,42 @@
+div > p{
+    margin-bottom: 0;
+}
+div > h3{
+    color: #419197;
+}
+th{
+    background-color: #1f494d;
+    text-align: center;
+    vertical-align: middle;
+    color: #fff;
+    text-transform: capitalize;
+}
+td{
+    text-align: center;
+    vertical-align: middle;
+}
+tr{
+    border-right: gray;
+}
+.totalPrice{
+    font-size: 26px;
+    color:white;
+}
+/* Add custom CSS for alternate row coloring */
+.table-striped-custom tbody tr:nth-child(odd) {
+    background-color: #f8f9fa; /* Use your preferred background color */
+  }
+  
+  .table-striped-custom tbody tr:nth-child(even) {
+    background-color: #e9ecef; /* Use your preferred background color */
+  }
+.table{
+    font-size: 21px;
+}  
+.table td{
+    padding-left: 40px;
+    text-align: left;
+}
+.table tr td:nth-child(1){
+    background-color:#5fb8be;
+}
