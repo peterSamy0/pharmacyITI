@@ -82,7 +82,7 @@ const routes: Routes = [
     component: ViewOrdersComponent
   },
   {
-    path: "viewOrders/selectDelivery/:region",
+    path: "viewOrders/:id/selectDelivery/:region",
     component: SelectDeliveryComponent
   },
   {

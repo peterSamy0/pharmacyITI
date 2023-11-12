@@ -33,7 +33,7 @@
     </div>
 </div> -->
 
-
+<button class="btn btn-primart" (click)="test()">test</button>
  <div class="container my-5 ">
     <div>
         <h1 class="text-center">Select Delivery</h1>
@@ -44,8 +44,7 @@
               <tr>
                 <th scope="col">no.</th>
                 <th scope="col">Delivery name</th>
-                <th scope="col">Status</th>
-                <th scope="col">region</th>
+                <th scope="col">Available</th>
                 <th scope="col">Select</th>
               </tr>
             </thead>
@@ -53,16 +52,14 @@
               <tr *ngFor="let delivery of nearDeliveries, let i = index">
                 <td scope="row">{{i+1}}</td>
                 <td>{{delivery.name}}</td>
-                <!-- <td>
-                    <fa-icon [icon]="faCheck"  class="text-success"></fa-icon>
-                    <fa-icon [icon]="faXmark" class="text-danger"></fa-icon>
-                </td> -->
-                <td>{{delivery.city}}</td>
-                <!-- <td>
-                    <button class="btn btn-outline-success " (click)="select(delivery)" *ngIf="delivery.status && !delivery.isSelected">select</button> 
-                    <button class="btn btn-warning" (click)="select(delivery)" *ngIf="delivery.isSelected">waiting</button> 
-                    <button class="btn btn-danger disabled " *ngIf="!delivery.status">unAvailable</button>
-                </td> -->
+                <td>
+                    <fa-icon *ngIf="delivery.available" [icon]="faCheck"  class="text-success"></fa-icon>
+                    <fa-icon *ngIf="!delivery.available" [icon]="faXmark" class="text-danger"></fa-icon>
+                </td>
+                <td>
+                    <button class="btn btn-outline-success " (click)="select(delivery.id)" *ngIf="delivery.available">select</button> 
+                    
+                </td>
               </tr>
             </tbody>
           </table>

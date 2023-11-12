@@ -10,6 +10,8 @@ import { SearchPipe } from '../pipes/search.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { SelectDeliveryComponent } from './components/select-delivery/select-delivery.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule, Routes } from '@angular/router';
+
 
 @NgModule({
   declarations: [

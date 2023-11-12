@@ -13,7 +13,7 @@ import { CartModule } from './cart/cart.module';
 import { PharmacistHomeModule } from './pharmacist-home/pharmacist-home.module';
 import { ProfileComponent } from './profile/profile.component';
 // import { GovernorateComponent } from './governorate/governorate.component';
-
+import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ProfileModule } from './profile/profile.module';
@@ -51,13 +51,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     PharmacyDetailsModule,
     CartModule,
+    RouterModule.forRoot([]),
     PharmacistHomeModule,
     MatCheckboxModule,
     BrowserAnimationsModule,
     ProfileModule,
     // PaymentModule
     // AuthModule
-    AuthModule
+    AuthModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
