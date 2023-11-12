@@ -34,7 +34,8 @@ export class PharmacyListComponent{
   data: any= "not yet";
   page :number=1;
   totalLength:any;
-
+  originalPharmArr: any[] = [];
+  isLoading:boolean = true;
   constructor(private service:ServiceService, private httpClient: HttpClient,
     private dropService: DropDownService,
     private router:Router
@@ -47,15 +48,34 @@ export class PharmacyListComponent{
    this.getData();
   }
   
-  getPharamciesData(){
-    this.service.getPharmacies().subscribe((res :any)=>{
-      this.pharmArr = res.data;
-      this.totalLength=this.pharmArr;
-      this.pharmArr.forEach((e:any,i:any) => {
-        e.id=i+1;
-      });
-    })
-  }
+
+ getPharamciesData() {
+  this.isLoading = true;
+  this.service.getPharmacies().subscribe((res: any) => {
+    this.pharmArr = res.data;
+    this.originalPharmArr = [...this.pharmArr]; // Save a copy of the original data
+    this.totalLength = this.pharmArr;
+    this.pharmArr.forEach((e: any, i: any) => {
+      e.id = i + 1;
+    });
+    this.isLoading = false;
+  });
+}
+
+
+sendLocation(val: any) {
+  this.dropService.sendLocation(val);
+  this.location = this.GovernorateName + ", " + val;
+  this.showSubList = false;
+  this.showList = false;
+
+  // Apply filtering to originalPharmArr instead of creating a new array
+  this.pharmArr = this.originalPharmArr.filter((pharma: any) => {
+    return pharma['Governorate'] === this.GovernorateName && pharma['city'] === val;
+  });
+}
+
+
   
   getData() {
     this.service.getGovernorates().subscribe(
@@ -86,22 +106,13 @@ export class PharmacyListComponent{
     this.showSubList = !this.showSubList
     this.showList = !this.showList;
   }
-  // fucntion to save the location of user and send it to service
-  sendLocation(val: any){
-    this.getPharamciesData()
-    this.dropService.sendLocation(val)
-    this.location = this.GovernorateName + ", " + val
-    this.showSubList = false
-    this.showList = false;
-    this.pharmArr = this.pharmArr.filter( (city: any) => {
-      if(city['Governorate'] == this.GovernorateName && city['city'] == val){
-        return city; 
-      }
-    })
-  }
+
+  
+
+
 
   goToDetails(id:number){
     this.router.navigate(["/pharmacy",id]);
   }
 
-  }
+}

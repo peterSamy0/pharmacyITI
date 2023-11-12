@@ -104,11 +104,11 @@
                   <input
                     type="number"
                     class="form-control"
-                    [(ngModel)]="deliveryId.phone"
+                    [(ngModel)]="deliveryId.delivery_phone[0]['phone']"
                     formControlName="deliveryPhone"
   
                   />
-                  <!-- <div
+                  <div
                   *ngIf="
                     updateDeliveryForm.controls['deliveryPhone'].touched &&
                     updateDeliveryForm.controls['deliveryPhone'].invalid
@@ -120,7 +120,7 @@
                   >
                     Please, Enter your phone.
                   </small>
-                </div> -->
+                </div>
                 </div>
               </div>
 

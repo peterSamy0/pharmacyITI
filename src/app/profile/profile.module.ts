@@ -11,6 +11,7 @@ import { EditDeliveryDataComponent } from './delivery/edit-delivery-data/edit-de
 import { ViewDeliveryDataComponent } from './delivery/view-delivery-data/view-delivery-data.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     EditPharmacyDataComponent,
     ViewPharmacyDataComponent,
     EditDeliveryDataComponent,
-    ViewDeliveryDataComponent
+    ViewDeliveryDataComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,

@@ -18,12 +18,14 @@ export class ViewPharmacyDataComponent {
   numOforders!: number;
   numOfproducts!: number;
   token: any;
+  isLoading: boolean = true;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
     private profileService: ProfileService
   ) {}
   ngOnInit() {
+    this.isLoading = true;
     this.id = this.activeRoute.snapshot.params['id'];
     this.token = localStorage.getItem('token');
     this.profileService.getPharmacy(this.id, this.token).subscribe(
@@ -31,6 +33,7 @@ export class ViewPharmacyDataComponent {
         this.pharmaId = res.data;
         this.numOfproducts = this.pharmaId.medication.length;
         this.daysOff = this.pharmaId.daysOff;
+        this.isLoading = false;
       },
       (error) => this.router.navigate(['not-found'])
     );
@@ -71,5 +74,8 @@ export class ViewPharmacyDataComponent {
         });
       }
     );
+  }
+  gotoProducts(){
+    this.router.navigate([`listproduct/${this.id}`])
   }
 }

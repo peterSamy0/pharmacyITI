@@ -29,8 +29,7 @@ import { RouterModule, Routes } from '@angular/router';
     ReactiveFormsModule,
     FormsModule,
     NgxPaginationModule,
- 
-
+    RouterModule,
     FontAwesomeModule
   ],
   exports: [

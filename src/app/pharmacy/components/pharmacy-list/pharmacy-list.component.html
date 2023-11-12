@@ -66,7 +66,7 @@
 		<div class="text-center m-5">
     <h3>Buy Every Medicine You Need at a Fair Price</h3>
     </div>
-		<div class="row mb-5">
+		<div class="row mb-5" *ngIf="!isLoading">
 			<div class="col-md-4" *ngFor="let item of pharmArr | searchPharmacies:searchText | paginate
       : {
           itemsPerPage: 8,
@@ -93,7 +93,8 @@
 		
 		</div>
 		<!-- row -->
-    <pagination-controls
+    <pagination-controls 
+    *ngIf="!isLoading"
     class="my-pagination text-center"
     (pageChange)="page = $event"
   ></pagination-controls>
@@ -101,3 +102,9 @@
 	
 		<!-- row -->
 	</div>
+
+
+  <!-- spinner loading -->
+<div class="d-flex align-items-center justify-content-center spinner" style="height: 50vh;" *ngIf="isLoading">
+  <span class="loader"></span>
+</div>
