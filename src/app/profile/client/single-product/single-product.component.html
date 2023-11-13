@@ -12,5 +12,7 @@
         <div>
             category :<span class="badge bg-primary">{{productDetails.category}} </span>
         </div>
+        <button class="btn bg-nav text-white w-50 m-0 cartbtn" (click)="addToCart(productDetails)" *ngIf="!productDetails.added">add to cart</button>
+
     </div>
 </div>

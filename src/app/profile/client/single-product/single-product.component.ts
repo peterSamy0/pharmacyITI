@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { CartService } from 'src/app/cart/servic/cart.service';
+
 @Component({
   selector: 'app-single-product',
   templateUrl: './single-product.component.html',
@@ -9,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class SingleProductComponent {
   productId:any;
   productDetails:any;
-  constructor(private http:HttpClient, private activeRoute:ActivatedRoute){}
+  constructor(private http:HttpClient, private activeRoute:ActivatedRoute,private service: CartService,){}
     
   ngOnInit(){
     // get product id
@@ -20,5 +22,15 @@ export class SingleProductComponent {
       console.log(data)}
     )
   
+  }
+  addToCart(val:any){
+    this.service.addItemToCart(val);
+    val.added = true;
+    
+  }
+  removeFromCart(val:any){
+  this.service.removeItemFromCart(val.id);
+  val.added = false;
+  console.log(val)
   }
 }
