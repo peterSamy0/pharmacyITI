@@ -36,6 +36,8 @@ import { OrderComponent } from './cart/order/order.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DeliveryOrdersComponent } from './profile/delivery/delivery-orders/delivery-orders.component';
 import { DeliveryOrderComponent } from './profile/delivery/delivery-order/delivery-order.component';
+import { SingleProductComponent } from './profile/client/single-product/single-product.component';
+
 const routes: Routes = [
 
   {
@@ -69,6 +71,10 @@ const routes: Routes = [
   {
     path :'cart',
     component : CartpageComponent
+  },
+  {
+    path :'pharmacy/:id/product/:Pid',
+    component : SingleProductComponent
   },
   {
     path :'listproduct/:id',

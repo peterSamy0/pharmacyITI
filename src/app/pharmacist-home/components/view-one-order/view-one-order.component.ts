@@ -55,7 +55,4 @@ export class ViewOneOrderComponent {
         return 'black';
     }
   }
-  test(){
-    console.log(this.city);
-  }
 }

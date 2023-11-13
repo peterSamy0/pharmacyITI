@@ -66,5 +66,11 @@
   .top-35{
     top: 35%;
   }
+  .viewbtn{
+    border-radius: 0.375rem 0px 0px  0.375rem;
+  }
+  .cartbtn{
+    border-radius: 0px 0.375rem 0.375rem 0px;
+  }
   
   

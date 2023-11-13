@@ -15,6 +15,7 @@ export class DeliveryOrdersComponent {
   isLoading: boolean = true;
   faCircle=faCircle;
   deliveryId!:number;
+  token = localStorage.getItem('token');
 
   constructor(private apiService: ApiService, private http :HttpClient){
     this.deliveryId = Number(localStorage.getItem('_id'));

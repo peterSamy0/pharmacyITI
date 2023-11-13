@@ -16,6 +16,7 @@ import { DeliveryOrdersComponent } from './delivery/delivery-orders/delivery-ord
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DeliveryOrderComponent } from './delivery/delivery-order/delivery-order.component';
+import { SingleProductComponent } from './client/single-product/single-product.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { DeliveryOrderComponent } from './delivery/delivery-order/delivery-order
     ViewDeliveryDataComponent,
     SpinnerComponent,
     DeliveryOrdersComponent,
-    DeliveryOrderComponent
+    DeliveryOrderComponent,
+    SingleProductComponent
   ],
   imports: [
     CommonModule,

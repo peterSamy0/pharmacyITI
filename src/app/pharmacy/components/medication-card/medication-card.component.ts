@@ -18,6 +18,7 @@ export class MedicationCardComponent {
   ngOnInit(){
     const getRole = localStorage.getItem('role')
     this.role =  getRole;
+    console.log(this.medication.id);
   }
 
   addToCart(val:any){

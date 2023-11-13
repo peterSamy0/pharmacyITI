@@ -45,7 +45,7 @@ export class SelectDeliveryComponent {
   select(id:any){
     this.http.patch(`http://localhost:8000/order/${this.orderId}`, {"setDelivery":true,"deliveryId":id}).
     subscribe(data=>{
-      console.log(data);
+      // console.log(data);
     })
   }
 
@@ -58,7 +58,7 @@ export class SelectDeliveryComponent {
     
     this.city = this.route.snapshot.paramMap.get("region");
     this.orderId = this.route.snapshot.paramMap.get("id");
-    console.log(this.city)
+    // console.log(this.city)
   };
   ngOnInit(){
     this.getDeliveryLists();
@@ -67,15 +67,15 @@ export class SelectDeliveryComponent {
   getDeliveryLists(){
     this.deliveryService.getDelivery().subscribe((res:any) => {
       this.deliveries = res.data;
-      console.log(this.deliveries);
+      // console.log(this.deliveries);
 
       this.nearDeliveries = this.deliveries.filter( (el) => {
         return el.city == this.city});
-      console.log(this.nearDeliveries);
+      // console.log(this.nearDeliveries);
     });
   }
-  test(){
-    console.log(this.nearDeliveries);
+  // test(){
+  //   console.log(this.nearDeliveries);
 
-  }
+  // }
 }
