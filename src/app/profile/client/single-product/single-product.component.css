@@ -1,0 +1,25 @@
+
+.bg-nav{
+    background-color: #5fb8be;
+  }
+  button {
+    margin-right: 10px;
+  }
+  /* Add custom CSS for alternate row coloring */
+.table-striped-custom tbody tr:nth-child(odd) {
+  background-color: #f8f9fa; /* Use your preferred background color */
+}
+
+.table-striped-custom tbody tr:nth-child(even) {
+  background-color: #e9ecef; /* Use your preferred background color */
+}
+.table{
+  font-size: 21px;
+}  
+.table td{
+  padding-left: 40px;
+  text-align: left;
+}
+.table tr td:nth-child(1){
+  background-color:#5fb8be;
+}

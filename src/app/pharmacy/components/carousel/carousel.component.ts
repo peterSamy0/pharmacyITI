@@ -38,9 +38,9 @@ export class CarouselComponent {
     this.isLoading = true;
     this.service.getPharmaData(this.id).subscribe(
       (res:any) => {
-        console.log(res);
+        // console.log(res);
         this.products = res.data.medication;
-        console.log(this.products)
+        // console.log(this.products)
         this.getCategories();
         this.initializeActiveIndices();
         this.isLoading = false;
@@ -56,7 +56,7 @@ export class CarouselComponent {
       this.categories.push(this.products[i].medicine_category)
     }
     this.categories = Array.from(new Set(this.categories)); // Convert set to array
-    console.log(this.categories)
+    // console.log(this.categories)
   }
 
   initializeActiveIndices() {

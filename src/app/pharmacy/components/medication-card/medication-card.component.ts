@@ -11,26 +11,43 @@ export class MedicationCardComponent {
   @Input() medication!: any;
   role: string | null = 'client';
   cartArr: any = [];
+  pharmacyId:any;
+  x:number=0;
   constructor(private service: CartService, private routeUrl:ActivatedRoute){
-    this.routeUrl.paramMap.subscribe(params => this.service.pharmacyId = Number(params.get("id")));
+    this.routeUrl.paramMap.subscribe(params => {
+      this.service.pharmacyId = Number(params.get("id"));
+      this.pharmacyId = Number(params.get("id"));
+    });
   }
   
   ngOnInit(){
-    const getRole = localStorage.getItem('role')
-    this.role =  getRole;
-    console.log(this.medication.id);
+    // get data from cart
+    this.cartArr = this.service.cartItems;
+    // Reset the 'added' property for all medications
+    this.cartArr.forEach((item: any) => {
+      item.added = false;
+    });
+    // get the item here if present in localStorage
+    if(this.cartArr.length > 0){
+      let producatFound = this.cartArr.find((item:any) => item.id == this.medication.id)
+      if(producatFound){
+        this.medication.added = true;
+      }
+    }
+
+    console.log(this.service.cartItems);
   }
 
   addToCart(val:any){
-    this.service.addItemToCart(val);
+    
     val.added = true;
-    this.cartArr.push(val)
-    localStorage.setItem('cart', JSON.stringify(this.cartArr))
+    this.service.addItemToCart(val);
+    
+
   }
   removeFromCart(val:any){
   this.service.removeItemFromCart(val.id);
   val.added = false;
-  console.log(val)
   }
 }
 
