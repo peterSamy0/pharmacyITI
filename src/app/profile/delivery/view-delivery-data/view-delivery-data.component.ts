@@ -15,6 +15,7 @@ export class ViewDeliveryDataComponent {
   orders!: any;
   numOforders!: number;
   token: any;
+  deliveryImage!: any;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -68,5 +69,8 @@ export class ViewDeliveryDataComponent {
           })
         }
     );
+  }
+  generateImageUrl(image: string) {
+    return `http://localhost:8000/storage/${image}`;
   }
 }

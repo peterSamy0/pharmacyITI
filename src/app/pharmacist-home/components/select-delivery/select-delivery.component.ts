@@ -43,10 +43,11 @@ export class SelectDeliveryComponent {
   //   (!val.isSelected || null) ? val.isSelected = true : val.isSelected = false
   // }
   select(id:any){
-    this.http.patch(`http://localhost:8000/order/${this.orderId}`, {"setDelivery":true,"deliveryId":id}).
+    this.http.put(`http://localhost:8000/order/${this.orderId}`, {"setDelivery":true,"deliveryId":id}).
     subscribe(data=>{
-      // console.log(data);
-    })
+      console.log('done');
+    }, 
+    error => console.log(error))
   }
 
   deliveries!: DeliveryResponse[];

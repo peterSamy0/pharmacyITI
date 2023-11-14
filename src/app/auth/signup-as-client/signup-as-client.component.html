@@ -6,10 +6,12 @@
           <div class="row">
             <div class="col-md-7 pe-0">
               <div class="form-left h-100 py-5 px-5">
+                <!-- ------------Start Form -->
                 <form
                   class="row g-4"
                   [formGroup]="signupForm"
                   (ngSubmit)="addClient()"
+                  enctype="multipart/form-data"
                 >
                   <h2 class="mb-2">Your health is our concern</h2>
                   <div class="col-12">
@@ -89,6 +91,8 @@
                       </small>
                     </div>
                   </div>
+
+                  <!-- phone number -->
                   <div class="col-12">
                     <label class="form-label">Phone Number</label>
                     <div>
@@ -204,48 +208,16 @@
                     </div>
                   </div>
 
-                  <!-- <div class="col-12">
-
+                  <!--------------------------- upload file ------------------------->
+                <div class="col-12">
                   <label class="form-label" for="customFile"
                     >Profile Image</label
                   >
-                  <input type="file" class="form-control" id="customFile" (change)="onFileSelected($event)" />
-                <input type="button" (click)="onUpload()">  
-                </div> -->
+                  <input type="file" class="form-control" id="customFile" formControlName="userImage" (change)="onFileSelected($event)" />
+                </div>
 
-                <!-- <div class="col-12">
-                  <label class="form-label">Days OFF</label>
-                  <div>
-                    <div class="day-container">
-                      <span
-                        class="px-3 py-2 bg-info text-white me-2"
-                        *ngFor="let selectedDay of selectedDays"
-                      >
-                        {{ selectedDay.day }}
-                        <span class="fw-bold">x</span>
-                      </span>
-                    </div>
-                    <select
-                      style="color: rgb(73, 99, 102)"
-                      class="form-select mt-2"
-                      name="dayOff"
-                      #pharmaDaysOff
-                      id=""
-                      (change)="chooseDay(pharmaDaysOff.value)"
-                    >
-                      <option value="0" selected>
-                        Select the Closing Day
-                      </option>
-                      <option
-                        value="{{ day.id }}"
-                        *ngFor="let day of days.data"
-                      >
-                        {{ day.day }}
-                      </option>
-                    </select>
-                  </div>
-                </div> -->
 
+                <!-- -------------------password ----------------------- -->
                   <div class="col-12">
                     <label class="form-label">Password</label>
                     <div>
@@ -294,6 +266,7 @@
                     </button>
                   </div>
                 </form>
+                <!-- -----------End Of Form ----------------------->
               </div>
             </div>
             <div class="col-md-5 ps-0 d-none d-md-block">

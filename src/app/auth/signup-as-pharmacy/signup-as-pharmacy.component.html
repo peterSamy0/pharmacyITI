@@ -380,6 +380,17 @@
                     </div>
                   </div>
 
+
+                  <!--------------------------- upload file ------------------------->
+                <div class="col-12">
+                  <label class="form-label" for="customFile"
+                    >Pharmacy Image</label
+                  >
+                  <input type="file" class="form-control" id="customFile" formControlName="userImage" (change)="onFileSelected($event)" />
+                </div>
+
+
+                <!-- -------------------password ----------------------- -->
                   <div class="col-12">
                     <label class="form-label">Password</label>
                     <div>

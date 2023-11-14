@@ -9,6 +9,7 @@ import Swal, { SweetAlertIcon } from 'sweetalert2';
   templateUrl: './view-client-data.component.html',
   styleUrls: ['./view-client-data.component.css']
 })
+
 export class ViewClientDataComponent {
   clientId!:any;
   id!: number;
@@ -18,6 +19,7 @@ export class ViewClientDataComponent {
   ordersPending !: any; 
   numOfPendingOrders!:number;
   token: any;
+  userImage:any;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -33,6 +35,7 @@ export class ViewClientDataComponent {
     this.profileService.getClient(this.id, this.token).subscribe(
       (res: any) => {
           this.clientId = res.data;
+          console.log(res)
           this.ordersOnTheirWay= this.clientId.orders.filter(
             (order: any) =>
               order['status'] === "withDelivery"
@@ -43,7 +46,6 @@ export class ViewClientDataComponent {
               order['status'] === "pending"
           );
           this.numOfPendingOrders= this.ordersPending.length;
-
     },
     error => this.router.navigate(['not-found']));
   }
@@ -70,5 +72,8 @@ export class ViewClientDataComponent {
           })
         }
       );
+  }
+  generateImageUrl(image: string) {
+    return `http://localhost:8000/storage/${image}`;
   }
 }

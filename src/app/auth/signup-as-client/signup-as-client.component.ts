@@ -30,6 +30,7 @@ export class SignupAsClientComponent {
   days: any;
   daysArr: any = [];
   selectedDays: { id: string; day: string }[] = [];
+  imageFile:any;
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -94,18 +95,7 @@ export class SignupAsClientComponent {
       },
       phone: [userPhone]
     };
-    // if (!userFullName.match(fullNamePattern)) {
-    //   console.log('wrong full name format');
-    //   this.userFullNameFail = true;
-    // } else if (!userEmail.match(emailPattern)) {
-    //   console.log('invalid email format');
-    //   this.emailFail = true;
-    // } else if (!userPass.match(passPattern)) {
-    //   console.log('wrong password format');
-    //   this.passFail = true;
-    // } else if (!userGovern) {
-    //   this.userGovernFail = true;
-    // } else 
+
     if (
       userEmail &&
       userFullName &&
@@ -118,16 +108,6 @@ export class SignupAsClientComponent {
       this.passFail = false;
       this.userGovernFail = false;
 
-      // for( let i = 0 ; i <= this.allClients.length ; i ++){
-      //   if(this.allClients[i]['client_email'] == userEmail){
-      //     this.emailAlreadyUsed = true;
-      //     console.log("email already used")
-      //   }
-      // }
-
-      // const alreadyExist = this.allClients.filter(function (e){
-      //   return e.client_email = userEmail 
-      // })
       
       const foundEmail = this.allClients.find(
         (obj) => obj.client_email === userEmail
@@ -143,7 +123,13 @@ export class SignupAsClientComponent {
       }
       if(!foundEmail){
 
-      this.http.post(`http://localhost:8000/api/clients`, body).subscribe(
+      const userData = this.signupForm.value;
+      const formData = new FormData();
+      formData.append('userImage', this.imageFile);
+      for (const key of Object.keys(userData)) {
+        formData.append(key, userData[key]);
+      }
+      this.http.post(`http://localhost:8000/api/clients`, formData).subscribe(
         (response:any) => {
           localStorage.setItem('token', response['token']);
           localStorage.setItem('role', response['role']);
@@ -161,6 +147,7 @@ export class SignupAsClientComponent {
           })
         }
       );
+      
       }
     } else {
       this.notAllDataEntered = true;

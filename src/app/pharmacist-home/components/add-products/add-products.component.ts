@@ -84,6 +84,10 @@ handlePriceChange(product: any, checkbox: HTMLInputElement) {
   // Check if the checkbox is already checked
   if (checkbox.checked) {
     // Uncheck the checkbox
+    const index = this.productsAdded.findIndex((item:any) => item.medication_id === product.id);
+    if (index >= 0) {
+      this.productsAdded.splice(index, 1);
+    }
     checkbox.checked = false;
   }
 }
@@ -95,25 +99,19 @@ addOneProduct(val:any ,event:any, priceVal:any){
       "medication_id": val.id,
       "price": priceVal
     }
-    // this.isExists = this.products.filter( (item:any) => {
-    //   return item.id == val
-    // })
-    // if(this.isExists){
-    //   console.log('item already exsits')
-    // }else{
-      this.productsAdded.push(this.medicineObj);
-      this.medicationsList = {
-        "medicationsList":this.productsAdded
-      // }
+    this.productsAdded.push(this.medicineObj);
+    this.medicationsList = {
+      "medicationsList":this.productsAdded
     }
   }
   else{
     console.log('checkbox is unchecked');
-      const index = this.productsAdded.indexOf(val);
-      if (index >= 0) {
-        this.productsAdded.splice(index, 1);
-      }
+    const index = this.productsAdded.findIndex((item:any) => item.medication_id === val.id);
+    if (index >= 0) {
+      this.productsAdded.splice(index, 1);
+    }
   };
+  console.log(this.productsAdded)
 }
 
 

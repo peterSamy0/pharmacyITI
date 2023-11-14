@@ -30,15 +30,7 @@ export class SignupAsDeliveryComponent {
   cities: any;
   governorates: any;
   cityID!: number;
-  // id?: number;
-  // name: string;
-  // Governorate: string;
-  // city: string;
-  // email: string;
-  // password: string;
-  // national_ID: number;
-  // available: number;
-  // phones: number;
+  imageFile:any;
   constructor(
     private deliveryService: DeliveryServiceService,
     private router: Router,
@@ -81,9 +73,11 @@ export class SignupAsDeliveryComponent {
       console.log(this.allDeliveries);
     });
   }
-
+  onFileSelected(event: any): void {
+    this.imageFile=event.target.files[0];
+    console.log(this.imageFile)
+  }
   addDelivery() {
-    console.log(this.signupForm);
     let name = this.signupForm.controls['name'].value;
     let governorate = this.signupForm.controls['governorate'].value;
     let city = this.signupForm.controls['city'].value;
@@ -92,44 +86,31 @@ export class SignupAsDeliveryComponent {
     let phone = this.signupForm.controls['phone'].value;
     let pass = this.signupForm.controls['pass'].value;
 
-    // let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    // let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    // let phonePattern = /\d{11}/;
-    // let nationalIdPattern = /\d{14}/;
-
-    // if (!email.match(emailPattern)) {
-    //   console.log('invalid email format');
-    //   this.emailFail = true;
-    // }
-    // else if (!phone.match(phonePattern)) {
-    //   console.log('wrong phone format');
-    //   this.phoneFail = true;
-    // }
-    // else if (!national_ID.match(nationalIdPattern)) {
-    //   console.log('wrong phone format');
-    //   this.nationalFail = true;
-    // }
-    // else if (!pass.match(passPattern)) {
-    //   console.log('wrong password format');
-    //   this.passFail = true;
-    // } else
-    if (name && governorate && city && email && national_ID && phone && pass) {
-      this.newDelivery = {
-        user: {
-          name: name,
-          email: email,
-          password: pass.toString(),
-        },
-        delivery: {
-          governorateID: this.governorateID,
-          cityID: this.cityID,
-          nationalID: +national_ID,
-          available: 1,
-        },
-       phone: [phone]
-      };
-
-      console.log(this.newDelivery);
+    const userData = this.signupForm.value;
+    const formData = new FormData();
+    formData.append('userImage', this.imageFile);
+    for (const key of Object.keys(userData)) {
+      formData.append(key, userData[key]);
+    }
+    this.deliveryService.saveDelivery(formData).subscribe({
+      next: (response: any) => {
+        localStorage.setItem('token', response['token']);
+        localStorage.setItem('role', response['role']);
+        localStorage.setItem('user_id', response['user_id']);
+        localStorage.setItem('_id', response['delivery_id']);
+        window.location.href = '/';
+      },
+      error: (err: any) => {
+        console.log(err.error, 'errors');
+        Swal.fire({
+          title: 'Error!',
+          text: 'Check all fields',
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
+      },
+    });
+   
       this.passFail = false;
       this.emailFail = false;
       this.phoneFail = false;
@@ -152,33 +133,13 @@ export class SignupAsDeliveryComponent {
         (obj: any) => obj.national_ID === (+national_ID)
       );
       if (foundNationalId) {
-        console.log(`'${national_ID}' is used in our DataBase`);
         this.nationalIdAlreadyUsed = true;
       } else {
-        console.log(`'${national_ID}' is not used in our DataBase`);
         this.nationalIdAlreadyUsed = false;
       }
 
       if (!foundEmail && !foundNationalId) {
-        this.deliveryService.saveDelivery(this.newDelivery).subscribe({
-          next: (response: any) => {
-            localStorage.setItem('token', response['token']);
-            localStorage.setItem('role', response['role']);
-            localStorage.setItem('user_id', response['user_id']);
-            localStorage.setItem('_id', response['delivery_id']);
-            window.location.href = '/';
-          },
-          error: (err: any) => {
-            console.log(err.error, 'errors');
-            Swal.fire({
-              title: 'Error!',
-              text: 'Check all fields',
-              icon: 'error',
-              confirmButtonText: 'Cool'
-            })
-          },
-        });
-      }
+       
     } else {
       this.notAllDataEntered = true;
       Swal.fire({

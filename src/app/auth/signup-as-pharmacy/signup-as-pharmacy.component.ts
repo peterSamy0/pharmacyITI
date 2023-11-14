@@ -32,6 +32,8 @@ export class SignupAsPharmacyComponent {
   isCity: boolean = false;
   governorateID!: number | null;
   cityID!: number | null;
+  imageFile: any;
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -74,6 +76,11 @@ export class SignupAsPharmacyComponent {
   pharmaNameAlreadyUsed = false;
   bankAccountAlreadyUsed = false;
 
+  onFileSelected(event: any): void {
+    this.imageFile=event.target.files[0];
+    console.log(this.imageFile)
+  }
+
   getAllPharmas() {
     this.profileService.getAllPharmaciesInfo().subscribe((res: any) => {
       this.allPharmacies = res.data;
@@ -93,14 +100,7 @@ export class SignupAsPharmacyComponent {
     let pharmaBankAccount = this.signupForm.controls['pharmaBankAccount'].value;
     let pharmaPhone = this.signupForm.controls['pharmaPhone'].value;
     let pharmaPass = this.signupForm.controls['pharmaPass'].value;
-    let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-    // if (!pharmaEmail.match(emailPattern)) {
-    //   console.log('invalid email format');
-    // } else if (!pharmaPass.match(passPattern)) {
-    //   console.log('wrong password format');
-    // } else {
 
     if (
       pharmaName &&
@@ -116,87 +116,26 @@ export class SignupAsPharmacyComponent {
       pharmaPass
     ) {
 
-      
-      const foundEmail = this.allPharmacies.find(
-        (obj: any) => obj.pharmacy_email === pharmaEmail
-      );
-      if (foundEmail) {
-        console.log(`'${pharmaEmail}' is used in our DataBase`);
-        this.emailAlreadyUsed = true;
-      } else {
-        let newPharma = {
-          id:(this.pharmacies.length)+1,
-          pharmacyName: pharmaName,
-          email: pharmaEmail,
-          licenseNum: pharmaLicense,
-          password: pharmaPass,
-        };
-        this.emailAlreadyUsed = false;
-      }
+    const daysArrString = JSON.stringify(this.daysArr);
+    const UserPhone = JSON.stringify(pharmaPhone);
+    const userData = this.signupForm.value;
 
-      const foundlicense = this.allPharmacies.find(
-        (obj: any) => obj.licence_number === pharmaLicense
-      );
-      if (foundlicense) {
-        console.log(`'${pharmaLicense}' is used in our DataBase`);
-        this.licenseAlreadyUsed = true;
-      } else {
-        console.log(`'${pharmaLicense}' is not used in our DataBase`);
-        this.licenseAlreadyUsed = false;
-      }
-
-      const foundName = this.allPharmacies.find(
-        (obj: any) => obj.pharmacy_name === pharmaName
-      );
-      if (foundName) {
-        console.log(`'${pharmaName}' is used in our DataBase`);
-        this.pharmaNameAlreadyUsed= true;
-      } else {
-        console.log(`'${pharmaName}' is not used in our DataBase`);
-        this.pharmaNameAlreadyUsed = false;
-      }
-      const foundAccount = this.allPharmacies.find(
-        (obj: any) => obj.bank_account === (+pharmaBankAccount)
-      );
-      if (foundAccount) {
-        console.log(`'${pharmaBankAccount}' is used in our DataBase`);
-        this.bankAccountAlreadyUsed= true;
-      } else {
-        console.log(`'${pharmaBankAccount}' is not used in our DataBase`);
-        this.bankAccountAlreadyUsed = false;
-      }
-
-      if(!foundEmail && !foundlicense && !foundName && !foundAccount){
-
-
-    const body = {
-      user: {
-        name: pharmaName,
-        email: pharmaEmail,
-        password: pharmaPass,
-      },
-      pharmacy: {
-        image: 'test.png',
-        licence_number: pharmaLicense,
-        opening: pharmaOpeningTime,
-        closing: pharmaClosingTime,
-        street: pharmaStreet,
-        bank_account: +pharmaBankAccount || null,
-        governorate_id: this.governorateID,
-        city_id: this.cityID,
-      },
-      "daysOff": this.daysArr,
-      "phone": [pharmaPhone]
+    const formData = new FormData();
+    formData.append('userImage', this.imageFile);
+    formData.append('pharmacyDayOff', daysArrString);
+    formData.append('pharmaPhone', UserPhone);
+    for (const key of Object.keys(userData)) {
+      formData.append(key, userData[key]);
     }
-    
-    this.http.post(`http://localhost:8000/api/pharmacies`, body).subscribe(
+    console.log('ok')
+    this.http.post(`http://localhost:8000/api/pharmacies`, formData).subscribe(
       (response: any) => {
         localStorage.setItem('token', response['token']);
         localStorage.setItem('role', response['role']);
         localStorage.setItem('user_id', response['user_id']);
         localStorage.setItem('_id', response['pharmacy_id']);
-
         window.location.href = `addProduct/${response['pharmacy_id']}`;
+        console.log(response)
       },
       (error) => {
         console.log(error);
@@ -207,7 +146,52 @@ export class SignupAsPharmacyComponent {
           confirmButtonText: 'Cool',
         });
       }
-    ); }
+    );
+      
+    const foundEmail = this.allPharmacies.find(
+      (obj: any) => obj.pharmacy_email === pharmaEmail
+    );
+    if (foundEmail) {
+      this.emailAlreadyUsed = true;
+    } else {
+      let newPharma = {
+        id:(this.pharmacies.length)+1,
+        pharmacyName: pharmaName,
+        email: pharmaEmail,
+        licenseNum: pharmaLicense,
+        password: pharmaPass,
+      };
+      this.emailAlreadyUsed = false;
+    }
+
+    const foundlicense = this.allPharmacies.find(
+      (obj: any) => obj.licence_number === pharmaLicense
+    );
+    if (foundlicense) {
+      this.licenseAlreadyUsed = true;
+    } else {
+      this.licenseAlreadyUsed = false;
+    }
+
+    const foundName = this.allPharmacies.find(
+      (obj: any) => obj.pharmacy_name === pharmaName
+    );
+    if (foundName) {
+      this.pharmaNameAlreadyUsed= true;
+    } else {
+      this.pharmaNameAlreadyUsed = false;
+    }
+    const foundAccount = this.allPharmacies.find(
+      (obj: any) => obj.bank_account === (+pharmaBankAccount)
+    );
+    if (foundAccount) {
+      this.bankAccountAlreadyUsed= true;
+    } else {
+      this.bankAccountAlreadyUsed = false;
+    }
+
+    if(!foundEmail && !foundlicense && !foundName && !foundAccount){
+     }
   }else {
       this.notAllDataEntered = true;
       Swal.fire({

@@ -78,4 +78,7 @@ export class ViewPharmacyDataComponent {
   gotoProducts(){
     this.router.navigate([`listproduct/${this.id}`])
   }
+  generateImageUrl(image: string) {
+    return `http://localhost:8000/storage/${image}`;
+  }
 }

@@ -6,7 +6,7 @@
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
               <img
-                src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                [src]="generateImageUrl(pharmaId.pharmacy_image)"
                 alt="Admin"
                 class="rounded-circle"
                 width="150"
@@ -58,7 +58,9 @@
               <div class="col-sm-3">
                 <h6 class="mb-0">Phone</h6>
               </div>
-              <div class="col-sm-9 text-secondary">{{ pharmaId.pharmacy_phone[0]['phone'] }}</div>
+              <div class="col-sm-9 text-secondary">
+                <!-- {{ pharmaId.pharmacy_phone[0]['phone'] }} -->
+              </div>
             </div>
             <hr />
             <div class="row">
