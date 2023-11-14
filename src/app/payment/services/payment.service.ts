@@ -8,27 +8,27 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PaymentService {
-  private baseUrl = 'http://your-php-backend-url'; // Replace with your actual PHP backend URL
+  // private baseUrl = 'http://your-php-backend-url'; // Replace with your actual PHP backend URL
 
-  constructor(private http: HttpClient) { }
+  // constructor(private http: HttpClient) { }
 
-  pay(amount: number): Observable<any> {
-    const url = `${this.baseUrl}/pay`;
-    const data = { amount };
+  // pay(amount: number): Observable<any> {
+  //   const url = `${this.baseUrl}/pay`;
+  //   const data = { amount };
 
-    return this.http.post(url, data);
-  }
+  //   return this.http.post(url, data);
+  // }
 
-  success(paymentId: string, buyerId: string): Observable<any> {
-    const url = `${this.baseUrl}/success`;
-    const data = { paymentId, buyerId };
+  // success(paymentId: string, buyerId: string): Observable<any> {
+  //   const url = `${this.baseUrl}/success`;
+  //   const data = { paymentId, buyerId };
 
-    return this.http.post(url, data);
-  }
+  //   return this.http.post(url, data);
+  // }
 
-  error(): Observable<any> {
-    const url = `${this.baseUrl}/error`;
+  // error(): Observable<any> {
+  //   const url = `${this.baseUrl}/error`;
 
-    return this.http.get(url);
-  }
+  //   return this.http.get(url);
+  // }
 }

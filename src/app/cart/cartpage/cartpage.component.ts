@@ -29,6 +29,8 @@ export class CartpageComponent {
   amount: any;
   payment: any;
   signinForm!: FormGroup;
+  orderid:any;
+  ordernumber:any;
 
   constructor(
     private cartService: CartService,
@@ -44,6 +46,7 @@ export class CartpageComponent {
   }
 
   ngOnInit(): void {
+    this.getorder()
     this.getCartItems();
     this.calculateTotalPrice();
     this.isLogged = (localStorage.getItem('token')) ? true : false;
@@ -58,54 +61,54 @@ export class CartpageComponent {
       this.clientId = Number(localStorage.getItem('_id'));
     }
 
-    window.paypal
-      .Buttons({
-        style: {
-          layout: 'horizontal',
-          color: 'blue',
-          shape: 'rect',
-          label: 'paypal',
-        },
-        createOrder: (data: any, actions: any) => {
-          return actions.order.create({
-            purchase_units: [
-              {
-                amount: {
-                  value: this.dividedTotal.toFixed(2).toString(), // Assuming total is the correct amount
-                  currency_code: 'EUR',
-                },
-              },
-            ],
-          });
-        },
-        onApprove: (data: any, actions: any) => {
-          return actions.order.capture().then((details: any) => {
-            // console.log(details);
-            if (details.status === 'COMPLETED') {
-              Swal.fire({
-                icon: 'success',
-                title: 'Your transaction is successful',
-                text: 'Your transaction ID is: ' + details.id,
-              });
+    // window.paypal
+    //   .Buttons({
+    //     style: {
+    //       layout: 'horizontal',
+    //       color: 'blue',
+    //       shape: 'rect',
+    //       label: 'paypal',
+    //     },
+    //     createOrder: (data: any, actions: any) => {
+    //       return actions.order.create({
+    //         purchase_units: [
+    //           {
+    //             amount: {
+    //               value: this.dividedTotal.toFixed(2).toString(), // Assuming total is the correct amount
+    //               currency_code: 'EUR',
+    //             },
+    //           },
+    //         ],
+    //       });
+    //     },
+    //     onApprove: (data: any, actions: any) => {
+    //       return actions.order.capture().then((details: any) => {
+    //         // console.log(details);
+    //         if (details.status === 'COMPLETED') {
+    //           Swal.fire({
+    //             icon: 'success',
+    //             title: 'Your transaction is successful',
+    //             text: 'Your transaction ID is: ' + details.id,
+    //           });
         
-              this.payment.transactionID = details.id;
-              this.submitOrder();
-              this.router.navigate(['home']);
-            }
-            // You can handle the successful payment here, e.g., call a function to submit the order
-          });
-        },
-        onError: (error: any) => {
-          console.log(error);
-          // Handle errors, e.g., show an alert to the user
-          Swal.fire({
-            icon: 'error',
-            title: 'Payment Error',
-            text: 'There was an error processing your payment. Please try again.',
-          });
-        },
-      })
-      .render(this.paymentRef.nativeElement);
+    //           this.payment.transactionID = details.id;
+    //           this.submitOrder();
+    //           this.router.navigate(['home']);
+    //         }
+    //         // You can handle the successful payment here, e.g., call a function to submit the order
+    //       });
+    //     },
+    //     onError: (error: any) => {
+    //       console.log(error);
+    //       // Handle errors, e.g., show an alert to the user
+    //       Swal.fire({
+    //         icon: 'error',
+    //         title: 'Payment Error',
+    //         text: 'There was an error processing your payment. Please try again.',
+    //       });
+    //     },
+    //   })
+    //   .render(this.paymentRef.nativeElement);
   }
 
   getCartItems() {
@@ -161,18 +164,137 @@ export class CartpageComponent {
   }
 
   submitOrder() {
+    this.orderid=this.ordernumber.length+1
     let data = {
+        client_id: this.clientId,
+        pharmacy_id: this.pharmacyId,
+        ordMedications: this.orderMedications,
+        totalPrice: this.total,
+        orderid:this.orderid
+
+    };
+
+    this.api.createResource(data).subscribe(
+        (response: any) => {
+            console.log(response);
+            if (response && response.order_id) {
+                // Capture the order ID from the API response
+                const orderId = response.order_id;
+                console.log('Order ID:', orderId);
+
+                // Include orderId in the data for additional processing
+                const extendedData = {
+                    ...data,
+                    orderId: orderId,
+                };
+
+                // Log data to console
+                console.log('Received data:', extendedData);
+
+                // Store order ID and total price in session flash data
+                sessionStorage.setItem('order_id', orderId);
+                sessionStorage.setItem('total_price', this.total.toString());
+
+                // Do additional processing or navigate to a success page with extendedData
+                // this.router.navigate(['/order-success', extendedData]);
+            }
+            sessionStorage.removeItem('cart');
+        },
+        (error: any) => {
+            console.error(error);
+            // Handle error, show an alert, or navigate to an error page
+        }
+    );
+}
+
+orderpaid() {
+  this.orderMedications = [];
+
+  this.cartItems.forEach((medication) => {
+    let medId = medication.id;
+    let amount = medication.quantity;
+    let obj = { key: medId, value: amount };
+    this.orderMedications.push(obj);
+  });
+
+  if (this.cartItems.length > 0) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'You will redirect to Payment page!',
+      text: 'Thanks for your purchase',
+      showCancelButton: true,
+      confirmButtonText: 'Go to Payment',
+      cancelButtonText: 'Continue Shopping',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.submitOrderPaid();
+        this.cartService.clearCart();
+        // this.router.navigate(['/home']);
+      }
+    });
+  } else {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Your cart is empty.',
+      text: 'Add items before placing an order.',
+    });
+  }
+}
+
+submitOrderPaid() {
+  this.orderid=this.ordernumber.length+1
+  let data = {
       client_id: this.clientId,
       pharmacy_id: this.pharmacyId,
       ordMedications: this.orderMedications,
-    };
+      totalPrice: this.dividedTotal,
+      orderid:this.orderid
 
-    this.api.createResource(data).subscribe((Response) => {
-      console.log(Response);
-      sessionStorage.removeItem('cart')
-    });
+  };
 
+  this.api.createResource(data).subscribe(
+      (response: any) => {
+          console.log(response);
+          if (response && response.orderid) {
+              // Capture the order ID from the API response
+              const orderId = response.orderid;
+              console.log('Order ID:', orderId);
+              window.location.href='http://localhost:8000/stripe/'+orderId
+
+              // Include orderId in the data for additional processing
+              const extendedData = {
+                  ...data,
+                  orderId: orderId,
+              };
+
+              // Log data to console
+              console.log('Received data:', extendedData);
+
+              // Store order ID and total price in session flash data
+              sessionStorage.setItem('order_id', orderId);
+              sessionStorage.setItem('total_price', this.dividedTotal.toString());
+
+              // Do additional processing or navigate to a success page with extendedData
+              // this.router.navigate(['/order-success', extendedData]);
+          }
+          sessionStorage.removeItem('cart');
+      },
+      (error: any) => {
+          console.error(error);
+          // Handle error, show an alert, or navigate to an error page
+      }
+  );
+}
+
+  getorder(){
+    this.http.get('http://localhost:8000/api/orders').subscribe(res=>{
+      this.ordernumber=res
+      console.log(this.ordernumber.length)
+    
+    })
   }
+
 
   order() {
     this.orderMedications = [];
