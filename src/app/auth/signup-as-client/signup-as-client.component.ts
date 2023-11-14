@@ -52,24 +52,14 @@ export class SignupAsClientComponent {
     });
   }
   ngOnInit() {
-
     this.getGovernorates();
     this.getClients();
     this.getDays();
   }
 
-  selectedFile !:File;
-
   onFileSelected(event:any){
-    this.selectedFile=event.target.files[0]
-    console.log(this.selectedFile)
+    this.imageFile=event.target.files[0]
   }
-  onUpload(){
-    const uploadData = new FormData;
-    uploadData.append('images', this.selectedFile, this.selectedFile.name)
-  }
-
-
   addClient() {
     let userEmail = this.signupForm.controls['userEmail'].value;
     let userFullName = this.signupForm.controls['userFullName'].value;
@@ -83,19 +73,7 @@ export class SignupAsClientComponent {
     let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
     console.log(this.signupForm)
-    const body = {
-      user: {
-        "name": userFullName,
-        "email": userEmail,
-        "password": userPass,
-      },
-      client: {
-        "governorate_id": this.governorateID,
-        "city_id": this.cityID,
-      },
-      phone: [userPhone]
-    };
-
+    
     if (
       userEmail &&
       userFullName &&
@@ -115,8 +93,6 @@ export class SignupAsClientComponent {
       if (foundEmail) {
         console.log(`'${userEmail}' is used in our DataBase`);
         this.emailAlreadyUsed = true;
-        // nationalIdAlreadyUsed= false;
-        // phoneAlreadyUsed =false;
       } else {
         console.log(`'${userEmail}' is not used in our DataBase`);
         this.emailAlreadyUsed = false;
@@ -135,6 +111,7 @@ export class SignupAsClientComponent {
           localStorage.setItem('role', response['role']);
           localStorage.setItem('user_id', response['user_id']);
           localStorage.setItem('_id', response['_id']);
+          localStorage.setItem('image', response['image']);
           window.location.href = '/';
         },
 
@@ -173,7 +150,6 @@ export class SignupAsClientComponent {
   selectedGov(val: any) {
     this.isCity = true;
     this.governorateID = val;
-    console.log(this.governorateID);
     this.profileService.selectedGov(val).subscribe(
       (response: any) => {
         this.cities = response.data;
@@ -184,7 +160,6 @@ export class SignupAsClientComponent {
 
   selectedCity(val: any) {
     this.cityID = val;
-    console.log(this.cityID);
   }
 
   //checking if email or phone number were already used and added in the db
@@ -194,7 +169,6 @@ export class SignupAsClientComponent {
   getClients(){
     this.profileService.getAllClients().subscribe((res:any)=>{
       this.allClients = res.map((obj:any) => obj.data);
-      console.log(this.allClients)
     })
   }
 

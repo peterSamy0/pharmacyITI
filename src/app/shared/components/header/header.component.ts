@@ -12,7 +12,7 @@ export class HeaderComponent {
   counter: number = 0;
   userID!: number;
   faCartShopping = faCartShopping;
-
+  userImage:any;
   constructor(
     private cartService: CartService,
     private router: Router
@@ -23,9 +23,9 @@ export class HeaderComponent {
   ngOnInit() {
     this.role = localStorage.getItem('role');
     this.userID = Number(localStorage.getItem('_id'));
+    this.userImage = localStorage.getItem('image');
     this.counter = this.cartService.getCartItems();
     this.cartService.cartItemCount.subscribe(data => this.counter = data);
-    console.log(this.counter)
   }
 
   logOut() {
@@ -45,5 +45,11 @@ export class HeaderComponent {
     } else if (this.role == 'delivery') {
       this.router.navigate([`delivery-profile/${this.userID}`]);
     }
+  }
+  generateImageUrl() {
+    if(this.userImage){
+      return `http://localhost:8000/storage/${this.userImage}`;
+    }
+    return `assets/img/logoImg.png`;
   }
 }

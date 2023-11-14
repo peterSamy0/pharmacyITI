@@ -37,6 +37,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { DeliveryOrdersComponent } from './profile/delivery/delivery-orders/delivery-orders.component';
 import { DeliveryOrderComponent } from './profile/delivery/delivery-order/delivery-order.component';
 import { SingleProductComponent } from './profile/client/single-product/single-product.component';
+import { AddMedicationComponent } from './pharmacist-home/components/add-medication/add-medication.component';
 
 const routes: Routes = [
 
@@ -129,10 +130,10 @@ const routes: Routes = [
     path: "signup-delivery",
     component: SignupAsDeliveryComponent
   },
-  // {
-  //   path: "signin-delivery",
-  //   component: SigninAsDeliveryComponent
-  // },
+  {
+    path: "addMedication",
+    component: AddMedicationComponent
+  },
   {
     path :'payment',
     component : PaymentComponent

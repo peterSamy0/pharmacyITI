@@ -26,6 +26,10 @@ export class ApiService {
   }
 
   allOrders(){
-    return this.http.get(`http://localhost:8000/api/clients`)
+    return this.http.get(`http://localhost:8000/api/orders`,{
+      headers:{
+        Authorization:"Bearer " + localStorage.getItem('token') 
+      }
+    })
   }
 }

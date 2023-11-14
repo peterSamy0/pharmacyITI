@@ -29,7 +29,11 @@ export class ServiceService {
     return this.http.get('https://retoolapi.dev/oK0uhq/data?Category=medication')
   }
   getOrders(){
-      return this.http.get(this.url2)
+      return this.http.get(this.url2,{
+        headers:{
+          Authorization:"Bearer " + localStorage.getItem('token') 
+        }
+      })
   }
   getProductList(){
     return this.http.get('https://retoolapi.dev/oK0uhq/data')

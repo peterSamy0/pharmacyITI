@@ -24,15 +24,14 @@ export class PharmacyDetailsComponent {
 
   ngOnInit() {
     this.id = this.activeRoute.snapshot.params['id']
-       
+    this.cartService.pharmacyId = this.activeRoute.snapshot.params['id'];
     this.getPharma();
   }
   getPharma() {
     this.service.getPharmaData(this.id).subscribe(
       (res:any) => {
         this.pharmacy = res.data;
-        this.cartService.pharmacyId = this.pharmacy.pharmacy_id;
-        console.log(this.pharmacy)
+        // this.cartService.pharmacyId = this.pharmacy.pharmacy_id;
       },
       (error) => {
         console.log(error)

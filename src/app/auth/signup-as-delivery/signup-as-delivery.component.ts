@@ -98,6 +98,7 @@ export class SignupAsDeliveryComponent {
         localStorage.setItem('role', response['role']);
         localStorage.setItem('user_id', response['user_id']);
         localStorage.setItem('_id', response['delivery_id']);
+        localStorage.setItem('image', response['image']);
         window.location.href = '/';
       },
       error: (err: any) => {

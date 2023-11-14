@@ -19,6 +19,8 @@ export class ViewPharmacyDataComponent {
   numOfproducts!: number;
   token: any;
   isLoading: boolean = true;
+  phone:any;
+
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -80,5 +82,13 @@ export class ViewPharmacyDataComponent {
   }
   generateImageUrl(image: string) {
     return `http://localhost:8000/storage/${image}`;
+  }
+  PHone() {
+    if(this.pharmaId.pharmacy_phone[0]['phone']){
+      this.phone = this.pharmaId.pharmacy_phone[0]['phone']
+      return this.phone;
+    }
+    this.phone = 'not available now';
+    return this.phone;
   }
 }

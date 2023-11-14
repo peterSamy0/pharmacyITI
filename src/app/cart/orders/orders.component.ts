@@ -44,7 +44,11 @@ export class OrdersComponent {
   removeOrder(orderId:any){
     try{
       // update request to remove item from order
-      this.http.delete(`http://localhost:8000/api/orders/${orderId}`).subscribe(
+      this.http.delete(`http://localhost:8000/api/orders/${orderId}`,{
+        headers:{
+          Authorization:"Bearer " + localStorage.getItem('token') 
+        }
+      }).subscribe(
         (res: any) => {
           const index = this.allOrders.findIndex(product => product.id === orderId);
           this.allOrders.splice(index, 1);
@@ -55,5 +59,15 @@ export class OrdersComponent {
     catch(error:any){
       console.log(error);
     }
+  }
+  delivered(orderId:any) {
+    const headers = {
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    };
+  
+    this.http.patch(`http://localhost:8000/api/orders/${orderId}`, {'delivered':true}, { headers: headers })
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 }

@@ -6,7 +6,7 @@ import {
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { faPenSquare } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
@@ -21,6 +21,7 @@ export class ListProductsComponent {
   id:any;
   addProductUrl!: string;
   token:any;
+  faPenSquare=faPenSquare;
   constructor(
     private medicationService: MedicationService, 
     private activeRoute: ActivatedRoute,

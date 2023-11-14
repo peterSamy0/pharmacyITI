@@ -6,7 +6,7 @@
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
               <img
-                [src]="generateImageUrl(clientId.client_image)"
+                [src]="generateImageUrl()"
                 alt="Admin"
                 class="rounded-circle"
                 width="150"
@@ -52,7 +52,7 @@
                 <h6 class="mb-0">Phone</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <!-- {{clientId.client_phone[0]['phone']}} -->
+                    {{phone}}
               </div>
             </div>
 

@@ -46,6 +46,7 @@ export class SigninAsClientComponent {
             localStorage.setItem('user_id', response['user_id']);
             localStorage.setItem('role', response['role']);
             localStorage.setItem('_id', response['_id']);
+            localStorage.setItem('image', response['image']);
             window.location.href = '/';
           } else {
             Swal.fire({

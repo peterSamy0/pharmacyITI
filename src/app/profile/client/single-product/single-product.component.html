@@ -1,18 +1,80 @@
 <div class="d-flex container">
-    <img src="{{productDetails.image}}" alt="{{productDetails.name}}" class="w-50">
+    <img src="{{productDetails.medicine_image}}" alt="{{productDetails.medicine_name}}" class="w-50">
     <div>
-        <div>
-            product name : {{productDetails.name}}
+        <div class="container">
+            <table class="table table-striped mb-5">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col"> </th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Name :</td>
+                        <td>{{productDetails.medicine_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Describtion</td>
+                        <td>{{productDetails.medicine_decription}}</td>
+                    </tr>
+                    <tr>
+                        <td>Price :</td>
+                        <td class="bg-success">{{productDetails.medicine_price}} L.E.</td>
+                    </tr>
+                    <tr>
+                        <td>Category</td>
+                        <td>
+                            <span>
+                                <a routerLink="/pharmacy/{{pharmacyId}}/category/{{productDetails.medicine_category}}" style="color:var(--navColor);">{{productDetails.medicine_category}}</a>
+                            </span>
+                        </td>
+                    </tr>
+                    
+                  
+                </tbody>
+              </table>
+        </div>
+        <!-- <div>
+            product name : {{productDetails.medicine_name}}
         </div>
         <div>
-            <!-- product describtion : {{productDetails.description}} --></div>
+            product describtion : {{productDetails.description}}
         <div>
-            price :<span class="badge bg-secondary">{{productDetails.price}} L.E.</span>
+            price :<span class="badge bg-secondary">{{productDetails.medicine_price}} L.E.</span>
         </div>
         <div>
-            category :<span class="badge bg-primary">{{productDetails.category}} </span>
+            category :<span class="badge bg-primary">
+                        <a routerLink="/pharmacy/{{pharmacyId}}/category/{{productDetails.medicine_category}}" style="color:var(--navColor);">{{productDetails.medicine_category}}</a>
+                      </span>
+        </div> -->
+        <button class="btn bg-nav text-white w-50 my-3 cartbtn"
+         (click)="addToCart(productDetails)"
+          *ngIf="!productDetails.added"
+           data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+             >add to cart</button>
+        <button class="btn bg-success text-white w-50 my-3 cartbtn" *ngIf="productDetails.added" (click)="removeFromCart(productDetails)"> added </button>
+        <!-- <button (click)="test()">test</button> -->
+        <!-- alert to tell that there is incomplete order -->
+        <!-- Modal -->
+        <div *ngIf="incompleteOrder" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Incomplete order !</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                you have incomplete order in other pharmacy, please complete it and retry here
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" routerLink="home">go to home</button>
+                </div>
+            </div>
+            </div>
         </div>
-        <button class="btn bg-nav text-white w-50 m-0 cartbtn" (click)="addToCart(productDetails)" *ngIf="!productDetails.added">add to cart</button>
-
     </div>
 </div>

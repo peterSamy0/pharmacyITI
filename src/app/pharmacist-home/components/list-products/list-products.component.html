@@ -13,6 +13,7 @@
                 <th scope="col">Price</th>
                 <th scope="col">Category</th>
                 <th scope="col">Image</th>
+                <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
                 
               </tr>
@@ -41,6 +42,11 @@
                     width="30px"
                     height="30px"
                   />
+                </td>
+                <td>
+                  <a routerLink="/editProduct/{{product.pharmacyMedication_id}}" class="fs-3">
+                    <fa-icon [icon]="faPenSquare"></fa-icon>
+                  </a>
                 </td>
                 <td>
                   <button 

@@ -20,6 +20,8 @@ export class ViewClientDataComponent {
   numOfPendingOrders!:number;
   token: any;
   userImage:any;
+  phone:any;
+  image:any;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -28,6 +30,7 @@ export class ViewClientDataComponent {
   ngOnInit(){
     this.id = this.activeRoute.snapshot.params['id'];
     this.token = localStorage.getItem('token');
+    this.image = localStorage.getItem('image');
     this.getClientData()
   }
   
@@ -35,7 +38,7 @@ export class ViewClientDataComponent {
     this.profileService.getClient(this.id, this.token).subscribe(
       (res: any) => {
           this.clientId = res.data;
-          console.log(res)
+          this.getPHone();
           this.ordersOnTheirWay= this.clientId.orders.filter(
             (order: any) =>
               order['status'] === "withDelivery"
@@ -73,7 +76,16 @@ export class ViewClientDataComponent {
         }
       );
   }
-  generateImageUrl(image: string) {
-    return `http://localhost:8000/storage/${image}`;
+  generateImageUrl() {
+    return `http://localhost:8000/storage/${this.image}`;
+  }
+
+  getPHone() {
+    if(this.clientId.client_phone[0]['phone']){
+      this.phone = this.clientId.client_phone[0]['phone']
+      return this.phone;
+    }
+    this.phone = 'not available now';
+    return this.phone;
   }
 }

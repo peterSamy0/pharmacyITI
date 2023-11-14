@@ -1,0 +1,128 @@
+<div class="login-page bg-light my-5">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="bg-white shadow rounded">
+          <div class="row">
+            <div class="col-md-7 pe-0">
+              <div class="form-left h-100 py-5 px-5">
+                <form
+                  class="row g-4"
+                  (ngSubmit)="addMedications()"
+                  enctype="multipart/form-data"
+                  [formGroup]="addMedicationForm"
+                >
+                  <h2 class="mb-2 text-capitalize">Add your Medication</h2>
+
+                  <div class="col-12">
+                    <label class="form-label">Product Name</label>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Product Name"
+                        formControlName="medicineName"
+                      />
+                    </div>
+                    <!-- <span *ngIf="errors.medicineName" class="text-danger">{{
+                      errors.name
+                    }}</span>
+                      <small *ngIf="namefail" class="text-danger">    
+                      the name feild is required
+                      </small> -->
+                    </div>
+
+                  <div class="col-12">
+                    <label class="form-label">Product price</label>
+                    <div>
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="Enter Product Price"
+                        name="price"
+                        formControlName="price"
+                      />
+                    </div>
+                    <!-- <span *ngIf="errors.price" class="text-danger">{{
+                      errors.price
+                    }}</span>
+                    <small *ngIf="pricefail" class="text-danger">
+                      the price feild is required
+                    </small> -->
+                  </div>
+
+                <div class="col-12">
+                    <label class="form-label">Category</label>
+                    <select
+                      class="form-select mt-2"
+                      name="categories"
+                      formControlName="category"
+                      #selectCategory
+                      (change)="selectedCategory(selectCategory.value)"
+                      id=""
+                    >
+                      <option value="">Select Category</option>
+                      <option
+                        *ngFor="let category of categories"
+                        [value]="category.id"
+                      >
+                        {{ category.name }}
+                      </option>
+                    </select> 
+                    <!-- <span *ngIf="categoryfail" class="text-danger">
+                      the category feild is required
+                    </span> -->
+                    <div>
+                      <!-- <small *ngIf="category_idfail" class="text-danger">
+                        the category feild is required
+                      </small> -->
+                    </div>
+                   
+                  </div> 
+               
+
+                  <div class="col-12">
+                    <label class="form-label">Image</label>
+                    <div>
+                      <input
+                        type="file"
+                        class="form-control"
+                        placeholder="Enter Image"
+                        name="image"
+                        formControlName="image"
+                        (change)="onFileSelected($event)"
+                      />
+                    </div>
+                    <!-- <span *ngIf="errors.image" class="text-danger">{{
+                      errors.image
+                    }}</span> -->
+                    <!-- <small *ngIf="imagefail" class="text-danger">
+                      the image feild is required
+                    </small> -->
+                  </div>
+
+                  <div class="col-12">
+                    <button
+                      type="submit"
+                      class="btn px-4 float-end mt-4"
+                      style="background-color: rgb(123, 211, 222); border: none"
+                    >
+                      Add Product
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-md-5 ps-0 d-none d-md-block">
+              <img
+                style="width: 100%; height: 100%"
+                src="https://i.pinimg.com/236x/95/b4/75/95b4750ba1598129969ba24d08d5b659.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

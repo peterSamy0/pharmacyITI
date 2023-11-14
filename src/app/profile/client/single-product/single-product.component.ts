@@ -11,21 +11,60 @@ import { CartService } from 'src/app/cart/servic/cart.service';
 export class SingleProductComponent {
   productId:any;
   productDetails:any;
+  pharmacyId:any;
+  medication:any;
+  cartArr:any = [];
+  incompleteOrder:boolean = false;
   constructor(private http:HttpClient, private activeRoute:ActivatedRoute,private service: CartService,){}
     
   ngOnInit(){
     // get product id
     this.activeRoute.paramMap.subscribe(params => this.productId = Number(params.get("Pid")));
-    // get product data
-    this.http.get(`http://localhost:8000/api/medications/${this.productId}`).subscribe(
-      (data:any) => {this.productDetails = data.data
-      console.log(data)}
+    // get pharmacy Id
+    this.activeRoute.paramMap.subscribe(params => {this.pharmacyId = Number(params.get("id"))
+    console.log()});
+
+    
+
+    // get data from cart
+    this.cartArr = this.service.cartItems;
+    console.log(this.cartArr);
+
+    // get the item here if present in localStorage
+    if(this.cartArr.length > 0){
+      let producatFound = this.cartArr.find((item:any) => item.id == this.productId)
+      if(producatFound){
+        console.log("found", producatFound)
+        this.productDetails = producatFound
+        // console.log(this.cartArr,producatFound);
+      }
+      else{
+        console.log("not found")
+        // get product data
+        this.http.get(`http://localhost:8000/api/pharmacies/${this.pharmacyId}`).subscribe(
+          (data:any) => {this.productDetails = data.data.medication.find((ele:any)=>{return ele.id==this.productId})
+          console.log(this.productDetails)}
     )
+      }
+    }else{
+      console.log("not found")
+      // get product data
+      this.http.get(`http://localhost:8000/api/pharmacies/${this.pharmacyId}`).subscribe(
+        (data:any) => {this.productDetails = data.data.medication.find((ele:any)=>{return ele.id==this.productId})
+        console.log(this.productDetails)}
+  )
+    }
+
   
   }
   addToCart(val:any){
-    this.service.addItemToCart(val);
+    if(this.service.pharmacyId && this.service.pharmacyId !== this.pharmacyId ){
+      this.incompleteOrder = true;
+    }else{
+
     val.added = true;
+    this.service.addItemToCart(val);
+    }
     
   }
   removeFromCart(val:any){
@@ -33,4 +72,7 @@ export class SingleProductComponent {
   val.added = false;
   console.log(val)
   }
+  // test(){
+  //   console.log(this.service.pharmacyId)
+  // };
 }
