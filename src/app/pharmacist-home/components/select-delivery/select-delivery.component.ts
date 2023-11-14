@@ -42,11 +42,18 @@ export class SelectDeliveryComponent {
   // select(id:any){
   //   (!val.isSelected || null) ? val.isSelected = true : val.isSelected = false
   // }
-  select(id:any){
-    this.http.patch(`http://localhost:8000/order/${this.orderId}`, {"setDelivery":true,"deliveryId":id}).
-    subscribe(data=>{
-      // console.log(data);
-    })
+  select(id: any) {
+    const headers = {
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    };
+  
+    this.http.patch(`http://localhost:8000/api/orders/${this.orderId}`, {
+      setDelivery: true,
+      deliveryId: id
+    }, { headers: headers })
+    .subscribe(data => {
+      console.log(data);
+    });
   }
 
   deliveries!: DeliveryResponse[];

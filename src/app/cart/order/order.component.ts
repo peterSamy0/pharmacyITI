@@ -17,7 +17,11 @@ export class OrderComponent {
   };
   ngOnInit() {
     // git order data from db
-    this.http.get(`http://localhost:8000/api/orders/${this.orderId}`).
+    this.http.get(`http://localhost:8000/api/orders/${this.orderId}`,{
+      headers:{
+        Authorization:"Bearer " + localStorage.getItem('token') 
+      }
+    }).
     subscribe((data:any)=> {
       console.log(data.status);
       this.orderData = data.data;
@@ -71,6 +75,16 @@ export class OrderComponent {
     catch(error:any){
       console.log(error);
     }
+  }
+  delivered(orderId:any) {
+    const headers = {
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    };
+  
+    this.http.patch(`http://localhost:8000/api/orders/${orderId}`, {'delivered':true}, { headers: headers })
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 
 }

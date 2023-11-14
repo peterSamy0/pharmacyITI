@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-delivery-order',
   templateUrl: './delivery-order.component.html',
@@ -9,23 +10,48 @@ import { HttpClient } from '@angular/common/http';
 export class DeliveryOrderComponent {
   orderId:any;
   orderData:any;
+  faCircle=faCircle;
   constructor(private routeUrl: ActivatedRoute, private http:HttpClient){
     this.routeUrl.paramMap.subscribe(params => this.orderId = Number(params.get("Oid")));
 
   }
   ngOnInit() {
     // git order data from db
-    this.http.get(`http://localhost:8000/api/orders/${this.orderId}`).
+    this.http.get(`http://localhost:8000/api/orders/${this.orderId}`,{
+      headers:{
+        Authorization:"Bearer " + localStorage.getItem('token') 
+      }
+    }).
     subscribe((data:any)=> {
       console.log(data.status);
       this.orderData = data.data;
       });
     
   };
-  deliver(){
-    console.log("hello");
-    this.http.put(`localhost:8000/api/orders/${this.orderId}`, {"delivery":true, "accept":true}).subscribe(
-      data=>console.log(data)
-    );
+  deliver() {
+    const headers = {
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    };
+  
+    this.http.patch(`http://localhost:8000/api/orders/${this.orderId}`, {}, { headers: headers })
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+  
+  badgeColor(status:string) {
+    switch (status) {
+      case 'pending':
+        return 'warning';
+      case 'accepted':
+        return 'primary';
+      case 'withDelivery':
+        return 'danger';
+      case 'delivered':
+        return 'success';
+      default:
+        return 'black';
+    }
   }
 }
+// 

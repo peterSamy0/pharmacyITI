@@ -12,19 +12,19 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>product name :</td>
+                        <td>Name :</td>
                         <td>{{productDetails.medicine_name}}</td>
                     </tr>
                     <tr>
-                        <td>product describtion</td>
-                        <td>{{productDetails.description}}</td>
+                        <td>Describtion</td>
+                        <td>{{productDetails.medicine_decription}}</td>
                     </tr>
                     <tr>
-                        <td>price :</td>
+                        <td>Price :</td>
                         <td class="bg-success">{{productDetails.medicine_price}} L.E.</td>
                     </tr>
                     <tr>
-                        <td>client name</td>
+                        <td>Category</td>
                         <td>
                             <span>
                                 <a routerLink="/pharmacy/{{pharmacyId}}/category/{{productDetails.medicine_category}}" style="color:var(--navColor);">{{productDetails.medicine_category}}</a>

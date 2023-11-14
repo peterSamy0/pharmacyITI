@@ -12,7 +12,7 @@
                 <th scope="col">Pharmacy</th>
                 <th scope="col">order time</th>
                 <th scope="col">view order</th>
-                <th scope="col">Remove</th>
+                <th scope="col">Action</th>
                 <th scope="col">status</th>
               </tr>
             </thead>
@@ -31,8 +31,9 @@
                     <a class="btn btn-primary me-3 text-white fw-bold" href="/orders/{{order.id}}">View Order</a>
                 </td>
                 <td>
+                    <button *ngIf="order.status == 'withDelivery'" class="btn btn-success" data-bs-toggle="modal" [attr.data-bs-target]="'#deliveredConfirm-' + order.id" (click)="delivered(order.id)">Delivered</button>
                     <button *ngIf="order.status == 'pending' || order.status == 'delivered'" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + order.id">Remove</button>
-                    <button *ngIf="order.status !== 'pending' && order.status !== 'delivered'" class="btn btn-secondary" disabled>Remove</button>
+                    <button *ngIf="order.status !== 'pending' && order.status !== 'delivered' && order.status !== 'withDelivery'" class="btn btn-secondary" disabled>Remove</button>
                     <!-- Modal -->
                   <div class="modal fade" [id]="'removeConfirm-' + order.id" tabindex="-1"  aria-hidden="true">
                     <div class="modal-dialog">
@@ -47,6 +48,23 @@
                         <div class="modal-footer" style="background-color: #419197; color:white;">
                           <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
                           <button (click)="removeOrder(order.id)" type="button" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + order.id">Remove</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Modal -->
+                  <div class="modal fade" [id]="'deliveredConfirm-' + order.id" tabindex="-1"  aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header" style="background-color: #419197; color:white;">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Your order marked as delivered </h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <h4>Thanks for dealing with us, hope you all well</h4>
+                        </div>
+                        <div class="modal-footer" style="background-color: #419197; color:white;">
+                          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
                         </div>
                       </div>
                     </div>

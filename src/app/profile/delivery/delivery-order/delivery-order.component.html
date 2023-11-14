@@ -1,6 +1,5 @@
 <div class=".container d-flex justify-content-around">
-    <h1 class="p-5">order id -> {{orderId}}</h1>
-    <button *ngIf="orderData.status == 'accepted'" class="btn btn-success" (click)="deliver()">Accept</button>
+    <button *ngIf="orderData.status == 'pending'" class="btn btn-success p-3 m-2" (click)="deliver()">Accept order</button>
 </div>
 <!-- <div class="w-50 m-auto ">
     <div class="d-flex justify-content-between my-3">
@@ -46,11 +45,18 @@
                     <td>client address</td>
                     <td>orderData.</td>
                 </tr> -->
-              <tr>
-                <td>no. of items in the order</td>
-                <td></td>
-                <td>{{orderData.orderMedications.length}}</td>
-            </tr>
+                <tr>
+                    <td>no. of items in the order</td>
+                    <td></td>
+                    <td>{{orderData.orderMedications.length}}</td>
+                </tr>
+                <tr>
+                    <td>Order status</td>
+                    <td></td>
+                    <td>
+                        <fa-icon [ngClass]="'px-2 text-'+badgeColor(orderData.status)" [icon]="faCircle"></fa-icon>
+                    <span [ngClass]="'text-'+badgeColor(orderData.status)" >{{orderData.status}}</span></td>
+                </tr>
               
             </tbody>
           </table>

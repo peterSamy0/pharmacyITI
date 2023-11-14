@@ -17,6 +17,8 @@ export class MedicationCardComponent {
     this.routeUrl.paramMap.subscribe(params => {
       this.service.pharmacyId = Number(params.get("id"));
       this.pharmacyId = Number(params.get("id"));
+      // console.log(this.pharmacyId);
+
     });
   }
   
@@ -28,6 +30,8 @@ export class MedicationCardComponent {
     //   item.added = false;
     // });
     // get the item here if present in localStorage
+    // this.service.pharmacyId 
+
     if(this.cartArr.length > 0){
       let producatFound = this.cartArr.find((item:any) => item.id == this.medication.id)
       if(producatFound){
@@ -42,6 +46,8 @@ export class MedicationCardComponent {
     
     val.added = true;
     this.service.addItemToCart(val);
+    this.service.pharmacyId = this.pharmacyId;
+    // console.log(this.service.pharmacyId);
     
 
   }

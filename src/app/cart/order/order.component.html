@@ -34,8 +34,9 @@
             <th scope="col">Image</th>
             <th scope="col">quantity</th>
             <th scope="col">Price</th>
-            <th scope="col">Remove</th>
+            <th scope="col" *ngIf="orderData.status == 'pending'">Remove</th>
             <th scope="col">Total price</th>
+            <th scope="col" *ngIf="orderData.status == 'withDelivery'"></th>
           </tr>
         </thead>
         <tbody>
@@ -50,7 +51,7 @@
             <td>{{medication.amount}} </td>
             <td>{{medication.price}} L.E. </td>
             <td>
-                <button class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + medication.medicine_id">Remove</button>
+                <button *ngIf="orderData.status == 'pending'" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + medication.medicine_id">Remove</button>
                 <!-- Modal -->
               <div class="modal fade" [id]="'removeConfirm-' + medication.medicine_id" tabindex="-1"  aria-hidden="true">
                 <div class="modal-dialog">
@@ -77,7 +78,27 @@
         </tbody>
         <tfoot>
             <th> </th>
-            <td colspan="6" class="totalPrice fs-4 justify-content-between text-dark fw-bold">Total Price: {{calcTotal()}} L.E.</td>
+            <td colspan="5" class="totalPrice fs-4 justify-content-between text-dark fw-bold">Total Price: {{calcTotal()}} L.E.</td>
+            <td *ngIf="orderData.status == 'withDelivery'">
+              <button  class="btn btn-success" data-bs-toggle="modal" [attr.data-bs-target]="'#deliveredConfirm-' + orderData.id" (click)="delivered(orderData.id)">Delivered</button>
+              <!-- Modal -->
+              <div class="modal fade" [id]="'deliveredConfirm-' + orderData.id" tabindex="-1"  aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header" style="background-color: #419197; color:white;">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Your order marked as delivered </h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <h4>Thanks for dealing with us, hope you all well</h4>
+                    </div>
+                    <div class="modal-footer" style="background-color: #419197; color:white;">
+                      <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
         </tfoot>
       </table>
 </div>
