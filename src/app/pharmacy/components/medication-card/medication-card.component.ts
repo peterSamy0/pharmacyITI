@@ -23,10 +23,10 @@ export class MedicationCardComponent {
   ngOnInit(){
     // get data from cart
     this.cartArr = this.service.cartItems;
-    // Reset the 'added' property for all medications
-    this.cartArr.forEach((item: any) => {
-      item.added = false;
-    });
+    // // Reset the 'added' property for all medications
+    // this.cartArr.forEach((item: any) => {
+    //   item.added = false;
+    // });
     // get the item here if present in localStorage
     if(this.cartArr.length > 0){
       let producatFound = this.cartArr.find((item:any) => item.id == this.medication.id)
