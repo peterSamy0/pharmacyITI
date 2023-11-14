@@ -1,5 +1,4 @@
-<!-- payment.component.html -->
-<div class="container text-center" style="padding-bottom: 70px">
+<!-- <div class="container text-center" style="padding-bottom: 70px">
   <h1 class="me-5 mt-5 mb-2">Payment details</h1>
   <div class="login-page bg-light my-5">
     <div class="container mt-5">
@@ -12,14 +11,12 @@
                   <form >
                     <h6 class="mb-2 text-capitalize">Complete your purchase by providing your payment details below.</h6><br>
 
-                    <!-- Add your form fields -->
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">Email address</label>
                       <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Please enter your Email" formControlName="email" />
                     </div>
 
                     <div class="col-12">
-                      <!-- Add the PayPal Smart Payment Buttons -->
                       <div id="paypal-button-container"></div>
                     </div>
 
@@ -29,7 +26,6 @@
                   </form>
                 </div>
               </div>
-              <!-- ... Other columns ... -->
             </div>
           </div>
         </div>
@@ -37,4 +33,34 @@
     </div>
   </div>
 </div>
-<script src="https://www.paypal.com/sdk/js?client-id=AUq43hJFDLFrHd2WwGoq8WaHPDf0p37wjDTRN5STqSy4KLGLoGiUzQnPyEVivC6-9eKai0lZLk_UHIXJ"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AUq43hJFDLFrHd2WwGoq8WaHPDf0p37wjDTRN5STqSy4KLGLoGiUzQnPyEVivC6-9eKai0lZLk_UHIXJ"></script> -->
+
+<!-- second try -->
+<!-- <div class="stripe-payment-container">
+  <div class="stripe-payment-form">
+    <h5>Stripe Payment</h5>
+    <form>
+      <input matInput [(ngModel)]="stripeAmount" name="stripeAmount" type="number" required/>
+      <span matPrefix>$&nbsp;</span>
+    </form>
+    <button mat-raised-button color="primary" type="submit" (click)="checkout()">
+      Checkout
+    </button>
+  </div>
+</div> -->
+
+<!-- third try -->
+<!-- 
+<form (submit)="handleSubmit()">
+  <div #cardElement></div>
+  <button type="submit" [disabled]="!stripe">Submit</button>
+  <div *ngIf="errorMessage">{{ errorMessage }}</div>
+</form> -->
+
+
+<!-- <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()"> -->
+  <!-- Your form controls go here -->
+  <!-- Example: <input formControlName="someControl" /> -->
+
+  <!-- <button type="submit">Submit Payment</button>
+</form> -->
