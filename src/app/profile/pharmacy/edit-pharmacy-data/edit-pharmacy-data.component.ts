@@ -63,15 +63,15 @@ export class EditPharmacyDataComponent {
   }
 
   pharmaId: any = this.pharmacies[this.activeRoute.snapshot.params['id'] - 1];
-  update() {
 
+  update() {
     let pharmaName =this.updatePharmaForm.controls['pharmaName'].value;
     let pharmaEmail = this.updatePharmaForm.controls['pharmaEmail'].value;
     let pharmaPass = this.updatePharmaForm.controls['pharmaPass'].value;
     let pharmaStreet =this.updatePharmaForm.controls['pharmaStreet'].value;
     let pharmaLicense =this.updatePharmaForm.controls['pharmaLicense'].value;
     let pharmaBankAccount =this.updatePharmaForm.controls['pharmaBankAccount'].value;
-    // let pharmaPhone = this.updatePharmaForm.controls['pharmaPhone'].value;
+    let pharmaPhone = this.updatePharmaForm.controls['pharmaPhone'].value;
     let pharmaOpeningTime = this.updatePharmaForm.controls['pharmaOpeningTime'].value;
     let pharmaClosingTime = this.updatePharmaForm.controls['pharmaClosingTime'].value;
     // let availability =this.updatePharmaForm.controls['avaliableToDeliver'].value;
@@ -82,10 +82,11 @@ export class EditPharmacyDataComponent {
       "user" : {
         "name" : pharmaName,
         "email": pharmaEmail,
-        "password": pharmaPass || this.userDate.password    
+        "password": pharmaPass || this.userDate.password,
+        "phone" : pharmaPhone 
       },
       "pharmacy" : {
-        "image" : "test.png",
+        
         "licence_number": pharmaLicense,
         "opening": pharmaOpeningTime,
         "closing": pharmaClosingTime,
@@ -98,13 +99,11 @@ export class EditPharmacyDataComponent {
     }
 
     if (!pharmaEmail.match(emailPattern)) {
-      console.log('invalid email format');
       this.emailFail = true;
       this.service.errorAlert();
     } else if (
       pharmaEmail &&
       pharmaLicense&&
-      // pharmaPhone&&
       pharmaName
     ) {
       this.service.updatePharmacy(body, this.id, this.token).subscribe(

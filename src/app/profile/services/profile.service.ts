@@ -43,10 +43,12 @@ export class ProfileService {
   deletePharmacy(id : number, token:any) {
     const headers = { 'Authorization': `Bearer ${token}` };
     const options = { headers: headers };
-    return this.httpClient.delete(`http://127.0.0.1:8000/api/pharmacies/${id}`, options);
+    return this.httpClient.delete(`http://127.0.0.1:8000/api/users/${id}`, options);
   }
-  getOrders() {
-    return this.httpClient.get(`http://127.0.0.1:8000/api/orders`);
+  getOrders(token:any) {
+    const headers = { 'Authorization': `Bearer ${token}` };
+    const options = { headers: headers };
+    return this.httpClient.get(`http://127.0.0.1:8000/api/orders`, options);
   }
   getDelivery(id: number, token:any) {
     const headers = { 'Authorization': `Bearer ${token}` };

@@ -7,6 +7,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPenSquare } from '@fortawesome/free-solid-svg-icons';
+import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
@@ -22,6 +23,7 @@ export class ListProductsComponent {
   addProductUrl!: string;
   token:any;
   faPenSquare=faPenSquare;
+  faFolderOpen=faFolderOpen;
   constructor(
     private medicationService: MedicationService, 
     private activeRoute: ActivatedRoute,

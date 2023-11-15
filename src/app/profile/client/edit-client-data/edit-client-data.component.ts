@@ -73,6 +73,7 @@ export class EditClientDataComponent {
         this.clientEmail = this.clientId.client_email;
         this.oldGov = res.data.Governorate;
         this.oldCity = res.data.city;
+        this.getGovernorates()
       },
       error => this.router.navigate(['not-found'])
     );
@@ -93,13 +94,13 @@ export class EditClientDataComponent {
       user: {
         name: clientFullName,
         email: clientEmail,
-        password: clientPass || this.clientId.password || 324234,
+        password: clientPass || this.clientId.client_password,
+        phone: clientPhone
       },
       client: {
         governorate_id: +this.governorateID || this.oldGovId,
         city_id: this.cityID || this.oldCityId,
-      },
-      phone: [clientPhone]
+      }
     };
 
     if (!clientEmail.match(emailPattern)) {

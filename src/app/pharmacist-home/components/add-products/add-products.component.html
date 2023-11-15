@@ -2,52 +2,56 @@
   <div class="gradient-custom-1 h-100">
     <div class="mask d-flex align-items-center h-100">
       <div class="container p-5 ">
-        <div class="row mb-5">
+        <div class="row mb-3">
           <div class="col-4">
-        <input type="text" class="form-control" placeholder="Search by product name or Category" [(ngModel)]="searchText"> 
-      </div> 
-      
-     </div>
-            <div class="table-responsive bg-white">
-              <table class="table mb-0 table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">no</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Categorty</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Your Price</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Add</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let product of product | search:searchText | paginate: { itemsPerPage: 8, currentPage: page, totalItems: totalLenght }, let i = index">
-                    <td>{{ i + 1 }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.category }}</td>
-                    <td>{{ product.price }}</td>
-                    <td>
-                      <input type="number" #pharmacyPrice style="width: 60px; border: 1px solid gray; outline: none;" (input)="handlePriceChange(product, checkboxes)" />
-                    </td>
-                    <td><img src="assets/img/medicine.jpg" alt="" width="30px" height="30px"></td>
-                    <td>
-                      <input type="checkbox" class="form-check-input" #checkboxes (change)="addOneProduct(product, $event, pharmacyPrice.value)">
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="container text-center pt-3 bg-white pb-3">
-                <button href="" class="btn btn-danger btn-lg me-3" (click)="reset()">Reset</button>
-                <button  type="submit" class="btn btn-info btn-lg ms-3 text-white" (click)="addMedication()">Add</button>
-         </div>
+            <input type="text" class="form-control" placeholder="Search by product name or Category"
+              [(ngModel)]="searchText">
+          </div>
+
+        </div>
+        <div class="table-responsive bg-white">
+          <table class="table mb-0 table-striped">
+            <thead>
+              <tr>
+                <th scope="col">no</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Categorty</th>
+                <th scope="col">Price</th>
+                <th scope="col">Your Price</th>
+                <th scope="col">Image</th>
+                <th scope="col">Add</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let product of product | search:searchText | paginate: { itemsPerPage: 8, currentPage: page, totalItems: totalLenght }, let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                  <input type="number" #pharmacyPrice style="width: 60px; border: 1px solid gray; outline: none;"
+                    (input)="handlePriceChange(product, checkboxes)" />
+                </td>
+                <td><img src="assets/img/medicine.jpg" alt="" width="30px" height="30px"></td>
+                <td>
+                  <input type="checkbox" class="form-check-input" #checkboxes
+                    (change)="addOneProduct(product, $event, pharmacyPrice.value)">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="container text-center pt-3 bg-white pb-3">
+          <button href="" class="btn btn-danger btn-lg me-3" (click)="reset()">Reset</button>
+          <button type="submit" class="btn btn-info btn-lg ms-3 text-white" (click)="addMedication()">Add</button>
+          <div class="text-capitalize d-flex justify-content-center my-2">
+            <span>if you do not find your product click <a routerLink="/addMedication"> here</a></span>
           </div>
         </div>
-        
       </div>
-      <pagination-controls
-      class="my-pagination text-center"
-      (pageChange)="page = $event"
-    ></pagination-controls>
+    </div>
+
+  </div>
+  <pagination-controls class="my-pagination text-center" (pageChange)="page = $event"></pagination-controls>
 </section>

@@ -11,12 +11,11 @@ export class ApiService {
   constructor(private http: HttpClient) {};
   // function that define headers
 
-  createResource(data: any): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-
-    return this.http.post(this.apiUrl, data, { headers });
+  createResource(data: any, token:any): Observable<any> {
+   
+    const headers = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
+    const options = { headers: headers };
+    return this.http.post(this.apiUrl, data, options);
   }
   // function that gets all users
   allClientOrders(userID:any, token:any){

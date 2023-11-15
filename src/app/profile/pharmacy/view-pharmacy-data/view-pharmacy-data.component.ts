@@ -36,21 +36,22 @@ export class ViewPharmacyDataComponent {
         this.numOfproducts = this.pharmaId.medication.length;
         this.daysOff = this.pharmaId.daysOff;
         this.isLoading = false;
+        this.PHone();
       },
       (error) => this.router.navigate(['not-found'])
     );
 
     this.getPharmacyOrders();
+    
   }
 
   getPharmacyOrders() {
-    this.profileService.getOrders().subscribe((res: any) => {
+    this.profileService.getOrders(this.token).subscribe((res: any) => {
       this.orders = res.filter(
         (order: any) =>
           order['pharmacy name'] === this.pharmaId['pharmacy_name']
       );
       this.numOforders = this.orders.length;
-      console.log(this.numOforders);
     });
   }
 
@@ -65,6 +66,7 @@ export class ViewPharmacyDataComponent {
         localStorage.removeItem('role');
         localStorage.removeItem('user_id');
         localStorage.removeItem('_id');
+        localStorage.removeItem('image');
         window.location.href = '/';
       },
       (error) => {
@@ -83,6 +85,7 @@ export class ViewPharmacyDataComponent {
   generateImageUrl(image: string) {
     return `http://localhost:8000/storage/${image}`;
   }
+  
   PHone() {
     if(this.pharmaId.pharmacy_phone[0]['phone']){
       this.phone = this.pharmaId.pharmacy_phone[0]['phone']

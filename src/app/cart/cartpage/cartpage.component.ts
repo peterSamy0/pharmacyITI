@@ -31,7 +31,7 @@ export class CartpageComponent {
   signinForm!: FormGroup;
   orderid:any;
   ordernumber:any;
-
+  token:any;
   constructor(
     private cartService: CartService,
     private api: ApiService,
@@ -50,6 +50,7 @@ export class CartpageComponent {
     this.getCartItems();
     this.calculateTotalPrice();
     this.isLogged = (localStorage.getItem('token')) ? true : false;
+    this.token = localStorage.getItem('token');
     // get authorization data from local storage and service
     sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
 
@@ -61,54 +62,6 @@ export class CartpageComponent {
       this.clientId = Number(localStorage.getItem('_id'));
     }
 
-    // window.paypal
-    //   .Buttons({
-    //     style: {
-    //       layout: 'horizontal',
-    //       color: 'blue',
-    //       shape: 'rect',
-    //       label: 'paypal',
-    //     },
-    //     createOrder: (data: any, actions: any) => {
-    //       return actions.order.create({
-    //         purchase_units: [
-    //           {
-    //             amount: {
-    //               value: this.dividedTotal.toFixed(2).toString(), // Assuming total is the correct amount
-    //               currency_code: 'EUR',
-    //             },
-    //           },
-    //         ],
-    //       });
-    //     },
-    //     onApprove: (data: any, actions: any) => {
-    //       return actions.order.capture().then((details: any) => {
-    //         // console.log(details);
-    //         if (details.status === 'COMPLETED') {
-    //           Swal.fire({
-    //             icon: 'success',
-    //             title: 'Your transaction is successful',
-    //             text: 'Your transaction ID is: ' + details.id,
-    //           });
-        
-    //           this.payment.transactionID = details.id;
-    //           this.submitOrder();
-    //           this.router.navigate(['home']);
-    //         }
-    //         // You can handle the successful payment here, e.g., call a function to submit the order
-    //       });
-    //     },
-    //     onError: (error: any) => {
-    //       console.log(error);
-    //       // Handle errors, e.g., show an alert to the user
-    //       Swal.fire({
-    //         icon: 'error',
-    //         title: 'Payment Error',
-    //         text: 'There was an error processing your payment. Please try again.',
-    //       });
-    //     },
-    //   })
-    //   .render(this.paymentRef.nativeElement);
   }
 
   getCartItems() {
@@ -152,8 +105,8 @@ export class CartpageComponent {
       0
     );
     this.calculateDividedTotal()
-
   }
+
   calculateDividedTotal() {
     this.dividedTotal = this.total / 33;
   }
@@ -171,10 +124,9 @@ export class CartpageComponent {
         ordMedications: this.orderMedications,
         totalPrice: this.total,
         orderid:this.orderid
-
     };
 
-    this.api.createResource(data).subscribe(
+    this.api.createResource(data, this.token).subscribe(
         (response: any) => {
             console.log(response);
             if (response && response.order_id) {
@@ -243,19 +195,17 @@ orderpaid() {
 }
 
 submitOrderPaid() {
-  this.orderid=this.ordernumber.length+1
+  this.orderid = this.ordernumber(this.ordernumber.length-1).id
   let data = {
       client_id: this.clientId,
       pharmacy_id: this.pharmacyId,
       ordMedications: this.orderMedications,
       totalPrice: this.dividedTotal,
       orderid:this.orderid
-
   };
 
-  this.api.createResource(data).subscribe(
+  this.api.createResource(data, this.token).subscribe(
       (response: any) => {
-          console.log(response);
           if (response && response.orderid) {
               // Capture the order ID from the API response
               const orderId = response.orderid;
@@ -267,7 +217,6 @@ submitOrderPaid() {
                   ...data,
                   orderId: orderId,
               };
-
               // Log data to console
               console.log('Received data:', extendedData);
 
@@ -288,10 +237,10 @@ submitOrderPaid() {
 }
 
   getorder(){
-    this.http.get('http://localhost:8000/api/orders').subscribe(res=>{
+    const headers = { 'Authorization': `Bearer ${this.token}` };
+    const options = { headers: headers };
+    this.http.get('http://localhost:8000/api/orders', options).subscribe((res)=>{
       this.ordernumber=res
-      console.log(this.ordernumber.length)
-    
     })
   }
 
@@ -326,9 +275,6 @@ submitOrderPaid() {
       });
     }
   }
-  // test(){
-  //   console.log(this.pharmacyId);
-  // }
 
   checkUser() {
     let userEmail = this.signinForm.controls['userEmail'].value;
