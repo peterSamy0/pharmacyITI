@@ -13,6 +13,7 @@ export class PharmacyDetailsComponent {
   pharmacyId:string|any;
   pharmacy!:any;
   id!:number;
+  phone:any;
   constructor(
     private routeUrl:ActivatedRoute, 
     private fetchPharmacy:ServiceService, 
@@ -26,17 +27,30 @@ export class PharmacyDetailsComponent {
     this.id = this.activeRoute.snapshot.params['id']
     this.cartService.pharmacyId = this.activeRoute.snapshot.params['id'];
     this.getPharma();
+    this.getPHone();
   }
   getPharma() {
     this.service.getPharmaData(this.id).subscribe(
       (res:any) => {
         this.pharmacy = res.data;
+        console.log(res)
         // this.cartService.pharmacyId = this.pharmacy.pharmacy_id;
       },
       (error) => {
         console.log(error)
       }
     );    
+  }
+  
+getPHone() {
+    if(this.pharmacy.pharmacy_phone[0] > 1){
+      this.phone = this.pharmacy.pharmacy_phone[0]['phone']
+      console.log('ok')
+      return this.phone;
+    }
+    this.phone = 'not available now';
+    console.log('no')
+    return this.phone;
   }
 }
 
