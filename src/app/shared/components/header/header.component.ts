@@ -33,7 +33,7 @@ export class HeaderComponent {
     localStorage.removeItem('role');
     localStorage.removeItem('user_id');
     localStorage.removeItem('_id');
-    sessionStorage.removeItem('cart');
+    localStorage.removeItem('cart');
     window.location.href = '/';
   }
 
