@@ -1,10 +1,9 @@
 <div class="item-content w-100 d-flex flex-column justify-content-between bg-white align-items-center"> 
-    <div (click)="goToDetails(medication.id)">
-        <img src="https://img.freepik.com/premium-vector/set-medicines-clipart_24877-71915.jpg?w=2000" alt="" width="80%" height="35%" class="p-3 object-fit-contain ">
-        <h4 class="overflow-hidden fs-5 d-flex align-items-center m-0" style="height: 10%">{{ medication.medicine_name }}</h4>
-        <p class="overflow-hidden m-0" style="height: 10%"><span class="fw-bolder">Price:</span> {{ medication.medicine_price }} L.E</p>
-    </div>
-    <div *ngIf="role == 'client'" class="d-flex">
+    <img src="https://img.freepik.com/premium-vector/set-medicines-clipart_24877-71915.jpg?w=2000" alt="" width="80%" height="35%" class="p-3 object-fit-contain ">
+    <h4 class="overflow-hidden fs-5 d-flex align-items-center m-0" style="height: 10%">{{ medication.medicine_name }}</h4>
+    <p class="overflow-hidden m-0" style="height: 10%"><span class="fw-bolder">Price:</span> {{ medication.medicine_price }} L.E</p>
+    <div *ngIf="role != 'pharmacy'" class="d-flex">
+        <a class="btn btn-secondary w-50 m-0 viewbtn" [routerLink]="'product/'+medication.id">View detailes</a>
         <button class="btn bg-nav text-white w-50 m-0 cartbtn" (click)="addToCart(medication)" *ngIf="!medication.added">add to cart</button>
         <button class="btn bg-success text-white w-50 m-0 cartbtn" *ngIf="medication.added" (click)="removeFromCart(medication)"> added </button>
     </div>

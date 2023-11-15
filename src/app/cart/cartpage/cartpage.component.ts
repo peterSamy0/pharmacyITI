@@ -117,18 +117,23 @@ export class CartpageComponent {
   }
 
   submitOrder() {
-    this.orderid=this.ordernumber.length+1
+    // this.orderid=this.ordernumber.length+1
     let data = {
         client_id: this.clientId,
         pharmacy_id: this.pharmacyId,
         ordMedications: this.orderMedications,
         totalPrice: this.total,
-        orderid:this.orderid
+        // orderid:this.orderid
     };
 
     this.api.createResource(data, this.token).subscribe(
         (response: any) => {
             console.log(response);
+            Swal.fire({
+                  icon: 'success',
+                  title: 'Thanks for your purchase!',
+                  text: 'The order will be delivered soon.',
+                })
             if (response && response.order_id) {
                 // Capture the order ID from the API response
                 const orderId = response.order_id;
@@ -254,26 +259,37 @@ submitOrderPaid() {
       let obj = { key: medId, value: amount };
       this.orderMedications.push(obj);
     });
+    if(this.cartItems.length > 0){
+        this.submitOrder();
+        this.cartService.clearCart();
+        this.router.navigate(['/home']);
+      }else{
+        Swal.fire({
+              icon: 'warning',
+              title: 'Your cart is empty.',
+              text: 'Add items before placing an order.',
+            });
+      }
 
-    if (this.cartItems.length > 0) {
-      Swal.fire({
-        icon: 'success',
-        title: 'Thanks for your purchase!',
-        text: 'The order will be delivered soon.',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.submitOrder();
-          this.cartService.clearCart();
-          this.router.navigate(['/home']);
-        }
-      });
-    } else {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Your cart is empty.',
-        text: 'Add items before placing an order.',
-      });
-    }
+    // if (this.cartItems.length > 0) {
+    //   Swal.fire({
+    //     icon: 'success',
+    //     title: 'Thanks for your purchase!',
+    //     text: 'The order will be delivered soon.',
+    //   }).then((result) => {
+    //     if (result.isConfirmed) {
+    //       this.submitOrder();
+    //       this.cartService.clearCart();
+    //       this.router.navigate(['/home']);
+    //     }
+    //   });
+    // } else {
+    //   Swal.fire({
+    //     icon: 'warning',
+    //     title: 'Your cart is empty.',
+    //     text: 'Add items before placing an order.',
+    //   });
+    // }
   }
 
   checkUser() {
