@@ -46,11 +46,12 @@ export class CartpageComponent {
   }
 
   ngOnInit(): void {
-    this.getorder()
+    
     this.getCartItems();
     this.calculateTotalPrice();
     this.isLogged = (localStorage.getItem('token')) ? true : false;
     this.token = localStorage.getItem('token');
+    this.getorder()
     // get authorization data from local storage and service
     sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
 
@@ -244,6 +245,7 @@ submitOrderPaid() {
   getorder(){
     const headers = { 'Authorization': `Bearer ${this.token}` };
     const options = { headers: headers };
+    console.log(options)
     this.http.get('http://localhost:8000/api/orders', options).subscribe((res)=>{
       this.ordernumber=res
     })
