@@ -14,6 +14,7 @@ export class SelectDeliveryComponent {
 
   faCheck :any = faCheck;
   faXmark :any = faXmark;
+  isSelected:boolean = false;
   // Deliveries: any = [];
   // city: string | null = '';
   // constructor(private deliverService: ServiceService, private route: ActivatedRoute){}
@@ -43,6 +44,7 @@ export class SelectDeliveryComponent {
   //   (!val.isSelected || null) ? val.isSelected = true : val.isSelected = false
   // }
   select(id: any) {
+    this.isSelected = true;
     const headers = {
       Authorization: 'Bearer ' + localStorage.getItem('token')
     };

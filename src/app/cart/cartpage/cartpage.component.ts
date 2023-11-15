@@ -46,14 +46,14 @@ export class CartpageComponent {
   }
 
   ngOnInit(): void {
-    this.getorder()
     this.getCartItems();
     this.calculateTotalPrice();
     this.isLogged = (localStorage.getItem('token')) ? true : false;
     this.token = localStorage.getItem('token');
     // get authorization data from local storage and service
     sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
-
+    
+    this.getorder()
     if (
       localStorage.getItem('role') &&
       localStorage.getItem('role') == 'client'
@@ -129,6 +129,11 @@ export class CartpageComponent {
     this.api.createResource(data, this.token).subscribe(
         (response: any) => {
             console.log(response);
+            Swal.fire({
+                  icon: 'success',
+                  title: 'Thanks for your purchase!',
+                  text: 'The order will be delivered soon.',
+                })
             if (response && response.order_id) {
                 // Capture the order ID from the API response
                 const orderId = response.order_id;
@@ -195,7 +200,7 @@ orderpaid() {
 }
 
 submitOrderPaid() {
-  this.orderid = this.ordernumber(this.ordernumber.length-1).id
+  this.orderid = this.ordernumber.length+1
   let data = {
       client_id: this.clientId,
       pharmacy_id: this.pharmacyId,
@@ -209,7 +214,6 @@ submitOrderPaid() {
           if (response && response.orderid) {
               // Capture the order ID from the API response
               const orderId = response.orderid;
-              console.log('Order ID:', orderId);
               window.location.href='http://localhost:8000/stripe/'+orderId
 
               // Include orderId in the data for additional processing
@@ -217,9 +221,6 @@ submitOrderPaid() {
                   ...data,
                   orderId: orderId,
               };
-              // Log data to console
-              console.log('Received data:', extendedData);
-
               // Store order ID and total price in session flash data
               sessionStorage.setItem('order_id', orderId);
               sessionStorage.setItem('total_price', this.dividedTotal.toString());
@@ -254,26 +255,17 @@ submitOrderPaid() {
       let obj = { key: medId, value: amount };
       this.orderMedications.push(obj);
     });
-
-    if (this.cartItems.length > 0) {
-      Swal.fire({
-        icon: 'success',
-        title: 'Thanks for your purchase!',
-        text: 'The order will be delivered soon.',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.submitOrder();
-          this.cartService.clearCart();
-          this.router.navigate(['/home']);
-        }
-      });
-    } else {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Your cart is empty.',
-        text: 'Add items before placing an order.',
-      });
-    }
+    if(this.cartItems.length > 0){
+        this.submitOrder();
+        this.cartService.clearCart();
+        this.router.navigate(['/home']);
+      }else{
+        Swal.fire({
+              icon: 'warning',
+              title: 'Your cart is empty.',
+              text: 'Add items before placing an order.',
+            });
+      }
   }
 
   checkUser() {

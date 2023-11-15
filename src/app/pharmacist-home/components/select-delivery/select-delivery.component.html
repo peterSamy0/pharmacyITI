@@ -57,7 +57,8 @@
                     <fa-icon *ngIf="!delivery.available" [icon]="faXmark" class="text-danger"></fa-icon>
                 </td>
                 <td>
-                    <button class="btn btn-outline-success " (click)="select(delivery.id)" *ngIf="delivery.available">select</button> 
+                    <button class="btn btn-outline-success " (click)="select(delivery.id)" *ngIf="delivery.available && !isSelected">select</button> 
+                    <button class="btn btn-outline-success " *ngIf="isSelected">select</button> 
                     
                 </td>
               </tr>
