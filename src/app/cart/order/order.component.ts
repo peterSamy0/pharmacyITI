@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class OrderComponent {
   orderId!:number ;
   orderData!:any;
+  token:any;
   constructor(private routeUrl:ActivatedRoute,private http: HttpClient ){
     // get order id
     this.routeUrl.paramMap.subscribe(params => this.orderId = Number(params.get("id")));
@@ -17,6 +18,7 @@ export class OrderComponent {
   };
   ngOnInit() {
     // git order data from db
+    this.token = localStorage.getItem('token')
     this.http.get(`http://localhost:8000/api/orders/${this.orderId}`,{
       headers:{
         Authorization:"Bearer " + localStorage.getItem('token') 
@@ -55,7 +57,6 @@ export class OrderComponent {
     }
   }
   removeFromOrder(removedId:any){
-    console.log(removedId);
     let updatedData = {
       "ordMedications": [
         { "key": removedId, "value": 0 }
@@ -63,12 +64,15 @@ export class OrderComponent {
     };
     try{
       // update request to remove item from order
-      this.http.patch(`http://localhost:8000/api/orders/${this.orderId}`, updatedData).subscribe(data => {
+      const headers = { 'Authorization': `Bearer ${this.token}`, 'Content-Type': 'application/json' };
+      const options = { headers: headers };
+
+      this.http.patch(`http://localhost:8000/api/orders/${this.orderId}`, updatedData, options).subscribe(data => {
         console.log(data)
       });
             // get request to refresh page
-      this.http.get(`http://localhost:8000/api/orders/${this.orderId}`).
-    subscribe(data=> {let x:any = data;
+      this.http.get(`http://localhost:8000/api/orders/${this.orderId}`, options).
+      subscribe(data=> {let x:any = data;
       this.orderData = x.data;
       console.log(this.orderData);});
     }

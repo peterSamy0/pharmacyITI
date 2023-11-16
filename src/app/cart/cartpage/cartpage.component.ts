@@ -54,7 +54,8 @@ export class CartpageComponent {
     this.getorder()
     // get authorization data from local storage and service
     sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
-
+    
+    this.getorder()
     if (
       localStorage.getItem('role') &&
       localStorage.getItem('role') == 'client'
@@ -216,7 +217,6 @@ submitOrderPaid() {
           if (response && response.orderid) {
               // Capture the order ID from the API response
               const orderId = response.orderid;
-              console.log('Order ID:', orderId);
               window.location.href='http://localhost:8000/stripe/'+orderId
 
               // Include orderId in the data for additional processing
@@ -224,9 +224,6 @@ submitOrderPaid() {
                   ...data,
                   orderId: orderId,
               };
-              // Log data to console
-              console.log('Received data:', extendedData);
-
               // Store order ID and total price in session flash data
               sessionStorage.setItem('order_id', orderId);
               sessionStorage.setItem('total_price', this.dividedTotal.toString());
