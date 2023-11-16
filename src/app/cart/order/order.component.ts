@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class OrderComponent {
   orderId!:number ;
   orderData!:any;
+  pharmacy:any;
   constructor(private routeUrl:ActivatedRoute,private http: HttpClient ){
     // get order id
     this.routeUrl.paramMap.subscribe(params => this.orderId = Number(params.get("id")));
@@ -23,9 +24,12 @@ export class OrderComponent {
       }
     }).
     subscribe((data:any)=> {
-      console.log(data.status);
       this.orderData = data.data;
+      console.log(data.data)
+      
       });
+
+      
     
   };
   badgeColor(status:string) {

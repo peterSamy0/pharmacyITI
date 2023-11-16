@@ -9,6 +9,8 @@ import { SearchPipe } from '../pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { CamelToRegularPipe } from '../pipes/camel-to-regular.pipe';
+// import { DateTimeFormatPipe } from '../date-time-format.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     FooterComponent,
     SearchFormComponent,
     NotFoundComponent,
+    CamelToRegularPipe
     // SearchPipe
 
   ],
@@ -23,11 +26,14 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     RouterModule,
     CommonModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
+    CamelToRegularPipe,
+    // DateTimeFormatPipe
   ]
 })
 export class SharedModule { }

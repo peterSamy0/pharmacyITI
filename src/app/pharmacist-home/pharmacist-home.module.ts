@@ -11,7 +11,8 @@ import { SelectDeliveryComponent } from './components/select-delivery/select-del
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule, Routes } from '@angular/router';
 import { AddMedicationComponent } from './components/add-medication/add-medication.component';
-
+import { SharedModule } from '../shared/shared.module';
+// import { CamelToRegularPipe } from '../pipes/camel-to-regular.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AddMedicationComponent } from './components/add-medication/add-medicati
     SearchPipe,
     ViewOrdersComponent,
     SelectDeliveryComponent,
-    AddMedicationComponent
+    AddMedicationComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { AddMedicationComponent } from './components/add-medication/add-medicati
     FormsModule,
     NgxPaginationModule,
     RouterModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SharedModule
   ],
   exports: [
     AddProductsComponent,
