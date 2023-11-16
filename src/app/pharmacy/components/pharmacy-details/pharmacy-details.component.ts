@@ -31,6 +31,7 @@ export class PharmacyDetailsComponent {
     this.service.getPharmaData(this.id).subscribe(
       (res:any) => {
         this.pharmacy = res.data;
+        console.log(res)
         // this.cartService.pharmacyId = this.pharmacy.pharmacy_id;
       },
       (error) => {
