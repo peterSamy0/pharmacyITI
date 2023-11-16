@@ -1,166 +1,169 @@
-<div class="container mt-5 mb-5">
-  <div class="main-body">
-    <div class="row gutters-sm mt-5">
-      <div class="col-md-4 mb-3">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex flex-column align-items-center text-center">
-              <img
-              [src]="generateImageUrl(deliveryId.clientImage)"
-                alt="Admin"
-                class="rounded-circle"
-                width="150"deliveryImage
-              />
-              <div class="mt-3">
-                <h4>{{ deliveryId.name }}</h4>
-                <p class="text-secondary mb-1">{{ deliveryId.email }}</p>
-                <p class="text-muted font-size-sm">
-                  {{ deliveryId.city }}, {{ deliveryId.Governorate }}
-                </p>
+<ng-container *ngIf="isApproved">
+
+  <div class="container mt-5 mb-5">
+    <div class="main-body">
+      <div class="row gutters-sm mt-5">
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+                <img
+                [src]="generateImageUrl(deliveryId.clientImage)"
+                  alt="Admin"
+                  class="rounded-circle"
+                  width="150"deliveryImage
+                />
+                <div class="mt-3">
+                  <h4>{{ deliveryId.name }}</h4>
+                  <p class="text-secondary mb-1">{{ deliveryId.email }}</p>
+                  <p class="text-muted font-size-sm">
+                    {{ deliveryId.city }}, {{ deliveryId.Governorate }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-8">
-        <div class="card mb-3">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Name</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                {{ deliveryId.name }}
-              </div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Email</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">{{ deliveryId.email }}</div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Phone</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">{{deliveryId.delivery_phone[0]['phone']}}</div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Address</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                {{ deliveryId.city }}, {{ deliveryId.Governorate }}
-              </div>
-            </div>
-            <hr />
-
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">National Id</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                {{ deliveryId.national_ID }}
-              </div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Orders Delivered</h6>
-              </div>
-              <div class="col-sm-9 text-secondary" *ngIf="numOforders > 0">
-                {{ numOforders
-                }}<span class="col-sm-9 text-secondary"
-                  >,
-                  <a href="#"> Deliver more Orders </a>
-                </span>
-              </div>
-              <div class="col-sm-9 text-secondary" *ngIf="numOforders == 0">
-                {{ numOforders }} orders delivered,
-                <span class="col-sm-9 text-secondary">
-                  <a href="#"> start delivering now </a>
-                </span>
-              </div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-3">
-                <h6 class="mb-0">Ready to deliver orders</h6>
-              </div>
-              <div class="col-sm-9 text-secondary">
-                <div class="form-check form-switch">
-                  <input
-                    class="form-check-input"
-                    (change)="changeBtn()"
-                    type="checkbox"
-                    #myCheckbox
-                    role="switch"
-                    id="flexSwitchCheckChecked"
-                    [checked]="deliveryId.available"
-                  />
+        <div class="col-md-8">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{ deliveryId.name }}
                 </div>
               </div>
-            </div>
-            <hr />
-            <div class="row">
-              <div class="col-sm-12">
-                <a
-                  class="btn btnEdit"
-                  target="__blank"
-                  (click)="edit(deliveryId.id)"
-                  >Edit</a
-                >
-                <a
-                  class="btn btnDelete ms-3"
-                  target="__blank"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                  >Delete Account</a
-                >
-                <div
-                  class="modal fade"
-                  id="exampleModal"
-                  tabindex="-1"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">
-                          Confirm Message
-                        </h1>
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div class="modal-body">
-                        Are you sure you want to delete your account? This
-                        action is irreversible and all of your data will be
-                        lost.
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          type="button"
-                          class="btn btn-secondary"
-                          data-bs-dismiss="modal"
-                        >
-                          No
-                        </button>
-                        <button
-                          type="button"
-                          (click)="deleteAccount(deliveryId.id)"
-                          class="btn btn-danger"
-                          data-bs-dismiss="modal"
-                        >
-                          Yes
-                        </button>
+              <hr />
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Email</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">{{ deliveryId.email }}</div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Phone</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">{{deliveryId.delivery_phone[0]['phone']}}</div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Address</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{ deliveryId.city }}, {{ deliveryId.Governorate }}
+                </div>
+              </div>
+              <hr />
+
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">National Id</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  {{ deliveryId.national_ID }}
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Orders Delivered</h6>
+                </div>
+                <div class="col-sm-9 text-secondary" *ngIf="numOforders > 0">
+                  {{ numOforders
+                  }}<span class="col-sm-9 text-secondary"
+                    >,
+                    <a href="#"> Deliver more Orders </a>
+                  </span>
+                </div>
+                <div class="col-sm-9 text-secondary" *ngIf="numOforders == 0">
+                  {{ numOforders }} orders delivered,
+                  <span class="col-sm-9 text-secondary">
+                    <a href="#"> start delivering now </a>
+                  </span>
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Ready to deliver orders</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <div class="form-check form-switch">
+                    <input
+                      class="form-check-input"
+                      (change)="changeBtn()"
+                      type="checkbox"
+                      #myCheckbox
+                      role="switch"
+                      id="flexSwitchCheckChecked"
+                      [checked]="deliveryId.available"
+                    />
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-12">
+                  <a
+                    class="btn btnEdit"
+                    target="__blank"
+                    (click)="edit(deliveryId.id)"
+                    >Edit</a
+                  >
+                  <a
+                    class="btn btnDelete ms-3"
+                    target="__blank"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    >Delete Account</a
+                  >
+                  <div
+                    class="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">
+                            Confirm Message
+                          </h1>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body">
+                          Are you sure you want to delete your account? This
+                          action is irreversible and all of your data will be
+                          lost.
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            No
+                          </button>
+                          <button
+                            type="button"
+                            (click)="deleteAccount(deliveryId.id)"
+                            class="btn btn-danger"
+                            data-bs-dismiss="modal"
+                          >
+                            Yes
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -171,5 +174,24 @@
         </div>
       </div>
     </div>
+  </div>
+</ng-container>
+
+<div class="d-flex align-items-center justify-content-center spinner" style="height: 50vh;" *ngIf="isLoading">
+  <span class="loader"></span>
+</div>
+<div class="container my-5" *ngIf="isPending">
+  <div class="d-flex justify-content-center flex-column align-items-center" >
+    <h1>Your application is under review, please Wait! </h1>
+    <img src="assets/img/waiting.jpg" width="25%" alt="">
+    <p>the response will be as soon as possible, thank you for joining PHARMA</p>
+  </div>
+</div>
+
+<div class="container my-5" *ngIf="isRejected">
+  <div class="d-flex justify-content-center flex-column align-items-center" >
+    <h1 class="text-center text-danger mb-3">Your application is rejected, please review your data and try again! </h1>
+    <img src="assets/img/rejected.png" class="my-5" width="25%" alt="">
+    <p class="text-center mt3-3">Your Data was wrong, if you have any question you can <a routerLink="/contact-us">contact us!</a> thank you</p>
   </div>
 </div>

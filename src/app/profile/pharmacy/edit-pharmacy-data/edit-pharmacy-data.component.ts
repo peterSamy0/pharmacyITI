@@ -188,4 +188,8 @@ export class EditPharmacyDataComponent {
       this.phones.push(num)
   }
 
+  generateImageUrl(image: string) {
+    return `http://localhost:8000/storage/${image}`;
+  }
+
 }

@@ -201,7 +201,8 @@ orderpaid() {
 }
 
 submitOrderPaid() {
-  this.orderid = this.ordernumber(this.ordernumber.length-1).id
+  this.orderid = this.ordernumber.length + 1
+
   let data = {
       client_id: this.clientId,
       pharmacy_id: this.pharmacyId,
