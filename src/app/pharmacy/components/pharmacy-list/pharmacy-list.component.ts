@@ -53,12 +53,11 @@ export class PharmacyListComponent{
   this.isLoading = true;
   this.service.getPharmacies().subscribe((res: any) => {
     this.pharmArr = res.data;
-    // this.originalPharmArr = [...this.pharmArr]; // Save a copy of the original data
-    // this.totalLength = this.pharmArr.length;
-    // this.pharmArr.forEach((e: any, i: any) => {
-    //   e.id = i + 1;
-    // });
-    console.log(res)
+    this.originalPharmArr = [...this.pharmArr]; // Save a copy of the original data
+    this.totalLength = this.pharmArr.length;
+    this.pharmArr.forEach((e: any, i: any) => {
+      e.id = i + 1;
+    });
     this.isLoading = false;
   });
 }
@@ -106,9 +105,8 @@ closeSubList(){
   this.showList = !this.showList;
 }
 
-goToDetails(id:any){
-  this.router.navigate([`pharmacy/${id}`]);
-  console.log(id)
+goToDetails(id:number){
+  this.router.navigate(["/pharmacy",id]);
 }
 
 }

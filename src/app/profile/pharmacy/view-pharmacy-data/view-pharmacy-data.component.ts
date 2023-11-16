@@ -48,7 +48,7 @@ export class ViewPharmacyDataComponent {
           this.isApproved = true;
           this.isRejected = false;
           this.isPending = false;
-          this.pharmaId = res.data;
+          this.pharmaId = res;
           this.numOfproducts = this.pharmaId.medication.length;
           this.daysOff = this.pharmaId.daysOff;
           this.isLoading = false;
