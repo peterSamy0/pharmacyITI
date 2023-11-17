@@ -34,7 +34,7 @@
             <td>{{order.client_name}}</td>
             <td>{{order.created_at | date:'yyyy-MM-dd HH:mm'}}</td>
             <td>
-                <a class="btn btn-primary me-3 text-white fw-bold" href="/viewOrders/{{order.id}}">View Order</a>
+                <a class="btn btn-primary me-3 text-white fw-bold" routerLink="/viewOrders/{{order.id}}">View Order</a>
             </td>
             <td class="text-start">
               <fa-icon [ngClass]="'px-2 text-'+badgeColor(order.status )" [icon]="faCircle"></fa-icon>

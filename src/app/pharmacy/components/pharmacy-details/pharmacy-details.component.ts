@@ -13,14 +13,14 @@ export class PharmacyDetailsComponent {
   pharmacyId:string|any;
   pharmacy!:any;
   id!:number;
+  phone:any;
   constructor(
     private routeUrl:ActivatedRoute, 
     private fetchPharmacy:ServiceService, 
     private cartService:CartService, 
     private service: CarouselService,
     private activeRoute: ActivatedRoute
-    ){}
-
+  ){}
 
   ngOnInit() {
     this.id = this.activeRoute.snapshot.params['id']
@@ -30,13 +30,20 @@ export class PharmacyDetailsComponent {
   getPharma() {
     this.service.getPharmaData(this.id).subscribe(
       (res:any) => {
-        this.pharmacy = res.data;
+        this.pharmacy = res;
+        this.getPhone(res)
         // this.cartService.pharmacyId = this.pharmacy.pharmacy_id;
       },
       (error) => {
         console.log(error)
       }
     );    
+  }
+  getPhone(val:any){
+    if(val.pharmacy_phone > 0){
+      this.phone = val.pharmacy_phone[0]['phone']
+    }
+    this.phone = 'Not Available Now'
   }
 }
 

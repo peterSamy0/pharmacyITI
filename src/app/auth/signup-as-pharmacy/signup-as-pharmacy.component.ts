@@ -127,7 +127,6 @@ export class SignupAsPharmacyComponent {
     for (const key of Object.keys(userData)) {
       formData.append(key, userData[key]);
     }
-    console.log('ok')
     this.http.post(`http://localhost:8000/api/pharmacies`, formData).subscribe(
       (response: any) => {
         localStorage.setItem('token', response['token']);
@@ -135,8 +134,7 @@ export class SignupAsPharmacyComponent {
         localStorage.setItem('user_id', response['user_id']);
         localStorage.setItem('_id', response['pharmacy_id']);
         localStorage.setItem('image', response['image']);
-        window.location.href = `addProduct/${response['pharmacy_id']}`;
-        console.log(response)
+        window.location.href = `pharmacy-profile/${response['pharmacy_id']}`;
       },
       (error) => {
         console.log(error);

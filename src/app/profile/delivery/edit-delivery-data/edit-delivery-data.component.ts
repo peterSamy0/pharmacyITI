@@ -161,4 +161,8 @@ export class EditDeliveryDataComponent {
   selectedCity(val: any) {
     this.cityID = val;
   }
+
+  generateImageUrl(image: string) {
+    return `http://localhost:8000/storage/${image}`;
+  }
 }

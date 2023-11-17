@@ -39,7 +39,7 @@ export class CarouselComponent {
     this.service.getPharmaData(this.id).subscribe(
       (res:any) => {
         // console.log(res);
-        this.products = res.data.medication;
+        this.products = res.medication;
         // console.log(this.products)
         this.getCategories();
         this.initializeActiveIndices();
