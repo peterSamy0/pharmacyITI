@@ -48,7 +48,7 @@ export class SignupAsClientComponent {
       userCity: new FormControl('', [Validators.required]),
       userGovern: new FormControl('', [Validators.required]),
       userPass: new FormControl('', [Validators.required,Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]),
-      userGender: new FormControl('', [Validators.required]),
+      // userGender: new FormControl('', [Validators.required]),
     });
   }
   ngOnInit() {

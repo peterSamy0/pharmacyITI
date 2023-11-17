@@ -24,8 +24,8 @@
             </thead>
             <tbody>
               <tr
-                *ngFor="let product of product | search:searchText | paginate: { itemsPerPage: 8, currentPage: page, totalItems: totalLenght }, let i = index">
-                <td>{{ i + 1 }}</td>
+                *ngFor="let product of product | search:searchText | paginate: { itemsPerPage: 8, currentPage: page, totalItems: totalLenght }">
+                <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.category }}</td>
                 <td>{{ product.price }}</td>
@@ -40,18 +40,23 @@
                 </td>
               </tr>
             </tbody>
+
           </table>
+
         </div>
         <div class="container text-center pt-3 bg-white pb-3">
           <button href="" class="btn btn-danger btn-lg me-3" (click)="reset()">Reset</button>
           <button type="submit" class="btn btn-info btn-lg ms-3 text-white" (click)="addMedication()">Add</button>
+          
+          <pagination-controls class="my-pagination text-center mt-5" (pageChange)="page = $event"></pagination-controls>
+
           <div class="text-capitalize d-flex justify-content-center my-2">
-            <span>if you do not find your product click <a routerLink="/addMedication"> here</a></span>
+            <span>If you can't find your product click <a routerLink="/addMedication"> here</a></span>
           </div>
         </div>
       </div>
     </div>
 
   </div>
-  <pagination-controls class="my-pagination text-center" (pageChange)="page = $event"></pagination-controls>
+  <!-- <pagination-controls class="my-pagination text-center" (pageChange)="page = $event"></pagination-controls> -->
 </section>

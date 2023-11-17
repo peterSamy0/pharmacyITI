@@ -48,7 +48,13 @@
 .slide-container{
   height: 450px;
 }
-
+.my-pagination{
+  color: #419197;
+}
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #419197;
+  margin-top: 5px;
+}
 /****************** spinner ****************/
 .loader {
   width: 48px;
