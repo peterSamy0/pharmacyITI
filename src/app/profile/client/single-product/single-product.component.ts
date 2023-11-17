@@ -42,7 +42,7 @@ export class SingleProductComponent {
         console.log("not found")
         // get product data
         this.http.get(`http://localhost:8000/api/pharmacies/${this.pharmacyId}`).subscribe(
-          (data:any) => {this.productDetails = data.data.medication.find((ele:any)=>{return ele.id==this.productId})
+          (data:any) => {this.productDetails = data.medication.find((ele:any)=>{return ele.id==this.productId})
           console.log(this.productDetails)}
     )
       }
@@ -50,7 +50,7 @@ export class SingleProductComponent {
       console.log("not found")
       // get product data
       this.http.get(`http://localhost:8000/api/pharmacies/${this.pharmacyId}`).subscribe(
-        (data:any) => {this.productDetails = data.data.medication.find((ele:any)=>{return ele.id==this.productId})
+        (data:any) => {this.productDetails =data.medication.find((ele:any)=>{return ele.id==this.productId})
         console.log(this.productDetails)}
   )
     }
