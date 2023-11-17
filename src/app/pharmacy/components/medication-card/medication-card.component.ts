@@ -36,6 +36,12 @@ export class MedicationCardComponent {
         this.medication.added = true;
       }
     }
+    this.routeUrl.paramMap.subscribe(params => {
+      this.service.pharmacyId = Number(params.get("id"));
+      this.pharmacyId = Number(params.get("id"));
+      // console.log(params,this.medication);
+
+    });
   }
 
   addToCart(val:any){

@@ -2,7 +2,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
+// import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,6 +24,8 @@ import { NgxStripeModule } from 'ngx-stripe';
 // import { PaymentComponent } from './payment/components/payment/payment.component';
 import { StripeFactoryService } from 'ngx-stripe';
 import { PaymentStripeComponent } from './payment-stripe/payment-stripe.component';
+import { SharedModule } from './shared/shared.module';
+// import { CamelToRegularPipe } from './pipes/camel-to-regular.pipe';
 
 
 @NgModule({
@@ -35,6 +37,7 @@ import { PaymentStripeComponent } from './payment-stripe/payment-stripe.componen
     AboutUsComponent,
     NotFoundComponent,
     PaymentStripeComponent,
+    // CamelToRegularPipe,
   ],
   imports: [
     BrowserModule,

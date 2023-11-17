@@ -5,6 +5,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 import { DeliveryResponse, DeliveryServiceService } from 'src/app/services/delivery-service.service';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-select-delivery',
   templateUrl: './select-delivery.component.html',
@@ -55,6 +56,11 @@ export class SelectDeliveryComponent {
     }, { headers: headers })
     .subscribe(data => {
       console.log(data);
+      Swal.fire({
+        icon: 'success',
+        title: `order has been assigned to delivery`,
+        text: 'success',
+      })
     });
   }
 

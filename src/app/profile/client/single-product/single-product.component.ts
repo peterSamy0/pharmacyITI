@@ -68,6 +68,7 @@ export class SingleProductComponent {
     }else{
 
     val.added = true;
+    this.service.pharmacyId = this.pharmacyId
     this.service.addItemToCart(val);
     }
     

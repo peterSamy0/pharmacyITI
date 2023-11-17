@@ -55,7 +55,7 @@
                     <td></td>
                     <td>
                         <fa-icon [ngClass]="'px-2 text-'+badgeColor(orderData.status)" [icon]="faCircle"></fa-icon>
-                    <span [ngClass]="'text-'+badgeColor(orderData.status)" >{{orderData.status}}</span></td>
+                    <span [ngClass]="'text-'+badgeColor(orderData.status)" >{{orderData.status | camelToRegular}}</span></td>
                 </tr>
               
             </tbody>

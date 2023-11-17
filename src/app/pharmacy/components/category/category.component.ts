@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Medication } from 'src/app/interface/medication';
 import { CarouselService } from '../../services/carousel.service';
 import { CartService } from 'src/app/cart/servic/cart.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -30,8 +31,10 @@ export class CategoryComponent {
     const id = sessionStorage.getItem('pharamcyID') || '';
     this.id = JSON.parse(id)
   }
+  
 ngOnInit() {
   this.performSearch();
+  
 }
 
 performSearch() {
