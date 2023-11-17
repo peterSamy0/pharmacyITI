@@ -20,7 +20,9 @@ export class ViewPharmacyDataComponent {
   token: any;
   isLoading: boolean = true;
   phone:any;
-
+  isPending:boolean = false;
+  isApproved:boolean = false;
+  isRejected:boolean = false;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -32,11 +34,26 @@ export class ViewPharmacyDataComponent {
     this.token = localStorage.getItem('token');
     this.profileService.getPharmacy(this.id, this.token).subscribe(
       (res: any) => {
-        this.pharmaId = res.data;
-        this.numOfproducts = this.pharmaId.medication.length;
-        this.daysOff = this.pharmaId.daysOff;
-        this.isLoading = false;
-        this.PHone();
+        if(res == 'pending'){
+          this.isPending = true;
+          this.isRejected = false;
+          this.isApproved = false;
+          this.isLoading = false;
+        }else if(res == 'rejected'){
+          this.isRejected = true;
+          this.isPending = false;
+          this.isApproved = false;
+          this.isLoading = false;
+        }else{
+          this.isApproved = true;
+          this.isRejected = false;
+          this.isPending = false;
+          this.pharmaId = res;
+          this.numOfproducts = this.pharmaId.medication.length;
+          this.daysOff = this.pharmaId.daysOff;
+          this.isLoading = false;
+          this.PHone();
+        }
       },
       (error) => this.router.navigate(['not-found'])
     );

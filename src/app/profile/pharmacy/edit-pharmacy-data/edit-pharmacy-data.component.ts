@@ -123,11 +123,11 @@ export class EditPharmacyDataComponent {
   
   getGovernorates(){
     this.service.getGovernorates().subscribe(
-        (response:any) => {
-          this.governorates = response;
-        },
-        error => console.log(error)
-        )
+      (response:any) => {
+        this.governorates = response;
+      },
+      error => console.log(error)
+    )
   }
 
   selectedGov(val: any){
@@ -174,9 +174,9 @@ export class EditPharmacyDataComponent {
     this.token = localStorage.getItem('token')
     this.service.getUserData(this.id, this.token).subscribe(
       (res: any) => {
-        this.userDate = res.data;
-        this.oldGov = res.data.Governorate
-        this.oldCity = res.data.city
+        this.userDate = res;
+        this.oldGov = res.Governorate
+        this.oldCity = res.city
         this.loadingDate = true;
         this.isLoading = false;
       },
@@ -186,6 +186,10 @@ export class EditPharmacyDataComponent {
 
   getPhone(num:any){
       this.phones.push(num)
+  }
+
+  generateImageUrl(image: string) {
+    return `http://localhost:8000/storage/${image}`;
   }
 
 }

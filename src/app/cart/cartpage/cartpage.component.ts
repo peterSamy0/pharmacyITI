@@ -46,10 +46,12 @@ export class CartpageComponent {
   }
 
   ngOnInit(): void {
+    
     this.getCartItems();
     this.calculateTotalPrice();
     this.isLogged = (localStorage.getItem('token')) ? true : false;
     this.token = localStorage.getItem('token');
+    this.getorder()
     // get authorization data from local storage and service
     sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
     
@@ -117,13 +119,13 @@ export class CartpageComponent {
   }
 
   submitOrder() {
-    this.orderid=this.ordernumber.length+1
+    // this.orderid=this.ordernumber.length+1
     let data = {
         client_id: this.clientId,
         pharmacy_id: this.pharmacyId,
         ordMedications: this.orderMedications,
         totalPrice: this.total,
-        orderid:this.orderid
+        // orderid:this.orderid
     };
 
     this.api.createResource(data, this.token).subscribe(
@@ -200,7 +202,8 @@ orderpaid() {
 }
 
 submitOrderPaid() {
-  this.orderid = this.ordernumber.length+1
+  this.orderid = this.ordernumber.length + 1
+
   let data = {
       client_id: this.clientId,
       pharmacy_id: this.pharmacyId,
@@ -240,6 +243,7 @@ submitOrderPaid() {
   getorder(){
     const headers = { 'Authorization': `Bearer ${this.token}` };
     const options = { headers: headers };
+    console.log(options)
     this.http.get('http://localhost:8000/api/orders', options).subscribe((res)=>{
       this.ordernumber=res
     })
@@ -266,6 +270,26 @@ submitOrderPaid() {
               text: 'Add items before placing an order.',
             });
       }
+
+    // if (this.cartItems.length > 0) {
+    //   Swal.fire({
+    //     icon: 'success',
+    //     title: 'Thanks for your purchase!',
+    //     text: 'The order will be delivered soon.',
+    //   }).then((result) => {
+    //     if (result.isConfirmed) {
+    //       this.submitOrder();
+    //       this.cartService.clearCart();
+    //       this.router.navigate(['/home']);
+    //     }
+    //   });
+    // } else {
+    //   Swal.fire({
+    //     icon: 'warning',
+    //     title: 'Your cart is empty.',
+    //     text: 'Add items before placing an order.',
+    //   });
+    // }
   }
 
   checkUser() {

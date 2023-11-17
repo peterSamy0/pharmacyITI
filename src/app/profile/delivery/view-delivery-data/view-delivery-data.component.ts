@@ -16,6 +16,10 @@ export class ViewDeliveryDataComponent {
   numOforders!: number;
   token: any;
   deliveryImage!: any;
+  isLoading: boolean = true;
+  isPending:boolean = false;
+   isApproved:boolean = false;
+   isRejected:boolean = false;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -24,13 +28,35 @@ export class ViewDeliveryDataComponent {
   ngOnInit(){
     this.id = this.activeRoute.snapshot.params['id'];
     this.token = localStorage.getItem('token')
-
-    this.profileService.getDelivery(this.id, this.token).subscribe((res: any) => {
-      this.deliveryId = res.data;
-      this.numOforders= this.deliveryId.orders.length;
-    });
-    
+    this.getDelliveryData()
   }
+
+
+  getDelliveryData(){
+    this.isLoading = true;
+    this.profileService.getDelivery(this.id, this.token).subscribe(
+    (res: any) => {
+      if(res == 'pending'){
+        this.isPending = true;
+        this.isRejected = false;
+        this.isApproved = false;
+        this.isLoading = false;
+      }else if(res == 'rejected'){
+        this.isRejected = true;
+        this.isPending = false;
+        this.isApproved = false;
+        this.isLoading = false;
+      }else{
+        this.isApproved = true;
+        this.isRejected = false;
+        this.isPending = false;
+        this.deliveryId = res.data;
+        this.numOforders= this.deliveryId.orders.length;
+        this.isLoading = false;
+      }
+    },
+      (error) => this.router.navigate(['not-found']));
+    }
   @ViewChild("myCheckbox")
   myCheckbox!: ElementRef;
 

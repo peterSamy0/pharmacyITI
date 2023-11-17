@@ -20,20 +20,18 @@ export class PharmacyDetailsComponent {
     private cartService:CartService, 
     private service: CarouselService,
     private activeRoute: ActivatedRoute
-    ){}
-
+  ){}
 
   ngOnInit() {
     this.id = this.activeRoute.snapshot.params['id']
     this.cartService.pharmacyId = this.activeRoute.snapshot.params['id'];
     this.getPharma();
-    this.getPHone();
   }
   getPharma() {
     this.service.getPharmaData(this.id).subscribe(
       (res:any) => {
-        this.pharmacy = res.data;
-        console.log(res)
+        this.pharmacy = res;
+        this.getPhone(res)
         // this.cartService.pharmacyId = this.pharmacy.pharmacy_id;
       },
       (error) => {
@@ -41,16 +39,11 @@ export class PharmacyDetailsComponent {
       }
     );    
   }
-  
-getPHone() {
-    if(this.pharmacy.pharmacy_phone[0] > 1){
-      this.phone = this.pharmacy.pharmacy_phone[0]['phone']
-      console.log('ok')
-      return this.phone;
+  getPhone(val:any){
+    if(val.pharmacy_phone > 0){
+      this.phone = val.pharmacy_phone[0]['phone']
     }
-    this.phone = 'not available now';
-    console.log('no')
-    return this.phone;
+    this.phone = 'Not Available Now'
   }
 }
 
