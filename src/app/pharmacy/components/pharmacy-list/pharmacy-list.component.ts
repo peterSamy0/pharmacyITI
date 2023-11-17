@@ -75,38 +75,44 @@ sendLocation(val: any) {
   });
 }
 
-getData() {
-  this.service.getGovernorates().subscribe(
-    (res) => {
-      this.data = res;
-    },
-    (error) => {
-      console.error('Error:', error);
-    }
-  );
-}
-// function to open or close the list of governorates 
-openList() {
-  this.showList = !this.showList;
-  if (this.showSubList === true) {this.showSubList = false}
-}
 
-// function to open the list of cities in governorates
-openSubList(val: any) {
-  this.dropService.openSubList(val)
-  this.cities = val.cities;
-  this.GovernorateName = val.governorate;
-  this.showList = !this.showList;
-  this.showSubList = !this.showSubList;
-}
-// function to close list of cities 
-closeSubList(){
-  this.showSubList = !this.showSubList
-  this.showList = !this.showList;
-}
+  
+  getData() {
+    this.service.getGovernorates().subscribe(
+      (res) => {
+        this.data = res;
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+  // function to open or close the list of governorates 
+  openList() {
+    this.showList = !this.showList;
+    if (this.showSubList === true) {this.showSubList = false}
+  }
 
-goToDetails(id:number){
-  this.router.navigate(["/pharmacy",id]);
-}
+  // function to open the list of cities in governorates
+  openSubList(val: any) {
+    this.dropService.openSubList(val)
+    this.cities = val.cities;
+    this.GovernorateName = val.governorate
+    this.showList = !this.showList;
+    this.showSubList = !this.showSubList
+  }
+  // function to close list of cities 
+  closeSubList(){
+    this.showSubList = !this.showSubList
+    this.showList = !this.showList;
+  }
+
+  
+
+
+
+  goToDetails(id:number){
+    this.router.navigate(["/pharmacy",id]);
+  }
 
 }

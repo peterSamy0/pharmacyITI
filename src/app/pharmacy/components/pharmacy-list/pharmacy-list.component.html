@@ -69,7 +69,7 @@
 		<div class="row mb-5" *ngIf="!isLoading">
 			<div class="col-md-4" *ngFor="let item of pharmArr | searchPharmacies:searchText | paginate
       : {
-          itemsPerPage: 8,
+          itemsPerPage: 9,
           currentPage: page,
           totalItems: totalLength
         } ">
@@ -79,8 +79,8 @@
 					<div class="card-body">
 						<h5 class="card-title text-center">{{item.pharmacy_name}}</h5>
 						<p class="card-text text-center" >Address: {{item.city}}, {{item.Governorate}}</p>
-            <p class="card-text text-center">Phone: 1234567</p>
-						<a class="btn btn-md" style="background-color: rgb(97, 152, 159); border: none"
+            <p class="card-text text-center">Phone: {{item.pharmacy_phone[0]}}</p>
+						<a class="btn btnView btn-md" 
             (click)="goToDetails(item.pharmacy_id)">View Products</a>
 					</div>
 				</div>

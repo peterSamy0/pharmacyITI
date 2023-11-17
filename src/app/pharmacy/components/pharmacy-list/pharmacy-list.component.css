@@ -66,6 +66,14 @@
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
   }
+  .btnView{
+    background-color: #419197 ;
+    color: #fff;
+  }
+  .btnView:hover{
+    background-color: #295c60 ;
+    color: #fff;
+  }
 
   @keyframes rotation {
   0% {

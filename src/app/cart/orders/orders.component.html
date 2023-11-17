@@ -71,7 +71,7 @@
                   </div>
                 </td>
                 <td>
-                    <span class="badge p-2"[ngClass]="'text-bg-'+badgeColor(order.status)">{{order.status}}</span>
+                    <span class="badge p-2"[ngClass]="'text-bg-'+badgeColor(order.status)">{{order.status | camelToRegular}}</span>
                 </td>
               </tr>
             </tbody>

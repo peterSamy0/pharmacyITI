@@ -17,6 +17,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DeliveryOrderComponent } from './delivery/delivery-order/delivery-order.component';
 import { SingleProductComponent } from './client/single-product/single-product.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { SingleProductComponent } from './client/single-product/single-product.c
     HttpClientModule,
     MatButtonToggleModule,
     NgxPaginationModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SharedModule
   ]
 })
 export class ProfileModule { }

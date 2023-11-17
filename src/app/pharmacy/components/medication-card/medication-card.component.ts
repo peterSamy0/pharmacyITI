@@ -16,12 +16,7 @@ export class MedicationCardComponent {
   pharmacyId:any;
   x:number=0;
   constructor(private service: CartService, private routeUrl:ActivatedRoute, private rouer: Router){
-    this.routeUrl.paramMap.subscribe(params => {
-      this.service.pharmacyId = Number(params.get("id"));
-      this.pharmacyId = Number(params.get("id"));
-      // console.log(this.pharmacyId);
-
-    });
+    
   }
   
   ngOnInit(){
@@ -34,6 +29,12 @@ export class MedicationCardComponent {
         this.medication.added = true;
       }
     }
+    this.routeUrl.paramMap.subscribe(params => {
+      this.service.pharmacyId = Number(params.get("id"));
+      this.pharmacyId = Number(params.get("id"));
+      // console.log(params,this.medication);
+
+    });
   }
 
   addToCart(val:any){

@@ -8,12 +8,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderComponent } from './order/order.component';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { DateTimeFormatPipe } from '../pipes/date-time-format.pipe';
+import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [
     CartpageComponent,
     OrdersComponent,
     OrderComponent,
-    DateTimeFormatPipe
+    DateTimeFormatPipe,
   ],
   imports: [
     CommonModule,
@@ -21,7 +22,8 @@ import { DateTimeFormatPipe } from '../pipes/date-time-format.pipe';
     RouterModule,
     NgxPaginationModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class CartModule { }
