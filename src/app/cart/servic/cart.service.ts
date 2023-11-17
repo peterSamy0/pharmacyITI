@@ -86,4 +86,6 @@ export class CartService {
     localStorage.removeItem('cart');
     // console.log('Cart after clearing:', this.cartItems);
   }
+
+ 
 }

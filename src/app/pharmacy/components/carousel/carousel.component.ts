@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from 'src/app/cart/servic/cart.service';
 
 @Component({
   selector: 'app-carousel',
@@ -22,10 +23,16 @@ export class CarouselComponent {
   allProduct :boolean = false;
   id !: number;
 
-  constructor(private service: CarouselService,private activeRoute: ActivatedRoute) {}
+  constructor(
+    private service: CarouselService,
+    private activeRoute: ActivatedRoute,
+    private router: Router,
+    ) {}
 
   ngOnInit() {
-   this.id = this.activeRoute.snapshot.params['id']
+   this.id = this.activeRoute.snapshot.params['id'];
+   const id = JSON.stringify(this.id)
+   sessionStorage.setItem('pharamcyID', id)
     this.getAllProducts();    
     setInterval(() => {
       if (this.service.isBtnClicked) {
@@ -38,11 +45,13 @@ export class CarouselComponent {
     this.isLoading = true;
     this.service.getPharmaData(this.id).subscribe(
       (res:any) => {
-        // console.log(res);
-        this.products = res.data.medication;
-        // console.log(this.products)
+        this.products = res.medication;
         this.getCategories();
         this.initializeActiveIndices();
+        const medicatons = JSON.stringify(this.products)
+        sessionStorage.setItem('medications', medicatons)
+        this.service.medicatonsOfPharamcy(res.medication)
+        console.log(res)
         this.isLoading = false;
       },
       (error) => {
@@ -56,7 +65,6 @@ export class CarouselComponent {
       this.categories.push(this.products[i].medicine_category)
     }
     this.categories = Array.from(new Set(this.categories)); // Convert set to array
-    // console.log(this.categories)
   }
 
   initializeActiveIndices() {
@@ -82,8 +90,10 @@ export class CarouselComponent {
   getActiveIndex(Category: string): number {
     return this.activeIndices[Category];
   }
-  diplay(){
-    this.allProduct = true;
+
+  diplay(param: string){
+    this.router.navigate([`pharmacyCategory/${param}`]);
+    console.log(param)
   }
 
 }

@@ -15,9 +15,16 @@ export class MedicationCardComponent {
   cartArr: any = [];
   pharmacyId:any;
   x:number=0;
-  constructor(private service: CartService, private routeUrl:ActivatedRoute, private rouer: Router){
-    
-  }
+  constructor(
+    private service: CartService, 
+    private routeUrl:ActivatedRoute, 
+    private rouer: Router
+    ){
+      this.routeUrl.paramMap.subscribe(params => {
+        this.service.pharmacyId = Number(params.get("id"));
+        this.pharmacyId = Number(params.get("id"));
+      });
+    }
   
   ngOnInit(){
     // get data from cart

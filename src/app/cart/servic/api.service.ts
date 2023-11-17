@@ -13,7 +13,7 @@ export class ApiService {
 
   createResource(data: any, token:any): Observable<any> {
    
-    const headers = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
+    const headers = { 'Authorization': `Bearer ${token}`};
     const options = { headers: headers };
     return this.http.post(this.apiUrl, data, options);
   }
