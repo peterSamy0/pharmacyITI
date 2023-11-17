@@ -9,6 +9,7 @@ export class CarouselService {
   inputValurOfSearch: string = '';
   searchResult: object[] = [];
   isBtnClicked:boolean = false;
+  public medications: any;
   constructor(private http: HttpClient) { }
 
   
@@ -20,5 +21,9 @@ export class CarouselService {
     return this.http.get(`http://127.0.0.1:8000/api/pharmacies/${val}`)
   }
 
+  medicatonsOfPharamcy(data:any){
+    this.medications = data;
+    console.log(data)
+  }
 
 }

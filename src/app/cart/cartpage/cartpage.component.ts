@@ -18,7 +18,7 @@ export class CartpageComponent {
   cartItems: Array<any> = [];
   total: number = 0; // Initialize the total price to 0
   clientId!: Number;
-  pharmacyId!: Number;
+  // pharmacyId!: Number;
   dividedTotal: number = 0;
   isLogged: boolean = false;
   credentials: any;
@@ -32,6 +32,7 @@ export class CartpageComponent {
   orderid:any;
   ordernumber:any;
   token:any;
+  pharamcyID:any;
   constructor(
     private cartService: CartService,
     private api: ApiService,
@@ -46,7 +47,7 @@ export class CartpageComponent {
   }
 
   ngOnInit(): void {
-    
+    this.pharamcyID = JSON.parse(sessionStorage.getItem('pharamcyID') || '')
     this.getCartItems();
     this.calculateTotalPrice();
     this.isLogged = (localStorage.getItem('token')) ? true : false;
@@ -60,7 +61,7 @@ export class CartpageComponent {
       localStorage.getItem('role') &&
       localStorage.getItem('role') == 'client'
     ) {
-      this.pharmacyId = this.cartService.pharmacyId;
+      // this.pharmacyId = this.cartService.pharmacyId;
       this.clientId = Number(localStorage.getItem('_id'));
     }
 
@@ -119,51 +120,51 @@ export class CartpageComponent {
   }
 
   submitOrder() {
-    // this.orderid=this.ordernumber.length+1
+    this.orderid=this.ordernumber.length+1
     let data = {
         client_id: this.clientId,
-        pharmacy_id: this.pharmacyId,
+        pharmacy_id: this.pharamcyID,
         ordMedications: this.orderMedications,
         totalPrice: this.total,
-        // orderid:this.orderid
+        orderid:this.orderid
     };
-
+console.log(data)
     this.api.createResource(data, this.token).subscribe(
         (response: any) => {
-            console.log(response);
-            Swal.fire({
-                  icon: 'success',
-                  title: 'Thanks for your purchase!',
-                  text: 'The order will be delivered soon.',
-                })
-            if (response && response.order_id) {
-                // Capture the order ID from the API response
-                const orderId = response.order_id;
-                console.log('Order ID:', orderId);
+          Swal.fire({
+            icon: 'success',
+            title: 'Thanks for your purchase!',
+            text: 'The order will be delivered soon.',
+          }).then(
+            () =>  {
+              this.router.navigate(['/home']);
+           
+          this.cartService.clearCart();
 
-                // Include orderId in the data for additional processing
-                const extendedData = {
-                    ...data,
-                    orderId: orderId,
-                };
-
-                // Log data to console
-                console.log('Received data:', extendedData);
-
-                // Store order ID and total price in session flash data
-                sessionStorage.setItem('order_id', orderId);
-                sessionStorage.setItem('total_price', this.total.toString());
-
-                // Do additional processing or navigate to a success page with extendedData
-                // this.router.navigate(['/order-success', extendedData]);
-            }
-            sessionStorage.removeItem('cart');
-        },
+          if (response && response.order_id) {
+              // Capture the order ID from the API response
+              const orderId = response.order_id;
+              // Include orderId in the data for additional processing
+              const extendedData = {
+                  ...data,
+                  orderId: orderId,
+              };
+              
+              // Store order ID and total price in session flash data
+              sessionStorage.setItem('order_id', orderId);
+              sessionStorage.setItem('total_price', this.total.toString());
+              // Do additional processing or navigate to a success page with extendedData
+              // this.router.navigate(['/order-success', extendedData]);
+          }
+          sessionStorage.removeItem('cart');
+            })
+        }
+        ,
         (error: any) => {
             console.error(error);
             // Handle error, show an alert, or navigate to an error page
         }
-    );
+      );
 }
 
 orderpaid() {
@@ -206,7 +207,7 @@ submitOrderPaid() {
 
   let data = {
       client_id: this.clientId,
-      pharmacy_id: this.pharmacyId,
+      pharmacy_id: this.pharamcyID,
       ordMedications: this.orderMedications,
       totalPrice: this.dividedTotal,
       orderid:this.orderid
@@ -243,7 +244,6 @@ submitOrderPaid() {
   getorder(){
     const headers = { 'Authorization': `Bearer ${this.token}` };
     const options = { headers: headers };
-    console.log(options)
     this.http.get('http://localhost:8000/api/orders', options).subscribe((res)=>{
       this.ordernumber=res
     })
@@ -252,7 +252,6 @@ submitOrderPaid() {
 
   order() {
     this.orderMedications = [];
-
     this.cartItems.forEach((medication) => {
       let medId = medication.id;
       let amount = medication.quantity;
@@ -261,8 +260,6 @@ submitOrderPaid() {
     });
     if(this.cartItems.length > 0){
         this.submitOrder();
-        this.cartService.clearCart();
-        this.router.navigate(['/home']);
       }else{
         Swal.fire({
               icon: 'warning',
@@ -270,26 +267,6 @@ submitOrderPaid() {
               text: 'Add items before placing an order.',
             });
       }
-
-    // if (this.cartItems.length > 0) {
-    //   Swal.fire({
-    //     icon: 'success',
-    //     title: 'Thanks for your purchase!',
-    //     text: 'The order will be delivered soon.',
-    //   }).then((result) => {
-    //     if (result.isConfirmed) {
-    //       this.submitOrder();
-    //       this.cartService.clearCart();
-    //       this.router.navigate(['/home']);
-    //     }
-    //   });
-    // } else {
-    //   Swal.fire({
-    //     icon: 'warning',
-    //     title: 'Your cart is empty.',
-    //     text: 'Add items before placing an order.',
-    //   });
-    // }
   }
 
   checkUser() {

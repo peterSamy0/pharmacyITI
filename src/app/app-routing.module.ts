@@ -135,6 +135,10 @@ const routes: Routes = [
     component: AddMedicationComponent
   },
   {
+    path : "pharmacyCategory/:cat",
+    component: CategoryComponent
+  },
+  {
     path :'payment',
     component : PaymentComponent
   },
