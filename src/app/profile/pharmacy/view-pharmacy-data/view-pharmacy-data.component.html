@@ -7,18 +7,18 @@
             <div class="card-body">
               <div class="d-flex flex-column align-items-center text-center">
                 <img
-                  [src]="generateImageUrl(pharmaId.pharmacy_image)"
+                  [src]="generateImageUrl(pharmaData.pharmacy_image)"
                   alt="Admin"
                   class="rounded-circle"
                   width="150"
                 />
                 <div class="mt-3">
-                  <h4>{{ pharmaId.pharmacy_name }}</h4>
+                  <h4>{{ pharmaData.pharmacy_name }}</h4>
                   <p class="text-secondary mb-1">
-                    {{ pharmaId["pharmacy_email"] }}
+                    {{ pharmaData["pharmacy_email"] }}
                   </p>
                   <p class="text-muted font-size-sm">
-                    {{ pharmaId.city }}, {{ pharmaId.Governorate }}
+                    {{ pharmaData.city }}, {{ pharmaData.Governorate }}
                   </p>
                 </div>
               </div>
@@ -33,7 +33,7 @@
                   <h6 class="mb-0">pharmacy Name</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  {{ pharmaId["pharmacy_name"] }}
+                  {{ pharmaData["pharmacy_name"] }}
                 </div>
               </div>
               <hr />
@@ -42,7 +42,7 @@
                   <h6 class="mb-0">Email</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  {{ pharmaId["pharmacy_email"] }}
+                  {{ pharmaData["pharmacy_email"] }}
                 </div>
               </div>
               <hr />
@@ -51,7 +51,7 @@
                   <h6 class="mb-0">Licence Number</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  {{ pharmaId.licence_number }}
+                  {{ pharmaData.licence_number }}
                 </div>
               </div>
               <hr />
@@ -69,8 +69,8 @@
                   <h6 class="mb-0">Address</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  {{ pharmaId.street }}, {{ pharmaId.city }},
-                  {{ pharmaId.Governorate }}
+                  {{ pharmaData.street }}, {{ pharmaData.city }},
+                  {{ pharmaData.Governorate }}
                 </div>
               </div>
               <hr />
@@ -79,7 +79,7 @@
                   <h6 class="mb-0">Opening Time</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  {{ pharmaId.opening }}
+                  {{ pharmaData.opening }}
                 </div>
               </div>
               <hr />
@@ -88,7 +88,7 @@
                   <h6 class="mb-0">Closing Time</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  {{ pharmaId.closing }}
+                  {{ pharmaData.closing }}
                 </div>
               </div>
               <hr />
@@ -118,7 +118,7 @@
                 <div class="col-sm-9 text-secondary">
                   <small *ngIf="numOfproducts == 0">
                     You have {{ numOfproducts }} products, You can
-                    <a class="ms-1" href="#"> Add Products </a>
+                    <a class="ms-1 cursor" (click)="gotoAddProducts()"> Add Products </a>
                   </small>
                   <small *ngIf="numOfproducts > 0">
                     {{ numOfproducts }}
@@ -151,7 +151,7 @@
               <hr />
               <div class="row">
                 <div class="col-sm-12">
-                  <a class="btn btnEdit" target="__blank" (click)="edit(id)"
+                  <a class="btn btnEdit" target="__blank" (click)="edit()"
                     >Edit</a
                   >
                   <a
@@ -197,7 +197,7 @@
                           </button>
                           <button
                             type="button"
-                            (click)="deleteAccount(id)"
+                            (click)="deleteAccount()"
                             class="btn btn-danger"
                             data-bs-dismiss="modal"
 

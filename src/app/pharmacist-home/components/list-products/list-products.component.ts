@@ -44,7 +44,7 @@ export class ListProductsComponent {
   getMedicationList() {
     this.medicationService.getPharmacyMedication(+this.id, this.token).subscribe(
       (res: any) => {
-        this.products = res.data.medication;
+        this.products = res.medication;
       },
       error => this.router.navigate(['not-found'])
     );

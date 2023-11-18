@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProfileService } from '../../services/profile.service';
 import { faTruckLoading } from '@fortawesome/free-solid-svg-icons';
 import { AnonymousSubject } from 'rxjs/internal/Subject';
+import { UrlService } from 'src/app/services/url.service';
 
 
 @Component({
@@ -41,7 +42,12 @@ export class EditPharmacyDataComponent {
   token: any;
   isLoading: boolean = true;
 
-  constructor(private activeRoute: ActivatedRoute, private service: ProfileService, private router:Router) {
+  constructor(
+    private activeRoute: ActivatedRoute, 
+    private service: ProfileService, 
+    private router:Router,
+    private urlService: UrlService
+    ) {
     this.updatePharmaForm = new FormGroup({
       pharmaName: new FormControl('', [Validators.required]),
       pharmaPhone: new FormControl('', [Validators.required]),
@@ -64,6 +70,22 @@ export class EditPharmacyDataComponent {
 
   pharmaId: any = this.pharmacies[this.activeRoute.snapshot.params['id'] - 1];
 
+  getUserData(){
+    this.isLoading = true;
+    this.token = localStorage.getItem('token')
+    this.urlService.getPharmacy(this.id, this.token).subscribe(
+      (res: any) => {
+        this.userDate = res.data;
+        this.oldGov = res.data.Governorate
+        this.oldCity = res.data.city
+        this.loadingDate = true;
+        this.isLoading = false;
+      },
+      error => this.router.navigate(['not-found'])
+    )
+  }
+
+  // function to update pharamcy data and form validation 
   update() {
     let pharmaName =this.updatePharmaForm.controls['pharmaName'].value;
     let pharmaEmail = this.updatePharmaForm.controls['pharmaEmail'].value;
@@ -106,7 +128,7 @@ export class EditPharmacyDataComponent {
       pharmaLicense&&
       pharmaName
     ) {
-      this.service.updatePharmacy(body, this.id, this.token).subscribe(
+      this.urlService.updatePharmacyData(body, this.id, this.token).subscribe(
         (response:any)  => {
           this.router.navigate([`/pharmacy-profile/${this.id}`]);
         },
@@ -119,10 +141,10 @@ export class EditPharmacyDataComponent {
       this.service.errorAlert()
     }
   }
-
   
+  // get governorates
   getGovernorates(){
-    this.service.getGovernorates().subscribe(
+    this.urlService.getGovernorates().subscribe(
       (response:any) => {
         this.governorates = response;
       },
@@ -130,11 +152,11 @@ export class EditPharmacyDataComponent {
     )
   }
 
+  // get cities of selected governorate
   selectedGov(val: any){
     this.isCity = true
     this.governorateID = val;
-
-    this.service.selectedGov(val)
+    this.urlService.selectedGov(val)
       .subscribe(
         (response:any) => {
           this.cities = response.data;
@@ -143,12 +165,14 @@ export class EditPharmacyDataComponent {
       )
   }
 
+  // get id of selected city
   selectedCity(val: any){
     this.cityID = val;
   }
 
+  // get name of days 
   getDays(){
-    this.service.getDays()
+    this.urlService.getDays()
       .subscribe(
         (response:any) => {
           this.days = response
@@ -156,6 +180,8 @@ export class EditPharmacyDataComponent {
         error => console.log(error)
       )
   }
+
+  // get id of selected day
   chooseDay(val:any){
     const selectedDay = this.days.data.find((day: any) => day.id == val);
     const isExists = this.daysArr.includes(+val);
@@ -164,30 +190,19 @@ export class EditPharmacyDataComponent {
       this.daysArr.push(+val);
     }
   }
+
+  // remove selected city if user want
   removeDay(val:any){
     this.selectedDays = this.selectedDays.filter( (item:any) => item.id != val)
     this.daysArr = this.daysArr.filter( (item:any) => item.id != val)
   }
 
-  getUserData(){
-    this.isLoading = true;
-    this.token = localStorage.getItem('token')
-    this.service.getUserData(this.id, this.token).subscribe(
-      (res: any) => {
-        this.userDate = res;
-        this.oldGov = res.Governorate
-        this.oldCity = res.city
-        this.loadingDate = true;
-        this.isLoading = false;
-      },
-      error => this.router.navigate(['not-found'])
-    )
-  }
-
+  // get pharamcy phone number if exists
   getPhone(num:any){
       this.phones.push(num)
   }
 
+  // get image from back end
   generateImageUrl(image: string) {
     return `http://localhost:8000/storage/${image}`;
   }

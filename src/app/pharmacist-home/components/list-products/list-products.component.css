@@ -1,4 +1,4 @@
-table td,
+/* table td,
 table th {
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -9,6 +9,24 @@ table th {
 tbody td {
   font-weight: 500;
   color: rgb(73, 99, 102);
+} */
+th{
+  background-color: #1f494d;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+  text-transform: capitalize;
+}
+td{
+  text-align: center;
+  vertical-align: middle;
+}
+tr{
+  border-right: gray;
+}
+
+.page-title{
+  color: #1a3f42;
 }
 
 .my-pagination /deep/ .ngx-pagination .current {

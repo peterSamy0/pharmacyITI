@@ -1,4 +1,4 @@
-<div class="d-flex container">
+<div class="d-flex container my-5">
     <img src="{{productDetails.medicine_image}}" alt="{{productDetails.medicine_name}}" class="w-50">
     <div>
         <div class="container">
@@ -27,12 +27,10 @@
                         <td>Category</td>
                         <td>
                             <span>
-                                <a routerLink="/pharmacy/{{pharmacyId}}/category/{{productDetails.medicine_category}}" style="color:var(--navColor);">{{productDetails.medicine_category}}</a>
+                                <a routerLink="/pharmacyCategory/{{productDetails.medicine_category}}" style="color:var(--navColor);">{{productDetails.medicine_category}}</a>
                             </span>
                         </td>
                     </tr>
-                    
-                  
                 </tbody>
               </table>
         </div>

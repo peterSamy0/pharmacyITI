@@ -8,16 +8,16 @@
             <div class="card-body">
               <div class="d-flex flex-column align-items-center text-center">
                 <img
-                [src]="generateImageUrl(deliveryId.clientImage)"
+                [src]="generateImageUrl(deliveryData.clientImage)"
                   alt="Admin"
                   class="rounded-circle"
                   width="150"deliveryImage
                 />
                 <div class="mt-3">
-                  <h4>{{ deliveryId.name }}</h4>
-                  <p class="text-secondary mb-1">{{ deliveryId.email }}</p>
+                  <h4>{{ deliveryData.name }}</h4>
+                  <p class="text-secondary mb-1">{{ deliveryData.email }}</p>
                   <p class="text-muted font-size-sm">
-                    {{ deliveryId.city }}, {{ deliveryId.Governorate }}
+                    {{ deliveryData.city }}, {{ deliveryData.Governorate }}
                   </p>
                 </div>
               </div>
@@ -32,7 +32,7 @@
                   <h6 class="mb-0">Name</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  {{ deliveryId.name }}
+                  {{ deliveryData.name }}
                 </div>
               </div>
               <hr />
@@ -40,14 +40,14 @@
                 <div class="col-sm-3">
                   <h6 class="mb-0">Email</h6>
                 </div>
-                <div class="col-sm-9 text-secondary">{{ deliveryId.email }}</div>
+                <div class="col-sm-9 text-secondary">{{ deliveryData.email }}</div>
               </div>
               <hr />
               <div class="row">
                 <div class="col-sm-3">
                   <h6 class="mb-0">Phone</h6>
                 </div>
-                <div class="col-sm-9 text-secondary">{{deliveryId.delivery_phone[0]['phone']}}</div>
+                <div class="col-sm-9 text-secondary">{{deliveryData.delivery_phone[0]['phone']}}</div>
               </div>
               <hr />
               <div class="row">
@@ -55,7 +55,7 @@
                   <h6 class="mb-0">Address</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  {{ deliveryId.city }}, {{ deliveryId.Governorate }}
+                  {{ deliveryData.city }}, {{ deliveryData.Governorate }}
                 </div>
               </div>
               <hr />
@@ -65,7 +65,7 @@
                   <h6 class="mb-0">National Id</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  {{ deliveryId.national_ID }}
+                  {{ deliveryData.national_ID }}
                 </div>
               </div>
               <hr />
@@ -101,7 +101,7 @@
                       #myCheckbox
                       role="switch"
                       id="flexSwitchCheckChecked"
-                      [checked]="deliveryId.available"
+                      [checked]="deliveryData.available"
                     />
                   </div>
                 </div>
@@ -112,7 +112,7 @@
                   <a
                     class="btn btnEdit"
                     target="__blank"
-                    (click)="edit(deliveryId.id)"
+                    (click)="edit(deliveryData.id)"
                     >Edit</a
                   >
                   <a
@@ -157,7 +157,7 @@
                           </button>
                           <button
                             type="button"
-                            (click)="deleteAccount(deliveryId.id)"
+                            (click)="deleteAccount()"
                             class="btn btn-danger"
                             data-bs-dismiss="modal"
                           >

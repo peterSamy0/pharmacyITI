@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../../services/profile.service';
 import Swal from 'sweetalert2';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-view-delivery-data',
@@ -10,31 +11,35 @@ import Swal from 'sweetalert2';
 })
 export class ViewDeliveryDataComponent {
 
-  deliveryId!:any;
-  id!: number;
+  deliveryData!:any;
+  deliveryID!: number;
   orders!: any;
   numOforders!: number;
   token: any;
   deliveryImage!: any;
   isLoading: boolean = true;
   isPending:boolean = false;
-   isApproved:boolean = false;
-   isRejected:boolean = false;
+  isApproved:boolean = false;
+  isRejected:boolean = false;
+  userID!: number;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private urlService: UrlService
   ) {}
   ngOnInit(){
-    this.id = this.activeRoute.snapshot.params['id'];
+    this.deliveryID = this.activeRoute.snapshot.params['id'];
+    this.userID = JSON.parse(localStorage.getItem('user_id') || '');
     this.token = localStorage.getItem('token')
-    this.getDelliveryData()
+    this.getDeliveryData()
   }
 
 
-  getDelliveryData(){
+  // get client data to show inside the input field
+  getDeliveryData(){
     this.isLoading = true;
-    this.profileService.getDelivery(this.id, this.token).subscribe(
+    this.urlService.getDeliveryData(this.deliveryID, this.token).subscribe(
     (res: any) => {
       if(res == 'pending'){
         this.isPending = true;
@@ -50,8 +55,8 @@ export class ViewDeliveryDataComponent {
         this.isApproved = true;
         this.isRejected = false;
         this.isPending = false;
-        this.deliveryId = res.data;
-        this.numOforders= this.deliveryId.orders.length;
+        this.deliveryData = res.data;
+        this.numOforders= this.deliveryData.orders.length;
         this.isLoading = false;
       }
     },
@@ -60,30 +65,34 @@ export class ViewDeliveryDataComponent {
   @ViewChild("myCheckbox")
   myCheckbox!: ElementRef;
 
-    changeBtn() {
-        const checkboxValue = this.myCheckbox.nativeElement.checked;
-        console.log('Checkbox value:', checkboxValue);
-        if(checkboxValue == false){
-          this.deliveryId.available= 0;
-          console.log( this.deliveryId.available)
-        }
-        else{
-          this.deliveryId.available= 1;
-          console.log( this.deliveryId.available)
-        }
-    }
+  // change delivery status
+  changeBtn() {
+      const checkboxValue = this.myCheckbox.nativeElement.checked;
+      console.log('Checkbox value:', checkboxValue);
+      if(checkboxValue == false){
+        this.deliveryData.available= 0;
+        console.log( this.deliveryData.available)
+      }
+      else{
+        this.deliveryData.available= 1;
+        console.log( this.deliveryData.available)
+      }
+  }
   
+  // go to edit page
   edit(id : number){
     this.router.navigate(['edit-delivery-data',id])  
   }
   
-  deleteAccount(id: number) {
-    this.profileService.deleteDelivery(id, this.token).subscribe(
+  // delete user account
+  deleteAccount() {
+    this.urlService.deleteUser(this.userID, this.token).subscribe(
       (res: any) => {
         localStorage.removeItem('token');
         localStorage.removeItem('role');
         localStorage.removeItem('user_id');
         localStorage.removeItem('_id');
+        localStorage.removeItem('image');
         window.location.href = '/';
       },
       error => {
@@ -96,7 +105,9 @@ export class ViewDeliveryDataComponent {
         }
     );
   }
+
   generateImageUrl(image: string) {
     return `http://localhost:8000/storage/${image}`;
   }
+
 }

@@ -5,6 +5,7 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/cart/servic/cart.service';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-carousel',
@@ -27,6 +28,7 @@ export class CarouselComponent {
     private service: CarouselService,
     private activeRoute: ActivatedRoute,
     private router: Router,
+    private urlService: UrlService
     ) {}
 
   ngOnInit() {
@@ -43,7 +45,7 @@ export class CarouselComponent {
   
   getAllProducts() {
     this.isLoading = true;
-    this.service.getPharmaData(this.id).subscribe(
+    this.urlService.getPharmacyData(this.id).subscribe(
       (res:any) => {
         this.products = res.medication;
         this.getCategories();
@@ -51,7 +53,6 @@ export class CarouselComponent {
         const medicatons = JSON.stringify(this.products)
         sessionStorage.setItem('medications', medicatons)
         this.service.medicatonsOfPharamcy(res.medication)
-        console.log(res)
         this.isLoading = false;
       },
       (error) => {
@@ -83,7 +84,6 @@ export class CarouselComponent {
   }
 
   getCategoryProducts(Category: string): any[] {
-
     return this.products.filter((prod: any) => prod.medicine_category === Category);
   }
 
@@ -93,7 +93,6 @@ export class CarouselComponent {
 
   diplay(param: string){
     this.router.navigate([`pharmacyCategory/${param}`]);
-    console.log(param)
   }
-
+  
 }

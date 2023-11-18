@@ -13,7 +13,7 @@ export class MedicationCardComponent {
   @Input() medication!: any;
   role: string | null = 'client';
   cartArr: any = [];
-  pharmacyId:any;
+  pharmacyID:any;
   x:number=0;
   constructor(
     private service: CartService, 
@@ -21,8 +21,9 @@ export class MedicationCardComponent {
     private rouer: Router
     ){
       this.routeUrl.paramMap.subscribe(params => {
-        this.service.pharmacyId = Number(params.get("id"));
-        this.pharmacyId = Number(params.get("id"));
+        // this.service.pharmacyId = Number(params.get("id"));
+        // this.pharmacyId = Number(params.get("id"));
+        this.pharmacyID = JSON.parse(sessionStorage.getItem('pharamcyID')|| '')
       });
     }
   
@@ -38,16 +39,13 @@ export class MedicationCardComponent {
     }
     this.routeUrl.paramMap.subscribe(params => {
       this.service.pharmacyId = Number(params.get("id"));
-      this.pharmacyId = Number(params.get("id"));
-      // console.log(params,this.medication);
-
     });
   }
 
   addToCart(val:any){
     val.added = true;
     this.service.addItemToCart(val);
-    this.service.pharmacyId = this.pharmacyId;
+    this.service.pharmacyId = this.pharmacyID;
   }
 
   removeFromCart(val:any){

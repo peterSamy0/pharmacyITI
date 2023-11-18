@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SweetAlertIcon } from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { ProfileService } from '../../services/profile.service';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-edit-client-data',
@@ -24,8 +25,8 @@ export class EditClientDataComponent {
   cities: any;
   governorates: any;
   cityID!: number;
-  id!: number;
-  clientId!: any;
+  clientID!: number;
+  clientData!: any;
   clientName!: any;
   clientEmail!: any;
   oldGov!: any;
@@ -38,7 +39,7 @@ export class EditClientDataComponent {
     private activeRoute: ActivatedRoute,
     private router: Router,
     private profileService: ProfileService,
-    private http: HttpClient
+    private urlService: UrlService
   ) {
     this.updateClientForm = new FormGroup({
       clientFullName: new FormControl('', [Validators.required]),
@@ -52,25 +53,19 @@ export class EditClientDataComponent {
   }
 
   ngOnInit() {
-    this.id = this.activeRoute.snapshot.params['id'];
+    this.token = localStorage.getItem('token');
+    this.clientID = this.activeRoute.snapshot.params['id'];
     this.getUserData();
     this.getGovernorates();
-
-    // this.getCurrentGoverId();
   }
 
-  // clientId: any = clientsData[this.activeRoute.snapshot.params['id'] - 1];
+  // get client data to show inside the input field
   getUserData() {
-    this.token = localStorage.getItem('token');
-    this.getClientData()
-  }
-
-  getClientData(){
-    this.profileService.getClient(this.id, this.token).subscribe(
+    this.urlService.getClientData(this.clientID, this.token).subscribe(
       (res: any) => {
-        this.clientId = res.data;
-        this.clientName = this.clientId.client_name;
-        this.clientEmail = this.clientId.client_email;
+        this.clientData = res.data;
+        this.clientName = this.clientData.client_name;
+        this.clientEmail = this.clientData.client_email;
         this.oldGov = res.data.Governorate;
         this.oldCity = res.data.city;
         this.getGovernorates()
@@ -78,8 +73,9 @@ export class EditClientDataComponent {
       error => this.router.navigate(['not-found'])
     );
   }
+
+  // update client data 
   update() {
-    console.log(this.updateClientForm.value);
     let clientFullName = this.updateClientForm.controls['clientFullName'].value;
     let clientEmail = this.updateClientForm.controls['clientEmail'].value;
     let clientPhone = this.updateClientForm.controls['clientPhone'].value;
@@ -94,7 +90,7 @@ export class EditClientDataComponent {
       user: {
         name: clientFullName,
         email: clientEmail,
-        password: clientPass || this.clientId.client_password,
+        password: clientPass || this.clientData.client_password,
         phone: clientPhone
       },
       client: {
@@ -112,9 +108,9 @@ export class EditClientDataComponent {
       clientEmail &&
       clientFullName
     ) {
-      this.profileService.updateClient(this.id, body, this.token).subscribe(
+      this.urlService.updateClientData(this.clientID, body, this.token).subscribe(
         (response: any) => {
-          this.router.navigate([`/client-profile/${this.id}`]);
+          this.router.navigate([`/client-profile/${this.clientID}`]);
         },
         (error) => {
           console.log(error);
@@ -126,8 +122,9 @@ export class EditClientDataComponent {
     }
   }
 
+  // get all governorates
   getGovernorates() {
-    this.profileService.getGovernorates().subscribe(
+    this.urlService.getGovernorates().subscribe(
       (response: any) => {
         this.governorates = response;
         this.oldGovId = this.governorates.find(
@@ -143,11 +140,11 @@ export class EditClientDataComponent {
     );
   }
 
+  // function to get all the cities of selected governorates
   selectedGov(val: any) {
     this.isCity = true;
     this.governorateID = val;
-
-    this.profileService.selectedGov(val).subscribe(
+    this.urlService.selectedGov(val).subscribe(
       (response: any) => {
         this.cities = response.data;
       },
@@ -155,6 +152,7 @@ export class EditClientDataComponent {
     );
   }
 
+  // get all cities 
   selectedCity(val: any) {
     this.cityID = val;
   }

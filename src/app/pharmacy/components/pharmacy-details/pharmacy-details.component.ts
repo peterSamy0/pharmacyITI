@@ -4,6 +4,7 @@ import { ServiceService } from '../../../shared/services/service.service';
 import { CartService } from 'src/app/cart/servic/cart.service';
 import { Pharmacy } from 'src/app/interface/pharmacy';
 import { CarouselService } from '../../services/carousel.service';
+import { UrlService } from 'src/app/services/url.service';
 @Component({
   selector: 'app-pharmacy-details',
   templateUrl: './pharmacy-details.component.html',
@@ -15,11 +16,9 @@ export class PharmacyDetailsComponent {
   id!:number;
   phone:any;
   constructor(
-    private routeUrl:ActivatedRoute, 
-    private fetchPharmacy:ServiceService, 
     private cartService:CartService, 
-    private service: CarouselService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private urlService: UrlService
   ){}
 
   ngOnInit() {
@@ -27,18 +26,21 @@ export class PharmacyDetailsComponent {
     this.cartService.pharmacyId = this.activeRoute.snapshot.params['id'];
     this.getPharma();
   }
+
+  // function to get pharamcy information
   getPharma() {
-    this.service.getPharmaData(this.id).subscribe(
+    this.urlService.getPharmacyData(this.id).subscribe(
       (res:any) => {
         this.pharmacy = res;
         this.getPhone(res)
-        // this.cartService.pharmacyId = this.pharmacy.pharmacy_id;
       },
       (error) => {
         console.log(error)
       }
     );    
   }
+
+  // function to get phone number of the pharamcy if it exists or if it does not exists show not available
   getPhone(val:any){
     if(val.pharmacy_phone > 0){
       this.phone = val.pharmacy_phone[0]['phone']
