@@ -33,6 +33,7 @@ export class CartpageComponent {
   ordernumber:any;
   token:any;
   pharamcyID:any;
+  image: any;
   constructor(
     private cartService: CartService,
     private api: ApiService,
@@ -73,6 +74,7 @@ export class CartpageComponent {
 
     // Optional: Save the updated cart items in sessionStorage
     sessionStorage.setItem('cart', JSON.stringify(this.cartItems));
+    // console.log(this.cartItems);
   }
 
   decreaseQuantity(item: CartItem) {
@@ -311,6 +313,9 @@ submitOrderPaid() {
           })
         }
       );
+  }
+  generateImageUrl(val:any) {
+    return `http://localhost:8000/storage/${val}`;
   }
 
   

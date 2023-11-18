@@ -56,5 +56,8 @@ export class MedicationCardComponent {
   goToDetails(val:any){
     this.rouer.navigate([`product/${val}`])
   }
+  generateImageUrl(val:any) {
+    return `http://localhost:8000/storage/${val}`;
+  }
 }
 

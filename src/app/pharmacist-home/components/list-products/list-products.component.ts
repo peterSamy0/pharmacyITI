@@ -67,6 +67,9 @@ export class ListProductsComponent {
   goToAddProduct(){
     this.router.navigate([this.addProductUrl])
   }
+  generateImageUrl(val:any) {
+    return `http://localhost:8000/storage/${val}`;
+  }
   
   
 }
