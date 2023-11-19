@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from 'src/app/interface/order';
 import { ServiceService } from '../../../shared/services/service.service';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-view-one-order',
@@ -14,33 +15,44 @@ export class ViewOneOrderComponent {
   city:string|any;
   token: any;
   clientID: any
-  pharmacyId = localStorage.getItem("_id");
+  pharmacyId = JSON.parse(localStorage.getItem("_id") || '');
 
-  constructor(private routeUrl:ActivatedRoute, private fetchOrders:ServiceService){
+  constructor(
+    private routeUrl:ActivatedRoute, 
+    private urlSevice: UrlService
+    ){
     this.routeUrl.paramMap.subscribe(params => this.orderId = params.get("id"));
-    
-    this.fetchOrders.getOrders()
-    .subscribe((data:any)=>{
-      let order = Object.values(data).find((ele:any)=>{
-        return ele.id == this.orderId;
-      })
-      this.thisOrder = order;
-      console.log(order);
-    });
   }
+
   ngOnInit(){
     this.token = localStorage.getItem('token');
     this.clientID = localStorage.getItem('_id');
-    this.fetchOrders.getPharmacy(this.pharmacyId)
-    .subscribe(data=>{
-        let pharmacy:any = Object.values(data);
-        this.city = pharmacy[0].city;
-        console.log(this.city);
+    this.getOrder();
+    this.getPharmacyData();
+  }
+
+  // get orders of pharmacy
+  getOrder(){
+    this.urlSevice.getOrders(this.token).subscribe(
+      (data:any)=>{
+        let order = Object.values(data).find((ele:any)=>{
+          return ele.id == this.orderId;
+        })
+        this.thisOrder = order;
     });
   }
-  print(){
-    console.log(this.orderId, this.thisOrder);
+
+  // get pharmacy data
+  getPharmacyData(){
+    this.urlSevice.getPharmacy(this.pharmacyId, this.token).subscribe(
+      (data:any) => {
+        let pharmacy:any = Object.values(data.data);
+        this.city = pharmacy[11];
+        console.log(pharmacy);
+    });
   }
+
+  // showing status
   badgeColor(status:string) {
     switch (status) {
       case 'pending':
