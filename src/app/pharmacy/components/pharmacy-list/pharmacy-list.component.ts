@@ -12,6 +12,7 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { UrlService } from 'src/app/services/url.service';
 @Component({
   selector: 'app-pharmacy-list',
   templateUrl: './pharmacy-list.component.html',
@@ -38,7 +39,8 @@ export class PharmacyListComponent{
   isLoading:boolean = true;
   constructor(private service:ServiceService, private httpClient: HttpClient,
     private dropService: DropDownService,
-    private router:Router
+    private router:Router,
+    private urlService: UrlService
    ){
  
   }
@@ -48,10 +50,10 @@ export class PharmacyListComponent{
    this.getData();
   }
   
-
+// function to ger all pharamcies data
  getPharamciesData() {
   this.isLoading = true;
-  this.service.getPharmacies().subscribe((res: any) => {
+  this.urlService.getPharmaciesData().subscribe((res: any) => {
     this.pharmArr = res.data;
     this.originalPharmArr = [...this.pharmArr]; // Save a copy of the original data
     this.totalLength = this.pharmArr.length;
@@ -62,7 +64,7 @@ export class PharmacyListComponent{
   });
 }
 
-
+// function to show the selected location 
 sendLocation(val: any) {
   this.dropService.sendLocation(val);
   this.location = this.GovernorateName + ", " + val;
@@ -75,44 +77,41 @@ sendLocation(val: any) {
   });
 }
 
+// function to get all gavernorates 
+getData() {
+  this.urlService.getGovernorates().subscribe(
+    (res) => {
+      this.data = res;
+    },
+    (error) => {
+      console.error('Error:', error);
+    }
+  );
+}
 
-  
-  getData() {
-    this.service.getGovernorates().subscribe(
-      (res) => {
-        this.data = res;
-      },
-      (error) => {
-        console.error('Error:', error);
-      }
-    );
-  }
-  // function to open or close the list of governorates 
-  openList() {
-    this.showList = !this.showList;
-    if (this.showSubList === true) {this.showSubList = false}
-  }
+// function to open or close the list of governorates 
+openList() {
+  this.showList = !this.showList;
+  if (this.showSubList === true) {this.showSubList = false}
+}
 
-  // function to open the list of cities in governorates
-  openSubList(val: any) {
-    this.dropService.openSubList(val)
-    this.cities = val.cities;
-    this.GovernorateName = val.governorate
-    this.showList = !this.showList;
-    this.showSubList = !this.showSubList
-  }
-  // function to close list of cities 
-  closeSubList(){
-    this.showSubList = !this.showSubList
-    this.showList = !this.showList;
-  }
+// function to open the list of cities in governorates
+openSubList(val: any) {
+  this.dropService.openSubList(val)
+  this.cities = val.cities;
+  this.GovernorateName = val.governorate;
+  this.showList = !this.showList;
+  this.showSubList = !this.showSubList;
+}
 
-  
-
-
-
-  goToDetails(id:number){
-    this.router.navigate(["/pharmacy",id]);
-  }
+// function to close list of cities 
+closeSubList(){
+  this.showSubList = !this.showSubList
+  this.showList = !this.showList;
+}
+// move to the details page
+goToDetails(id:number){
+  this.router.navigate(["/pharmacy",id]);
+}
 
 }

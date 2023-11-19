@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import pharmaciesData from '../../../../assets/json/pharmcies.json';
 import Swal from 'sweetalert2';
-import {ProfileService} from '../../services/profile.service';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-view-pharmacy-data',
@@ -10,8 +9,8 @@ import {ProfileService} from '../../services/profile.service';
   styleUrls: ['./view-pharmacy-data.component.css'],
 })
 export class ViewPharmacyDataComponent {
-  pharmaId!: any;
-  id!: number;
+  pharmaData!: any;
+  pharmayID!: number;
   orders!: any;
   pharmacyOrders!: Array<any>;
   daysOff!: Array<any>;
@@ -23,16 +22,26 @@ export class ViewPharmacyDataComponent {
   isPending:boolean = false;
   isApproved:boolean = false;
   isRejected:boolean = false;
+  userID!: number;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private profileService: ProfileService
+    private urlService: UrlService
   ) {}
   ngOnInit() {
     this.isLoading = true;
-    this.id = this.activeRoute.snapshot.params['id'];
+    this.pharmayID = this.activeRoute.snapshot.params['id'];
+    this.userID = JSON.parse(localStorage.getItem('user_id') || '')
     this.token = localStorage.getItem('token');
-    this.profileService.getPharmacy(this.id, this.token).subscribe(
+
+    this.getPharmacyData();
+    this.getPharmacyOrders();
+    
+  }
+
+  // function to get pharamcy data
+  getPharmacyData(){
+    this.urlService.getPharmacy(this.pharmayID, this.token).subscribe(
       (res: any) => {
         if(res == 'pending'){
           this.isPending = true;
@@ -48,36 +57,36 @@ export class ViewPharmacyDataComponent {
           this.isApproved = true;
           this.isRejected = false;
           this.isPending = false;
-          this.pharmaId = res;
-          this.numOfproducts = this.pharmaId.medication.length;
-          this.daysOff = this.pharmaId.daysOff;
+          this.pharmaData = res.data;
+          this.numOfproducts = this.pharmaData.medication.length;
+          this.daysOff = this.pharmaData.daysOff;
           this.isLoading = false;
           this.PHone();
         }
       },
       (error) => this.router.navigate(['not-found'])
     );
-
-    this.getPharmacyOrders();
-    
   }
 
+  // pharamcy to get the orders of this pharamcy
   getPharmacyOrders() {
-    this.profileService.getOrders(this.token).subscribe((res: any) => {
+    this.urlService.getOrders(this.token).subscribe((res: any) => {
       this.orders = res.filter(
         (order: any) =>
-          order['pharmacy name'] === this.pharmaId['pharmacy_name']
+          order['pharmacy name'] === this.pharmaData['pharmacy_name']
       );
       this.numOforders = this.orders.length;
     });
   }
 
-  edit(id: number) {
-    this.router.navigate(['edit-pharmacy-data', id]);
+  // go to edit page
+  edit() {
+    this.router.navigate(['edit-pharmacy-data', this.pharmayID]);
   }
 
-  deleteAccount(id: number) {
-    this.profileService.deletePharmacy(id, this.token).subscribe(
+  // delete user accout
+  deleteAccount() {
+    this.urlService.deleteUser(this.userID, this.token).subscribe(
       (res: any) => {
         localStorage.removeItem('token');
         localStorage.removeItem('role');
@@ -96,19 +105,29 @@ export class ViewPharmacyDataComponent {
       }
     );
   }
+
+  // go to list of products
   gotoProducts(){
-    this.router.navigate([`listproduct/${this.id}`])
+    this.router.navigate([`listproduct/${this.pharmayID}`])
   }
+
+  // get image from backend
   generateImageUrl(image: string) {
     return `http://localhost:8000/storage/${image}`;
   }
   
+  // get phone if exists
   PHone() {
-    if(this.pharmaId.pharmacy_phone[0]['phone']){
-      this.phone = this.pharmaId.pharmacy_phone[0]['phone']
+    if(this.pharmaData.pharmacy_phone[0]['phone']){
+      this.phone = this.pharmaData.pharmacy_phone[0]['phone']
       return this.phone;
     }
     this.phone = 'not available now';
     return this.phone;
+  }
+
+  // go to list of products page
+  gotoAddProducts(){
+    this.router.navigate([`addProduct/${this.pharmayID}`])
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../../services/profile.service';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
+import { UrlService } from 'src/app/services/url.service';
 
 
 @Component({
@@ -22,20 +23,25 @@ export class ViewClientDataComponent {
   userImage:any;
   phone:any;
   image:any;
+  userID: any;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
     private profileService: ProfileService,
+    private urlService: UrlService
   ) {}
+
   ngOnInit(){
     this.id = this.activeRoute.snapshot.params['id'];
+    this.userID = localStorage.getItem('user_id')
     this.token = localStorage.getItem('token');
     this.image = localStorage.getItem('image');
     this.getClientData()
   }
   
+  // function to get client data 
   getClientData(){
-    this.profileService.getClient(this.id, this.token).subscribe(
+    this.urlService.getClientData(this.id, this.token).subscribe(
       (res: any) => {
           this.clientId = res.data;
           this.getPHone();
@@ -53,12 +59,14 @@ export class ViewClientDataComponent {
     error => this.router.navigate(['not-found']));
   }
 
+  // go to edit page
   edit(id : number){
     this.router.navigate(['edit-personal-data',id])  
   }
 
-  deleteAccount(id: number) {
-    this.profileService.deleteClient(id, this.token).subscribe(
+  // function to delete accout
+  deleteAccount() {
+    this.urlService.deleteUser(this.userID , this.token).subscribe(
       (res: any) => {
         localStorage.removeItem('token');
         localStorage.removeItem('role');
@@ -76,10 +84,13 @@ export class ViewClientDataComponent {
         }
       );
   }
+
+  // function to get the image of the pharamcy
   generateImageUrl() {
     return `http://localhost:8000/storage/${this.image}`;
   }
 
+  // function to get phone number of the pharamcy if it exists or if it does not exists show not available
   getPHone() {
     if(this.clientId.client_phone[0]['phone']){
       this.phone = this.clientId.client_phone[0]['phone']

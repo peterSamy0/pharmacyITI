@@ -6,7 +6,7 @@
             <div class="card-body">
               <div class="d-flex flex-column align-items-center text-center">
                 <img
-                  [src]="generateImageUrl(deliveryId.clientImage)"
+                  [src]="generateImageUrl(deliveryData.clientImage)"
                   alt="Admin"
                   class="rounded-circle"
                   width="150"
@@ -15,7 +15,6 @@
                   <h4>{{ deliveryName }}</h4>
                   <p class="text-secondary mb-1">{{ deliveryEmail }}</p>
                   <p class="text-muted font-size-sm">
-                    <!-- {{ deliveryId.city }}, {{ deliveryId.Governorate }} -->
                     {{oldCity}}, {{oldGov}} 
                   </p>
                 </div>
@@ -39,7 +38,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="deliveryId.name"
+                    [(ngModel)]="deliveryData.name"
                     formControlName="deliveryFullName"
                   />
                   <div
@@ -71,7 +70,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="deliveryId.email"
+                    [(ngModel)]="deliveryData.email"
                     formControlName="deliveryEmail"
   
                   />
@@ -104,7 +103,7 @@
                   <input
                     type="number"
                     class="form-control"
-                    [(ngModel)]="deliveryId.delivery_phone[0]['phone']"
+                    [(ngModel)]="deliveryData.delivery_phone[0]['phone']"
                     formControlName="deliveryPhone"
   
                   />
@@ -150,7 +149,7 @@
                 </div> -->
                 <div class="col-sm-9 text-secondary">
                   <div class="form-check form-switch">
-                      <input class="form-check-input"  (change)="changeBtn()"  type="checkbox" #myCheckbox role="switch" id="flexSwitchCheckChecked" [checked]="deliveryId.available">
+                      <input class="form-check-input"  (change)="changeBtn()"  type="checkbox" #myCheckbox role="switch" id="flexSwitchCheckChecked" [checked]="deliveryData.available">
                   </div>
               </div>
               </div>
@@ -166,7 +165,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="deliveryId.city"
+                    [(ngModel)]="deliveryData.city"
                     formControlName="deliveryCity"
   
                   />
@@ -193,7 +192,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    [(ngModel)]="deliveryId.Governorate"
+                    [(ngModel)]="deliveryData.Governorate"
                     formControlName="deliveryGovern"
   
                   />
@@ -256,7 +255,7 @@
                   <input
                     type="password"
                     class="form-control"
-                    [(ngModel)]="deliveryId.userPass"
+                    [(ngModel)]="deliveryData.userPass"
                     formControlName="deliveryPass"
   
                   />

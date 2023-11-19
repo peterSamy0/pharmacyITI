@@ -16,34 +16,7 @@ export class SelectDeliveryComponent {
   faCheck :any = faCheck;
   faXmark :any = faXmark;
   isSelected:boolean = false;
-  // Deliveries: any = [];
-  // city: string | null = '';
-  // constructor(private deliverService: ServiceService, private route: ActivatedRoute){}
 
-  // ngOnInit(){
-  //   this.getDeliveryData();
-  //   this.city = this.route.snapshot.paramMap.get("region");
-  //   console.log(this.city)
-  // }
-
-  // getDeliveryData() {
-  //   this.deliverService.getDeliveryData().subscribe(
-  //     (res) => {
-  //       if (Array.isArray(res)) {
-  //         this.Deliveries = res.filter((item) => item.region === this.city);
-  //       } else {
-  //         console.log('Invalid response format. Expected an array.');
-  //       }
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
-
-  // select(id:any){
-  //   (!val.isSelected || null) ? val.isSelected = true : val.isSelected = false
-  // }
   select(id: any) {
     this.isSelected = true;
     const headers = {
@@ -69,11 +42,14 @@ export class SelectDeliveryComponent {
   city: string | null = '';
   orderId:any;
 
-  constructor(private deliveryService : DeliveryServiceService ,private route: ActivatedRoute, private http:HttpClient){
+  constructor(
+    private deliveryService : DeliveryServiceService ,
+    private route: ActivatedRoute, 
+    private http:HttpClient
+    ){
     
     this.city = this.route.snapshot.paramMap.get("region");
     this.orderId = this.route.snapshot.paramMap.get("id");
-    // console.log(this.city)
   };
   ngOnInit(){
     this.getDeliveryLists();
@@ -82,15 +58,9 @@ export class SelectDeliveryComponent {
   getDeliveryLists(){
     this.deliveryService.getDelivery().subscribe((res:any) => {
       this.deliveries = res.data;
-      // console.log(this.deliveries);
-
       this.nearDeliveries = this.deliveries.filter( (el) => {
         return el.city == this.city});
-      // console.log(this.nearDeliveries);
     });
   }
-  // test(){
-  //   console.log(this.nearDeliveries);
 
-  // }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarouselService } from '../../services/carousel.service';
 import { ActivatedRoute } from '@angular/router';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-search',
@@ -15,7 +16,11 @@ export class SearchComponent {
   categories: any = [];
   result:any = [];
   id!:number;
-  constructor(private service: CarouselService,private activeRoute: ActivatedRoute) {}
+  constructor(
+    private service: CarouselService,
+    private activeRoute: ActivatedRoute,
+    private urlService: UrlService
+    ) {}
 
   ngOnInit() {
     this.id = this.activeRoute.snapshot.params['id']
@@ -23,7 +28,7 @@ export class SearchComponent {
   }
 
   getAllProducts() {
-    this.service.getPharmaData(this.id).subscribe(
+    this.urlService.getPharmacyData(this.id).subscribe(
       (res:any) => {
         this.products = res.data.medication;
         // console.log(this.products.data.medication)

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CartService } from 'src/app/cart/servic/cart.service';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-single-product',
@@ -15,7 +16,12 @@ export class SingleProductComponent {
   medication:any;
   cartArr:any = [];
   incompleteOrder:boolean = false;
-  constructor(private http:HttpClient, private activeRoute:ActivatedRoute,private service: CartService,){}
+  constructor(
+    private http:HttpClient, 
+    private activeRoute:ActivatedRoute,
+    private service: CartService,
+    private urlService: UrlService
+    ){}
     
   ngOnInit(){
     // get product id
@@ -39,23 +45,23 @@ export class SingleProductComponent {
         // console.log(this.cartArr,producatFound);
       }
       else{
-        console.log("not found")
         // get product data
-        this.http.get(`http://localhost:8000/api/pharmacies/${this.pharmacyId}`).subscribe(
-          (data:any) => {this.productDetails = data.medication.find((ele:any)=>{return ele.id==this.productId})
-          console.log(this.productDetails)
-        console.log(data)
-
+        this.urlService.getPharmacyData(this.pharmacyId).subscribe(
+          (data:any) => {
+            this.productDetails = data.medication.find(
+              (ele:any)=>{return ele.id==this.productId}
+            )
         }
     )
       }
     }else{
       console.log("not found")
       // get product data
-      this.http.get(`http://localhost:8000/api/pharmacies/${this.pharmacyId}`).subscribe(
-        (data:any) => {this.productDetails = data.medication.find((ele:any)=>{return ele.id==this.productId})
-        console.log(this.productDetails)
-        console.log(data)
+      this.urlService.getPharmacyData(this.pharmacyId).subscribe(
+        (data:any) => {
+          this.productDetails = data.medication.find(
+            (ele:any)=>{return ele.id==this.productId}
+        )
       }
   )
     }
