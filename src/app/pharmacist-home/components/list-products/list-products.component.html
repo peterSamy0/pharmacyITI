@@ -34,8 +34,11 @@
                 <td>{{ product.medicine_name }}</td>
                 <td>{{ product.medicine_price }}</td>
                 <td>{{ product.medicine_category }}</td>
-                <td>
+                <!-- <td>
                   <img src="assets/img/medicine.jpg" alt="" width="30px" height="30px" />
+                </td> -->
+                <td>
+                  <img [src]="generateImageUrl(product.medicine_image)" alt="" width="30px" height="30px" />
                 </td>
                 <td>
                   <a routerLink="/editProduct/{{product.pharmacyMedication_id}}" class="fs-3">

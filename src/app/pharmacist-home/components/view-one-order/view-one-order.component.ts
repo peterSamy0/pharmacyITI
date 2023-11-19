@@ -67,4 +67,7 @@ export class ViewOneOrderComponent {
         return 'black';
     }
   }
+  generateImageUrl(val:any) {
+    return `http://localhost:8000/storage/${val}`;
+  }
 }
