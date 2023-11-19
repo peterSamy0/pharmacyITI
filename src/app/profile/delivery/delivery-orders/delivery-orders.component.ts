@@ -24,7 +24,8 @@ export class DeliveryOrdersComponent {
   ngOnInit() {
     this.apiService.allOrders().subscribe(data=>{
       this.allOrders=Object.values(data);
-      this.isLoading = false;});
+      this.isLoading = false;
+    });
   }
   badgeColor(status:string) {
     switch (status) {
