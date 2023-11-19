@@ -48,7 +48,7 @@ export class ViewOneOrderComponent {
       (data:any) => {
         let pharmacy:any = Object.values(data.data);
         this.city = pharmacy[11];
-        console.log(pharmacy);
+        console.log(this.city);
     });
   }
 
@@ -66,5 +66,8 @@ export class ViewOneOrderComponent {
       default:
         return 'black';
     }
+  }
+  getroute(val:any){
+    console.log(`viewOrders/${val.id}/selectDelivery/${this.city}`)
   }
 }

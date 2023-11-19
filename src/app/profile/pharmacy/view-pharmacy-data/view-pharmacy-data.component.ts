@@ -8,7 +8,9 @@ import { UrlService } from 'src/app/services/url.service';
   templateUrl: './view-pharmacy-data.component.html',
   styleUrls: ['./view-pharmacy-data.component.css'],
 })
+
 export class ViewPharmacyDataComponent {
+
   pharmaData!: any;
   pharmayID!: number;
   orders!: any;
@@ -23,6 +25,7 @@ export class ViewPharmacyDataComponent {
   isApproved:boolean = false;
   isRejected:boolean = false;
   userID!: number;
+
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,

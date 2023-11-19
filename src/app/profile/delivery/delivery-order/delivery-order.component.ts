@@ -2,19 +2,21 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-delivery-order',
   templateUrl: './delivery-order.component.html',
   styleUrls: ['./delivery-order.component.css']
 })
+
 export class DeliveryOrderComponent {
   orderId:any;
   orderData:any;
   faCircle=faCircle;
   constructor(private routeUrl: ActivatedRoute, private http:HttpClient){
     this.routeUrl.paramMap.subscribe(params => this.orderId = Number(params.get("Oid")));
-
   }
+
   ngOnInit() {
     // git order data from db
     this.http.get(`http://localhost:8000/api/orders/${this.orderId}`,{

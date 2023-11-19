@@ -7,12 +7,15 @@ import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPenSquare } from '@fortawesome/free-solid-svg-icons';
 import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { UrlService } from 'src/app/services/url.service';
+
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
   styleUrls: ['./list-products.component.css'],
 })
+
 export class ListProductsComponent {
   faDelete = faTrash;
   faAdd = faAdd;
@@ -22,8 +25,10 @@ export class ListProductsComponent {
   id:any;
   addProductUrl!: string;
   token:any;
-  faPenSquare=faPenSquare;
-  faFolderOpen=faFolderOpen;
+  faPenSquare = faPenSquare;
+  faFolderOpen = faFolderOpen;
+  faClock = faClock;
+  response: string = '';
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -44,6 +49,10 @@ export class ListProductsComponent {
   getMedicationList() {
     this.urlService.getPharmacyMedication(+this.id, this.token).subscribe(
       (res: any) => {
+        if(res == 'pending'){
+          this.response = 'pending'
+          console.log( this.response)
+        }
         this.products = res.data.medication;
       },
       error => this.router.navigate(['not-found'])

@@ -226,7 +226,7 @@
                 <div class="col-sm-9 text-secondary">
                   <select class="form-select mt-2" name="governorates" #selectGov (change)="selectedGov(selectGov.value)">
                     <option value="">Select Governorate</option>
-                    <option *ngFor="let governorate of governorates" [value]="governorate.governorate_id">{{ governorate.governorate_name }}</option>
+                    <option *ngFor="let governorate of governorates" [value]="governorate.id">{{ governorate.governorate }}</option>
                   </select>
                 </div>
               </div>

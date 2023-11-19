@@ -221,19 +221,19 @@
   <span class="loader"></span>
 </div>
 
-
 <div class="container my-5" *ngIf="isPending">
   <div class="d-flex justify-content-center flex-column align-items-center" >
-    <h1>Your application is under review, please Wait! </h1>
+    <h1 class="text-center text-capitalize"  style="text-align: center;">Your application is under review, please Wait! </h1>
     <img src="assets/img/waiting.jpg" width="25%" alt="">
-    <p>the response will be as soon as possible, thank you for joining PHARMA</p>
+    <p class="text-center">You Could Add Products <a routerLink="/addProduct/{{pharmayID}}">NOW</a> </p>
+    <p class="text-center" style="text-align: center;">the response will be as soon as possible, thank you for joining PHARMA</p>
   </div>
 </div>
 
 <div class="container my-5" *ngIf="isRejected">
   <div class="d-flex justify-content-center flex-column align-items-center" >
-    <h1 class="text-center text-danger mb-3">Your application is rejected, please review your data and try again! </h1>
+    <h1 class="text-center text-danger mb-3  text-capitalize">Your application is rejected, please review your data and try again! </h1>
     <img src="assets/img/rejected.png" class="my-5" width="25%" alt="">
-    <p class="text-center mt3-3">Your Data was wrong, if you have any question you can <a routerLink="/contact-us">contact us!</a> thank you</p>
+    <p class="text-center mt3-3" >Your Data was wrong, if you have any question you can <a routerLink="/contact-us">contact us!</a> thank you</p>
   </div>
 </div>

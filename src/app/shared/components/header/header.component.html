@@ -53,18 +53,15 @@
           <a class="nav-link" routerLink="signUp" *ngIf="!role">Register</a>
         </li>
         <li class="nav-item align-self-center ms-1 border border-light">
-          <a class="nav-link" routerLink="/signin" *ngIf="!role">Login</a>
+          <a class="nav-link" routerLink="/signin" *ngIf="!role">Log in</a>
         </li>
-
-        
-
         <li class="nav-item dropdown" *ngIf="role">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img [src]="generateImageUrl()" width="40px" length="40px" alt="" class="rounded-5">
           </a>
           <ul class="dropdown-menu" style="left:-90px;">
             <li class="nav-link cursor text-black" (click)="goToProfile()">Profile</li>
-            <li class="nav-link  text-black cursor" (click)="logOut()" *ngIf="role">LogOut</li>
+            <li class="nav-link  text-black cursor" (click)="logOut()" *ngIf="role">Log out</li>
           </ul>
         </li>
 

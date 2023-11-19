@@ -58,8 +58,7 @@
                 </td>
                 <td>
                     <button class="btn btn-outline-success " (click)="select(delivery.id)" *ngIf="delivery.available && !isSelected">select</button> 
-                    <button class="btn btn-outline-success " *ngIf="isSelected">select</button> 
-                    
+                    <button class="btn btn-outline-warning disabled" *ngIf="delivery.available && isSelected">select</button> 
                 </td>
               </tr>
             </tbody>
