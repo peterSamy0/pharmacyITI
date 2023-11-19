@@ -31,11 +31,6 @@
     background-size: 80px;
    
 }
-@media(max-width: 990px){s
-  .card{
-    margin: 20px;
-  }
-} 
 h4{
   color: rgb(60, 99, 86);
   font-weight: bold;
@@ -49,7 +44,7 @@ h3{
     background-image: url("https://img.freepik.com/free-vector/clean-medical-background_53876-97927.jpg?size=626&ext=jpg&ga=GA1.1.388227192.1694264810&semt=sph");
   
     /* Full height */
-    height: 100vh;
+    height: 80vh;
     position: relative;
     /* Center and scale the image nicely */
     background-position: center;
@@ -71,3 +66,8 @@ h5{
   a{
     text-decoration: none;
   }
+@media(max-width: 990px){
+  .card{
+    margin: 20px;
+  }
+} 
