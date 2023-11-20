@@ -207,7 +207,33 @@
                       </div>
                     </div>
                   </div>
-
+                  <!-- -------------------------address--------------------------- -->
+                  <div class="col-12">
+                    <label class="form-label">Detailed Adress</label>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter detailed address"
+                        formControlName="address"
+                      />
+                      <div
+                        *ngIf="
+                          signupForm.controls['address'].touched &&
+                          signupForm.controls['address'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="signupForm.controls['address'].errors?.['required']"
+                        >
+                          please, enter your address
+                        </small>
+                       
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ------------------------end address------------------------ -->
                   <!--------------------------- upload file ------------------------->
                 <div class="col-12">
                   <label class="form-label" for="customFile"

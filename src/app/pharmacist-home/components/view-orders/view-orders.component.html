@@ -28,7 +28,7 @@
 
             <th scope="row">{{i+1}}</th>
             <td>{{order.client_name}}</td>
-            <td>{{order.pharmacy_address}}</td>
+            <td>{{order.address}}</td>
             <td>{{order.created_at | date:'yyyy-MM-dd HH:mm'}}</td>
             <td>
                 <a class="btn btn-primary me-3 text-white fw-bold" routerLink="/viewOrders/{{order.id}}">

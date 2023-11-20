@@ -19,6 +19,7 @@ export class SignupAsClientComponent {
   emailFail: boolean = false;
   passFail: boolean = false;
   userFullNameFail: boolean = false;
+  addressFail: boolean = false;  
   notAllDataEntered: boolean = false;
   userGovernFail: boolean = false;
   isCity: boolean = false;
@@ -46,6 +47,7 @@ export class SignupAsClientComponent {
       userFullName: new FormControl('', [Validators.required,
       Validators.pattern(/(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/)]),
       userCity: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required]),
       userGovern: new FormControl('', [Validators.required]),
       userPass: new FormControl('', [Validators.required,Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]),
       // userGender: new FormControl('', [Validators.required]),

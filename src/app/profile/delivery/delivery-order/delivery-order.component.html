@@ -33,7 +33,12 @@
                     <td>{{orderData.client_name}}</td>
                 </tr>
                 <tr>
-                    <td>no. of items in the order</td>
+                    <td>client adress</td>
+                    <td></td>
+                    <td>{{orderData.address}}</td>
+                </tr>
+                <tr>
+                    <td>No. of items in the order</td>
                     <td></td>
                     <td>{{orderData.orderMedications.length}}</td>
                 </tr>
@@ -43,6 +48,11 @@
                     <td>
                         <fa-icon [ngClass]="'px-2 text-'+badgeColor(orderData.status)" [icon]="faCircle"></fa-icon>
                     <span [ngClass]="'text-'+badgeColor(orderData.status)" >{{orderData.status | camelToRegular}}</span></td>
+                </tr>
+                <tr>
+                    <td>Order price</td>
+                    <td></td>
+                    <td>{{orderData.totalprice}} L.E.</td>
                 </tr>
               
             </tbody>
