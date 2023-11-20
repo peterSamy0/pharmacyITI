@@ -1,21 +1,17 @@
-<h1 class="text-uppercase  text-center my-5 page-title">
-    orders table
-</h1>
+<div *ngIf="!isLoading">
+  <h1 class="text-uppercase  text-center my-5 page-title">
+        orders table
+  </h1>
 
-<!--  -->
-<!-- spinner loading -->
-<div class="d-flex align-items-center justify-content-center spinner" style="height: 50vh;" *ngIf="isLoading">
-  <span class="loader"></span>
-</div>
-
-<!-- <app-loading ></app-loading> -->
-<!--  -->
-<div class="w-75 m-auto " *ngIf="!isLoading">
-    <table class="table">
+  <!--  -->
+  <div class="m-auto" style="width:90%; min-height: 70vh;" >
+    <div  style="overflow-x: auto;">
+      <table class="table  table-responsive">
         <thead>
           <tr>
             <th scope="col">Order no</th>
             <th scope="col">Client name</th>
+            <th scope="col">address</th>
             <th scope="col">Order time</th>
             <th scope="col">View order</th>
             <th scope="col">Status</th>
@@ -28,30 +24,37 @@
               itemsPerPage: 10,
               currentPage: page,
               totalItems: totalLenght
-            } ">
+            }, let i = index ">
 
-            <th scope="row">{{order.id}}</th>
+            <th scope="row">{{i+1}}</th>
             <td>{{order.client_name}}</td>
+            <td>{{order.pharmacy_address}}</td>
             <td>{{order.created_at | date:'yyyy-MM-dd HH:mm'}}</td>
             <td>
-                <a class="btn btn-primary me-3 text-white fw-bold" routerLink="/viewOrders/{{order.id}}">View Order</a>
+                <a class="btn btn-primary me-3 text-white fw-bold" routerLink="/viewOrders/{{order.id}}">
+                  <fa-icon [icon]="faEye"></fa-icon>
+                </a>
             </td>
             <td class="text-start">
               <fa-icon [ngClass]="'px-2 text-'+badgeColor(order.status )" [icon]="faCircle"></fa-icon>
               <span [ngClass]="'text-'+badgeColor(order.status)" >{{order.status|camelToRegular}}</span>
             </td>
             <td>
-              <span *ngIf="!order.payment" class="badge bg-danger p-2">cash on delivery</span>
-              <span *ngIf="order.payment" class="badge bg-success p-2">credit card</span>
+              <span *ngIf="!order.payment" class="badge bg-danger p-2">Cash</span>
+              <span *ngIf="order.payment" class="badge bg-success p-2">Credit Card</span>
             </td>
           </tr>
         </tbody>
       </table>
-
-      <pagination-controls
-        class="my-pagination text-center"
-        (pageChange)="page = $event"
-        >
-      </pagination-controls>
+    </div>
+    <pagination-controls
+      class="my-pagination text-center"
+      (pageChange)="page = $event"
+      >
+    </pagination-controls>
+  </div>
 </div>
 
+<!--  -->
+<!-- spinner loading -->
+<app-spinner *ngIf="isLoading"></app-spinner>
