@@ -72,5 +72,17 @@
   .cartbtn{
     border-radius: 0px 0.375rem 0.375rem 0px;
   }
+  .btnCart{
+    background-color: #419197 ;
+    color: #fff;
+  }
+  .btnCart:hover{
+    background-color: #295c60 ;
+    color: #fff;
+  }
+  .btnAdded{
+    background-color: #324b4c;
+    color: #fff;
+  }
   
   

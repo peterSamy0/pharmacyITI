@@ -1,4 +1,4 @@
-<div class="d-flex container my-5">
+<!-- <div class="d-flex container my-5">
     <img src="{{productDetails.medicine_image}}" alt="{{productDetails.medicine_name}}" class="w-50">
     <div>
         <div class="container">
@@ -33,7 +33,7 @@
                     </tr>
                 </tbody>
               </table>
-        </div>
+        </div> -->
         <!-- <div>
             product name : {{productDetails.medicine_name}}
         </div>
@@ -47,17 +47,17 @@
                         <a routerLink="/pharmacy/{{pharmacyId}}/category/{{productDetails.medicine_category}}" style="color:var(--navColor);">{{productDetails.medicine_category}}</a>
                       </span>
         </div> -->
-        <button class="btn bg-nav text-white w-50 my-3 cartbtn"
+        <!-- <button class="btn bg-nav text-white w-50 my-3 cartbtn"
          (click)="addToCart(productDetails)"
           *ngIf="!productDetails.added"
            data-bs-toggle="modal"
             data-bs-target="#exampleModal"
              >add to cart</button>
-        <button class="btn bg-success text-white w-50 my-3 cartbtn" *ngIf="productDetails.added" (click)="removeFromCart(productDetails)"> added </button>
+        <button class="btn bg-success text-white w-50 my-3 cartbtn" *ngIf="productDetails.added" (click)="removeFromCart(productDetails)"> added </button> -->
         <!-- <button (click)="test()">test</button> -->
         <!-- alert to tell that there is incomplete order -->
         <!-- Modal -->
-        <div *ngIf="incompleteOrder" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div *ngIf="incompleteOrder" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -75,4 +75,57 @@
             </div>
         </div>
     </div>
+</div> -->
+
+
+
+<div class="container">
+<div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center mt-5 mb-5">
+    <!-- <div class="col-4">
+</div> -->
+    <div class="col">
+      <div class="card w-100" >
+        <img src="{{productDetails.medicine_image}}" alt="{{productDetails.medicine_name}}" class="w-100">
+
+        <div class="card-body">
+          <h5 class="card-title">Product Name: {{productDetails.medicine_name}} </h5>
+          <h6>Describtion: </h6> 
+          <p>  {{productDetails.medicine_decription}}</p>
+          <h6>Price: {{productDetails.medicine_price}} L.E.</h6>
+          <h6>Category: <a routerLink="/pharmacyCategory/{{productDetails.medicine_category}}" style="color:var(--navColor);">{{productDetails.medicine_category}}</a>
+          </h6>
+                        
+        </div>
+        <div class="card-text text-center">
+        <button class="btn bg-nav text-white btnDet w-50 my-3 cartbtn"
+        (click)="addToCart(productDetails)"
+         *ngIf="!productDetails.added"
+          data-bs-toggle="modal"
+           data-bs-target="#exampleModal"
+            >add to cart</button>
+       <button class="btn btnAdded text-white w-50 my-3 cartbtn" *ngIf="productDetails.added" (click)="removeFromCart(productDetails)"> added </button>
+       </div>
+       
+       <div *ngIf="incompleteOrder" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Incomplete order !</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            you have incomplete order in other pharmacy, please complete it and retry here
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" routerLink="home">go to home</button>
+            </div>
+        </div>
+        </div>
+    </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+

@@ -23,3 +23,34 @@
 .table tr td:nth-child(1){
   background-color:#5fb8be;
 }
+
+
+h5{
+  /* text-align: center; */
+  color:  rgb(73, 99, 102);
+  font-size:1.5rem;
+  font-weight: bold;
+}
+p{
+  color:  rgb(73, 99, 102);
+  line-height:20px;
+
+}
+h6{
+  color:  rgb(73, 99, 102);
+  font-size:1.3rem;
+  font-weight: bold;
+
+}
+.btnDet{
+  background-color: #419197 ;
+  color: #fff;
+}
+.btnDet:hover{
+  background-color: #295c60 ;
+  color: #fff;
+}
+.btnAdded{
+  background-color: #324b4c;
+  color: #fff;
+}

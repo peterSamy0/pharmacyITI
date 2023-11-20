@@ -31,14 +31,14 @@
       >View detailes</a
     >
     <button
-      class="btn bg-nav text-white w-50 m-0 cartbtn"
+      class="btn bg-nav text-white btnCart w-50 m-0 cartbtn"
       (click)="addToCart(medication)"
       *ngIf="!medication.added"
     >
       add to cart
     </button>
     <button
-      class="btn bg-success text-white w-50 m-0 cartbtn"
+      class="btn btnAdded text-white w-50 m-0 cartbtn"
       *ngIf="medication.added"
       (click)="removeFromCart(medication)"
     >
