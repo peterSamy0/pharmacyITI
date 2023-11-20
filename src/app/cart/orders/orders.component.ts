@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../servic/api.service';
 import { HttpClient } from '@angular/common/http';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -13,6 +14,8 @@ export class OrdersComponent {
   isLoading: boolean = true;
   token: any;
   clientID: any;
+  faEye = faEye;
+
   constructor(private apiService: ApiService, private http :HttpClient){
 
   }

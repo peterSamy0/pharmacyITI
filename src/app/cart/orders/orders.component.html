@@ -21,11 +21,13 @@
                 totalItems: totalLenght
               }, let i = index ">
   
-              <th scope="row">{{order.id}}</th>
+              <td scope="row">{{i+1}}</td>
               <td>{{order.pharmacy_name}}</td>
               <td>{{order.created_at | dateTimeFormat}}</td>
               <td>
-                  <a class="btn btn-primary me-3 text-white fw-bold" href="/orders/{{order.id}}">View Order</a>
+                  <a class="btn btn-primary me-3 text-white fw-bold" href="/orders/{{order.id}}">
+                    <fa-icon [icon]="faEye"></fa-icon>
+                  </a>
               </td>
               <td>
                   <button *ngIf="order.status == 'withDelivery'" class="btn btn-success" data-bs-toggle="modal" [attr.data-bs-target]="'#deliveredConfirm-' + order.id" (click)="delivered(order.id)">Delivered</button>

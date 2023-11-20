@@ -9,6 +9,7 @@ import { OrderComponent } from './order/order.component';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { DateTimeFormatPipe } from '../pipes/date-time-format.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     CartpageComponent,
@@ -23,7 +24,8 @@ import { SharedModule } from '../shared/shared.module';
     NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    FontAwesomeModule
   ]
 })
 export class CartModule { }
