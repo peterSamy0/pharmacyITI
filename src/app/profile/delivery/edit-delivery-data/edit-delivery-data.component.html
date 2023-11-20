@@ -1,4 +1,4 @@
-<div class="container mt-5 mb-5">
+<div class="container mt-5 mb-5" *ngIf="!isLoading">
     <div class="main-body">
       <div class="row gutters-sm mt-5">
         <div class="col-md-4 mb-3">
@@ -298,3 +298,5 @@
     </div>
   </div>
   
+
+  <app-spinner *ngIf="isLoading"></app-spinner>

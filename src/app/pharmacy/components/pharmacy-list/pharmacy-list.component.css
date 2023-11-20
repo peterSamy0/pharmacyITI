@@ -48,7 +48,13 @@
 .slide-container{
   height: 450px;
 }
-
+.my-pagination{
+  color: #419197;
+}
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #419197;
+  margin-top: 5px;
+}
 /****************** spinner ****************/
 .loader {
   width: 48px;
@@ -59,6 +65,14 @@
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+  }
+  .btnView{
+    background-color: #419197 ;
+    color: #fff;
+  }
+  .btnView:hover{
+    background-color: #295c60 ;
+    color: #fff;
   }
 
   @keyframes rotation {

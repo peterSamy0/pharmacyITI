@@ -27,7 +27,7 @@ h4{
     margin-top:25px;
   }
   .container-fluid {
-    background-color: #5fb8be;
+    background-image: linear-gradient(to right, rgba(208, 195, 195, 0), #419197);
     color: #fff;
     padding: 20px 0;
   }

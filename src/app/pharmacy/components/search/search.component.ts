@@ -30,7 +30,7 @@ export class SearchComponent {
   getAllProducts() {
     this.urlService.getPharmacyData(this.id).subscribe(
       (res:any) => {
-        this.products = res.data.medication;
+        this.products = res.medication;
         // console.log(this.products.data.medication)
         console.log(this.products);
         

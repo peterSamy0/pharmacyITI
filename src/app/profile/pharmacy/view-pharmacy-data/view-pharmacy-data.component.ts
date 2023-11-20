@@ -44,6 +44,7 @@ export class ViewPharmacyDataComponent {
 
   // function to get pharamcy data
   getPharmacyData(){
+    this.isLoading = true;
     this.urlService.getPharmacy(this.pharmayID, this.token).subscribe(
       (res: any) => {
         if(res == 'pending'){

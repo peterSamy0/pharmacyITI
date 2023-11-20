@@ -16,7 +16,7 @@
 .text-nav{
   color: var(--navColor);
 }
-div > h1{
+div > h2{
   border-bottom: 5px solid var(--navColor);
   border-radius: 5px;
 }

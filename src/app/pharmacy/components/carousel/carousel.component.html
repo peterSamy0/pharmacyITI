@@ -1,8 +1,8 @@
 <router-outlet></router-outlet>
 <div *ngIf="!isLoading"  >
   <div *ngFor="let cat of categories" class=" my-5"> 
-    <div class="d-flex justify-content-between align-items-end ps-5 w-9 m-auto ">
-      <h1 class="text-center d-inline-block text-capitalize ">{{ cat }}</h1>
+    <div class="d-flex justify-content-between align-items-end ps-5 w-9 m-auto " *ngIf="getCategoryProducts(cat).length !==0">
+      <h2 class="text-center d-inline-block text-capitalize  mb-4">{{ cat }}</h2>
     </div>
     <div class="carousel-c position-relative  w-9 m-auto ">
       <div class="carousel-c-inner w-100" [style.transform]="'translateX(' + (-getActiveIndex(cat) * (100 / visibleItems)) + '%)'">
@@ -18,8 +18,8 @@
         </button>
       </div>
     </div>
-    <div class="container cursor">
-      <a (click)="diplay(cat)" style="color:var(--navColor); font-size:24px">see all...</a>
+    <div class="container cursor" *ngIf="getCategoryProducts(cat).length !==0">
+      <a (click)="diplay(cat)" style="color:var(--navColor); font-size:24px" >see all...</a>
     </div>
   </div>
 </div>

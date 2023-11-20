@@ -25,6 +25,7 @@ export class PharmacyDetailsComponent {
     this.id = this.activeRoute.snapshot.params['id']
     this.cartService.pharmacyId = this.activeRoute.snapshot.params['id'];
     this.getPharma();
+    // this. getPhone();
   }
 
   // function to get pharamcy information
@@ -45,7 +46,9 @@ export class PharmacyDetailsComponent {
     if(val.pharmacy_phone > 0){
       this.phone = val.pharmacy_phone[0]['phone']
     }
-    this.phone = 'Not Available Now'
+    this.phone = 'not available now';
+    console.log('no')
+    return this.phone;
   }
 }
 

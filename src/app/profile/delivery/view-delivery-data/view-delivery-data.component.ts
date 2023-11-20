@@ -9,6 +9,7 @@ import { UrlService } from 'src/app/services/url.service';
   templateUrl: './view-delivery-data.component.html',
   styleUrls: ['./view-delivery-data.component.css']
 })
+
 export class ViewDeliveryDataComponent {
 
   deliveryData!:any;

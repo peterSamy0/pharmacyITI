@@ -1,15 +1,4 @@
-/* table td,
-table th {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  color: rgb(73, 99, 102);
-  text-align: center;
-}
-tbody td {
-  font-weight: 500;
-  color: rgb(73, 99, 102);
-} */
+
 th{
   background-color: #1f494d;
   text-align: center;

@@ -28,7 +28,7 @@ export class ListProductsComponent {
   faPenSquare = faPenSquare;
   faFolderOpen = faFolderOpen;
   faClock = faClock;
-  response: string = '';
+  isPending: boolean = true;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -47,13 +47,17 @@ export class ListProductsComponent {
 
   // get medication of pharamcy
   getMedicationList() {
+    this.isPending = true;
     this.urlService.getPharmacyMedication(+this.id, this.token).subscribe(
       (res: any) => {
         if(res == 'pending'){
-          this.response = 'pending'
-          console.log( this.response)
+          this.isPending = true;
+          this.products = []
+        }else{
+          this.isPending = false;
+          this.products = res.data.medication;
         }
-        this.products = res.data.medication;
+        console.log(this.isPending)
       },
       error => this.router.navigate(['not-found'])
     );
@@ -78,6 +82,9 @@ export class ListProductsComponent {
   // go to add product page
   goToAddProduct(){
     this.router.navigate([this.addProductUrl])
+  }
+  generateImageUrl(val:any) {
+    return `http://localhost:8000/storage/${val}`;
   }
   
   

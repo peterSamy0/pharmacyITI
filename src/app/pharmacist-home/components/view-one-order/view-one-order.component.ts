@@ -67,7 +67,8 @@ export class ViewOneOrderComponent {
         return 'black';
     }
   }
-  getroute(val:any){
-    console.log(`viewOrders/${val.id}/selectDelivery/${this.city}`)
+  
+  generateImageUrl(val:any) {
+    return `http://localhost:8000/storage/${val}`;
   }
 }

@@ -217,9 +217,7 @@
     </div>
   </div>
 </ng-container>
-<div class="d-flex align-items-center justify-content-center spinner" style="height: 50vh;" *ngIf="isLoading">
-  <span class="loader"></span>
-</div>
+<app-spinner *ngIf='isLoading'></app-spinner>
 
 <div class="container my-5" *ngIf="isPending">
   <div class="d-flex justify-content-center flex-column align-items-center" >

@@ -35,6 +35,8 @@ export class EditClientDataComponent {
   oldCityId!: number;
   clientPhone!: any;
   token: any;
+  image:any;
+  isLoading:boolean = true;
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -55,14 +57,18 @@ export class EditClientDataComponent {
   ngOnInit() {
     this.token = localStorage.getItem('token');
     this.clientID = this.activeRoute.snapshot.params['id'];
+        this.image = localStorage.getItem('image');
+
     this.getUserData();
     this.getGovernorates();
   }
 
   // get client data to show inside the input field
   getUserData() {
+    this.isLoading = true;
     this.urlService.getClientData(this.clientID, this.token).subscribe(
       (res: any) => {
+        this.isLoading = true;
         this.clientData = res.data;
         this.clientName = this.clientData.client_name;
         this.clientEmail = this.clientData.client_email;
@@ -138,6 +144,10 @@ export class EditClientDataComponent {
       },
       (error) => console.log(error)
     );
+  }
+ // function to get user's image
+  generateImageUrl() {
+    return `http://localhost:8000/storage/${this.image}`;
   }
 
   // function to get all the cities of selected governorates

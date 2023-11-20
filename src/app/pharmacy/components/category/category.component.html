@@ -1,9 +1,78 @@
-<div class="container my-5">
-    <a routerLink="/pharmacy/{{id}}" style="color:var(--navColor); font-size:24px" class="d-block ">Back...</a>
-    <h1 class="text-center d-inline-block my-3 text-uppercase">{{medicationCategory}}</h1>
-    <div class="row mb-5">
-        <div class="col-3 mt-5" *ngFor="let medication of medications ">
-            <app-medication-card  [medication]="medication"></app-medication-card>
-        </div>
+<div class="container p-5 mt-5">
+    <div class="row">
+      <div
+        class="col-5 border border-1 d-flex justify-content-center align-items-center"
+      >
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyx34biZ4p1ckWztUdjQhqvU8SaoilQ_370A&usqp=CAU"
+          alt="pharmacy image"
+          style="width: 100%; height: 40vh"
+        />
+      </div>
+      <div
+        class="col-6 offset-1 d-flex justify-content-center align-items-start flex-column"
+      >
+        <p class="p-3 my-1 m-3">
+          <span class="fs-5 fw-bolder">Pharmacy Name: </span>
+          {{ pharmacy.pharmacy_name }}
+        </p>
+        <p class="p-3 my-1 m-3">
+          <span class="fs-5 fw-bolder">Pharmacy address: </span>
+          {{ pharmacy.street }}, {{ pharmacy.city }}, {{ pharmacy.Governorate }}
+        </p>
+        <p class="p-3 my-1 m-3">
+          <span class="fs-5 fw-bolder">Pharmacy Phone: </span>
+          {{ pharmacy.pharmacy_phone[0]['phone'] }}
+          <!-- {{phone}} -->
+        </p>
+        <p class="p-3 my-1 m-3">
+          <span class="fs-5 fw-bolder">Pharmacy Email: </span>
+          {{ pharmacy.pharmacy_email}}
+        </p>
+      </div>
     </div>
+  </div>
+<div class="container py-4">
+  <div class="row mt-5">
+    <div class="col-md-5 mx-auto">
+      <div class="input-group">
+        <input
+          class="form-control border rounded-pill"
+          type="search"
+          [(ngModel)]="searchText"
+          name="first"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          id="example-search-input"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container my-5">
+  <a
+    routerLink="/pharmacy/{{ id }}"
+    style="color: var(--navColor); font-size: 24px"
+    class="d-block"
+    >Back...</a
+  >
+  <h1 class="text-center d-inline-block my-3 text-uppercase">
+    {{ medicationCategory }}
+  </h1>
+  <!-- <div *ngIf="medications.length <1 ">
+    <h4>
+    No Such Proudct</h4>
+    </div> -->
+  <div class="row mb-5">
+    <div
+      class="col-3 mt-5 mb-5"
+      *ngFor="let medication of medications | searchPharmacies : searchText"
+    >
+
+      <app-medication-card [medication]="medication"></app-medication-card>
+     
+    </div>
+
+  </div>
 </div>

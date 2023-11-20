@@ -2,7 +2,6 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import deliveriesData from '../../../../assets/json/users.json';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { ProfileService } from '../../services/profile.service';
 import { SweetAlertIcon } from 'sweetalert2';
 import { UrlService } from 'src/app/services/url.service';
@@ -12,6 +11,7 @@ import { UrlService } from 'src/app/services/url.service';
   templateUrl: './edit-delivery-data.component.html',
   styleUrls: ['./edit-delivery-data.component.css'],
 })
+
 export class EditDeliveryDataComponent {
   updateDeliveryForm: FormGroup;
   deliveries: Array<any> = deliveriesData;
@@ -37,6 +37,7 @@ export class EditDeliveryDataComponent {
   deliveryPhone!: any;
   oldPass:any;
   token: any;
+  isLoading:boolean = true;
   @ViewChild('myCheckbox')
   myCheckbox!: ElementRef;
 
@@ -62,11 +63,12 @@ ngOnInit() {
 
 // get delivery data to show inside the input field
 getUserData() {
+  this.isLoading = true;
   this.token = localStorage.getItem('token')
   this.urlService.getDeliveryData(this.deliveryID, this.token).subscribe(
     (res: any) => {
+      this.isLoading = false;
       this.deliveryData = res.data;
-      console.log(res);
       this.deliveryName = this.deliveryData.name;
       this.deliveryEmail = this.deliveryData.email;
       this.oldGov = res.data.Governorate;

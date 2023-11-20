@@ -24,6 +24,7 @@ export class AddProductsComponent implements OnInit {
   medicineObj:any;
   medicationsList!: any;
   products: any;
+  index!:number;
   isExists:boolean = false;
   token: any;
 constructor (

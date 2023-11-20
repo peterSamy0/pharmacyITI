@@ -24,10 +24,11 @@ export class ViewClientDataComponent {
   phone:any;
   image:any;
   userID: any;
+  isLoading:boolean = true;
+
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private profileService: ProfileService,
     private urlService: UrlService
   ) {}
 
@@ -41,8 +42,10 @@ export class ViewClientDataComponent {
   
   // function to get client data 
   getClientData(){
+    this.isLoading = true;
     this.urlService.getClientData(this.id, this.token).subscribe(
       (res: any) => {
+          this.isLoading = false;
           this.clientId = res.data;
           this.getPHone();
           this.ordersOnTheirWay= this.clientId.orders.filter(

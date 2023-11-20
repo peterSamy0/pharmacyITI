@@ -94,5 +94,8 @@ export class OrderComponent {
         console.log(data);
       });
   }
+  generateImageUrl(val:any) {
+    return `http://localhost:8000/storage/${val}`;
+  }
 
 }

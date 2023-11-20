@@ -1,6 +1,5 @@
 <ng-container *ngIf="isApproved">
-
-  <div class="container mt-5 mb-5">
+  <div class="container mt-5 mb-5" *ngIf="!isLoading">
     <div class="main-body">
       <div class="row gutters-sm mt-5">
         <div class="col-md-4 mb-3">
@@ -195,3 +194,5 @@
     <p class="text-center mt3-3">Your Data was wrong, if you have any question you can <a routerLink="/contact-us">contact us!</a> thank you</p>
   </div>
 </div>
+
+<app-spinner *ngIf="isLoading"></app-spinner>
