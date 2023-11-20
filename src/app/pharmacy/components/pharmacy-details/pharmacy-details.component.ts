@@ -45,10 +45,11 @@ export class PharmacyDetailsComponent {
   getPhone(val:any){
     if(val.pharmacy_phone > 0){
       this.phone = val.pharmacy_phone[0]['phone']
+    }else{
+      this.phone = 'not available now';
+      return this.phone;
     }
-    this.phone = 'not available now';
     console.log('no')
-    return this.phone;
   }
 }
 
