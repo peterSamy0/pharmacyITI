@@ -43,7 +43,7 @@ export class PharmacyDetailsComponent {
 
   // function to get phone number of the pharamcy if it exists or if it does not exists show not available
   getPhone(val:any){
-    if(val.pharmacy_phone > 0){
+    if(val.pharmacy_phone != 0){
       this.phone = val.pharmacy_phone[0]['phone']
     }else{
       this.phone = 'not available now';
