@@ -1,11 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ServiceService } from 'src/app/shared/services/service.service';
-import { Governorate } from 'src/app/interface/governorate';
-import { BehaviorSubject,} from 'rxjs';
-import { City } from 'src/app/interface/city';
-
-import { Pipe, PipeTransform } from '@angular/core';
 import { DropDownService } from 'src/app/shared/services/drop-down.service';
 import { faAngleRight, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
@@ -36,6 +31,7 @@ export class PharmacyListComponent{
   page :number=1;
   totalLength:any;
   originalPharmArr: any[] = [];
+  phone: any;
   isLoading:boolean = true;
   constructor(private service:ServiceService, private httpClient: HttpClient,
     private dropService: DropDownService,
@@ -112,6 +108,17 @@ closeSubList(){
 // move to the details page
 goToDetails(id:number){
   this.router.navigate(["/pharmacy",id]);
+}
+
+// get phone number 
+getPhone(val:any){
+  if(val.pharmacy_phone > 0){
+    this.phone = val.pharmacy_phone[0]['phone']
+  }else{
+    this.phone = 'not available now';
+    return this.phone;
+  }
+  console.log('no')
 }
 
 }
