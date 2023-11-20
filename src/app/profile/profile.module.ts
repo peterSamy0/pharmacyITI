@@ -11,7 +11,6 @@ import { EditDeliveryDataComponent } from './delivery/edit-delivery-data/edit-de
 import { ViewDeliveryDataComponent } from './delivery/view-delivery-data/view-delivery-data.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { SpinnerComponent } from '../shared/components/spinner/spinner.component';
 import { DeliveryOrdersComponent } from './delivery/delivery-orders/delivery-orders.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -28,7 +27,6 @@ import { SharedModule } from '../shared/shared.module';
     ViewPharmacyDataComponent,
     EditDeliveryDataComponent,
     ViewDeliveryDataComponent,
-    SpinnerComponent,
     DeliveryOrdersComponent,
     DeliveryOrderComponent,
     SingleProductComponent

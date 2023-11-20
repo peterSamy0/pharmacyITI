@@ -16,7 +16,7 @@ export class ViewOneOrderComponent {
   token: any;
   clientID: any
   pharmacyId = JSON.parse(localStorage.getItem("_id") || '');
-
+  isLoading:boolean = true;
   constructor(
     private routeUrl:ActivatedRoute, 
     private urlSevice: UrlService
@@ -33,12 +33,14 @@ export class ViewOneOrderComponent {
 
   // get orders of pharmacy
   getOrder(){
+    this.isLoading = true
     this.urlSevice.getOrders(this.token).subscribe(
       (data:any)=>{
         let order = Object.values(data).find((ele:any)=>{
           return ele.id == this.orderId;
         })
         this.thisOrder = order;
+        this.isLoading = false;
     });
   }
 
@@ -48,7 +50,6 @@ export class ViewOneOrderComponent {
       (data:any) => {
         let pharmacy:any = Object.values(data.data);
         this.city = pharmacy[11];
-        console.log(this.city);
     });
   }
 

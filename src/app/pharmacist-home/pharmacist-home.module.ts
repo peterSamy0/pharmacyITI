@@ -12,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule, Routes } from '@angular/router';
 import { AddMedicationComponent } from './components/add-medication/add-medication.component';
 import { SharedModule } from '../shared/shared.module';
+// import { SpinnerComponent } from '../shared/components/spinner/spinner.component';s
 // import { CamelToRegularPipe } from '../pipes/camel-to-regular.pipe';
 
 @NgModule({
@@ -24,7 +25,7 @@ import { SharedModule } from '../shared/shared.module';
     ViewOrdersComponent,
     SelectDeliveryComponent,
     AddMedicationComponent,
-    
+    // SpinnerComponent
   ],
   imports: [
     CommonModule,

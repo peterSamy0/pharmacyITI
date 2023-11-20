@@ -18,7 +18,8 @@ import { CamelToRegularPipe } from '../pipes/camel-to-regular.pipe';
     FooterComponent,
     SearchFormComponent,
     NotFoundComponent,
-    CamelToRegularPipe
+    CamelToRegularPipe,
+    SpinnerComponent
     // SearchPipe
 
   ],
@@ -33,6 +34,7 @@ import { CamelToRegularPipe } from '../pipes/camel-to-regular.pipe';
     HeaderComponent,
     FooterComponent,
     CamelToRegularPipe,
+    SpinnerComponent
     // DateTimeFormatPipe
   ]
 })

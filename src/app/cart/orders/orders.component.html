@@ -1,89 +1,88 @@
-<div class="container p-3">
+<div class="container p-3" *ngIf="!isLoading">
     <h1 class="text-center">Your Orders</h1>
-    <div class="d-flex align-items-center justify-content-center spinner" style="height: 50vh;" *ngIf="isLoading">
-        <span class="loader"></span>
-      </div>
-
-    <div class="w-75 m-auto " *ngIf="!isLoading">
+    <div class="w-75 m-auto">
+      <div class=" overflow-x-auto"> 
         <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">order no</th>
-                <th scope="col">Pharmacy</th>
-                <th scope="col">order time</th>
-                <th scope="col">view order</th>
-                <th scope="col">Action</th>
-                <th scope="col">status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let order of allOrders | paginate
-              : {
-                  itemsPerPage: 10,
-                  currentPage: page,
-                  totalItems: totalLenght
-                }, let i = index ">
-    
-                <th scope="row">{{order.id}}</th>
-                <td>{{order.pharmacy_name}}</td>
-                <td>{{order.created_at | dateTimeFormat}}</td>
-                <td>
-                    <a class="btn btn-primary me-3 text-white fw-bold" href="/orders/{{order.id}}">View Order</a>
-                </td>
-                <td>
-                    <button *ngIf="order.status == 'withDelivery'" class="btn btn-success" data-bs-toggle="modal" [attr.data-bs-target]="'#deliveredConfirm-' + order.id" (click)="delivered(order.id)">Delivered</button>
-                    <button *ngIf="order.status == 'pending' || order.status == 'delivered'" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + order.id">Remove</button>
-                    <button *ngIf="order.status !== 'pending' && order.status !== 'delivered' && order.status !== 'withDelivery'" class="btn btn-secondary" disabled>Remove</button>
-                    <!-- Modal -->
-                  <div class="modal fade" [id]="'removeConfirm-' + order.id" tabindex="-1"  aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header" style="background-color: #419197; color:white;">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Remove this order from cart? </h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <h4>Are you sure you want to remove this order from the cart?</h4>
-                        </div>
-                        <div class="modal-footer" style="background-color: #419197; color:white;">
-                          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                          <button (click)="removeOrder(order.id)" type="button" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + order.id">Remove</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+          <thead>
+            <tr>
+              <th scope="col">order no</th>
+              <th scope="col">Pharmacy</th>
+              <th scope="col">order time</th>
+              <th scope="col">view order</th>
+              <th scope="col">Action</th>
+              <th scope="col">status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of allOrders | paginate
+            : {
+                itemsPerPage: 10,
+                currentPage: page,
+                totalItems: totalLenght
+              }, let i = index ">
+  
+              <th scope="row">{{order.id}}</th>
+              <td>{{order.pharmacy_name}}</td>
+              <td>{{order.created_at | dateTimeFormat}}</td>
+              <td>
+                  <a class="btn btn-primary me-3 text-white fw-bold" href="/orders/{{order.id}}">View Order</a>
+              </td>
+              <td>
+                  <button *ngIf="order.status == 'withDelivery'" class="btn btn-success" data-bs-toggle="modal" [attr.data-bs-target]="'#deliveredConfirm-' + order.id" (click)="delivered(order.id)">Delivered</button>
+                  <button *ngIf="order.status == 'pending' || order.status == 'delivered'" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + order.id">Remove</button>
+                  <button *ngIf="order.status !== 'pending' && order.status !== 'delivered' && order.status !== 'withDelivery'" class="btn btn-secondary" disabled>Remove</button>
                   <!-- Modal -->
-                  <div class="modal fade" [id]="'deliveredConfirm-' + order.id" tabindex="-1"  aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header" style="background-color: #419197; color:white;">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Your order marked as delivered </h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <h4>Thanks for dealing with us, hope you all well</h4>
-                        </div>
-                        <div class="modal-footer" style="background-color: #419197; color:white;">
-                          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
-                        </div>
+                <div class="modal fade" [id]="'removeConfirm-' + order.id" tabindex="-1"  aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #419197; color:white;">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Remove this order from cart? </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <h4>Are you sure you want to remove this order from the cart?</h4>
+                      </div>
+                      <div class="modal-footer" style="background-color: #419197; color:white;">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                        <button (click)="removeOrder(order.id)" type="button" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#removeConfirm-' + order.id">Remove</button>
                       </div>
                     </div>
                   </div>
-                </td>
-                <td>
-                    <span class="badge p-2"[ngClass]="'text-bg-'+badgeColor(order.status)">{{order.status | camelToRegular}}</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-    
-          <pagination-controls
-            class="my-pagination text-center"
-            (pageChange)="page = $event"
-            >
-          </pagination-controls>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" [id]="'deliveredConfirm-' + order.id" tabindex="-1"  aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header" style="background-color: #419197; color:white;">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Your order marked as delivered </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <h4>Thanks for dealing with us, hope you all well</h4>
+                      </div>
+                      <div class="modal-footer" style="background-color: #419197; color:white;">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                  <span class="badge p-2"[ngClass]="'text-bg-'+badgeColor(order.status)">{{order.status | camelToRegular}}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+        <pagination-controls
+          class="my-pagination text-center"
+          (pageChange)="page = $event"
+          >
+        </pagination-controls>
     </div>
-    
+</div>
+<app-spinner *ngIf="isLoading"></app-spinner>
+
 
 
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ServiceService } from 'src/app/shared/services/service.service';
 import { RouterModule } from '@angular/router';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-view-orders',
@@ -14,6 +15,7 @@ export class ViewOrdersComponent {
   orders: any = [];
   totalLenght:any;
   page :number=1;
+  faEye = faEye;
   constructor(private orderService: ServiceService) {}
   isLoading: boolean = true;
   ngOnInit(){

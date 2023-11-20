@@ -12,6 +12,7 @@ export class OrderComponent {
   orderData!:any;
   pharmacy:any;
   token:any;
+  isLoading : boolean= true;
   constructor(private routeUrl:ActivatedRoute,private http: HttpClient ){
     // get order id
     this.routeUrl.paramMap.subscribe(params => this.orderId = Number(params.get("id")));
@@ -19,6 +20,7 @@ export class OrderComponent {
   };
   ngOnInit() {
     // git order data from db
+    this.isLoading = true
     this.token = localStorage.getItem('token')
     this.http.get(`http://localhost:8000/api/orders/${this.orderId}`,{
       headers:{
@@ -27,8 +29,7 @@ export class OrderComponent {
     }).
     subscribe((data:any)=> {
       this.orderData = data.data;
-      console.log(data.data)
-      
+      this.isLoading = false
       });
 
       
