@@ -87,4 +87,7 @@ export class SingleProductComponent {
   // test(){
   //   console.log(this.service.pharmacyId)
   // };
+  generateImageUrl(val:any) {
+    return `http://localhost:8000/storage/${val}`;
+  }
 }
