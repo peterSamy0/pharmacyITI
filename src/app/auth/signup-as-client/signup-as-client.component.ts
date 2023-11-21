@@ -16,6 +16,7 @@ export class SignupAsClientComponent {
   users: Users[] = userData;
   Swal!: SweetAlertIcon;
   signupForm: FormGroup;
+  // passForm:FormGroup;
   emailFail: boolean = false;
   passFail: boolean = false;
   userFullNameFail: boolean = false;
@@ -26,28 +27,39 @@ export class SignupAsClientComponent {
   cities: any;
   governorates: any;
   cityID!: number;
-  errors:any ={};
+  errors: any = {};
   days: any;
   daysArr: any = [];
   selectedDays: { id: string; day: string }[] = [];
-  imageFile:any;
+  imageFile: any;
+  // confirmPassFail = false;
   constructor(
     private http: HttpClient,
     private router: Router,
     private profileService: ProfileService,
-    private errorHandler : ErrorHandler
+    private errorHandler: ErrorHandler
   ) {
+    // this.passForm = new FormGroup({
+    //   confirmPass:  new FormControl('', [Validators.required])
+    // })
     this.signupForm = new FormGroup({
-     userEmail: new FormControl('', [
-      Validators.required,
-     Validators.email]),
-      userPhone: new FormControl('', [Validators.required,
-        Validators.pattern('^[0-9]{11}$')]),
-      userFullName: new FormControl('', [Validators.required,
-      Validators.pattern(/(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/)]),
+      userEmail: new FormControl('', [Validators.required, Validators.email]),
+      userPhone: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[0-9]{11}$'),
+      ]),
+      userFullName: new FormControl('', [
+        Validators.required,
+        Validators.pattern(
+          /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/
+        ),
+      ]),
       userCity: new FormControl('', [Validators.required]),
       userGovern: new FormControl('', [Validators.required]),
-      userPass: new FormControl('', [Validators.required,Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]),
+      userPass: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/),
+      ]),
       // userGender: new FormControl('', [Validators.required]),
     });
   }
@@ -57,8 +69,8 @@ export class SignupAsClientComponent {
     this.getDays();
   }
 
-  onFileSelected(event:any){
-    this.imageFile=event.target.files[0]
+  onFileSelected(event: any) {
+    this.imageFile = event.target.files[0];
   }
   addClient() {
     let userEmail = this.signupForm.controls['userEmail'].value;
@@ -67,64 +79,79 @@ export class SignupAsClientComponent {
     let userGovern = this.signupForm.controls['userGovern'].value;
     let userPhone = this.signupForm.controls['userPhone'].value;
     let userPass = this.signupForm.controls['userPass'].value;
+    // let confPass = this.passForm.controls['confirmPass'].value;
     let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     let fullNamePattern =
       /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/;
     let passPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-    console.log(this.signupForm)
-    
-    if (
-      userEmail &&
-      userFullName &&
-      userGovern &&
-      userCity &&
-      userPass
-    ) {    
+    console.log(this.signupForm);
+
+    // if(confPass !==userPass){
+    //   console.log('no match')
+    //   this.confirmPassFail = true;
+    // }else{
+    //   this.confirmPassFail = false;
+
+    // }
+
+    if (userEmail && userFullName && userGovern && userCity && userPass) {
       this.userFullNameFail = false;
       this.emailFail = false;
       this.passFail = false;
       this.userGovernFail = false;
 
-      
       const foundEmail = this.allClients.find(
         (obj) => obj.client_email === userEmail
       );
       if (foundEmail) {
         console.log(`'${userEmail}' is used in our DataBase`);
+        // console.log(this.allClients[38].client_phone[0].phone);
         this.emailAlreadyUsed = true;
       } else {
         console.log(`'${userEmail}' is not used in our DataBase`);
         this.emailAlreadyUsed = false;
       }
-      if(!foundEmail){
-
-      const userData = this.signupForm.value;
-      const formData = new FormData();
-      formData.append('userImage', this.imageFile);
-      for (const key of Object.keys(userData)) {
-        formData.append(key, userData[key]);
-      }
-      this.http.post(`http://localhost:8000/api/clients`, formData).subscribe(
-        (response:any) => {
-          localStorage.setItem('token', response['token']);
-          localStorage.setItem('role', response['role']);
-          localStorage.setItem('user_id', response['user_id']);
-          localStorage.setItem('_id', response['_id']);
-          localStorage.setItem('image', response['image']);
-          window.location.href = '/';
-        },
-
-        (error) => {
-          Swal.fire({
-            title: 'Error!',
-            text: 'Check all fields',
-            icon: 'error',
-            confirmButtonText: 'Cool'
-          })
+      // const foundPhone = this.allClients.find(
+      //   (obj) => obj.client_phone[0].phone == "12343243243"
+      // );
+      // if (foundPhone) {
+      //   console.log('this phone already used');
+      // }
+      //&& this.confirmPassFail ==false
+      if (!foundEmail ) {
+        const userData = this.signupForm.value;
+        const formData = new FormData();
+        formData.append('userImage', this.imageFile);
+        for (const key of Object.keys(userData)) {
+          formData.append(key, userData[key]);
         }
-      );
-      
+        this.http.post(`http://localhost:8000/api/clients`, formData).subscribe(
+          (response: any) => {
+            localStorage.setItem('token', response['token']);
+            localStorage.setItem('role', response['role']);
+            localStorage.setItem('user_id', response['user_id']);
+            localStorage.setItem('_id', response['_id']);
+            localStorage.setItem('image', response['image']);
+            window.location.href = '/';
+          },
+
+          (error) => {
+            Swal.fire({
+              title: 'Error!',
+              text: 'Check all fields',
+              icon: 'error',
+              confirmButtonText: 'Cool',
+            });
+            if (error["error"]["errors"]["userPhone"][0]){
+             this.phoneAlreadyUsed = true;
+             console.log(this.phoneAlreadyUsed)
+            }else{
+              this.phoneAlreadyUsed = false
+
+            }
+          }
+        );
       }
     } else {
       this.notAllDataEntered = true;
@@ -133,8 +160,8 @@ export class SignupAsClientComponent {
         title: 'Error!',
         text: 'All fields are required',
         icon: 'error',
-        confirmButtonText: 'Cool'
-      })
+        confirmButtonText: 'Cool',
+      });
     }
   }
   getGovernorates() {
@@ -163,13 +190,13 @@ export class SignupAsClientComponent {
   }
 
   //checking if email or phone number were already used and added in the db
-  allClients!:Array<any>;
-  emailAlreadyUsed =false;
+  allClients!: Array<any>;
+  emailAlreadyUsed = false;
   phoneAlreadyUsed = false;
-  getClients(){
-    this.profileService.getAllClients().subscribe((res:any)=>{
-      this.allClients = res.map((obj:any) => obj.data);
-    })
+  getClients() {
+    this.profileService.getAllClients().subscribe((res: any) => {
+      this.allClients = res.map((obj: any) => obj.data);
+    });
   }
 
   getDays() {
@@ -179,7 +206,7 @@ export class SignupAsClientComponent {
       },
       (error) => console.log(error)
     );
-  } 
+  }
   chooseDay(val: any) {
     const selectedDay = this.days.data.find((day: any) => day.id == val);
     const isExists = this.daysArr.includes(+val);

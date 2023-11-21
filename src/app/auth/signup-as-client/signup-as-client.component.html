@@ -248,6 +248,37 @@
                       </div>
                     </div>
                   </div>
+<!-- 
+                     <div class="col-12"
+                     [formGroup]="passForm"
+                     >
+                    <label class="form-label">Confirm Password</label>
+                    <div>
+                      <input
+                        type="password"
+                        class="form-control"
+                        placeholder="Enter Password"
+                        formControlName="confirmPass"
+                      />
+                      <div
+                        *ngIf="
+                          passForm.controls['confirmPass'].touched &&
+                          passForm.controls['confirmPass'].invalid
+                        "
+                        class="text-danger form-text"
+                      >
+                        <small
+                          *ngIf="passForm.controls['confirmPass'].errors?.['required']"
+                        >
+                         Confirm Password is required
+                        </small>
+                       
+                      </div>
+                      <small class="text-danger form-text" *ngIf="confirmPassFail">
+                        Passwords must match
+                      </small>
+                    </div>
+                  </div> -->
 
                   <small
                     *ngIf="notAllDataEntered"
