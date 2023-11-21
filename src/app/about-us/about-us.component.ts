@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { faMale} from '@fortawesome/free-solid-svg-icons';
+import { faFemale } from '@fortawesome/free-solid-svg-icons';
+import { faParagraph } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-about-us',
@@ -6,6 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./about-us.component.css'],
 })
 export class AboutUsComponent {
+  faPerson = faMale
+  faFemale= faFemale
+  fap= faParagraph
   users: any = [
     {
       id: 1,

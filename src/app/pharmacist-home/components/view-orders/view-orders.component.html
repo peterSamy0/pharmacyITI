@@ -1,6 +1,6 @@
 <div *ngIf="!isLoading">
-  <h1 class="text-uppercase  text-center my-5 page-title">
-        orders table
+  <h1 class="  text-center my-5 page-title">
+        Orders Table
   </h1>
 
   <!--  -->
@@ -31,7 +31,7 @@
             <td>{{order.address}}</td>
             <td>{{order.created_at | date:'yyyy-MM-dd HH:mm'}}</td>
             <td>
-                <a class="btn btn-primary me-3 text-white fw-bold" routerLink="/viewOrders/{{order.id}}">
+                <a class="btn btn-secondary me-3 text-white fw-bold" routerLink="/viewOrders/{{order.id}}">
                   <fa-icon [icon]="faEye"></fa-icon>
                 </a>
             </td>

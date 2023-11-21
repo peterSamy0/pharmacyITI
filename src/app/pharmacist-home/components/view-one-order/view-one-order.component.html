@@ -6,7 +6,7 @@
         </div>
         <div class="justify-content-center align-items-start d-flex flex-column ">
             <h3 class="fs-5 fw-bold ">Dr. {{thisOrder.pharmacy_name}}</h3>
-            <p class="text-capitalize ">{{thisOrder.pharmacy_address}}</p>
+            <p class="text-capitalize " style="color:#419197;">{{thisOrder.pharmacy_address}}</p>
         </div>
     </div>
     </div>
@@ -51,7 +51,7 @@
         </div>
   
           <div class="d-flex justify-content-end mb-5" *ngIf="thisOrder.status == 'pending'">
-            <a routerLink="/viewOrders/{{thisOrder.id}}/selectDelivery/{{this.city}}" class="btn btn-success me-3"> Accept</a>
+            <a routerLink="/viewOrders/{{thisOrder.id}}/selectDelivery/{{this.city}}" class="btn btn-secondary me-3"> Accept</a>
           </div>
     </div>
   </div>

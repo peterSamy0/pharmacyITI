@@ -1,6 +1,7 @@
 div > p{
     margin-bottom: 0;
 }
+
 div > h3{
     color: #419197;
 }
@@ -11,14 +12,18 @@ th{
     color: #fff;
     text-transform: capitalize;
 }
+
 td{
     text-align: center;
     vertical-align: middle;
+     color: #1a3f42;;
 }
+
 tr{
     border-right: gray;
 }
 .totalPrice{
-    font-size: 26px;
-    color:white;
+    font-size: 25px;
+    /* color:white; */
+    color: #1a3f42;
 }

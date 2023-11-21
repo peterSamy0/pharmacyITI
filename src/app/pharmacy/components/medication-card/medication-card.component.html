@@ -1,6 +1,6 @@
 <div
   class="item-content w-100 d-flex flex-column justify-content-between bg-white align-items-center"
->
+ style="margin-left: 50px;">
   <!-- <img
     src="https://img.freepik.com/premium-vector/set-medicines-clipart_24877-71915.jpg?w=2000"
     alt=""
@@ -11,17 +11,17 @@
   <img
     [src]="generateImageUrl(medication.medicine_image)"
     alt=""
-    width="80%"
-    height="35%"
-    class="p-3 object-fit-contain"
+    width="40%"
+    height="30%"
+    
   />
   <h4
-    class="overflow-hidden fs-5 d-flex align-items-center m-0"
-    style="height: 20%"
+    class="overflow-hidden fs-6 d-flex align-items-center m-0"
+    style="height: 20% ; color: rgb(73, 99, 102);"
   >
     {{ medication.medicine_name }}
   </h4>
-  <p class="overflow-hidden m-0" style="height: 10%">
+  <p class="overflow-hidden m-0" style="height: 10% ; color: rgb(73, 99, 102);">
     <span class="fw-bolder">Price:</span> {{ medication.medicine_price }} L.E
   </p>
   <div *ngIf="role != 'pharmacy'" class="d-flex">

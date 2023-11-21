@@ -28,3 +28,15 @@ div {
   color: #0d4044;
 }
 
+ td { 
+  color: grey;
+}
+
+th{
+  color:gray;
+}
+
+p{
+  color: gray;
+  font-weight: 500;
+}

@@ -8,6 +8,7 @@ th{
 td{
     text-align: center;
     vertical-align: middle;
+    color: #1a3f42;
 }
 tr{
     border-right: gray;
@@ -16,3 +17,12 @@ tr{
 .page-title{
     color: #1a3f42;
 }
+ 
+ 
+ .my-pagination{
+    color: #419197;
+  }
+  .my-pagination /deep/ .ngx-pagination .current {
+    background: #419197;
+    margin-top: 5px;
+  }

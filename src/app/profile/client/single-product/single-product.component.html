@@ -84,8 +84,9 @@
     <!-- <div class="col-4">
 </div> -->
     <div class="col">
-      <div class="card w-100" >
-        <img [src]="generateImageUrl(productDetails.medicine_image)" alt="{{productDetails.medicine_name}}" class="w-100">
+      <div class="card h-100">
+        <img [src]="generateImageUrl(productDetails.medicine_image)" alt="{{productDetails.medicine_name}}" 
+        style="height: 200px; width: auto;">
 
         <div class="card-body">
           <h5 class="card-title">Product Name: {{productDetails.medicine_name}} </h5>
