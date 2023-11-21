@@ -25,6 +25,8 @@ export class PharmacyListComponent{
   showList: boolean = false;
   showSubList: boolean = false;
   cities: any;
+  imagePath:string | any;
+  imagesFolder = this.urlService.imageBaseURL;
   GovernorateName: any;
   location: string = "Location";
   data: any= "not yet";
@@ -60,6 +62,13 @@ export class PharmacyListComponent{
     console.log(res)
 
   });
+}
+imageAlt(DBimage:any){
+	if(DBimage){
+		return this.imagesFolder +'/'+ DBimage;
+	}else{
+		return 'https://accesshealthla.org/wp-content/uploads/2022/07/AHL_PHARMACY_Michael-Simmons_5.png';
+	}
 }
 
 // function to show the selected location 

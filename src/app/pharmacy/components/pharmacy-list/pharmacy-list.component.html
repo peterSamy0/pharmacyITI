@@ -75,7 +75,7 @@
         } ">
 				<div class="card text-center mb-5">
           
-					<img src="https://img.freepik.com/premium-vector/set-medicines-clipart_24877-71915.jpg?w=2000" height="200em" class="card-img-top "alt="...">
+					<img [src]="imageAlt(item.pharmacy_image)" height="200em" class="card-img-top "alt="...">
 					<div class="card-body">
 						<h5 class="card-title text-center">{{item.pharmacy_name}}</h5>
 						<p class="card-text text-center" >Address: {{item.city}}, {{item.Governorate}}</p>
