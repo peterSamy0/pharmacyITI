@@ -9,3 +9,8 @@ div h1{
     font-weight: bold;
     color:#419197;
 }
+
+p{
+  color: rgb(73, 99, 102);
+  font-size: large;
+}

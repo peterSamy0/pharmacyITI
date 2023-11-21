@@ -79,7 +79,7 @@
 					<div class="card-body">
 						<h5 class="card-title text-center">{{item.pharmacy_name}}</h5>
 						<p class="card-text text-center" >Address: {{item.city}}, {{item.Governorate}}</p>
-            <!-- <p class="card-text text-center">Phone: {{item.pharmacy_phone[0]['phone']}}</p> -->
+            <p class="card-text text-center">Phone: <span class=" text-capitalize"> {{getPhone(item)}}</span></p>
 						<a class="btn btnView btn-md" 
             (click)="goToDetails(item.pharmacy_id)">View Products</a>
 					</div>
@@ -87,7 +87,6 @@
         <!-- <div *ngIf="item | searchPharmacies:searchText =false">
           kljasdkljasldkj
         </div> -->
-
 			</div>
       
 		

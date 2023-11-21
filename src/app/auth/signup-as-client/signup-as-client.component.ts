@@ -20,6 +20,7 @@ export class SignupAsClientComponent {
   emailFail: boolean = false;
   passFail: boolean = false;
   userFullNameFail: boolean = false;
+  addressFail: boolean = false;  
   notAllDataEntered: boolean = false;
   userGovernFail: boolean = false;
   isCity: boolean = false;
@@ -55,6 +56,7 @@ export class SignupAsClientComponent {
         ),
       ]),
       userCity: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required]),
       userGovern: new FormControl('', [Validators.required]),
       userPass: new FormControl('', [
         Validators.required,

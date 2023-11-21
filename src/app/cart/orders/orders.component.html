@@ -1,5 +1,5 @@
 <div class="container p-3" *ngIf="!isLoading">
-    <h1 class="text-center">Your Orders</h1>
+    <h1 class="text-center mt-5 mb-3" style="color: #419197; font-weight: bold;">Your Orders</h1>
     <div class="w-75 m-auto">
       <div class=" overflow-x-auto"> 
         <table class="table">
@@ -21,11 +21,13 @@
                 totalItems: totalLenght
               }, let i = index ">
   
-              <th scope="row">{{order.id}}</th>
+              <td scope="row">{{i+1}}</td>
               <td>{{order.pharmacy_name}}</td>
               <td>{{order.created_at | dateTimeFormat}}</td>
               <td>
-                  <a class="btn btn-primary me-3 text-white fw-bold" href="/orders/{{order.id}}">View Order</a>
+                  <a class="btn btn-secondary me-3 text-white fw-bold" href="/orders/{{order.id}}">
+                    <fa-icon [icon]="faEye"></fa-icon>
+                  </a>
               </td>
               <td>
                   <button *ngIf="order.status == 'withDelivery'" class="btn btn-success" data-bs-toggle="modal" [attr.data-bs-target]="'#deliveredConfirm-' + order.id" (click)="delivered(order.id)">Delivered</button>
@@ -36,7 +38,7 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header" style="background-color: #419197; color:white;">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Remove this order from cart? </h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel" >Remove this order from cart? </h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">

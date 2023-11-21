@@ -36,7 +36,7 @@
 <!-- <button class="btn btn-primart" (click)="test()">test</button> -->
  <div class="container my-5 ">
     <div>
-        <h1 class="text-center">Select Delivery</h1>
+        <h1 class="text-center" style="color: #419197;">Select Delivery</h1>
     </div>
     <div>
         <table class="table mb-5">
@@ -57,7 +57,7 @@
                     <fa-icon *ngIf="!delivery.available" [icon]="faXmark" class="text-danger"></fa-icon>
                 </td>
                 <td>
-                    <button class="btn btn-outline-success " (click)="select(delivery.id)" *ngIf="delivery.available && !isSelected">select</button> 
+                    <button class="btn btn-outline-secondary " (click)="select(delivery.id)" *ngIf="delivery.available && !isSelected">select</button> 
                     <button class="btn btn-outline-warning disabled" *ngIf="delivery.available && isSelected">select</button> 
                 </td>
               </tr>

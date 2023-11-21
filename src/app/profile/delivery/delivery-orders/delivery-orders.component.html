@@ -1,5 +1,5 @@
 <div class="container p-3">
-    <h1 class="text-center">Your Orders</h1>
+    <h1 class="text-center" style="color: #419197;">Your Orders</h1>
     <div class="d-flex align-items-center justify-content-center spinner" style="height: 50vh;" *ngIf="isLoading">
         <span class="loader"></span>
       </div>
@@ -28,7 +28,7 @@
                 <td>{{order.pharmacy_name}}</td>
                 <!-- <td>{{order.client_address}}</td> -->
                 <td>
-                    <a class="btn btn-primary me-3 text-white fw-bold" href="deliveryOrders/{{deliveryId}}/orders/{{order.id}}">View Order</a>
+                    <a class="btn btn-success me-3 text-white fw-bold" href="deliveryOrders/{{deliveryId}}/orders/{{order.id}}">View Order</a>
                 </td>
                 <td class="text-start">
                     <fa-icon [ngClass]="'px-2 text-'+badgeColor(order.status)" [icon]="faCircle"></fa-icon>

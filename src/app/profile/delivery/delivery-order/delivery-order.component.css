@@ -14,6 +14,8 @@ th{
 td{
     text-align: center;
     vertical-align: middle;
+    /* color: white; */
+    font-weight: 400;
 }
 tr{
     border-right: gray;
@@ -38,5 +40,6 @@ tr{
     text-align: left;
 }
 .table tr td:nth-child(1){
-    background-color:#5fb8be;
+    background-color:#419197;
 }
+

@@ -19,6 +19,7 @@
 div > h2{
   border-bottom: 5px solid var(--navColor);
   border-radius: 5px;
+  color:grey;
 }
 .carousel-c {
   display: flex;

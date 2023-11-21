@@ -1,31 +1,94 @@
-<div class="container text-center py-4">
-  <h1 class="display-4 mb-4">About Us</h1>
-
-  <div class="card mb-4">
-    <div class="card-body">
-      <p class="card-text">
-        With our website, you can find the nearest pharmacy in just a few clicks. Our service provides detailed information on the pharmacy's location, opening hours, and available treatments. Subscribe to our website for exclusive discounts and offers. Join us now and start your journey to a healthier life!
+<div class="container col-xxl-8 px-4 py-5">
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img
+        src="https://i.pinimg.com/236x/c0/f8/54/c0f8542c22080c19351ed8d82a8705e8.jpg"
+        class="d-block mx-lg-auto img-fluid"
+        alt="Bootstrap Themes"
+        width="700"
+        height="500"
+        loading="lazy"
+      />
+    </div>
+    <div class="col-lg-6">
+      <h4 class="display-5 fw-bold lh-1 mb-3">Our Story</h4>
+      <p class="lead">
+        <fa-icon [icon]="faPerson" style="margin-left: -20px"></fa-icon> Abanoub
+        graduated from faculty of Electrical Engineering. <br />
+        <fa-icon [icon]="faPerson" style="margin-left: -20px"></fa-icon> Hussein
+        graduated from faculty of Pharmacy. <br />
+        <fa-icon [icon]="faPerson" style="margin-left: -20px"></fa-icon> Mohamed
+        graduated from faculty of Veterinary Medicine.<br />
+        <fa-icon [icon]="faFemale" style="margin-left: -20px"></fa-icon> Nehal
+        graduated from faculty of Law. <br />
+        <fa-icon [icon]="faFemale" style="margin-left: -20px"></fa-icon> Fadia
+        graduated from faculty of Commerce.<br />
+        <br />
+        <fa-icon
+          [icon]="fap"
+          style="margin-left: -20px; font-size: 20px"
+        ></fa-icon>
+        Despite our different backgrounds, we combined our passion for
+        programming and enrolled at the Information Technology Institute (ITI).
+        We decided to apply what we learned at ITI To designed and implemented
+        the Pharma website.
       </p>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let user of users">
-      <div class="card">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img [src]="user.image" class="card-img" alt="User Image" />
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">{{user.name}}</h5>
-              <p class="card-text">
-                <a [href]="'mailto:' + user.email">E-mail: {{user.email}}</a><br />
-                <a [href]="'https://wa.me/' + user.phone">WA-Phone: {{user.phone}}</a>
-              </p>
-            </div>
-          </div>
-        </div>
+<!-- ------------------------ABOUT US ------------------------------- -->
+
+<div
+  class="article-con-item"
+  style="margin: 0px auto 30px; background-color: white"
+>
+  <div
+    style="
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      color: rgb(0, 0, 0);
+     
+      padding: 50px 0px 40px;
+    "
+  >
+    <div style="flex: 1 0 40%">
+      <div
+      >
+       <h1 style="color: gray; font-weight: bold; text-align: center;">Our Target</h1> 
+      </div>
+    </div>
+    <div style="flex: 1 0 60%">
+      <div
+        style="
+          line-height: 1.8;
+          margin: 0px 5px 20px 30px;
+          color: rgb(74, 74, 74);
+          font-size: 20px;
+          font-weight: 350;
+        font-family: sans-serif;
+        "
+      >
+       <p> Clients can locate nearby pharmacies to access any treatment they need.
+        The pharmacy displays its products, attracts more clients and increases
+        its revenues. Delivery services also create job opportunities, and thus
+        we contribute to society by helping patients, reducing unemployment
+        among youth, and increasing the income of pharmacies.</p>
+      </div>
+      <div style="margin: 0px 5px 0px 30px">
+        <img
+          src="https://i.pinimg.com/236x/3d/ce/a5/3dcea50fdd77a48aa568c7e270d353f2.jpg"
+        />
+
+        <img
+          src="https://i.pinimg.com/236x/2a/60/5a/2a605a75fcc7dc60f6d18def5ee606f2.jpg"
+        />
+        <img
+          src="https://i.pinimg.com/236x/58/9c/e0/589ce019ef90b40751bfa6569d9cf373.jpg"
+        />
+
+        >
       </div>
     </div>
   </div>

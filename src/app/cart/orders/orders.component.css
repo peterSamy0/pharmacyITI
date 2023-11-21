@@ -1,5 +1,5 @@
 th{
-    background-color: #1f494d;
+    background-color: #16909d;
     text-align: center;
     vertical-align: middle;
     color: #fff;
@@ -8,6 +8,7 @@ th{
 td{
     text-align: center;
     vertical-align: middle;
+    color: #1a3f42;
 }
 tr{
     border-right: gray;
@@ -16,23 +17,12 @@ tr{
 .page-title{
     color: #1a3f42;
 }
-/****************** spinner ****************/
-.loader {
-  width: 48px;
-  height: 48px;
-  border: 5px solid #419197;
-  border-bottom-color: transparent;
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
+ 
+ 
+ .my-pagination{
+    color: #419197;
   }
-
-  @keyframes rotation {
-  0% {
-      transform: rotate(0deg);
+  .my-pagination /deep/ .ngx-pagination .current {
+    background: #419197;
+    margin-top: 5px;
   }
-  100% {
-      transform: rotate(360deg);
-  }
-  } 
